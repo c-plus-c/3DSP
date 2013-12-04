@@ -57,6 +57,11 @@ extern "C" {
 #define AG_AG3D_AG3DEXPORTMOTION	(0)
 
 /***************************************************************/
+/*                        AG3D Camera Symbol                   */
+/***************************************************************/
+#define AG_AG3D_AG3DEXPORTPERSP	(0)
+
+/***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
 extern const AGERomMember ageRM[5];
@@ -67,6 +72,7 @@ extern const AG3DModelHeadChunk age3dModel[1];
 extern const AG3DDCmdHeadChunk age3dDCmd[1];
 extern const AG3DTreeHeadChunk age3dTree[1];
 extern const AG3DMotionHeadChunk age3dMotion[1];
+extern const AG3DCameraHeadChunk age3dCamera[1];
 extern const s16 ageVGCnt;
 
 #ifdef __cplusplus

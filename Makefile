@@ -5,7 +5,7 @@
 LIB3D = 1
 
 # ソースファイル
-C_SRC = main.c export.c
+C_SRC = main.c export.c pad.c fireball.c player.c
 
 # CGROM ディレクトリ
 CGROMDIR = ./

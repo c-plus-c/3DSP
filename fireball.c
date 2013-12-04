@@ -1,12 +1,14 @@
+#include "fireball.h"
+
 /* TODO:今西
 描画
 */
-static void fireball_drw(Object *dp){
+void fireball_drw(Object *dp){
 
 }
 
 /* TODO:今西
 */
-static void fireball_move(Object *dp){
+void fireball_move(Object *dp){
 	
 }

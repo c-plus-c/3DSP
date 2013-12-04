@@ -1,13 +1,5 @@
-typedef struct {
-    int     pid;		//controller id
-    float	anglex;
-    float	angley;
-    float 	anglez;
-    int     stat;
-} ObjectLocal;
-
-#define STAT_IDEL  0
-#define STAT_DEAD  1
+#include "player.h"
+#include "pad.h"
 
 /* TODO:今西
 半径で判定以上に当たり判定をしたければ書く 
@@ -29,5 +21,40 @@ static void player_move(Object *dp)
 */
 static void player_drw(Object *dp)
 {
+	int err;
+	/* ツリー→ワールド座標変換 */
+	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
+	/* ツリー形状を求める */
+	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ 0 ]), (float)0, node );
+
+	/* 描画 */
+		/* 不透明 */
+	agglDisable( AGGL_BLEND );
+	agglDepthMask( AGGL_TRUE );
+
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
+
+		/* 半透明、Ｚバッファ更新 */
+	agglEnable( AGGL_BLEND );
+
+	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	agglEndZsort();
+
+		/* 半透明、Ｚバッファ非更新 */
+	agglEnable( AGGL_BLEND );
+	agglDepthMask( AGGL_FALSE );
+
+	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	agglEndZsort();
+
+	agglDepthMask( AGGL_TRUE );
+
+	/* フレーム描画終了 */
+	err = agglGetError();
+	if ( err != 0 ) {
+		_dprintf( "!!!!!!!!!!!!!! err = %d, frame = %d !!!!!!!!!!!\n" , err, 0 );
+	}
 }
