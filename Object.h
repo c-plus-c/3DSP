@@ -1,11 +1,25 @@
 //オブジェクトクラス
+
+#ifndef __OBJECT_H__
+#define __OBJECT_H__
+
+typedef struct Vec3f_t
+{
+	float X;
+	float Y;
+	float Z;
+}Vec3f;
+
+typedef enum Stat_t
+{
+	IDLE,DEAD
+}Stat;
+
 typedef struct ObjectLocal {
     int     pid;		//controller id
-    float	anglex;
-    float	angley;
-    float 	anglez;
-    int     stat;
+    Vec3f	rotation;
+	Vec3f	translation;
+    Stat	stat;
 } Object;
 
-#define STAT_IDEL  0
-#define STAT_DEAD  1
+#endif;

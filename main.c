@@ -46,8 +46,15 @@ void  main( void ) {
 	page = 0;
 	DBuf.CmdCount = 0;
 	frame = 0;
-
+	
+	PadInit();
+	
+	player_init();
+	
 	while( 1 ) {
+
+		PadRun();
+		player_move(NULL);
 		if( DBuf.CmdCount > 0 ) {
 			agTransferDrawDMAAsync( &(DBuf) );
 		}
@@ -59,6 +66,7 @@ void  main( void ) {
 
 		AG3DGLUglinit();
 
+		
 		/* glîwåièâä˙âª */
 		agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
 		agglClearDepthf( 1.0f );
@@ -86,7 +94,7 @@ void  main( void ) {
 void draw( int frame , int motion_number  ) {
 	int err;
 	
-	static AGGLfloat c[3]={ 0,3.7,-7 };
+	static AGGLfloat c[3]={ 0,3.7,7 };
         static AGGLfloat t[3]={ 0.0,0.7,0.0 };
         static AGGLfloat u[3]={ 0.0f, 0.7f, 0.0f };
 

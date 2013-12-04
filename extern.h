@@ -1,3 +1,6 @@
+#ifndef __EXTERN_H__
+#define __EXTERN_H__
+
 #include <agexport.h>
 #include <amlib.h>
 #include <agdraw.h>
@@ -22,3 +25,5 @@ extern char	vtxbuf[10240*2];
 extern u32 DrawBuffer[2][65536*16];
 
 extern const int MotionList[1];
+
+#endif

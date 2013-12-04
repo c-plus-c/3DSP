@@ -3,6 +3,30 @@
 #include "player.h"
 #include "pad.h"
 
+static Object playerObject;
+
+void player_init()
+{
+	playerObject.translation.X=0;
+	playerObject.translation.Y=0;
+	playerObject.translation.Z=0;
+	
+	playerObject.rotation.X=0;
+	playerObject.rotation.Y=0;
+	playerObject.rotation.Z=0;
+}
+
+void player_initWithParam(Vec3f pos,Vec3f angle)
+{
+	playerObject.translation.X=pos.X;
+	playerObject.translation.Y=pos.Y;
+	playerObject.translation.Z=pos.Z;
+	
+	playerObject.rotation.X=angle.X;
+	playerObject.rotation.Y=angle.Y;
+	playerObject.rotation.Z=angle.Z;
+}
+
 /* TODO:今西
 半径で判定以上に当たり判定をしたければ書く 
 */
@@ -15,7 +39,15 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 */
 void player_move(Object *dp)
 {
+	if( PadLvl() & PAD_LEFT )
+	{
+		playerObject.translation.X-=0.01;
+	}
 	
+	if( PadLvl() & PAD_RIGHT )
+	{
+		playerObject.translation.X+=0.01;
+	}
 }
 
 /* TODO:今西
@@ -25,17 +57,14 @@ void player_drw(Object *dp)
 {
 	int err;
 	static float counter=0;
-	
-	_dprintf( "player_drw_n");
 	/* 描画 */
 		/* 不透明 */
 	agglDisable( AGGL_BLEND );
 	agglDepthMask( AGGL_TRUE );
 	
-	//ag3dInitTree( &(age3dTree[AG_AG3D_AG3DEXPORTTREE]), node ) ;
 	agglPushMatrix() ;
 	
-	agglTranslatef(0,0,counter);
+	agglTranslatef(playerObject.translation.X,playerObject.translation.Y,playerObject.translation.Z);
 	counter+=0.05;
 	
 		/* ツリー→ワールド座標変換 */
@@ -43,7 +72,6 @@ void player_drw(Object *dp)
 
 		/* ツリー形状を求める */
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ 0 ]), (float)0, node );
-	//agglTranslatef(0,0,counter);
 	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
 
 	agglPopMatrix();
