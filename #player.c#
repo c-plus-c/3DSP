@@ -1,5 +1,4 @@
 #include <amlib.h>
-#include "export.h"
 #include "player.h"
 #include "pad.h"
 
@@ -27,27 +26,24 @@ void player_drw(Object *dp)
 	static float counter=0;
 	
 	_dprintf( "player_drw_n");
+	
+	/* ツリー→ワールド座標変換 */
+	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
+
+
+	/* ツリー形状を求める */
+	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ 0 ]), (float)0, node );
+
 	/* 描画 */
 		/* 不透明 */
 	agglDisable( AGGL_BLEND );
 	agglDepthMask( AGGL_TRUE );
-	
-	//ag3dInitTree( &(age3dTree[AG_AG3D_AG3DEXPORTTREE]), node ) ;
-	agglPushMatrix() ;
-	
-	agglTranslatef(0,0,counter);
-	counter+=0.05;
-	
-		/* ツリー→ワールド座標変換 */
-	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
-		/* ツリー形状を求める */
-	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ 0 ]), (float)0, node );
+	agglTranslatef(0,0,counter);
+	counter+=0.1;
 	//agglTranslatef(0,0,counter);
 	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
 
-	agglPopMatrix();
-	
 		/* 半透明、Ｚバッファ更新 */
 	agglEnable( AGGL_BLEND );
 
