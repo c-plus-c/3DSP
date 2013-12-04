@@ -1,0 +1,827 @@
+Optimizing Linkage Editor (V.9.04.00.000)         07-Dec-2012 12:44:37
+
+*** Options ***
+
+-rom=P=Q,D=R,C=S
+-start=VECT,Pinit,Cinit,P,C,D/80000000
+-start=Q,R,S,B/8C000000
+-start=STACK/8DFF0000
+-define=__STACK=8E000000
+-entry=80000000
+-list
+-show=symbol
+-optimize=symbol_delete
+-form=stype
+-nologo
+-library=../../../library/amlibL_d.lib
+-library=../../../library/amexportL_d.lib
+-library=../../../library/amsmcL_d.lib
+-library=../../../library/amsoundL_d.lib
+-library=../../../library/ammotorL_d.lib
+-library=../../../library/SH4ALibL_d.lib
+-library=../../../common/DebugL/common.lib
+-output=DebugL/solid.s32
+DebugL/main.o
+
+*** Error information ***
+
+*** Mapping List ***
+
+SECTION                            START      END         SIZE   ALIGN
+
+VECT
+                                  80000000  800007ff       800   4
+Pinit
+                                  80000800  8000095b       15c   4
+Cinit
+                                  8000095c  80000987        2c   4
+P
+                                  80000988  80003943      2fbc   4
+C
+                                  80003944  80003c58       315   4
+D
+                                  80003c5c  80003c67         c   4
+Q
+                                  8c000000  8c002fbb      2fbc   4
+R
+                                  8c002fbc  8c002fc7         c   4
+S
+                                  8c002fc8  8c0032dc       315   4
+B
+                                  8c0032e0  8c02b907     28628   4
+STACK
+                                  8dff0000  8dff0001         2   4
+
+*** Symbol List ***
+
+SECTION=
+FILE=                               START        END    SIZE
+  SYMBOL                            ADDR        SIZE    INFO      COUNTS  OPT
+
+SECTION=VECT
+FILE=SH7730_vect
+                                  80000000  800007ff       800
+  __VECTOR_BASE_
+                                  80000000         0   none ,g         * 
+  _Sh4_Reset_Entry
+                                  80000000         0   none ,g         * 
+  loop_1
+                                  80000050         0   none ,l         * 
+  wait_loop_8
+                                  80000074         0   none ,l         * 
+  _init
+                                  800000b8         0   none ,l         * 
+  _stack
+                                  800000bc         0   none ,l         * 
+  _blclr
+                                  800000c0         0   none ,l         * 
+  _us200
+                                  800000c4         0   none ,l         * 
+  _wait_refr
+                                  800000c8         0   none ,l         * 
+  _Sh4_Reset_End
+                                  800000cc         0   none ,l         * 
+  _Sh4_Exception_Entry1
+                                  80000100         0   none ,g         * 
+  _Exception_Entry1_Addr
+                                  80000160         0   none ,l         * 
+  _Sh4_Exception_End1
+                                  80000164         0   none ,g         * 
+  I_RWDT_RWTCNT
+                                  80000200         0   none ,l         * 
+  D_RWDT_RWTCNT
+                                  80000204         0   none ,l         * 
+  I_RWDT_TWTCSR
+                                  80000208         0   none ,l         * 
+  D_RWDT_TWTCSR
+                                  8000020c         0   none ,l         * 
+  I_BSC_CMNCR
+                                  80000210         0   none ,l         * 
+  D_BSC_CMNCR
+                                  80000214         0   none ,l         * 
+  I_BSC_CS2BCR
+                                  80000218         0   none ,l         * 
+  D_BSC_CS2BCR
+                                  8000021c         0   none ,l         * 
+  I_BSC_CS3BCR
+                                  80000220         0   none ,l         * 
+  D_BSC_CS3BCR
+                                  80000224         0   none ,l         * 
+  I_BSC_CS5ABCR
+                                  80000228         0   none ,l         * 
+  D_BSC_CS5ABCR
+                                  8000022c         0   none ,l         * 
+  I_BSC_CS5BBCR
+                                  80000230         0   none ,l         * 
+  D_BSC_CS5BBCR
+                                  80000234         0   none ,l         * 
+  I_BSC_CS2WCR
+                                  80000238         0   none ,l         * 
+  D_BSC_CS2WCR
+                                  8000023c         0   none ,l         * 
+  I_BSC_CS3WCR
+                                  80000240         0   none ,l         * 
+  D_BSC_CS3WCR
+                                  80000244         0   none ,l         * 
+  I_BSC_CS5AWCR
+                                  80000248         0   none ,l         * 
+  D_BSC_CS5AWCR
+                                  8000024c         0   none ,l         * 
+  I_BSC_CS5BWCR
+                                  80000250         0   none ,l         * 
+  D_BSC_CS5BWCR
+                                  80000254         0   none ,l         * 
+  I_BSC_SDCR
+                                  80000258         0   none ,l         * 
+  D_BSC_SDCR
+                                  8000025c         0   none ,l         * 
+  I_BSC_RTCNT
+                                  80000260         0   none ,l         * 
+  D_BSC_RTCNT
+                                  80000264         0   none ,l         * 
+  I_BSC_RTCOR
+                                  80000268         0   none ,l         * 
+  D_BSC_RTCOR1
+                                  8000026c         0   none ,l         * 
+  D_BSC_RTCOR2
+                                  80000270         0   none ,l         * 
+  I_BSC_RTCSR
+                                  80000274         0   none ,l         * 
+  D_BSC_RTCSR
+                                  80000278         0   none ,l         * 
+  I_CPG_FRQCR
+                                  8000027c         0   none ,l         * 
+  D_CPG_FRQCR
+                                  80000280         0   none ,l         * 
+  I_CPG_PLLCR
+                                  80000284         0   none ,l         * 
+  D_CPG_PLLCR
+                                  80000288         0   none ,l         * 
+  I_BSC_SDMR3
+                                  8000028c         0   none ,l         * 
+  I_CCR
+                                  80000290         0   none ,l         * 
+  D_CCR
+                                  80000294         0   none ,l         * 
+  __ocbi_
+                                  80000298         0   none ,g         * 
+  __ocbp_
+                                  8000029e         0   none ,g         * 
+  __ocbwb_
+                                  800002a4         0   none ,g         * 
+  _Sh4_Exception_Entry4
+                                  80000400         0   none ,g         * 
+  _Exception_Entry4_Addr
+                                  80000460         0   none ,l         * 
+  _Sh4_Exception_End4
+                                  80000464         0   none ,g         * 
+  _Sh4_IRQ_Entry
+                                  80000600         0   none ,g         * 
+  _Intevt2_Entry_Addr
+                                  80000640         0   none ,l         * 
+  _Sh4_IRQ_End
+                                  80000644         0   none ,g         * 
+
+SECTION=Pinit
+FILE=SH7730_Main
+                                  80000800  8000095b       15c
+  __Cache_Purge
+                                  80000800        3e   func ,l         *   ch
+  __INITSCT
+                                  8000083e        a4   func ,l         * 
+  __INIT
+                                  800008e2        10   func ,g         * 
+  __exit
+                                  800008f2        14   func ,g         * 
+  __main
+                                  80000906        56   func ,g         *   ch
+
+SECTION=Cinit
+FILE=SH7730_Main
+                                  8000095c  80000987        2c
+  __P_ROM
+                                  8000095c         4   data ,l         * 
+  __P_BGN
+                                  80000960         4   data ,l         * 
+  __P_END
+                                  80000964         4   data ,l         * 
+  __C_ROM
+                                  80000968         4   data ,l         * 
+  __C_BGN
+                                  8000096c         4   data ,l         * 
+  __C_END
+                                  80000970         4   data ,l         * 
+  __B_BGN
+                                  80000974         4   data ,l         * 
+  __B_END
+                                  80000978         4   data ,l         * 
+  __D_ROM
+                                  8000097c         4   data ,l         * 
+  __D_BGN
+                                  80000980         4   data ,l         * 
+  __D_END
+                                  80000984         4   data ,l         * 
+
+SECTION=P
+FILE=DebugL/main.o
+                                  80000988  80000c5b       2d4
+FILE=amlib
+                                  80000c5c  80001003       3a8
+FILE=agdraw
+                                  80001004  8000129b       298
+FILE=agtransfer
+                                  8000129c  8000145b       1c0
+FILE=SH7730_agp
+                                  8000145c  800018c3       468
+FILE=dprintf
+                                  800018c4  80002243       980
+FILE=SH7730_Int
+                                  80002244  80002a7f       83c
+FILE=SH7730_Sci
+                                  80002a80  80002aef        70
+FILE=initialize
+                                  80002af0  800033c7       8d8
+FILE=__divls
+                                  800033c8  800034bb        f4
+FILE=__modls
+                                  800034bc  800035af        f4
+FILE=strlen
+                                  800035b0  800035d5        26
+FILE=SH7730_Scif0
+                                  800035d8  80003943       36c
+
+SECTION=C
+FILE=dprintf
+                                  80003944  800039ba        77
+FILE=SH7730_Int
+                                  800039bc  80003bfc       241
+FILE=SH7730_Scif0
+                                  80003c00  80003c58        59
+
+SECTION=D
+FILE=dprintf
+                                  80003c5c  80003c5f         4
+FILE=SH7730_Sci
+                                  80003c60  80003c63         4
+FILE=SH7730_Scif0
+                                  80003c64  80003c67         4
+
+SECTION=Q
+FILE=DebugL/main.o
+                                  8c000000  8c0002d3       2d4
+  _main
+                                  8c000000       2d4   func ,g         *   ch
+FILE=amlib
+                                  8c0002d4  8c00067b       3a8
+  _aglInitialize
+                                  8c0002d4        7a   func ,g         *   ch
+  _aglGetReg
+                                  8c00034e         e   func ,g         * 
+  _aglSetReg
+                                  8c00035c         c   func ,g         * 
+  _aglSetFBIndex
+                                  8c000368        44   func ,g         * 
+  _aglGetDspAIndex
+                                  8c0003ac        34   func ,g         * 
+  _aglGetDspBIndex
+                                  8c0003e0        34   func ,g         * 
+  _aglGetDrawFrameA
+                                  8c000414        1e   func ,g         * 
+  _aglGetDrawFrameB
+                                  8c000432        24   func ,g         *   ch
+  _aglGetDrawFrame
+                                  8c000456        4e   func ,g         *   ch
+  _aglSwap
+                                  8c0004a4        20   func ,g         * 
+  _aglSwapA
+                                  8c0004c4        34   func ,g         * 
+  _aglSwapB
+                                  8c0004f8        34   func ,g         * 
+  _aglWaitVSync
+                                  8c00052c        24   func ,g         * 
+  _aglWaitVSyncA
+                                  8c000550        28   func ,g         * 
+  _aglWaitVSyncB
+                                  8c000578        3c   func ,g         *   ch
+  _aglIntHandler
+                                  8c0005b4        b8   func ,g         *   ch
+  _aglSetMainDisplay
+                                  8c00066c        10   func ,g         *   ch
+FILE=agdraw
+                                  8c00067c  8c000913       298
+  _agDrawBufferInit
+                                  8c00067c        1c   func ,g         * 
+  _agDrawEODL
+                                  8c000698        44   func ,g         *   ch
+  _agDrawSETDAVR
+                                  8c0006dc        50   func ,g         * 
+  _agDrawSETDAVF
+                                  8c00072c        48   func ,g         * 
+  _agDrawSETFCOLOR
+                                  8c000774        22   func ,g         * 
+  _agDrawSETDBMODE
+                                  8c000796        4a   func ,g         * 
+  _agDrawSPRITE
+                                  8c0007e0        68   func ,g         * 
+  _agDrawTRIANGLE
+                                  8c000848        64   func ,g         * 
+  _agDrawTRIANGLE_C
+                                  8c0008ac        68   func ,g         * 
+FILE=agtransfer
+                                  8c000914  8c000ad3       1c0
+  _agTransferDrawDMAAsync
+                                  8c000914        e4   func ,g         *   ch
+  _agTransferDrawWait
+                                  8c0009f8        b4   func ,g         *   ch
+  _agTransferDrawDMA
+                                  8c000aac        28   func ,g         *   ch
+FILE=SH7730_agp
+                                  8c000ad4  8c000f3b       468
+  _agpPreInitialize
+                                  8c000ad4        9a   func ,g         *   ch
+  _agpPostInitialize
+                                  8c000b6e        dc   func ,g         *   ch
+  __Cache_Purge
+                                  8c000c4a        36   func ,l         * 
+  _agpDMAWriteStart
+                                  8c000c80       238   func ,g         *   ch
+  _agpDMAIsFinish
+                                  8c000eb8        26   func ,g         * 
+  _agpDMAStop
+                                  8c000ede         e   func ,g         * 
+  _agpDisableCpuInterrupts
+                                  8c000eec        10   func ,g         * 
+  _agpEnableCpuInterrupts
+                                  8c000efc        40   func ,g         * 
+FILE=dprintf
+                                  8c000f3c  8c0018bb       980
+  __prf_check
+                                  8c000f3c        a0   func ,l         * 
+  __prline
+                                  8c000fdc        30   func ,l         * 
+  __prdata
+                                  8c00100c       200   func ,l         * 
+  __dprintfunc_init
+                                  8c00120c         a   func ,g         * 
+  __put_db
+                                  8c001216        1e   func ,l         * 
+  __dprintf
+                                  8c001234       688   func ,g         * 
+FILE=SH7730_Int
+                                  8c0018bc  8c0020f7       83c
+  _Intevt_Init
+                                  8c0018bc        2e   func ,l         * 
+  _Intevt2_SetFunc
+                                  8c0018ea        16   func ,g         * 
+  _Intevt2_Entry
+                                  8c001900        78   func ,g         * 
+  _INTC_Init
+                                  8c001978       13a   func ,g         * 
+  _INTC_ClearIPR
+                                  8c001ab2        44   func ,g         * 
+  _INTC_GetIPR
+                                  8c001af6       122   func ,g         * 
+  _INTC_SetIPR
+                                  8c001c18        da   func ,g         * 
+  __Exception_Entry
+                                  8c001cf2       3a8   func ,l         *   ch
+  _Exception_Entry1
+                                  8c00209a        12   func ,g         * 
+  _Exception_Entry4
+                                  8c0020ac        4c   func ,g         *   ch
+FILE=SH7730_Sci
+                                  8c0020f8  8c002167        70
+  _IoSci_Init
+                                  8c0020f8        1c   func ,g         *   ch
+  _IoSci_PutEnable
+                                  8c002114         a   func ,g         * 
+  __putch
+                                  8c00211e        18   func ,g         *   ch
+  __putch_wait
+                                  8c002136        14   func ,g         *   ch
+  __puts
+                                  8c00214a        1e   func ,g         *   ch
+FILE=initialize
+                                  8c002168  8c002a3f       8d8
+  _agpVDPInitialize
+                                  8c002168       8d8   func ,g         *   ch
+FILE=__divls
+                                  8c002a40  8c002b33        f4
+  
+                                  8c002a40         0   none ,l         * 
+  
+                                  8c002a48         0   none ,l         * 
+  
+                                  8c002a52         0   none ,l         * 
+  __divls
+                                  8c002a58         0   none ,g         * 
+  __divlu
+                                  8c002a60         0   none ,g         * 
+  
+                                  8c002a88         0   none ,l         * 
+  
+                                  8c002ae0         0   none ,l         * 
+  
+                                  8c002ae6         0   none ,l         * 
+FILE=__modls
+                                  8c002b34  8c002c27        f4
+  __modls
+                                  8c002b34         0   none ,g         * 
+  
+                                  8c002b3a         0   none ,l         * 
+  __modlu
+                                  8c002b4c         0   none ,g         * 
+  
+                                  8c002b72         0   none ,l         * 
+  
+                                  8c002b78         0   none ,l         * 
+  
+                                  8c002bca         0   none ,l         * 
+  
+                                  8c002bd2         0   none ,l         * 
+  
+                                  8c002bd8         0   none ,l         * 
+  
+                                  8c002c22         0   none ,l         * 
+FILE=strlen
+                                  8c002c28  8c002c4d        26
+  _strlen
+                                  8c002c28        26   func ,g         * 
+FILE=SH7730_Scif0
+                                  8c002c50  8c002fbb       36c
+  _IoScifx_SET_BRR
+                                  8c002c50        fc   func ,l         *   ch
+  _IoScif0_Init
+                                  8c002d4c       14c   func ,g         *   ch
+  _IoScif0_SendReady
+                                  8c002e98        64   func ,g         *   ch
+  _IoScif0_SendData
+                                  8c002efc        2e   func ,g         * 
+  __ioscif0_putch
+                                  8c002f2a        32   func ,g         * 
+  __ioscif0_putch_wait
+                                  8c002f5c        24   func ,g         * 
+  __ioscif0_puts
+                                  8c002f80        3c   func ,g         *   ch
+
+SECTION=R
+FILE=dprintf
+                                  8c002fbc  8c002fbf         4
+  __putch_func
+                                  8c002fbc         4   data ,l         * 
+FILE=SH7730_Sci
+                                  8c002fc0  8c002fc3         4
+  _sci_skip
+                                  8c002fc0         4   data ,l         * 
+FILE=SH7730_Scif0
+                                  8c002fc4  8c002fc7         4
+  _IoScifx_Init_Flag
+                                  8c002fc4         4   data ,l         * 
+
+SECTION=S
+FILE=dprintf
+                                  8c002fc8  8c00303e        77
+  _la_str$14
+                                  8c002fc8        13   data ,l         * 
+  _ua_str$15
+                                  8c002fdb        13   data ,l         * 
+  _lk_str$16
+                                  8c002fee        25   data ,l         * 
+  _uk_str$17
+                                  8c003013        25   data ,l         * 
+FILE=SH7730_Int
+                                  8c003040  8c003280       241
+FILE=SH7730_Scif0
+                                  8c003284  8c0032dc        59
+
+SECTION=B
+FILE=DebugL/main.o
+                                  8c0032e0  8c02b2df     28000
+  _DrawBuffer
+                                  8c0032e0     28000   data ,g         * 
+FILE=amlib
+                                  8c02b2e0  8c02b507       228
+  _int_flags
+                                  8c02b2e0        1c   data ,l         * 
+  _VCntA
+                                  8c02b2fc         4   data ,l         * 
+  _VCntB
+                                  8c02b300         4   data ,l         * 
+  _g_DispFrameA
+                                  8c02b304         1   data ,l         * 
+  _g_DispFrameB
+                                  8c02b305         1   data ,l         * 
+  _g_MainDisplay
+                                  8c02b306         1   data ,l         * 
+  _g_CallbackChain
+                                  8c02b308       200   data ,l         * 
+FILE=SH7730_Int
+                                  8c02b508  8c02b907       400
+  _intevt_table
+                                  8c02b508       200   data ,l         * 
+  _intevt_error
+                                  8c02b708       200   data ,l         * 
+
+SECTION=STACK
+FILE=SH7730_vect
+                                  8dff0000  8dff0001         2
+
+Absolute value symbols
+FILE=SH7730_vect
+  ICLK
+                                  0bebc200         0   none ,l         * 
+  __STACK
+                                  8e000000         0   none ,g         * 
+
+*** Delete Symbols ***
+
+SYMBOL                                SIZE    INFO
+
+_aglSearchNewCallbackSpace
+                                        4e    func ,l
+_aglSetFBEnable
+                                        1e    func ,w
+_aglGetFBIndex
+                                        60    func ,w
+_aglGetFBGAddr
+                                        26    func ,w
+_aglGetFBHSize
+                                        20    func ,w
+_aglGetFBEnable
+                                        1a    func ,w
+_aglGetDspIndex
+                                        2a    func ,w
+_aglGetDispFrameA
+                                        1a    func ,w
+_aglGetDispFrameB
+                                        1a    func ,w
+_aglGetDispFrame
+                                        2a    func ,w
+_aglSwapDispOff
+                                        20    func ,w
+_aglSwapADispOff
+                                        2e    func ,w
+_aglSwapBDispOff
+                                        2e    func ,w
+_aglDispOn
+                                        26    func ,w
+_aglDispOnA
+                                        48    func ,w
+_aglDispOnB
+                                        48    func ,w
+_aglWaitVSyncN
+                                        26    func ,w
+_aglWaitVSyncNA
+                                        2e    func ,w
+_aglWaitVSyncNB
+                                        4a    func ,w
+_aglWaitVLine
+                                        20    func ,w
+_aglWaitVLineA
+                                        20    func ,w
+_aglWaitVLineB
+                                        20    func ,w
+_aglWaitDrawInt
+                                        20    func ,w
+_aglWaitDraw
+                                        20    func ,w
+_aglWaitTransferA
+                                        1c    func ,w
+_aglWaitTransferB
+                                        20    func ,w
+_aglWaitCheckSum
+                                        20    func ,w
+_aglWaitSMC1
+                                        20    func ,w
+_aglWaitSMC2
+                                        20    func ,w
+_aglGetActiveInterrupts
+                                        12    func ,w
+_aglSetActiveInterrupts
+                                        10    func ,w
+_aglGetInterruptCallback
+                                        1c    func ,w
+_aglAddInterruptCallback
+                                        94    func ,w
+_aglInsertInterruptCallback
+                                        a6    func ,w
+_aglRemoveInterruptCallback
+                                        b4    func ,w
+_aglGetVSyncFlag
+                                        26    func ,w
+_aglGetVSyncFlagA
+                                        10    func ,w
+_aglGetVSyncFlagB
+                                        10    func ,w
+_aglSetVSyncFlag
+                                        20    func ,w
+_aglSetVSyncFlagA
+                                         a    func ,w
+_aglSetVSyncFlagB
+                                         a    func ,w
+_aglGetVLineFlag
+                                        26    func ,w
+_aglGetVLineFlagA
+                                        10    func ,w
+_aglGetVLineFlagB
+                                        10    func ,w
+_aglSetVLineFlag
+                                        2c    func ,w
+_aglSetVLineFlagA
+                                         a    func ,w
+_aglSetVLineFlagB
+                                         a    func ,w
+_aglGetDrawIntFlag
+                                        10    func ,w
+_aglSetDrawIntFlag
+                                         a    func ,w
+_aglGetDrawErrorFlag
+                                        10    func ,w
+_aglSetDrawErrorFlag
+                                         a    func ,w
+_aglGetDrawFlag
+                                        10    func ,w
+_aglSetDrawFlag
+                                         a    func ,w
+_aglGetTransferAFlag
+                                         e    func ,w
+_aglSetTransferAFlag
+                                         8    func ,w
+_aglGetTransferBFlag
+                                        10    func ,w
+_aglSetTransferBFlag
+                                         a    func ,w
+_aglGetCheckSumFlag
+                                        10    func ,w
+_aglSetCheckSumFlag
+                                         a    func ,w
+_aglGetRM3ErrorFlag
+                                        10    func ,w
+_aglSetRM3ErrorFlag
+                                         a    func ,w
+_aglGetSoundSeqErrFlag
+                                        10    func ,w
+_aglSetSoundSeqErrFlag
+                                         a    func ,w
+_aglGetSoundDecErrFlag
+                                        10    func ,w
+_aglSetSoundDecErrFlag
+                                         a    func ,w
+_aglGetSoundBusErrFlag
+                                        10    func ,w
+_aglSetSoundBusErrFlag
+                                         a    func ,w
+_aglGetSoundDataErrFlag
+                                        10    func ,w
+_aglSetSoundDataErrFlag
+                                         a    func ,w
+_aglGetSoundPeakErrFlag
+                                        10    func ,w
+_aglSetSoundPeakErrFlag
+                                         a    func ,w
+_aglGetSoundFIFOEmptyFlag
+                                        10    func ,w
+_aglSetSoundFIFOEmptyFlag
+                                         a    func ,w
+_aglGetSoundCmdListFlag
+                                        10    func ,w
+_aglSetSoundCmdListFlag
+                                         a    func ,w
+_aglGetSMC1Flag
+                                        10    func ,w
+_aglSetSMC1Flag
+                                         a    func ,w
+_aglGetSMC2Flag
+                                        10    func ,w
+_aglSetSMC2Flag
+                                         a    func ,w
+_aglGetSMCMotorFlag
+                                        10    func ,w
+_aglSetSMCMotorFlag
+                                         a    func ,w
+_aglGetSMCInputFlag
+                                        10    func ,w
+_aglSetSMCInputFlag
+                                         a    func ,w
+_aglGetVsyncCount
+                                        26    func ,w
+_aglGetVsyncCountA
+                                         c    func ,w
+_aglGetVsyncCountB
+                                         c    func ,w
+_aglGetMainDisplay
+                                        1c    func ,w
+_agDrawNOP
+                                        1a    func ,w
+_agDrawBFLUSH
+                                        2c    func ,w
+_agDrawIDXEFCLR
+                                        24    func ,w
+_agDrawIDXEFWAIT
+                                        24    func ,w
+_agDrawJUMPSUB
+                                        36    func ,w
+_agDrawDL2VRAM
+                                        36    func ,w
+_agDrawINT
+                                        2a    func ,w
+_agDrawEXERM3DEC
+                                        46    func ,w
+_agDrawEXERM3DEC_START
+                                        3a    func ,w
+_agDrawSETPXMASK
+                                        24    func ,w
+_agDrawSETATEST
+                                        3e    func ,w
+_agDrawSETDTEST
+                                        2e    func ,w
+_agDrawSETSPRITEZ
+                                        20    func ,w
+_agDrawSETFOG
+                                        4a    func ,w
+_agDrawSETINDEX
+                                        3c    func ,w
+_agDrawSETTXATR
+                                        e6    func ,w
+_agDrawSETPRMBLNDA
+                                        50    func ,w
+_agDrawSETPBCNSTA
+                                        4a    func ,w
+_agDrawSETPRMBLNDC
+                                        50    func ,w
+_agDrawSETPBCNSTC
+                                        4a    func ,w
+_agDrawSETALPHABLNDA
+                                        86    func ,w
+_agDrawSETALPHABLNDC
+                                        86    func ,w
+_agDrawSETFPRMPAR
+                                        90    func ,w
+_agDrawRECTANGLE
+                                        4a    func ,w
+_agDrawSPRITE_UV
+                                        9e    func ,w
+_agDrawTRIANGLE_T
+                                        68    func ,w
+_agDrawTRIANGLE_TP
+                                        6c    func ,w
+_agDrawTRIANGLE_TC
+                                        6c    func ,w
+_agDrawTRIANGLE_TPC
+                                        68    func ,w
+_agDrawTRIANGLE_PC
+                                        76    func ,w
+_agDrawTRIANGLE_P
+                                        68    func ,w
+_agDrawTXLOAD2AAC
+                                        9e    func ,w
+_agDrawSETAACINDEX
+                                        2a    func ,w
+_agDrawSETOFSCGBTX
+                                        22    func ,w
+_agDrawSetDList
+                                        2c    func ,w
+_agDrawUSER
+                                        1a    func ,w
+_agDrawUSER1
+                                        1e    func ,w
+_agDrawUSER2
+                                        22    func ,w
+_agTransferDrawFIFO
+                                       22e    func ,w
+_agTransferCgromToVram
+                                        b6    func ,w
+_agTransferCgromToVram2D
+                                        f6    func ,w
+_agpDMAWait
+                                        20    func ,w
+_IoSci_PutDisable
+                                         a    func ,w
+__kbhit
+                                        20    func ,w
+__getch
+                                        20    func ,w
+_agpSoundInitialize
+                                        58    func ,w
+_IoScif0_SetRTS
+                                         6    func ,w
+_IoScif0_RecvReady
+                                        50    func ,w
+_IoScif0_RecvData
+                                        a6    func ,w
+__ioscif0_kbhit
+                                        28    func ,w
+__ioscif0_getch
+                                        3c    func ,w
+
+*** Variable Accessible with Abs8 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Variable Accessible with Abs16 ***
+
+SYMBOL                                SIZE    COUNTS  OPTIMIZE
+
+*** Function Call ***
+
+SYMBOL                              COUNTS  OPTIMIZE
