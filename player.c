@@ -57,8 +57,8 @@ void player_move(Object *dp)
 
   if (PadLvl() & PAD_UP)
     {
-      playerObject.direction.Y=playerObject.direction.Y*cosf(-radius)-playerObject.direction.Y*sinf(-radius);
-      playerObject.direction.Z=playerObject.direction.Y*sinf(-radius)+playerObject.direction.Z*cosf(-radius);
+      playerObject.direction.Y=playerObject.direction.Y*cosf(radius)-playerObject.direction.Z*sinf(radius);
+      playerObject.direction.Z=playerObject.direction.Y*sinf(radius)+playerObject.direction.Z*cosf(radius);
     }
 
   if(PadLvl() & PAD_DOWN)
@@ -78,7 +78,7 @@ void player_move(Object *dp)
   playerObject.translation.Y+=playerObject.direction.Y*0.5; 
   playerObject.translation.Z+=playerObject.direction.Z*0.5;
 
-  //AxisX=atan2f(playerObject.direction.Y,playerObject.direction.Z)*180/PI;
+  AxisX=atan2f(playerObject.direction.Y,playerObject.direction.Z)*180/PI;
   AxisY=(atan2f(playerObject.direction.X,playerObject.direction.Z)+PI)*180/PI;
   AxisZ=atan2f(playerObject.direction.X,playerObject.direction.Y)*180/PI;
 }
@@ -101,9 +101,9 @@ void player_drw(Object *dp)
 	agglTranslatef(playerObject.translation.X,playerObject.translation.Y,playerObject.translation.Z);
 	counter+=0.05;
 
-	agglRotatef(AxisX,1,0,0);
+	//agglRotatef(AxisX,1,0,0);
 	agglRotatef(AxisY,0,1,0);
-	agglRotatef(AxisZ,0,0,1);
+	//agglRotatef(AxisZ,0,0,1);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
