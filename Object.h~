@@ -3,8 +3,6 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
 
-#define PI (3.1415926535f)
-
 typedef struct Vec3f_t
 {
 	float X;

@@ -78,7 +78,7 @@ void player_move(Object *dp)
   playerObject.translation.Y+=playerObject.direction.Y*0.5; 
   playerObject.translation.Z+=playerObject.direction.Z*0.5;
 
-  //AxisX=atan2f(playerObject.direction.Y,playerObject.direction.Z)*180/PI;
+  AxisX=atan2f(playerObject.direction.Y,playerObject.direction.Z)*180/PI;
   AxisY=(atan2f(playerObject.direction.X,playerObject.direction.Z)+PI)*180/PI;
   AxisZ=atan2f(playerObject.direction.X,playerObject.direction.Y)*180/PI;
 }

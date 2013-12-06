@@ -7,18 +7,15 @@
 #include <ag3danime.h>
 
 #include "export.h"
+#include "pad.h"
+#include "player.h"
 
-/* ノード情報バッファ */
-/* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
-static	AG3Danimenode	node[256];
 
-/* Ｚソート時の三角形バッファ */
-/* 必要サイズは agglGet**(AGGL_ZSORT_TRIANGLE_SIZE)で得られる値 * ag3dGetModelTris(man_model) */
-static	char	zsortbuf[1024*10*50];
+AG3Danimenode	node[256];
 
-/* 頂点バッファ（agglDrawElements用） */
-/* 推奨サイズは agglGet**(AGGL_TEMPORARY_VERTEX_SIZE)で得られる値 * ag3dGetModelVtxs(man_model) */
-static	char	vtxbuf[10240*2];
+char	zsortbuf[1024*10*50];
+
+char	vtxbuf[10240*2];
 
 u32 DrawBuffer[2][65536*16];
 
@@ -49,8 +46,15 @@ void  main( void ) {
 	page = 0;
 	DBuf.CmdCount = 0;
 	frame = 0;
-
+	
+	PadInit();
+	
+	player_init();
+	
 	while( 1 ) {
+
+		PadRun();
+		player_move(NULL);
 		if( DBuf.CmdCount > 0 ) {
 			agTransferDrawDMAAsync( &(DBuf) );
 		}
@@ -62,6 +66,7 @@ void  main( void ) {
 
 		AG3DGLUglinit();
 
+		
 		/* gl背景初期化 */
 		agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
 		agglClearDepthf( 1.0f );
@@ -89,17 +94,9 @@ void  main( void ) {
 void draw( int frame , int motion_number  ) {
 	int err;
 	
-
-	/* 透視変換設定 */
-	//ag3dPerspective( &(age3dCamera[0]),
-	//	(float)frame, ((float)DISP_WIDTH)/DISP_HEIGHT, 1.0f, 1000.0f );
-
-	/* 視点座標変換設定 */
-	//ag3dLookAt( &(age3dCamera[0]), (float)frame );
-	
-	static AGGLfloat c[3]={ 0,3.7,-7 };
-        static AGGLfloat t[3]={ 0.0,0.7,0.0 };
-        static AGGLfloat u[3]={ 0.0f, 0.7f, 0.0f };
+	static AGGLfloat c[3]={ 0,40,40 };
+        static AGGLfloat t[3]={ 0.0,0,0.0 };
+        static AGGLfloat u[3]={ 0.0f, 1.0f, 0.0f };
 
         AGGLfloat aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
         agglMatrixMode( AGGL_PROJECTION );
@@ -126,41 +123,8 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	/* ツリー→ワールド座標変換 */
-	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
+	player_drw(NULL);
 
-	/* ツリー形状を求める */
-	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ motion_number ]), (float)frame, node );
-
-	/* 描画 */
-		/* 不透明 */
-	agglDisable( AGGL_BLEND );
-	agglDepthMask( AGGL_TRUE );
-
-	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
-
-		/* 半透明、Ｚバッファ更新 */
-	agglEnable( AGGL_BLEND );
-
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
-	agglEndZsort();
-
-		/* 半透明、Ｚバッファ非更新 */
-	agglEnable( AGGL_BLEND );
-	agglDepthMask( AGGL_FALSE );
-
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	agglEndZsort();
-
-	agglDepthMask( AGGL_TRUE );
-
-	/* フレーム描画終了 */
-	err = agglGetError();
-	if ( err != 0 ) {
-		_dprintf( "!!!!!!!!!!!!!! err = %d, frame = %d !!!!!!!!!!!\n" , err, frame );
-	}
 }
 
 void AG3DGLUglinit( void ) {

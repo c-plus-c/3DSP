@@ -94,9 +94,9 @@ void  main( void ) {
 void draw( int frame , int motion_number  ) {
 	int err;
 	
-	static AGGLfloat c[3]={ 0,3.7,7 };
-        static AGGLfloat t[3]={ 0.0,0.7,0.0 };
-        static AGGLfloat u[3]={ 0.0f, 0.7f, 0.0f };
+	static AGGLfloat c[3]={ 40,40,40 };
+        static AGGLfloat t[3]={ 0.0,0,0.0 };
+        static AGGLfloat u[3]={ 0.0f, 1.0f, 0.0f };
 
         AGGLfloat aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
         agglMatrixMode( AGGL_PROJECTION );
