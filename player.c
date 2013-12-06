@@ -101,9 +101,9 @@ void player_drw(Object *dp)
 	agglTranslatef(playerObject.translation.X,playerObject.translation.Y,playerObject.translation.Z);
 	counter+=0.05;
 
-	//agglRotatef(AxisX,1,0,0);
+	agglRotatef(AxisX,1,0,0);
 	agglRotatef(AxisY,0,1,0);
-	//agglRotatef(AxisZ,0,0,1);
+	agglRotatef(AxisZ,0,0,1);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

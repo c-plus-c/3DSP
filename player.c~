@@ -57,7 +57,7 @@ void player_move(Object *dp)
 
   if (PadLvl() & PAD_UP)
     {
-      playerObject.direction.Y=playerObject.direction.Y*cosf(radius)-playerObject.direction.Y*sinf(radius);
+      playerObject.direction.Y=playerObject.direction.Y*cosf(radius)-playerObject.direction.Z*sinf(radius);
       playerObject.direction.Z=playerObject.direction.Y*sinf(radius)+playerObject.direction.Z*cosf(radius);
     }
 
