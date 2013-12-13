@@ -7,11 +7,6 @@
 
 /* TODO:今西 */
 
-typedef struct Player_t
-{
-  Object Obj;
-}Player;
-
 void player_init();
 
 void player_initWithParam(Vec3f pos,Vec3f angle);

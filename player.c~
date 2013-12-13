@@ -3,29 +3,36 @@
 #include "player.h"
 #include "pad.h"
 
-static Object playerObject;
-static double AxisX,AxisY,AxisZ;
+static Player playerObject;
 
 void player_init()
 {
-	playerObject.translation.X=0;
-	playerObject.translation.Y=0;
-	playerObject.translation.Z=50;
+	playerObject.Obj.translation.X=0;
+	playerObject.Obj.translation.Y=0;
+	playerObject.Obj.translation.Z=50;
 	
-	playerObject.direction.X=0;
-	playerObject.direction.Y=0;
-	playerObject.direction.Z=-1;
+	playerObject.Obj.direction.X=0;
+	playerObject.Obj.direction.Y=0;
+	playerObject.Obj.direction.Z=-1;
+
+	playerObject.Obj.yaw=0;
+	playerObject.Obj.roll=0;
+	playerObject.Obj.pitch=0;
 }
 
 void player_initWithParam(Vec3f pos,Vec3f angle)
 {
-	playerObject.translation.X=pos.X;
-	playerObject.translation.Y=pos.Y;
-	playerObject.translation.Z=pos.Z;
+	playerObject.Obj.translation.X=pos.X;
+	playerObject.Obj.translation.Y=pos.Y;
+	playerObject.Obj.translation.Z=pos.Z;
 	
-	playerObject.direction.X=angle.X;
-	playerObject.direction.Y=angle.Y;
-	playerObject.direction.Z=angle.Z;
+	playerObject.Obj.direction.X=angle.X;
+	playerObject.Obj.direction.Y=angle.Y;
+	playerObject.Obj.direction.Z=angle.Z;
+
+	playerObject.Obj.yaw=0;
+	playerObject.Obj.roll=0;
+	playerObject.Obj.pitch=0;
 }
 
 /* TODO:今西
@@ -40,47 +47,56 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 */
 void player_move(Object *dp)
 {
-  double radius=0.05,normal;
-  if( PadLvl() & PAD_LEFT )
-    {
-      //playerObject.direction.X-=0.01;
-      playerObject.direction.X=playerObject.direction.X*cosf(radius)-playerObject.direction.Z*sinf(radius);
-      playerObject.direction.Z=playerObject.direction.X*sinf(radius)+playerObject.direction.Z*cosf(radius);
-    }
+  double pitch,roll,yaw;
+  double cp,sp,cb,sb,ch,sh;
+  double tx,ty,tz;
   
+
   if( PadLvl() & PAD_RIGHT )
     {
-      //playerObject.direction.X+=0.01;
-      playerObject.direction.X=playerObject.direction.X*cosf(-radius)-playerObject.direction.Z*sinf(-radius);
-      playerObject.direction.Z=playerObject.direction.X*sinf(-radius)+playerObject.direction.Z*cosf(-radius);
+      //roll=-0.3;
+      yaw=0.05;
+      playerObject.Obj.yaw+=0.05;
     }
-
-  if (PadLvl() & PAD_UP)
-    {
-      playerObject.direction.Y=playerObject.direction.Y*cosf(radius)-playerObject.direction.Z*sinf(radius);
-      playerObject.direction.Z=playerObject.direction.Y*sinf(radius)+playerObject.direction.Z*cosf(radius);
-    }
-
-  if(PadLvl() & PAD_DOWN)
-    {
-      playerObject.direction.Y=playerObject.direction.Y*cosf(-radius)-playerObject.direction.Z*sinf(-radius);
-      playerObject.direction.Z=playerObject.direction.Y*sinf(-radius)+playerObject.direction.Z*cosf(-radius);
-    }
-
   
-  normal=sqrtf(playerObject.direction.X*playerObject.direction.X+playerObject.direction.Y*playerObject.direction.Y+playerObject.direction.Z*playerObject.direction.Z);
+  if( PadLvl() & PAD_LEFT )
+    {
+      //roll=0.3;
+      yaw=-0.05;
+      playerObject.Obj.yaw-=0.05;
+    }
 
-  playerObject.direction.X/=normal;
-  playerObject.direction.Y/=normal;
-  playerObject.direction.Z/=normal;
+  if (PadLvl() & PAD_DOWN)
+    {
+      pitch=0.05;
+      playerObject.Obj.pitch+=0.05;
+    }
+
+  if(PadLvl() & PAD_UP)
+    {
+      pitch=-0.05;
+      playerObject.Obj.pitch-=0.05;
+    }
+
+  ch=cosf(yaw);
+  sh=sinf(yaw);
+  cp=cosf(pitch);
+  sp=sinf(pitch);
+  cb=cosf(roll);
+  sb=sinf(roll);
+
+  tx=playerObject.Obj.direction.X;
+  ty=playerObject.Obj.direction.Y;
+  tz=playerObject.Obj.direction.Z;
+
+  playerObject.Obj.direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
+  playerObject.Obj.direction.Y=(sb*cp)*tx+(cb*cp)*ty+(-sp)*tz;
+  playerObject.Obj.direction.Z=(-sh*cb+ch*sp*sb)*tx+(sb*sh+ch*sp*cb)*ty+(ch*cp)*tz;
   
-  playerObject.translation.X+=playerObject.direction.X*0.5;
-  playerObject.translation.Y+=playerObject.direction.Y*0.5; 
-  playerObject.translation.Z+=playerObject.direction.Z*0.5;
-
-  AxisX=atan2f(playerObject.direction.Y,playerObject.direction.Z)*180/PI;
-  AxisY=(atan2f(playerObject.direction.X,playerObject.direction.Z)+PI)*180/PI;
-  AxisZ=atan2f(playerObject.direction.X,playerObject.direction.Y)*180/PI;
+  
+  playerObject.Obj.translation.X+=playerObject.Obj.direction.X*0.2;
+  playerObject.Obj.translation.Y+=playerObject.Obj.direction.Y*0.2; 
+  playerObject.Obj.translation.Z+=playerObject.Obj.direction.Z*0.2;
 }
 
 /* TODO:今西
@@ -92,18 +108,18 @@ void player_drw(Object *dp)
 	int err;
 	static float counter=0;
 
-	_dprintf("%f %f %f\n",AxisX,AxisY,AxisZ);
+	_dprintf("%f %f %f\n",playerObject.Obj.direction.X,playerObject.Obj.direction.Y,playerObject.Obj.direction.Z);
 	/* 描画 */
 		/* 不透明 */
 	agglDisable( AGGL_BLEND );
 	agglDepthMask( AGGL_TRUE );
 	
-	agglTranslatef(playerObject.translation.X,playerObject.translation.Y,playerObject.translation.Z);
+	agglTranslatef(playerObject.Obj.translation.X,playerObject.Obj.translation.Y,playerObject.Obj.translation.Z);
 	counter+=0.05;
 
-	//agglRotatef(AxisX,1,0,0);
-	agglRotatef(AxisY,0,1,0);
-	//agglRotatef(AxisZ,0,0,1);
+	//agglRotatef(playerObject.Obj.pitch,1,0,0);
+	//agglRotatef(playerObject.Obj.yaw,0,1,0);
+	//agglRotatef(playerObject.Obj.roll,0,0,1);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
@@ -133,6 +149,6 @@ void player_drw(Object *dp)
 	/* フレーム描画終了 */
 	err = agglGetError();
 	if ( err != 0 ) {
-		_dprintf( "!!!!!!!!!!!!!! err = %x, frame = %d !!!!!!!!!!!\n" , err, 0 );
+	  //_dprintf( "!!!!!!!!!!!!!! err = %x, frame = %d !!!!!!!!!!!\n" , err, 0 );
 	}
 }

@@ -7,21 +7,24 @@
 
 typedef struct Vec3f_t
 {
-	float X;
-	float Y;
-	float Z;
+  float X;
+  float Y;
+  float Z;
 }Vec3f;
 
 typedef enum Stat_t
-{
-	IDLE,DEAD
+  {
+  IDLE,DEAD
 }Stat;
 
 typedef struct ObjectLocal {
-    int     pid;		//controller id
-    Vec3f	direction;
-    Vec3f	translation;
-    Stat	stat;
+  int     pid;		//controller id
+  Vec3f	direction;
+  Vec3f	translation;
+  Stat	stat;
+  double pitch;
+  double roll;
+  double yaw;
 } Object;
 
 #endif;
