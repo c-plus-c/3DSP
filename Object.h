@@ -27,4 +27,4 @@ typedef struct ObjectLocal {
   double yaw;
 } Object;
 
-#endif;
+#endif

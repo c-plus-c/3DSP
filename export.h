@@ -32,6 +32,7 @@ extern "C" {
 #define AG_CG_HORIZON_EDGE	(2)
 #define AG_CG_MAINWING_EDGED	(3)
 #define AG_CG_BODY	(4)
+#define AG_CG_OCEAN	(5)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -45,34 +46,38 @@ extern "C" {
 /*                        AG3D Model Symbol                    */
 /***************************************************************/
 #define AG_AG3D_AG3DEXPORTMODEL	(0)
+#define AG_AG3D_PLANEMODEL	(1)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
 /***************************************************************/
 #define AG_AG3D_AG3DEXPORTTREE	(0)
+#define AG_AG3D_PLANETREE	(1)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
 /***************************************************************/
 #define AG_AG3D_AG3DEXPORTMOTION	(0)
+#define AG_AG3D_PLANEMOTION	(1)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
 /***************************************************************/
 #define AG_AG3D_AG3DEXPORTPERSP	(0)
+#define AG_AG3D_PLANEPERSP	(1)
 
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[5];
+extern const AGERomMember ageRM[6];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
-extern const AG3DModelHeadChunk age3dModel[1];
-extern const AG3DDCmdHeadChunk age3dDCmd[1];
-extern const AG3DTreeHeadChunk age3dTree[1];
-extern const AG3DMotionHeadChunk age3dMotion[1];
-extern const AG3DCameraHeadChunk age3dCamera[1];
+extern const AG3DModelHeadChunk age3dModel[2];
+extern const AG3DDCmdHeadChunk age3dDCmd[2];
+extern const AG3DTreeHeadChunk age3dTree[2];
+extern const AG3DMotionHeadChunk age3dMotion[2];
+extern const AG3DCameraHeadChunk age3dCamera[2];
 extern const s16 ageVGCnt;
 
 #ifdef __cplusplus

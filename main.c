@@ -10,6 +10,7 @@
 #include "pad.h"
 #include "player.h"
 
+extern void DrawPlane();
 
 AG3Danimenode	node[256];
 
@@ -42,6 +43,7 @@ void  main( void ) {
 	agglDisplaySize( FB_WIDTH , FB_HEIGHT );
 
 	ag3dInitTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), node );
+	ag3dInitTree( &(age3dTree[ AG_AG3D_PLANETREE ]),node);
 
 	page = 0;
 	DBuf.CmdCount = 0;
@@ -124,7 +126,7 @@ void draw( int frame , int motion_number  ) {
 };
 
 	player_drw(NULL);
-
+	DrawPlane();
 }
 
 void AG3DGLUglinit( void ) {

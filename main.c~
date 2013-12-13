@@ -10,6 +10,7 @@
 #include "pad.h"
 #include "player.h"
 
+extern void DrawPlane();
 
 AG3Danimenode	node[256];
 
@@ -94,7 +95,7 @@ void  main( void ) {
 void draw( int frame , int motion_number  ) {
 	int err;
 	
-	static AGGLfloat c[3]={ 0,40,40 };
+	static AGGLfloat c[3]={ 40,40,40 };
         static AGGLfloat t[3]={ 0.0,0,0.0 };
         static AGGLfloat u[3]={ 0.0f, 1.0f, 0.0f };
 
@@ -124,7 +125,7 @@ void draw( int frame , int motion_number  ) {
 };
 
 	player_drw(NULL);
-
+	DrawPlane();
 }
 
 void AG3DGLUglinit( void ) {

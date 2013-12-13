@@ -47,9 +47,8 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 */
 void player_move(Object *dp)
 {
-  double pitch=0,roll=0,yaw=0;
-  double cp,sp,cb,sb,ch,sh;
-  double tx,ty,tz;
+  float cp,sp,cb,sb,ch,sh;
+  float tx,ty,tz;
   
 
   if( PadLvl() & PAD_RIGHT )
@@ -74,20 +73,12 @@ void player_move(Object *dp)
       playerObject.Obj.pitch-=0.05;
     }
 
-  pitch=playerObject.Obj.pitch;
-  roll=playerObject.Obj.roll;
-  yaw=playerObject.Obj.yaw;
-
-  ch=cosf(yaw);
-  sh=sinf(yaw);
-  cp=cosf(pitch);
-  sp=sinf(pitch);
-  cb=cosf(roll);
-  sb=sinf(roll);
-
-  //tx=playerObject.Obj.direction.X;
-  //ty=playerObject.Obj.direction.Y;
-  //tz=playerObject.Obj.direction.Z;
+  ch=cosf(playerObject.Obj.yaw);
+  sh=sinf(playerObject.Obj.yaw);
+  cp=cosf(playerObject.Obj.pitch);
+  sp=sinf(playerObject.Obj.pitch);
+  cb=cosf(playerObject.Obj.roll);
+  sb=sinf(playerObject.Obj.roll);
 
   tx=0;
   ty=0;
@@ -118,6 +109,7 @@ void player_drw(Object *dp)
 	agglDisable( AGGL_BLEND );
 	agglDepthMask( AGGL_TRUE );
 	
+	agglPushMatrix();
 	agglTranslatef(playerObject.Obj.translation.X,playerObject.Obj.translation.Y,playerObject.Obj.translation.Z);
 	counter+=0.05;
 
