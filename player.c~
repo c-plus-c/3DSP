@@ -47,7 +47,7 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 */
 void player_move(Object *dp)
 {
-  double pitch,roll,yaw;
+  double pitch=0,roll=0,yaw=0;
   double cp,sp,cb,sb,ch,sh;
   double tx,ty,tz;
   
@@ -55,28 +55,28 @@ void player_move(Object *dp)
   if( PadLvl() & PAD_RIGHT )
     {
       //roll=-0.3;
-      yaw=0.05;
       playerObject.Obj.yaw+=0.05;
     }
   
   if( PadLvl() & PAD_LEFT )
     {
       //roll=0.3;
-      yaw=-0.05;
       playerObject.Obj.yaw-=0.05;
     }
 
   if (PadLvl() & PAD_DOWN)
     {
-      pitch=0.05;
       playerObject.Obj.pitch+=0.05;
     }
 
   if(PadLvl() & PAD_UP)
     {
-      pitch=-0.05;
       playerObject.Obj.pitch-=0.05;
     }
+
+  pitch=playerObject.Obj.pitch;
+  roll=playerObject.Obj.roll;
+  yaw=playerObject.Obj.yaw;
 
   ch=cosf(yaw);
   sh=sinf(yaw);
@@ -117,9 +117,11 @@ void player_drw(Object *dp)
 	agglTranslatef(playerObject.Obj.translation.X,playerObject.Obj.translation.Y,playerObject.Obj.translation.Z);
 	counter+=0.05;
 
-	//agglRotatef(playerObject.Obj.pitch,1,0,0);
-	//agglRotatef(playerObject.Obj.yaw,0,1,0);
-	//agglRotatef(playerObject.Obj.roll,0,0,1);
+	
+	agglRotatef(playerObject.Obj.pitch*180/PI,1,0,0);
+	agglRotatef(playerObject.Obj.yaw*180/PI,0,1,0);
+	agglRotatef(playerObject.Obj.roll*180/PI,0,0,1);
+	
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

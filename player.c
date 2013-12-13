@@ -55,28 +55,28 @@ void player_move(Object *dp)
   if( PadLvl() & PAD_RIGHT )
     {
       //roll=-0.3;
-      yaw=0.05;
       playerObject.Obj.yaw+=0.05;
     }
   
   if( PadLvl() & PAD_LEFT )
     {
       //roll=0.3;
-      yaw=-0.05;
       playerObject.Obj.yaw-=0.05;
     }
 
   if (PadLvl() & PAD_DOWN)
     {
-      pitch=0.05;
       playerObject.Obj.pitch+=0.05;
     }
 
   if(PadLvl() & PAD_UP)
     {
-      pitch=-0.05;
       playerObject.Obj.pitch-=0.05;
     }
+
+  pitch=playerObject.Obj.pitch;
+  roll=playerObject.Obj.roll;
+  yaw=playerObject.Obj.yaw;
 
   ch=cosf(yaw);
   sh=sinf(yaw);
@@ -85,9 +85,13 @@ void player_move(Object *dp)
   cb=cosf(roll);
   sb=sinf(roll);
 
-  tx=playerObject.Obj.direction.X;
-  ty=playerObject.Obj.direction.Y;
-  tz=playerObject.Obj.direction.Z;
+  //tx=playerObject.Obj.direction.X;
+  //ty=playerObject.Obj.direction.Y;
+  //tz=playerObject.Obj.direction.Z;
+
+  tx=0;
+  ty=0;
+  tz=-1;
 
   playerObject.Obj.direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
   playerObject.Obj.direction.Y=(sb*cp)*tx+(cb*cp)*ty+(-sp)*tz;
@@ -118,9 +122,10 @@ void player_drw(Object *dp)
 	counter+=0.05;
 
 	
-	agglRotatef(playerObject.Obj.pitch*180/PI,1,0,0);
-	agglRotatef(playerObject.Obj.yaw*180/PI,0,1,0);
+
 	agglRotatef(playerObject.Obj.roll*180/PI,0,0,1);
+	agglRotatef(playerObject.Obj.yaw*180/PI,0,1,0);
+	agglRotatef(playerObject.Obj.pitch*180/PI,1,0,0);
 	
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
