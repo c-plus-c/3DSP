@@ -11,7 +11,10 @@ C_SRC = main.c export.c pad.c fireball.c player.c pad.c plane.c
 CGROMDIR = ./
 
 # 現在のディレクトリからランタイムルートディレクトリへの相対パス
-ROOTDIR = ../
+ROOTDIR = ../../..
+
+# 追加のライブラリ
+EXTRA_LIBS = $(ROOTDIR)/library/agGamePad$(LIBPOSTFIX).lib
 
 include $(ROOTDIR)/include/makefile.def
 

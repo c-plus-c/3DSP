@@ -6,6 +6,8 @@
 #include <ag3d.h>
 #include <ag3danime.h>
 
+#include <agGamePad.h>
+
 #include "export.h"
 #include "pad.h"
 #include "player.h"
@@ -22,14 +24,82 @@ u32 DrawBuffer[2][65536*16];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
+
+AGDrawBuffer DBuf;
+
+typedef enum Page_t
+  {
+  TITLE,INGAME
+}Page;
+
 void AG3DGLUglinit( void );
 void draw( int frame , int motion_number );
 
+long long int pow(long a,int b){
+	long long int m = 1;
+	for(;b>0;b--)
+		m *= a;
+	return m;
+}
+
+void drawNum(int x,int y, long long int num){
+	int w,h;
+	int d = 30,l = x,f = 0;
+	for(;d>=0;d--){
+		if(num/pow(10,d) > 0 || f==1){
+			agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
+			ageTransferAAC( &DBuf, num/pow(10,d) - '0' + AG_CG_32, 0, &w, &h );
+			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+			agDrawSPRITE( &DBuf, 1, l, y, l+w, y+h );
+
+			num -= pow(10,d) *( num/pow(10,d));
+			l += w;
+			f = 1;
+		}
+	}
+}
+
+int strlen(char* str){
+	int i=0;
+	while(1){
+		if(str[i] == '\0')
+			break;
+		i++;
+	}
+	return i;
+}
+
+
+void drawStr(int x,int y, char* str){
+	int l = strlen(str);
+	int i,left = x;
+	int w, h;
+
+	for(i=0;i<l;i++){
+		if(str[i] == '\n'){
+			y += h;
+			left = x;
+			continue;
+		}
+
+		agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
+		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_32, 0, &w, &h );
+		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+		agDrawSPRITE( &DBuf, 1, left, y, left+(w), y+(h) );
+
+		left += (w);
+	}
+}
+
+
+
 void  main( void ) {
-	AGDrawBuffer DBuf;
 	int page;
 	int frame;
 	int MotionNumber = MotionList[0];
+	Page displayingPage =TITLE;
+
+
 
 	agpDisableCpuInterrupts();
 	aglInitialize();
@@ -52,44 +122,58 @@ void  main( void ) {
 	PadInit();
 	
 	player_init();
-	
 	while( 1 ) {
+		if(displayingPage == TITLE){
+			int n;
+			u32 pad;
 
-		PadRun();
-		player_move(NULL);
-		if( DBuf.CmdCount > 0 ) {
-			agTransferDrawDMAAsync( &(DBuf) );
+			_dprintf( "title%d",displayingPage );
+	        for( n=0 ; n < 3 ; n++ ) {
+	            pad = agGamePadGetData(n);
+	            if ( (pad & GAMEPAD_START) ) {
+	            	displayingPage = INGAME;
+	            }
+     	   }
+		}else if(displayingPage == INGAME){
+			PadRun();
+			player_move(NULL);
+			if( DBuf.CmdCount > 0 ) {
+				agTransferDrawDMAAsync( &(DBuf) );
+			}
+
+			page ^= 1;
+			agDrawBufferInit( &DBuf, DrawBuffer[page] );
+
+			agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
+
+			AG3DGLUglinit();
+
+			
+			/* glîwåièâä˙âª */
+			agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
+			agglClearDepthf( 1.0f );
+			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
+
+			draw( frame , MotionNumber );
+
+			drawStr(100<<2,100<<2,"hello");
+
+			agglFinishFrame();
+
+			frame++;
+			if ( frame >= ag3dGetMotionFrames( &(age3dMotion[ MotionNumber ]) ) ) {
+				frame = 0;
+				MotionNumber = MotionList[ rand() % (sizeof( MotionList )/sizeof( MotionList[0] )) ];
+			};
+
+
+			agDrawEODL( &DBuf );
+
+			agTransferDrawWait();
+
+			aglSwap();
+			aglWaitVSync();
 		}
-
-		page ^= 1;
-		agDrawBufferInit( &DBuf, DrawBuffer[page] );
-
-		agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
-
-		AG3DGLUglinit();
-
-		
-		/* glîwåièâä˙âª */
-		agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
-		agglClearDepthf( 1.0f );
-		agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
-
-		draw( frame , MotionNumber );
-
-		agglFinishFrame();
-
-		frame++;
-		if ( frame >= ag3dGetMotionFrames( &(age3dMotion[ MotionNumber ]) ) ) {
-			frame = 0;
-			MotionNumber = MotionList[ rand() % (sizeof( MotionList )/sizeof( MotionList[0] )) ];
-		};
-
-		agDrawEODL( &DBuf );
-
-		agTransferDrawWait();
-
-		aglSwap();
-		aglWaitVSync();
 	}
 }
 
