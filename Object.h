@@ -3,7 +3,7 @@
 #ifndef __OBJECT_H__
 #define __OBJECT_H__
 
-#define PI (3.1415926535f)
+#define PI (3.1415)
 
 typedef struct Vec3f_t
 {
@@ -22,9 +22,9 @@ typedef struct ObjectLocal {
   Vec3f	direction;
   Vec3f	translation;
   Stat	stat;
-  double pitch;
-  double roll;
-  double yaw;
+  float pitch;
+  float roll;
+  float yaw;
 } Object;
 
 #endif
