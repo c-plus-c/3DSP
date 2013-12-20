@@ -24,6 +24,7 @@ u32 DrawBuffer[2][65536*16];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
+static volatile u32 _SystemVSyncCount=0;
 
 AGDrawBuffer DBuf;
 
@@ -92,18 +93,28 @@ void drawStr(int x,int y, char* str){
 }
 
 
+static s32 ifnc_vsync(int type)
+{
+    _SystemVSyncCount++;
+    // i_exec_swap=0;
+    return(1);
+}
+
+
 
 void  main( void ) {
 	int page;
 	int frame;
 	int MotionNumber = MotionList[0];
 	Page displayingPage =TITLE;
-
+	u32 v;
 
 
 	agpDisableCpuInterrupts();
 	aglInitialize();
 	agpEnableCpuInterrupts();
+
+	aglAddInterruptCallback(AG_INT_TYPE_VBLA,ifnc_vsync);
 
 #ifdef DEBUG
 	_dprintf( ">> sample [ag3d_Model] start.\n" );
@@ -120,9 +131,19 @@ void  main( void ) {
 	frame = 0;
 	
 	PadInit();
-	
+
+	agGamePadSyncInit( &_SystemVSyncCount, 60);
+	v = _SystemVSyncCount;
+
 	player_init();
 	while( 1 ) {
+		agGamePadSync();
+
+        while( v >= _SystemVSyncCount ) {
+            AG_IDLE_PROC();
+            agGamePadSyncIdle();
+            _dprintf("%d",_SystemVSyncCount);
+        }
 		if(displayingPage == TITLE){
 			int n;
 			u32 pad;
