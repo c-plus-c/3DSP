@@ -78,6 +78,8 @@ void  main( void ) {
 	int MotionNumber = MotionList[0];
 	Page displayingPage =TITLE;
 	u32 v;
+	int n;
+	u32 pad;
 
 
 	agpDisableCpuInterrupts();
@@ -119,8 +121,6 @@ void  main( void ) {
         //     _dprintf("%d",_SystemVSyncCount);
         // }
 		if(displayingPage == TITLE){
-			int n;
-			u32 pad;
 
 	        for( n=0 ; n < 3 ; n++ ) {
 	            pad = agGamePadGetData(n);
@@ -129,10 +129,13 @@ void  main( void ) {
 	            }
      	   }
 		}else if(displayingPage == INGAME){
-			PadRun();
-			
 
-			_dprintf("%f %f %f\n",Objects[0].translation.X,Objects[0].translation.Y,Objects[0].translation.Z);
+	        // for( n=0 ; n < 3 ; n++ ) {
+	        //     pad = agGamePadGetData(n);
+	        //     if ( (pad & GAMEPAD_START) ) {
+	        //     	initObjects();
+	        //     }
+     	   // }
 
 			if( DBuf.CmdCount > 0 ) {
 				agTransferDrawDMAAsync( &(DBuf) );
@@ -155,7 +158,7 @@ void  main( void ) {
 			draw( frame , MotionNumber );
 			drawObjects();
 
-			drawNum(100<<2,100<<2,10);
+			drawNum(100<<2,100<<2,_SystemVSyncCount);
 
 agglEndZsort();
        
