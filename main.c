@@ -10,7 +10,7 @@
 
 #include "export.h"
 #include "pad.h"
-#include "player.h"
+#include "extern.h"
 
 extern void DrawPlane();
 
@@ -20,13 +20,15 @@ char	zsortbuf[1024*10*50];
 
 char	vtxbuf[10240*2];
 
-u32 DrawBuffer[2][65536*16];
+u32 DrawBuffer[2][65536*32];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
 static volatile u32 _SystemVSyncCount=0;
 
 AGDrawBuffer DBuf;
+
+Object Objects[OBJECT_MAX];
 
 typedef enum Page_t
   {
@@ -48,8 +50,9 @@ void drawNum(int x,int y, long long int num){
 	int d = 30,l = x,f = 0;
 	for(;d>=0;d--){
 		if(num/pow(10,d) > 0 || f==1){
+			_dprintf("%d\n",num/pow(10,d) + '0' - ' ' + AG_CG_32);
 			agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
-			ageTransferAAC( &DBuf, num/pow(10,d) - '0' + AG_CG_32, 0, &w, &h );
+			ageTransferAAC( &DBuf, 0, 0, &w, &h );
 			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 			agDrawSPRITE( &DBuf, 1, l, y, l+w, y+h );
 
@@ -100,6 +103,31 @@ static s32 ifnc_vsync(int type)
     return(1);
 }
 
+void initObjects(){
+	int i;
+	_dprintf( "init\n");
+	for(i=0;i<OBJECT_MAX;i++){
+		Objects[i].visibility = 0;
+	}
+}
+
+void moveObjects(){
+	int i;
+	_dprintf( "move\n");
+	for(i=0;i<OBJECT_MAX;i++){
+		if(Objects[i].visibility)
+			Objects[i].mov(&Objects[i]);
+	}
+}
+
+void drawObjects(){
+	int i;
+	_dprintf( "draw\n");
+	for(i=0;i<OBJECT_MAX;i++){
+		if(Objects[i].visibility)
+			Objects[i].drw(&Objects[i]);
+	}
+}
 
 
 void  main( void ) {
@@ -135,20 +163,23 @@ void  main( void ) {
 	agGamePadSyncInit( &_SystemVSyncCount, 60);
 	v = _SystemVSyncCount;
 
-	player_init();
+	initObjects();
+	playerInit(&Objects[0], 0);
+	playerInit(&Objects[1], 1);
+	playerInit(&Objects[2], 2);
+
 	while( 1 ) {
 		agGamePadSync();
 
-        while( v >= _SystemVSyncCount ) {
-            AG_IDLE_PROC();
-            agGamePadSyncIdle();
-            _dprintf("%d",_SystemVSyncCount);
-        }
+        // while( v >= _SystemVSyncCount ) {
+        //     AG_IDLE_PROC();
+        //     agGamePadSyncIdle();
+        //     _dprintf("%d",_SystemVSyncCount);
+        // }
 		if(displayingPage == TITLE){
 			int n;
 			u32 pad;
 
-			_dprintf( "title%d",displayingPage );
 	        for( n=0 ; n < 3 ; n++ ) {
 	            pad = agGamePadGetData(n);
 	            if ( (pad & GAMEPAD_START) ) {
@@ -157,7 +188,10 @@ void  main( void ) {
      	   }
 		}else if(displayingPage == INGAME){
 			PadRun();
-			player_move(NULL);
+			
+
+			_dprintf("%f %f %f\n",Objects[0].translation.X,Objects[0].translation.Y,Objects[0].translation.Z);
+
 			if( DBuf.CmdCount > 0 ) {
 				agTransferDrawDMAAsync( &(DBuf) );
 			}
@@ -170,14 +204,29 @@ void  main( void ) {
 			AG3DGLUglinit();
 
 			
-			/* gl�w�i������ */
+			/* gl”wŒi‰Šú‰» */
 			agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
 			agglClearDepthf( 1.0f );
 			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
+			moveObjects();
 			draw( frame , MotionNumber );
+			drawObjects();
 
-			drawStr(100<<2,100<<2,"hello");
+			drawNum(100<<2,100<<2,10);
+
+agglEndZsort();
+       
+		/* 半透明、Ｚバッファ非更新 */
+	//agglEnable( AGGL_BLEND );
+	//agglDepthMask( AGGL_FALSE );
+
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	//agglEndZsort();
+
+	agglDepthMask( AGGL_TRUE );
+
 
 			agglFinishFrame();
 
@@ -217,7 +266,7 @@ void draw( int frame , int motion_number  ) {
 
 
 
-	/* ���C�g�ݒ� */
+	/* ƒ‰ƒCƒgÝ’è */
 {
 		const static AGGLfloat lpos[4] = { 1.0f, 1.0f, 1.0f, 0.0f } ;
 		const static AGGLfloat lamb[3] = { 0.5f, 0.3f, 0.3f } ;
@@ -230,7 +279,6 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	player_drw(NULL);
 	DrawPlane();
 }
 

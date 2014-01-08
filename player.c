@@ -1,39 +1,34 @@
 #include <amlib.h>
+#include <agGamePad.h>
+
 #include "export.h"
 #include "player.h"
 #include "pad.h"
+#include "extern.h"
 
-static Player playerObject;
 
-void player_init()
+void playerInit(Object *dp,int pid)
 {
-	playerObject.Obj.translation.X=0;
-	playerObject.Obj.translation.Y=0;
-	playerObject.Obj.translation.Z=30;
+	dp->translation.X=0;
+	dp->translation.Y=0;
+	dp->translation.Z=30;
 	
-	playerObject.Obj.direction.X=0;
-	playerObject.Obj.direction.Y=0;
-	playerObject.Obj.direction.Z=-1;
+	dp->direction.X=0;
+	dp->direction.Y=0;
+	dp->direction.Z=-1;
 
-	playerObject.Obj.yaw=0;
-	playerObject.Obj.roll=0;
-	playerObject.Obj.pitch=0;
+	dp->yaw=0;
+	dp->roll=0;
+	dp->pitch=0;
+
+	dp->mov = player_move;
+	dp->drw = player_drw;
+
+	dp->pid = pid;
+
+	dp->visibility=1;
 }
 
-void player_initWithParam(Vec3f pos,Vec3f angle)
-{
-	playerObject.Obj.translation.X=pos.X;
-	playerObject.Obj.translation.Y=pos.Y;
-	playerObject.Obj.translation.Z=pos.Z;
-	
-	playerObject.Obj.direction.X=angle.X;
-	playerObject.Obj.direction.Y=angle.Y;
-	playerObject.Obj.direction.Z=angle.Z;
-
-	playerObject.Obj.yaw=0;
-	playerObject.Obj.roll=0;
-	playerObject.Obj.pitch=0;
-}
 
 /* TODO:今西
 半径で判定以上に当たり判定をしたければ書く 
@@ -49,53 +44,54 @@ void player_move(Object *dp)
 {
   float cp,sp,cb,sb,ch,sh;
   float tx,ty,tz;
-  
+  u32 pad;
 
-  if( PadLvl() & PAD_RIGHT )
+	pad = agGamePadGetData(dp->pid);
+  if( (pad & GAMEPAD_R) != 0 )
     {
       //roll=-0.3;
-      playerObject.Obj.yaw-=0.04;
+      dp->yaw-=0.04;
     }
   
-  if( PadLvl() & PAD_LEFT )
+  if( (pad & GAMEPAD_L) != 0 )
     {
       //roll=0.3;
-      playerObject.Obj.yaw+=0.04;
+      dp->yaw+=0.04;
     }
 
-  if (PadLvl() & PAD_DOWN)
+  if ((pad & GAMEPAD_U) != 0)
     {
-      playerObject.Obj.pitch+=0.04;
+      dp->pitch+=0.04;
     }
 
-  if(PadLvl() & PAD_UP)
+  if((pad & GAMEPAD_D) != 0)
     {
-      playerObject.Obj.pitch-=0.04;
+      dp->pitch-=0.04;
     }
 
-  ch=cosf(playerObject.Obj.yaw);
-  sh=sinf(playerObject.Obj.yaw);
-  cp=cosf(playerObject.Obj.pitch);
-  sp=sinf(playerObject.Obj.pitch);
-  cb=cosf(playerObject.Obj.roll);
-  sb=sinf(playerObject.Obj.roll);
+  ch=cosf(dp->yaw);
+  sh=sinf(dp->yaw);
+  cp=cosf(dp->pitch);
+  sp=sinf(dp->pitch);
+  cb=cosf(dp->roll);
+  sb=sinf(dp->roll);
 
   tx=0;
   ty=0;
   tz=-0.3;
 
-  //playerObject.Obj.direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
-  //playerObject.Obj.direction.Y=(sb*cp)*tx+(cb*cp)*ty+(-sp)*tz;
-  //playerObject.Obj.direction.Z=(-sh*cb+ch*sp*sb)*tx+(sb*sh+ch*sp*cb)*ty+(ch*cp)*tz;
+  //dp->direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
+  //dp->direction.Y=(sb*cp)*tx+(cb*cp)*ty+(-sp)*tz;
+  //dp->direction.Z=(-sh*cb+ch*sp*sb)*tx+(sb*sh+ch*sp*cb)*ty+(ch*cp)*tz;
   
-  playerObject.Obj.direction.X=(sh*cp)*tz;
-  playerObject.Obj.direction.Y=-sp*tz;
-  playerObject.Obj.direction.Z=(ch*cp)*tz;
+  dp->direction.X=(sh*cp)*tz;
+  dp->direction.Y=-sp*tz;
+  dp->direction.Z=(ch*cp)*tz;
   
   
-  playerObject.Obj.translation.X+=playerObject.Obj.direction.X;
-  playerObject.Obj.translation.Y+=playerObject.Obj.direction.Y; 
-  playerObject.Obj.translation.Z+=playerObject.Obj.direction.Z;
+  dp->translation.X+=dp->direction.X;
+  dp->translation.Y+=dp->direction.Y; 
+  dp->translation.Z+=dp->direction.Z;
 }
 
 /* TODO:今西
@@ -112,10 +108,10 @@ void player_drw(Object *dp)
 	
 	agglPushMatrix();
 	
-	agglTranslatef(playerObject.Obj.translation.X,playerObject.Obj.translation.Y,playerObject.Obj.translation.Z);
-	agglRotatef(playerObject.Obj.roll/PI*180,0,0,1);
-	agglRotatef(playerObject.Obj.yaw/PI*180,0,1,0);
-	agglRotatef(playerObject.Obj.pitch/PI*180,1,0,0);
+	agglTranslatef(dp->translation.X,dp->translation.Y,dp->translation.Z);
+	agglRotatef(dp->roll/PI*180,0,0,1);
+	agglRotatef(dp->yaw/PI*180,0,1,0);
+	agglRotatef(dp->pitch/PI*180,1,0,0);
 	
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
@@ -131,21 +127,5 @@ void player_drw(Object *dp)
 
 	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
-	agglEndZsort();
-       
-		/* 半透明、Ｚバッファ非更新 */
-	//agglEnable( AGGL_BLEND );
-	//agglDepthMask( AGGL_FALSE );
-
-	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	//agglEndZsort();
-
-	agglDepthMask( AGGL_TRUE );
-
-	/* フレーム描画終了 */
-	err = agglGetError();
-	if ( err != 0 ) {
-	  //_dprintf( "!!!!!!!!!!!!!! err = %x, frame = %d !!!!!!!!!!!\n" , err, 0 );
-	}
+	
 }
