@@ -30,5 +30,10 @@ extern const int MotionList[1];
 
 extern Object Objects[OBJECT_MAX];
 
+extern AGDrawBuffer DBuf;
+
+extern void drawNum(int x,int y, long long int num);
+
+extern void drawStr(int x,int y, char* str);
 
 #endif
