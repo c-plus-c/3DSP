@@ -28,6 +28,10 @@ typedef struct ObjectLocal {
   float pitch;
   float roll;
   float yaw;
+  
+  Vec3f CLocation;
+  Vec3f CLookAt;
+  Vec3f CUp;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );
