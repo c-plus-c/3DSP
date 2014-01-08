@@ -32,7 +32,7 @@ void fireball_drw(Object *dp){
 /* TODO:今西
 */
 void fireball_move(Object *dp){
-	dp->translation.X+=dp->direction.X*VELOCITY;
-	dp->translation.Y+=dp->direction.Y*VELOCITY; 
-	dp->translation.Z+=dp->direction.Z*VELOCITY;	
+	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
+	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
+	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;	
 }
