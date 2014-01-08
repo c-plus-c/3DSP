@@ -6,6 +6,8 @@
 #include "pad.h"
 #include "extern.h"
 
+#define VELOCITY 1
+
 
 void playerInit(Object *dp,int pid)
 {
@@ -55,23 +57,25 @@ void player_move(Object *dp)
   if( (pad & GAMEPAD_R) != 0 )
     {
       //roll=-0.3;
-      dp->yaw-=0.01;
+      dp->yaw-=0.04;
     }
   
   if( (pad & GAMEPAD_L) != 0 )
     {
       //roll=0.3;
-      dp->yaw+=0.01;
+      dp->yaw+=0.04;
     }
 
   if ((pad & GAMEPAD_U) != 0)
     {
-      dp->pitch+=0.02;
+      dp->pitch-=0.04;
+	  if(dp->pitch<-PI/3) dp->pitch=-PI/3;
     }
 
   if((pad & GAMEPAD_D) != 0)
     {
-      dp->pitch-=0.02;
+      dp->pitch+=0.04;
+	  if(dp->pitch>PI/3) dp->pitch=PI/3;
     }
 
   ch=cosf(dp->yaw);
@@ -83,7 +87,7 @@ void player_move(Object *dp)
 
   tx=0;
   ty=0;
-  tz=-0.3;
+  tz=-1;
 
   //dp->direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
   //dp->direction.Y=(sb*cp)*tx+(cb*cp)*ty+(-sp)*tz;
@@ -94,9 +98,9 @@ void player_move(Object *dp)
   dp->direction.Z=(ch*cp)*tz;
   
   
-  dp->translation.X+=dp->direction.X;
-  dp->translation.Y+=dp->direction.Y; 
-  dp->translation.Z+=dp->direction.Z;
+  dp->translation.X+=dp->direction.X*VELOCITY;
+  dp->translation.Y+=dp->direction.Y*VELOCITY; 
+  dp->translation.Z+=dp->direction.Z*VELOCITY;
 
   if(agGamePadGetMyID()==dp->pid){
   
@@ -104,17 +108,17 @@ void player_move(Object *dp)
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
 	nz=(sb*sh+ch*sp*cb)*ty;
-	c[0]=dp->translation.X-30*dp->direction.X+3*nx;
-	c[1]=dp->translation.Y-30*dp->direction.Y+3*ny;
-	c[2]=dp->translation.Z-30*dp->direction.Z+3*nz;
+	c[0]=dp->translation.X-10*dp->direction.X+2.5*nx;
+	c[1]=dp->translation.Y-10*dp->direction.Y+2.5*ny;
+	c[2]=dp->translation.Z-10*dp->direction.Z+2.5*nz;
   
   //t[0]=dp->translation.X;
  // t[1]=dp->translation.Y;
   //t[2]=dp->translation.Z;
   
-	t[0]=dp->translation.X;
-	t[1]=dp->translation.Y;
-	t[2]=dp->translation.Z;
+	t[0]=dp->translation.X+1*nx;
+	t[1]=dp->translation.Y+1*ny;
+	t[2]=dp->translation.Z+1*nz;
   
 	u[0]=nx;
 	u[1]=ny;
@@ -128,6 +132,7 @@ void player_move(Object *dp)
 
 	agglLoadIdentity() ;
 	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	//agglLookAtf(40,40,40,0,0,0,0,1,0);
   }
 }
 
