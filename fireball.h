@@ -5,11 +5,6 @@
 #include "Object.h"
 #include "extern.h"
 
-typedef struct Fireball_t
-{
-  Object Obj;
-}Fireball;
-
 /* TODO:今西
 描画
 */
