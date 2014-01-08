@@ -50,9 +50,10 @@ void drawNum(int x,int y, long long int num){
 	int d = 30,l = x,f = 0;
 	for(;d>=0;d--){
 		if(num/pow(10,d) > 0 || f==1){
-			_dprintf("%d\n",num/pow(10,d) + '0' - ' ' + AG_CG_32);
+			int number=num/pow(10,d) + '0' - ' ' + AG_CG_32;
+			_dprintf("%d\n",number);
 			agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
-			ageTransferAAC( &DBuf, 0, 0, &w, &h );
+			ageTransferAAC( &DBuf, number, 0, &w, &h );
 			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 			agDrawSPRITE( &DBuf, 1, l, y, l+w, y+h );
 
