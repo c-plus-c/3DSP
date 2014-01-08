@@ -69,11 +69,13 @@ void player_move(Object *dp)
   if ((pad & GAMEPAD_U) != 0)
     {
       dp->pitch-=0.04;
+	  if(dp->pitch<-PI/3) dp->pitch=-PI/3;
     }
 
   if((pad & GAMEPAD_D) != 0)
     {
       dp->pitch+=0.04;
+	  if(dp->pitch>PI/3) dp->pitch=PI/3;
     }
 
   ch=cosf(dp->yaw);
