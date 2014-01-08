@@ -6,7 +6,7 @@ void DrawPlane()
 {
 	
 	agglPushMatrix();
-	agglScalef(20,1,20);
+	agglScalef(100,1,100);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

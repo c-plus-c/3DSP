@@ -55,23 +55,23 @@ void player_move(Object *dp)
   if( (pad & GAMEPAD_R) != 0 )
     {
       //roll=-0.3;
-      dp->yaw-=0.04;
+      dp->yaw-=0.01;
     }
   
   if( (pad & GAMEPAD_L) != 0 )
     {
       //roll=0.3;
-      dp->yaw+=0.04;
+      dp->yaw+=0.01;
     }
 
   if ((pad & GAMEPAD_U) != 0)
     {
-      dp->pitch+=0.04;
+      dp->pitch+=0.02;
     }
 
   if((pad & GAMEPAD_D) != 0)
     {
-      dp->pitch-=0.04;
+      dp->pitch-=0.02;
     }
 
   ch=cosf(dp->yaw);
@@ -104,9 +104,9 @@ void player_move(Object *dp)
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
 	nz=(sb*sh+ch*sp*cb)*ty;
-	c[0]=40;
-	c[1]=40;
-	c[2]=40;
+	c[0]=dp->translation.X-30*dp->direction.X+3*nx;
+	c[1]=dp->translation.Y-30*dp->direction.Y+3*ny;
+	c[2]=dp->translation.Z-30*dp->direction.Z+3*nz;
   
   //t[0]=dp->translation.X;
  // t[1]=dp->translation.Y;
@@ -116,14 +116,14 @@ void player_move(Object *dp)
 	t[1]=dp->translation.Y;
 	t[2]=dp->translation.Z;
   
-	u[0]=0;
-	u[1]=1;
-	u[2]=0;
+	u[0]=nx;
+	u[1]=ny;
+	u[2]=nz;
   
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
-	agglPerspectivef( 25.0, aspect, 1, 100 ); 
+	agglPerspectivef( 25.0, aspect, 1, 1000 ); 
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
