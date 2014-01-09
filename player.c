@@ -7,6 +7,11 @@
 #include "extern.h"
 
 #define VELOCITY 1
+#define PITCHACCELBAND 0.01
+#define PITCHACCELBANDLIMIT 0.1
+
+#define ROLLACCELBAND 0.01
+#define ROLLACCELBANDLIMIT 0.1
 
 
 void playerInit(Object *dp,int pid)
@@ -29,6 +34,9 @@ void playerInit(Object *dp,int pid)
 	dp->pid = pid;
 
 	dp->visibility=1;
+	
+	dp->pitchAccelerator=0;
+	dp->rollAccelerator=0;
 }
 
 
@@ -53,37 +61,106 @@ void player_move(Object *dp)
   AGGLfloat aspect;
   u32 pad;
 
-	pad = agGamePadGetData(dp->pid);
-  if( (pad & GAMEPAD_R) != 0 )
-    {
-      //roll=-0.3;
-      dp->yaw-=0.04;
-    }
+  pad = agGamePadGetData(dp->pid);
   
-  if( (pad & GAMEPAD_L) != 0 )
-    {
-      //roll=0.3;
-      dp->yaw+=0.04;
-    }
+  if( (pad & GAMEPAD_L) != 0 ){
+	if(dp->rollAccelerator>0) dp->rollAccelerator=0;
+	dp->rollAccelerator-=ROLLACCELBAND;
+	if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
+	dp->roll+=dp->rollAccelerator;
+	if(dp->roll<-PI/6){
+		dp->roll=-PI/6;
+		dp->rollAccelerator=0;
+	}
+    dp->yaw+=0.04;
+  }else if( (pad & GAMEPAD_R) != 0 ){
+  
+	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
+	dp->rollAccelerator+=ROLLACCELBAND;
+	if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
+	dp->roll+=dp->rollAccelerator;
+	if(dp->roll>PI/6){
+		dp->roll=PI/6;
+		dp->rollAccelerator=0;
+	}
+    dp->yaw-=0.04;
+  }else{
+  
+	if(dp->roll<0)
+	{
+		dp->rollAccelerator+=ROLLACCELBAND;
+		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
+		dp->roll+=dp->rollAccelerator;
+		if(dp->roll<-PI/3) dp->roll=-PI/3;
+		else if(dp->roll>=0){
+			dp->roll=0;
+			dp->rollAccelerator=0;
+		}
+	}else if(dp->roll>0){
+		dp->rollAccelerator-=ROLLACCELBAND;
+		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
+		dp->roll+=dp->rollAccelerator;
+		if(dp->roll>PI/3) dp->roll=PI/3;
+		else if(dp->roll<=0){
+			dp->roll=0;
+			dp->rollAccelerator=0;
+		}
+	}else{
+		dp->rollAccelerator=0;
+	}
+  }
 
-  if ((pad & GAMEPAD_U) != 0)
-    {
-      dp->pitch-=0.04;
-	  if(dp->pitch<-PI/3) dp->pitch=-PI/3;
-    }
-
-  if((pad & GAMEPAD_D) != 0)
-    {
-      dp->pitch+=0.04;
-	  if(dp->pitch>PI/3) dp->pitch=PI/3;
-    }
+  if ((pad & GAMEPAD_U) != 0){
+	if(dp->pitchAccelerator>0) dp->pitchAccelerator=0;
+	dp->pitchAccelerator-=PITCHACCELBAND;
+	if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
+	dp->pitch+=dp->pitchAccelerator;
+	if(dp->pitch<-PI/3){
+		dp->pitch=-PI/3;
+		dp->pitchAccelerator=0;
+	}
+  }else if((pad & GAMEPAD_D) != 0){
+	if(dp->pitchAccelerator<0) dp->pitchAccelerator=0;
+	dp->pitchAccelerator+=PITCHACCELBAND;
+	if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
+	dp->pitch+=dp->pitchAccelerator;
+	if(dp->pitch>PI/3){
+		dp->pitch=PI/3;
+		dp->pitchAccelerator=0;
+	}
+  }else{
+	if(dp->pitch<0)
+	{
+		dp->pitchAccelerator+=PITCHACCELBAND;
+		if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
+		dp->pitch+=dp->pitchAccelerator;
+		if(dp->pitch<-PI/3) dp->pitch=-PI/3;
+		else if(dp->pitch>=0){
+			dp->pitch=0;
+			dp->pitchAccelerator=0;
+		}
+	}else if(dp->pitch>0){
+		dp->pitchAccelerator-=PITCHACCELBAND;
+		if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
+		dp->pitch+=dp->pitchAccelerator;
+		if(dp->pitch>PI/3) dp->pitch=PI/3;
+		else if(dp->pitch<=0){
+			dp->pitch=0;
+			dp->pitchAccelerator=0;
+		}
+	}else{
+		dp->pitchAccelerator=0;
+	}
+  }
 
   ch=cosf(dp->yaw);
   sh=sinf(dp->yaw);
   cp=cosf(dp->pitch);
   sp=sinf(dp->pitch);
-  cb=cosf(dp->roll);
-  sb=sinf(dp->roll);
+  //cb=cosf(dp->roll);
+  //sb=sinf(dp->roll);
+  cb=1;
+  sb=0;
 
   tx=0;
   ty=0;
@@ -112,10 +189,6 @@ void player_move(Object *dp)
 	c[1]=dp->translation.Y-10*dp->direction.Y+2.5*ny;
 	c[2]=dp->translation.Z-10*dp->direction.Z+2.5*nz;
   
-  //t[0]=dp->translation.X;
- // t[1]=dp->translation.Y;
-  //t[2]=dp->translation.Z;
-  
 	t[0]=dp->translation.X+1*nx;
 	t[1]=dp->translation.Y+1*ny;
 	t[2]=dp->translation.Z+1*nz;
@@ -131,8 +204,10 @@ void player_move(Object *dp)
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
-	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	//agglLookAtf(40,40,40,0,0,0,0,1,0);
+	//agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	
+	_dprintf("%f %f %f\n",u[0],u[1],u[2]);
   }
 }
 
@@ -151,10 +226,10 @@ void player_drw(Object *dp)
 	agglPushMatrix();
 	
 	agglTranslatef(dp->translation.X,dp->translation.Y,dp->translation.Z);
-	agglRotatef(dp->roll/PI*180,0,0,1);
+
+	agglRotatef(dp->roll/PI*180,dp->direction.X,dp->direction.Y,dp->direction.Z);
 	agglRotatef(dp->yaw/PI*180,0,1,0);
 	agglRotatef(dp->pitch/PI*180,1,0,0);
-	
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

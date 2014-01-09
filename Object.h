@@ -19,6 +19,11 @@ typedef enum Stat_t
   IDLE,DEAD
 }Stat;
 
+typedef enum VerticalState_t
+{
+	VNORMAL,VLEFT,VRIGHT
+}VerticalState;
+
 typedef struct ObjectLocal {
   int     pid;		//controller id
   int     visibility;
@@ -29,12 +34,12 @@ typedef struct ObjectLocal {
   float roll;
   float yaw;
   
-  Vec3f CLocation;
-  Vec3f CLookAt;
-  Vec3f CUp;
+  float pitchAccelerator;
+  float rollAccelerator;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );
+  VerticalState verticalState;
 } Object;
 
 
