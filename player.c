@@ -10,8 +10,9 @@
 #define PITCHACCELBAND 0.003
 #define PITCHACCELBANDLIMIT 0.01
 
-#define ROLLACCELBAND 0.005
-#define ROLLACCELBANDLIMIT 0.01
+#define ROLLACCELBAND 0.002
+#define ROLLACCELBANDLIMIT 0.02
+#define ROLLBACK 2.5
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/5)
@@ -94,8 +95,8 @@ void player_move(Object *dp)
   
 	if(dp->roll<0)
 	{
-		dp->rollAccelerator+=ROLLACCELBAND*3;
-		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT*3;
+		dp->rollAccelerator+=ROLLACCELBAND*ROLLBACK;
+		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT*ROLLBACK;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll<-ROLLLIMIT) dp->roll=-ROLLLIMIT;
 		else if(dp->roll>=0){
@@ -103,8 +104,8 @@ void player_move(Object *dp)
 			dp->rollAccelerator=0;
 		}
 	}else if(dp->roll>0){
-		dp->rollAccelerator-=ROLLACCELBAND*3;
-		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT*3;
+		dp->rollAccelerator-=ROLLACCELBAND*ROLLBACK;
+		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT*ROLLBACK;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll>ROLLLIMIT) dp->roll=ROLLLIMIT;
 		else if(dp->roll<=0){
