@@ -265,7 +265,6 @@ void player_drw(Object *dp)
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ AG_AG3D_AG3DEXPORTMOTION ]), (float)1, node );
 	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_OFFBLEND_ONDEPTH );
-	agglPopMatrix();
 	
 		/* 半透明、Ｚバッファ更新 */
 	agglEnable( AGGL_BLEND );
@@ -281,4 +280,5 @@ void player_drw(Object *dp)
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
 	agglEndZsort();
 	
+	agglPopMatrix();
 }

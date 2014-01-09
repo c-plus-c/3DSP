@@ -5,8 +5,10 @@
 */
 void fireball_drw(Object *dp){
 		/* 不透明 */
+	/*
 	agglDisable( AGGL_BLEND );
 	agglDepthMask( AGGL_TRUE );
+	*/
 	
 	agglPushMatrix();
 	
@@ -20,7 +22,6 @@ void fireball_drw(Object *dp){
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_BULLETTREE ]), &(age3dMotion[ AG_AG3D_BULLETMOTION ]), (float)1, node );
 	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_BULLETMODEL ]), node, &(age3dDCmd[ AG_AG3D_BULLETMODEL ]), AG3D_OFFBLEND_ONDEPTH );
 
-	agglPopMatrix();
 	
 		/* 半透明、Ｚバッファ更新 */
 	agglEnable( AGGL_BLEND );
@@ -35,6 +36,8 @@ void fireball_drw(Object *dp){
 	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_BULLETMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
 	agglEndZsort();
+	
+	agglPopMatrix();
 }
 
 /* TODO:今西
