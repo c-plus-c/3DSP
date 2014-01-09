@@ -6,7 +6,7 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 1.5
+#define VELOCITY 5
 #define PITCHACCELBAND 0.01
 #define PITCHACCELBANDLIMIT 0.05
 
@@ -24,7 +24,7 @@
 void playerInit(Object *dp,int pid)
 {
 	dp->translation.X=0;
-	dp->translation.Y=10;
+	dp->translation.Y=5;
 	dp->translation.Z=40;
 	
 	dp->direction.X=0;
@@ -169,6 +169,11 @@ void player_move(Object *dp)
 	dp->brakeVariable-=BRAKEINCREMENTATION;
 	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
+  
+  if((pad & GAMEPAD_A) != 0)
+  {
+	//ここで砲撃したい
+  }
 
   //ピッチロールヨー角から自機の方向ベクトルを算出
   ch=cosf(dp->yaw);
@@ -224,7 +229,7 @@ void player_move(Object *dp)
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
-	agglPerspectivef(fovy , aspect, 1, 1000 ); 
+	agglPerspectivef(fovy , aspect, 1, 500 ); 
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
