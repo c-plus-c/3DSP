@@ -179,9 +179,7 @@ void player_move(Object *dp)
   //sb=sinf(dp->roll);
   cb=1;
   sb=0;
-
-  tx=0;
-  ty=0;
+  
   tz=-1;
 
   //dp->direction.X=(ch*cb+sh*sp*sb)*tx+(-ch*sb+sh*sp*cb)*ty+(sh*cp)*tz;
