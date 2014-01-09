@@ -61,9 +61,6 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 */
 void player_move(Object *dp)
 {
-  AGGLfloat c[3];
-  AGGLfloat t[3];
-  AGGLfloat u[3];
   float cp,sp,cb,sb,ch,sh;
   float tx,ty,tz;
   float nx,ny,nz;
@@ -173,6 +170,7 @@ void player_move(Object *dp)
 	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
 
+  //ピッチロールヨー角から自機の方向ベクトルを算出
   ch=cosf(dp->yaw);
   sh=sinf(dp->yaw);
   cp=cosf(dp->pitch);
@@ -194,14 +192,17 @@ void player_move(Object *dp)
   dp->direction.Y=-sp*tz;
   dp->direction.Z=(ch*cp)*tz;
   
-  
+  //移動
   dp->translation.X+=dp->direction.X*VELOCITY/dp->brakeVariable;
   dp->translation.Y+=dp->direction.Y*VELOCITY/dp->brakeVariable; 
   dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
 
-  _dprintf("brake=%f\n",dp->brakeVariable);
+  //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){
 	float fovy,f,cr;
+	AGGLfloat c[3];
+	AGGLfloat t[3];
+	AGGLfloat u[3];
     ty=1;
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
@@ -218,9 +219,10 @@ void player_move(Object *dp)
 	u[1]=ny;
 	u[2]=nz;
   
-	cr=dp->roll*(ROLLLIMIT/PITCHLIMIT);
-	f=max(myabs(dp->pitch),myabs(cr))*35.0/PI;
+	cr=dp->roll*(PITCHLIMIT/ROLLLIMIT);
+	f=max(myabs(dp->pitch),myabs(cr))*20.0/PI;
 	fovy=25.0+f;
+	_dprintf("fovy=%f\n",fovy);
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
