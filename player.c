@@ -16,6 +16,10 @@
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/4)
 
+#define BRAKEINCREMENTATION 0.1
+#define BRAKEMIN 1
+#define BRAKEMAX 2.4
+
 
 void playerInit(Object *dp,int pid)
 {
@@ -40,6 +44,8 @@ void playerInit(Object *dp,int pid)
 	
 	dp->pitchAccelerator=0;
 	dp->rollAccelerator=0;
+	
+	dp->brakeVariable=1;
 }
 
 
@@ -66,7 +72,7 @@ void player_move(Object *dp)
 
   pad = agGamePadGetData(dp->pid);
   
-  if( (pad & GAMEPAD_L) != 0 ){
+  if( (pad & GAMEPAD_L) != 0 ){ //左に旋回
 	if(dp->rollAccelerator>0) dp->rollAccelerator=0;
 	dp->rollAccelerator-=ROLLACCELBAND;
 	if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
@@ -76,7 +82,7 @@ void player_move(Object *dp)
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*0.1;
-  }else if( (pad & GAMEPAD_R) != 0 ){
+  }else if( (pad & GAMEPAD_R) != 0 ){ //右に旋回
   
 	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
 	dp->rollAccelerator+=ROLLACCELBAND;
@@ -87,7 +93,7 @@ void player_move(Object *dp)
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*0.1;
-  }else{
+  }else{ //旋回解除処理
   
 	if(dp->roll<0)
 	{
@@ -114,7 +120,7 @@ void player_move(Object *dp)
 	dp->yaw-=dp->roll*0.1;
   }
 
-  if ((pad & GAMEPAD_U) != 0){
+  if ((pad & GAMEPAD_U) != 0){ //上昇
 	if(dp->pitchAccelerator>0) dp->pitchAccelerator=0;
 	dp->pitchAccelerator-=PITCHACCELBAND;
 	if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
@@ -123,7 +129,7 @@ void player_move(Object *dp)
 		dp->pitch=-PITCHLIMIT;
 		dp->pitchAccelerator=0;
 	}
-  }else if((pad & GAMEPAD_D) != 0){
+  }else if((pad & GAMEPAD_D) != 0){ //下降
 	if(dp->pitchAccelerator<0) dp->pitchAccelerator=0;
 	dp->pitchAccelerator+=PITCHACCELBAND;
 	if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
@@ -132,7 +138,7 @@ void player_move(Object *dp)
 		dp->pitch=PITCHLIMIT;
 		dp->pitchAccelerator=0;
 	}
-  }else{
+  }else{ //水平に戻す
 	if(dp->pitch<0)
 	{
 		dp->pitchAccelerator+=PITCHACCELBAND;
@@ -155,6 +161,16 @@ void player_move(Object *dp)
 	}else{
 		dp->pitchAccelerator=0;
 	}
+  }
+  
+  //ブレーキ
+  if((pad & GAMEPAD_B) != 0)
+  {
+	dp->brakeVariable+=BRAKEINCREMENTATION;
+	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
+  }else{
+	dp->brakeVariable-=BRAKEINCREMENTATION;
+	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
 
   ch=cosf(dp->yaw);
@@ -179,10 +195,11 @@ void player_move(Object *dp)
   dp->direction.Z=(ch*cp)*tz;
   
   
-  dp->translation.X+=dp->direction.X*VELOCITY;
-  dp->translation.Y+=dp->direction.Y*VELOCITY; 
-  dp->translation.Z+=dp->direction.Z*VELOCITY;
+  dp->translation.X+=dp->direction.X*VELOCITY/dp->brakeVariable;
+  dp->translation.Y+=dp->direction.Y*VELOCITY/dp->brakeVariable; 
+  dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
 
+  _dprintf("brake=%f\n",dp->brakeVariable);
   if(agGamePadGetMyID()==dp->pid){
 	float fovy,f,cr;
     ty=1;
@@ -204,7 +221,6 @@ void player_move(Object *dp)
 	cr=dp->roll*(ROLLLIMIT/PITCHLIMIT);
 	f=max(myabs(dp->pitch),myabs(cr))*35.0/PI;
 	fovy=25.0+f;
-	_dprintf("fovy=%f\n",fovy);
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
