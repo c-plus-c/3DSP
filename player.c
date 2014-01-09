@@ -8,10 +8,10 @@
 
 #define VELOCITY 1
 #define PITCHACCELBAND 0.01
-#define PITCHACCELBANDLIMIT 0.1
+#define PITCHACCELBANDLIMIT 0.05
 
 #define ROLLACCELBAND 0.01
-#define ROLLACCELBANDLIMIT 0.1
+#define ROLLACCELBANDLIMIT 0.05
 
 
 void playerInit(Object *dp,int pid)
@@ -72,7 +72,7 @@ void player_move(Object *dp)
 		dp->roll=-PI/6;
 		dp->rollAccelerator=0;
 	}
-    dp->yaw+=0.04;
+    dp->yaw-=dp->roll*0.1;
   }else if( (pad & GAMEPAD_R) != 0 ){
   
 	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
@@ -83,7 +83,7 @@ void player_move(Object *dp)
 		dp->roll=PI/6;
 		dp->rollAccelerator=0;
 	}
-    dp->yaw-=0.04;
+    dp->yaw-=dp->roll*0.1;
   }else{
   
 	if(dp->roll<0)
