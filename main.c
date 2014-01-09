@@ -211,7 +211,7 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	//DrawPlane();
+	DrawPlane();
 	DrawSky();
 }
 
