@@ -6,12 +6,12 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 5
+#define VELOCITY 10
 #define PITCHACCELBAND 0.01
 #define PITCHACCELBANDLIMIT 0.05
 
 #define ROLLACCELBAND 0.01
-#define ROLLACCELBANDLIMIT 0.05
+#define ROLLACCELBANDLIMIT 0.03
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/4)
@@ -94,7 +94,7 @@ void player_move(Object *dp)
   
 	if(dp->roll<0)
 	{
-		dp->rollAccelerator+=ROLLACCELBAND;
+		dp->rollAccelerator+=ROLLACCELBAND*1.3;
 		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll<-ROLLLIMIT) dp->roll=-ROLLLIMIT;
@@ -103,7 +103,7 @@ void player_move(Object *dp)
 			dp->rollAccelerator=0;
 		}
 	}else if(dp->roll>0){
-		dp->rollAccelerator-=ROLLACCELBAND;
+		dp->rollAccelerator-=ROLLACCELBAND*1.3;
 		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll>ROLLLIMIT) dp->roll=ROLLLIMIT;
@@ -114,7 +114,7 @@ void player_move(Object *dp)
 	}else{
 		dp->rollAccelerator=0;
 	}
-	dp->yaw-=dp->roll*0.1;
+	dp->yaw-=dp->roll*0.01;
   }
 
   if ((pad & GAMEPAD_U) != 0){ //上昇
