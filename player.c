@@ -7,11 +7,11 @@
 #include "extern.h"
 
 #define VELOCITY 5
-#define PITCHACCELBAND 0.01
-#define PITCHACCELBANDLIMIT 0.05
+#define PITCHACCELBAND 0.003
+#define PITCHACCELBANDLIMIT 0.01
 
-#define ROLLACCELBAND 0.01
-#define ROLLACCELBANDLIMIT 0.03
+#define ROLLACCELBAND 0.005
+#define ROLLACCELBANDLIMIT 0.01
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/5)
@@ -94,7 +94,7 @@ void player_move(Object *dp)
   
 	if(dp->roll<0)
 	{
-		dp->rollAccelerator+=ROLLACCELBAND*1.3;
+		dp->rollAccelerator+=ROLLACCELBAND*30;
 		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll<-ROLLLIMIT) dp->roll=-ROLLLIMIT;
@@ -103,7 +103,7 @@ void player_move(Object *dp)
 			dp->rollAccelerator=0;
 		}
 	}else if(dp->roll>0){
-		dp->rollAccelerator-=ROLLACCELBAND*1.3;
+		dp->rollAccelerator-=ROLLACCELBAND*30;
 		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll>ROLLLIMIT) dp->roll=ROLLLIMIT;
