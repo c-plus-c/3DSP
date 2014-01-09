@@ -13,8 +13,8 @@
 #define ROLLACCELBAND 0.01
 #define ROLLACCELBANDLIMIT 0.05
 
-#define ROLLLIMIT PI/6
-#define PITCHLIMIT PI/4
+#define ROLLLIMIT (PI/6)
+#define PITCHLIMIT (PI/4)
 
 
 void playerInit(Object *dp,int pid)
@@ -201,8 +201,8 @@ void player_move(Object *dp)
 	u[1]=ny;
 	u[2]=nz;
   
-	cr=dp->roll*2;
-	f=max(myabs(dp->pitch),myabs(cr))*20.0/PI;
+	cr=dp->roll*(ROLLLIMIT/PITCHLIMIT);
+	f=max(myabs(dp->pitch),myabs(cr))*35.0/PI;
 	fovy=25.0+f;
 	_dprintf("fovy=%f\n",fovy);
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
