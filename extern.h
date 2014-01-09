@@ -18,7 +18,7 @@
 
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
-extern AG3Danimenode node[256];
+extern AG3Danimenode node[512];
 
 /* Ｚソート時の三角形バッファ */
 /* 必要サイズは agglGet**(AGGL_ZSORT_TRIANGLE_SIZE)で得られる値 * ag3dGetModelTris(man_model) */

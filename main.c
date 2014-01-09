@@ -14,7 +14,9 @@
 
 extern void DrawPlane();
 
-AG3Danimenode	node[256];
+extern void DrawSky();
+
+AG3Danimenode	node[512];
 
 char	zsortbuf[1024*10*50];
 
@@ -194,21 +196,6 @@ agglEndZsort();
 
 void draw( int frame , int motion_number  ) {
 	int err;
-	/*
-	static AGGLfloat c[3]={ 40,40,40 };
-        static AGGLfloat t[3]={ 0.0,0,0.0 };
-        static AGGLfloat u[3]={ 0.0f, 1.0f, 0.0f };
-
-        AGGLfloat aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
-        agglMatrixMode( AGGL_PROJECTION );
-        agglLoadIdentity();
-
-        agglPerspectivef( 25.0, aspect, 1, 100 ); 
-        agglMatrixMode( AGGL_MODELVIEW );
-
-        agglLoadIdentity() ;
-        agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	*/
 
 
 	/* ƒ‰ƒCƒgÝ’è */
@@ -225,6 +212,7 @@ void draw( int frame , int motion_number  ) {
 };
 
 	DrawPlane();
+	DrawSky();
 }
 
 void AG3DGLUglinit( void ) {
