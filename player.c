@@ -17,8 +17,8 @@
 void playerInit(Object *dp,int pid)
 {
 	dp->translation.X=0;
-	dp->translation.Y=0;
-	dp->translation.Z=10;
+	dp->translation.Y=10;
+	dp->translation.Z=40;
 	
 	dp->direction.X=0;
 	dp->direction.Y=0;
@@ -108,6 +108,7 @@ void player_move(Object *dp)
 	}else{
 		dp->rollAccelerator=0;
 	}
+	dp->yaw-=dp->roll*0.1;
   }
 
   if ((pad & GAMEPAD_U) != 0){
@@ -204,8 +205,8 @@ void player_move(Object *dp)
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
-	//agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
 	
 	_dprintf("%f %f %f\n",u[0],u[1],u[2]);
   }
