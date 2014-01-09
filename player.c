@@ -7,7 +7,7 @@
 #include "extern.h"
 
 #define VELOCITY 5
-#define PITCHACCELBAND 0.003
+#define PITCHACCELBAND 0.001
 #define PITCHACCELBANDLIMIT 0.01
 
 #define ROLLACCELBAND 0.002
@@ -74,7 +74,7 @@ void player_move(Object *dp)
   
   if( (pad & GAMEPAD_L) != 0 ){ //左に旋回
 	if(dp->rollAccelerator>0) dp->rollAccelerator=0;
-	dp->rollAccelerator-=ROLLACCELBAND*(dp->roll>0)?ROLLBACK:1;
+	dp->rollAccelerator-=ROLLACCELBAND;
 	if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
 	dp->roll+=dp->rollAccelerator;
 	if(dp->roll<-ROLLLIMIT){
@@ -85,7 +85,7 @@ void player_move(Object *dp)
   }else if( (pad & GAMEPAD_R) != 0 ){ //右に旋回
   
 	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
-	dp->rollAccelerator+=ROLLACCELBAND*(dp->roll<0)?ROLLBACK:1;
+	dp->rollAccelerator+=ROLLACCELBAND;
 	if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
 	dp->roll+=dp->rollAccelerator;
 	if(dp->roll>ROLLLIMIT){
