@@ -16,3 +16,7 @@
 *.exe
 *.out
 *.app
+
+/DebugL
+*.amt*
+/ag3dtools
