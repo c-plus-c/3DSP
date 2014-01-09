@@ -24,7 +24,7 @@
 void playerInit(Object *dp,int pid)
 {
 	dp->translation.X=0;
-	dp->translation.Y=5;
+	dp->translation.Y=200;
 	dp->translation.Z=40;
 	
 	dp->direction.X=0;
@@ -272,5 +272,13 @@ void player_drw(Object *dp)
 
 	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	
+			/* 半透明、Ｚバッファ非更新 */
+	agglEnable( AGGL_BLEND );
+	agglDepthMask( AGGL_FALSE );
+
+	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	agglEndZsort();
 	
 }
