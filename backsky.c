@@ -6,7 +6,7 @@ void DrawSky()
 {
 	
 	agglPushMatrix();
-	agglScalef(2500,2500,2500);
+	agglScalef(5000,5000,5000);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

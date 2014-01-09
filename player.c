@@ -6,7 +6,7 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 10
+#define VELOCITY 5
 #define PITCHACCELBAND 0.01
 #define PITCHACCELBANDLIMIT 0.05
 
