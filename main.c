@@ -211,7 +211,7 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	DrawPlane();
+	//DrawPlane();
 	DrawSky();
 }
 
@@ -228,7 +228,8 @@ void AG3DGLUglinit( void ) {
 	agglEnable( AGGL_RESCALE_NORMAL );
 	agglDisable( AGGL_SCISSOR_TEST );
 	agglDisable( AGGL_TEXTURE_2D );
-	agglDisable( AGGL_LIGHT0 );
+	//agglDisable( AGGL_LIGHT0 );
+	agglEnable( AGGL_LIGHT0 );
 	agglDisable( AGGL_LIGHT1 );
 	agglDisable( AGGL_LIGHT2 );
 	agglDisable( AGGL_LIGHT3 );

@@ -229,7 +229,7 @@ void player_move(Object *dp)
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
-	agglPerspectivef(fovy , aspect, 1, 1100 ); 
+	agglPerspectivef(fovy , aspect, 1, 20000 ); 
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
