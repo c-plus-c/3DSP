@@ -14,7 +14,7 @@
 #define ROLLACCELBANDLIMIT 0.03
 
 #define ROLLLIMIT (PI/6)
-#define PITCHLIMIT (PI/4)
+#define PITCHLIMIT (PI/5)
 
 #define BRAKEINCREMENTATION 0.1
 #define BRAKEMIN 1
@@ -78,7 +78,7 @@ void player_move(Object *dp)
 		dp->roll=-ROLLLIMIT;
 		dp->rollAccelerator=0;
 	}
-    dp->yaw-=dp->roll*0.1;
+    dp->yaw-=dp->roll*0.05;
   }else if( (pad & GAMEPAD_R) != 0 ){ //右に旋回
   
 	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
@@ -89,7 +89,7 @@ void player_move(Object *dp)
 		dp->roll=ROLLLIMIT;
 		dp->rollAccelerator=0;
 	}
-    dp->yaw-=dp->roll*0.1;
+    dp->yaw-=dp->roll*0.05;
   }else{ //旋回解除処理
   
 	if(dp->roll<0)
@@ -114,7 +114,7 @@ void player_move(Object *dp)
 	}else{
 		dp->rollAccelerator=0;
 	}
-	dp->yaw-=dp->roll*0.01;
+	dp->yaw-=dp->roll*0.05;
   }
 
   if ((pad & GAMEPAD_U) != 0){ //上昇
@@ -262,9 +262,9 @@ void player_drw(Object *dp)
 
 	
 		/* ツリー形状を求める */
-	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ 0 ]), (float)0, node );
-	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
-
+	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ AG_AG3D_AG3DEXPORTMOTION ]), (float)1, node );
+	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_OFFBLEND_ONDEPTH );
 	agglPopMatrix();
 	
 		/* 半透明、Ｚバッファ更新 */
