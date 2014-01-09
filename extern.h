@@ -12,6 +12,10 @@
 
 #include "Object.h"
 
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#define myabs(a) ((a) > 0 ? (a) : (-a))
+
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
 extern AG3Danimenode node[256];

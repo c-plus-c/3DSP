@@ -6,12 +6,15 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 1
+#define VELOCITY 1.5
 #define PITCHACCELBAND 0.01
 #define PITCHACCELBANDLIMIT 0.05
 
 #define ROLLACCELBAND 0.01
 #define ROLLACCELBANDLIMIT 0.05
+
+#define ROLLLIMIT PI/6
+#define PITCHLIMIT PI/4
 
 
 void playerInit(Object *dp,int pid)
@@ -68,8 +71,8 @@ void player_move(Object *dp)
 	dp->rollAccelerator-=ROLLACCELBAND;
 	if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
 	dp->roll+=dp->rollAccelerator;
-	if(dp->roll<-PI/6){
-		dp->roll=-PI/6;
+	if(dp->roll<-ROLLLIMIT){
+		dp->roll=-ROLLLIMIT;
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*0.1;
@@ -79,8 +82,8 @@ void player_move(Object *dp)
 	dp->rollAccelerator+=ROLLACCELBAND;
 	if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
 	dp->roll+=dp->rollAccelerator;
-	if(dp->roll>PI/6){
-		dp->roll=PI/6;
+	if(dp->roll>ROLLLIMIT){
+		dp->roll=ROLLLIMIT;
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*0.1;
@@ -91,7 +94,7 @@ void player_move(Object *dp)
 		dp->rollAccelerator+=ROLLACCELBAND;
 		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
-		if(dp->roll<-PI/3) dp->roll=-PI/3;
+		if(dp->roll<-ROLLLIMIT) dp->roll=-ROLLLIMIT;
 		else if(dp->roll>=0){
 			dp->roll=0;
 			dp->rollAccelerator=0;
@@ -100,7 +103,7 @@ void player_move(Object *dp)
 		dp->rollAccelerator-=ROLLACCELBAND;
 		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
 		dp->roll+=dp->rollAccelerator;
-		if(dp->roll>PI/3) dp->roll=PI/3;
+		if(dp->roll>ROLLLIMIT) dp->roll=ROLLLIMIT;
 		else if(dp->roll<=0){
 			dp->roll=0;
 			dp->rollAccelerator=0;
@@ -116,8 +119,8 @@ void player_move(Object *dp)
 	dp->pitchAccelerator-=PITCHACCELBAND;
 	if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
 	dp->pitch+=dp->pitchAccelerator;
-	if(dp->pitch<-PI/3){
-		dp->pitch=-PI/3;
+	if(dp->pitch<-PITCHLIMIT){
+		dp->pitch=-PITCHLIMIT;
 		dp->pitchAccelerator=0;
 	}
   }else if((pad & GAMEPAD_D) != 0){
@@ -125,8 +128,8 @@ void player_move(Object *dp)
 	dp->pitchAccelerator+=PITCHACCELBAND;
 	if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
 	dp->pitch+=dp->pitchAccelerator;
-	if(dp->pitch>PI/3){
-		dp->pitch=PI/3;
+	if(dp->pitch>PITCHLIMIT){
+		dp->pitch=PITCHLIMIT;
 		dp->pitchAccelerator=0;
 	}
   }else{
@@ -135,7 +138,7 @@ void player_move(Object *dp)
 		dp->pitchAccelerator+=PITCHACCELBAND;
 		if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
 		dp->pitch+=dp->pitchAccelerator;
-		if(dp->pitch<-PI/3) dp->pitch=-PI/3;
+		if(dp->pitch<-PITCHLIMIT) dp->pitch=-PITCHLIMIT;
 		else if(dp->pitch>=0){
 			dp->pitch=0;
 			dp->pitchAccelerator=0;
@@ -144,7 +147,7 @@ void player_move(Object *dp)
 		dp->pitchAccelerator-=PITCHACCELBAND;
 		if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
 		dp->pitch+=dp->pitchAccelerator;
-		if(dp->pitch>PI/3) dp->pitch=PI/3;
+		if(dp->pitch>PITCHLIMIT) dp->pitch=PITCHLIMIT;
 		else if(dp->pitch<=0){
 			dp->pitch=0;
 			dp->pitchAccelerator=0;
@@ -181,7 +184,7 @@ void player_move(Object *dp)
   dp->translation.Z+=dp->direction.Z*VELOCITY;
 
   if(agGamePadGetMyID()==dp->pid){
-  
+	float fovy,f,cr;
     ty=1;
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
@@ -198,17 +201,19 @@ void player_move(Object *dp)
 	u[1]=ny;
 	u[2]=nz;
   
+	cr=dp->roll*2;
+	f=max(myabs(dp->pitch),myabs(cr))*20.0/PI;
+	fovy=25.0+f;
+	_dprintf("fovy=%f\n",fovy);
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
-	agglPerspectivef( 25.0, aspect, 1, 1000 ); 
+	agglPerspectivef(fovy , aspect, 1, 1000 ); 
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
 	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
 	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
-	
-	_dprintf("%f %f %f\n",u[0],u[1],u[2]);
   }
 }
 
