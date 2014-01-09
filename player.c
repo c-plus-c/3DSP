@@ -94,8 +94,8 @@ void player_move(Object *dp)
   
 	if(dp->roll<0)
 	{
-		dp->rollAccelerator+=ROLLACCELBAND*30;
-		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT;
+		dp->rollAccelerator+=ROLLACCELBAND*3;
+		if(dp->rollAccelerator>ROLLACCELBANDLIMIT) dp->rollAccelerator=ROLLACCELBANDLIMIT*3;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll<-ROLLLIMIT) dp->roll=-ROLLLIMIT;
 		else if(dp->roll>=0){
@@ -103,8 +103,8 @@ void player_move(Object *dp)
 			dp->rollAccelerator=0;
 		}
 	}else if(dp->roll>0){
-		dp->rollAccelerator-=ROLLACCELBAND*30;
-		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
+		dp->rollAccelerator-=ROLLACCELBAND*3;
+		if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT*3;
 		dp->roll+=dp->rollAccelerator;
 		if(dp->roll>ROLLLIMIT) dp->roll=ROLLLIMIT;
 		else if(dp->roll<=0){
