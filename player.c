@@ -67,7 +67,6 @@ void player_move(Object *dp)
   float cp,sp,cb,sb,ch,sh;
   float tx,ty,tz;
   float nx,ny,nz;
-  AGGLfloat aspect;
   u32 pad;
 
   pad = agGamePadGetData(dp->pid);
@@ -205,7 +204,7 @@ void player_move(Object *dp)
 
   //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){
-	float fovy,f,cr;
+	float fovy,f,cr,aspect;
 	AGGLfloat c[3];
 	AGGLfloat t[3];
 	AGGLfloat u[3];
@@ -228,7 +227,6 @@ void player_move(Object *dp)
 	cr=dp->roll*(PITCHLIMIT/ROLLLIMIT);
 	f=max(myabs(dp->pitch),myabs(cr))*20.0/PI;
 	fovy=25.0+f;
-	_dprintf("fovy=%f\n",fovy);
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
 	agglLoadIdentity();
