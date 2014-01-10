@@ -12,25 +12,26 @@ void DrawPlane()
 
 		/* ツリー形状を求める */
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_PLANETREE ]), &(age3dMotion[ AG_AG3D_PLANEMOTION ]), (float)0, node );
-	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node,&(age3dDCmd[ AG_AG3D_PLANEMODEL ]), AG3D_OFFBLEND_ONDEPTH );
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node,&(age3dDCmd[ AG_AG3D_PLANEMODEL ]), AG3D_ONBLEND_ONDEPTH  );
 
 	
 		/* 半透明、Ｚバッファ更新 */
-	agglEnable( AGGL_BLEND );
+	
+	//agglEnable( AGGL_BLEND );
 
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
-	agglEndZsort();
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	//agglEndZsort();
 
 		/* 半透明、Ｚバッファ非更新 */
-	agglEnable( AGGL_BLEND );
-	agglDepthMask( AGGL_FALSE );
+	//agglEnable( AGGL_BLEND );
+	//agglDepthMask( AGGL_FALSE );
 
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	agglEndZsort();
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_PLANEMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	//agglEndZsort();
 
-	agglDepthMask( AGGL_TRUE );
+	//agglDepthMask( AGGL_TRUE );
 	
 	agglPopMatrix();
 }

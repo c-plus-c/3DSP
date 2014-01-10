@@ -255,8 +255,8 @@ void player_drw(Object *dp)
 	int err;
 	/* 描画 */
 		/* 不透明 */
-	agglDisable( AGGL_BLEND );
-	agglDepthMask( AGGL_TRUE );
+	//agglDisable( AGGL_BLEND );
+	//agglDepthMask( AGGL_TRUE );
 	
 	agglPushMatrix();
 	
@@ -271,22 +271,22 @@ void player_drw(Object *dp)
 	
 		/* ツリー形状を求める */
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ AG_AG3D_AG3DEXPORTMOTION ]), (float)1, node );
-	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_OFFBLEND_ONDEPTH );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_OFFBLEND_ONDEPTH );
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_ONBLEND_ONDEPTH  );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_OFFBLEND_ONDEPTH );
 	
 		/* 半透明、Ｚバッファ更新 */
-	agglEnable( AGGL_BLEND );
+	//agglEnable( AGGL_BLEND );
 
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
 	
 			/* 半透明、Ｚバッファ非更新 */
-	agglEnable( AGGL_BLEND );
-	agglDepthMask( AGGL_FALSE );
+	//agglEnable( AGGL_BLEND );
+	//agglDepthMask( AGGL_FALSE );
 
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	agglEndZsort();
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	//agglEndZsort();
 	
 	agglPopMatrix();
 }
