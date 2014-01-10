@@ -57,7 +57,7 @@ void playerInit(Object *dp,int pid)
 */
 int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 {
-
+	return 0;
 }
 /* TODO:今西
 パッド処理
