@@ -12,9 +12,9 @@
 
 #define ROLLACCELBAND 0.002
 #define ROLLACCELBANDLIMIT 0.02
-#define ROLLBACK 2.5
+#define ROLLBACK 8
 
-#define YAWTIME 0.03
+#define YAWTIME 0.01
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/5)
@@ -225,7 +225,7 @@ void player_move(Object *dp)
 	u[2]=nz;
   
 	cr=dp->roll*(PITCHLIMIT/ROLLLIMIT);
-	f=max(myabs(dp->pitch),myabs(cr))*20.0/PI;
+	f=max(myabs(dp->pitch),myabs(cr))*25.0/PI;
 	fovy=25.0+f;
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
