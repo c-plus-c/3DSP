@@ -36,10 +36,13 @@ extern Object Objects[OBJECT_MAX];
 
 extern AGDrawBuffer DBuf;
 
-extern void drawNum(int x,int y, long long int num);
+extern int drawNum(int x,int y, long long int num);
 
-extern void drawStr(int x,int y, char* str);
+extern int drawStr(int x,int y, char* str);
 
+extern void drawHud(Object *dp, u32 frameCount);
+
+extern void allocFireballs(int pid);
 extern Object* getFreeFireball(int pid);
 
 #endif

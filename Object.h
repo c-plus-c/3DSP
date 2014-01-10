@@ -6,6 +6,7 @@
 #define PI (3.1415)
 
 #define OBJECT_MAX 200
+#define PLAYER_NUMS 3
 
 #define FIREBALL_OFFSET 10
 #define FIREBALL_PER_PLAYER 50
@@ -26,6 +27,8 @@ typedef enum Stat_t
 typedef struct ObjectLocal {
   int     pid;		//controller id
   int     visibility;
+
+  int     life;
 
   Vec3f	direction;
   Vec3f	translation;

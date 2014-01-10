@@ -50,10 +50,51 @@ void fireball_drw(Object *dp){
 	agglPopMatrix();
 }
 
+// fireball, player
+int collision(Object *dp, Object *dp2){
+  Vec3f	translation = dp->translation, translation2 = dp2->translation;
+
+  if(!( translation2.X + 0.5 > translation.X && translation2.X - 0.5 < translation.X ))
+  	return 0;
+
+  if(!( translation2.Y + 0.5 > translation.Y && translation2.Y - 0.5 < translation.Y ))
+  	return 0;
+
+  if(!( translation2.Z + 0.5 > translation.Z && translation2.Z - 0.5 < translation.Z ))
+  	return 0;
+
+  return 1;
+}
+
 /* TODO:今西
 */
 void fireball_move(Object *dp){
+	int i;
+
 	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
 	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
-	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;	
+	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
+
+	for(i =0;i<PLAYER_NUMS;i++){
+		if(collision(dp, &Objects[i])){
+			Objects[i].life--;
+			dp->visibility = 0;
+		}
+	}
+}
+
+void allocFireballs(int pid){
+	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
+	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
+		fireballInit(&Objects[offset + i],pid);
+	}
+}
+
+Object* getFreeFireball(int pid){
+	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
+	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
+		if(!Objects[offset + i].visibility)
+			return &Objects[offset+i];
+	}
+	return NULL;
 }

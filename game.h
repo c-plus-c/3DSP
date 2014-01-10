@@ -5,7 +5,7 @@
 #define PI    (3.141592654f)
 #define SQRT2 (1.414213562f)
 
-#define PLAYER_NUMS 4
+#define PLAYER_NUMS 3
 #define MAP_BLK_X 256    /* MAPのx方向ブロック数 */
 #define MAP_BLK_Y 256    /* MAPのy方向ブロック数 */
 #define MAP_BLK_Z 256    /* MAPのz方向ブロック数 */

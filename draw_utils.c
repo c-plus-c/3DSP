@@ -10,7 +10,7 @@ long long int pow(long a,int b){
 	return m;
 }
 
-void drawNum(int x,int y, long long int num){
+int drawNum(int x,int y, long long int num){
 	int w,h;
 	int d = 30,l = x,f = 0;
 	for(;d>=0;d--){
@@ -26,6 +26,7 @@ void drawNum(int x,int y, long long int num){
 			f = 1;
 		}
 	}
+	return l;
 }
 
 int strlen(char* str){
@@ -39,7 +40,7 @@ int strlen(char* str){
 }
 
 
-void drawStr(int x,int y, char* str){
+int drawStr(int x,int y, char* str){
 	int l = strlen(str);
 	int i,left = x;
 	int w, h;
@@ -58,4 +59,18 @@ void drawStr(int x,int y, char* str){
 
 		left += (w);
 	}
+	return left;
+}
+
+void drawHud(Object *dp, u32 frameCount){
+	int x,y;
+
+	x = 0;
+	x = drawStr(x,0, "Time Limit : ");
+	x = drawNum(x,0, 100 - (frameCount/60));
+	x = drawStr(x,0, " sec");
+
+	x = 0;
+	x = drawStr(x,100<<2, "Life : ");
+	x = drawNum(x,100<<2, dp-> life);
 }

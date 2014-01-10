@@ -49,6 +49,7 @@ void playerInit(Object *dp,int pid)
 	dp->rollAccelerator=0;
 	
 	dp->brakeVariable=1;
+	dp->life = 10;
 }
 
 

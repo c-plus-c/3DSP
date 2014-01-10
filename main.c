@@ -55,21 +55,6 @@ void initObjects(){
 	}
 }
 
-void allocFireballs(int pid){
-	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
-	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		fireballInit(&Objects[offset + i],pid);
-	}
-}
-
-Object* getFreeFireball(int pid){
-	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
-	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		if(!Objects[offset + i].visibility)
-			return &Objects[offset+i];
-	}
-	return NULL;
-}
 
 void moveObjects(){
 	int i;
@@ -91,7 +76,7 @@ void drawObjects(){
 
 
 void  main( void ) {
-	int page;
+	int page, i;
 	int frame;
 	int MotionNumber = MotionList[0];
 	Page displayingPage =TITLE;
@@ -127,13 +112,11 @@ void  main( void ) {
 
 	initObjects();
 
-	//better for
-	playerInit(&Objects[0], 0);
-	allocFireballs(0);
-	playerInit(&Objects[1], 1);
-	allocFireballs(1);
-	playerInit(&Objects[2], 2);
-	allocFireballs(2);
+	for (i = 0; i < PLAYER_NUMS; ++i)
+	{
+		playerInit(&Objects[i], i);
+		allocFireballs(i);
+	}
 
 
 	while( 1 ) {
@@ -146,7 +129,7 @@ void  main( void ) {
         // }
 		if(displayingPage == TITLE){
 
-	        for( n=0 ; n < 3 ; n++ ) {
+	        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
 	            pad = agGamePadGetData(n);
 	            if ( (pad & GAMEPAD_START) ) {
 	            	displayingPage = INGAME;
@@ -179,10 +162,10 @@ void  main( void ) {
 			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
 			moveObjects();
+			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
+			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);
 			draw( frame , MotionNumber );
 			drawObjects();
-
-			drawNum(100<<2,100<<2,_SystemVSyncCount);
 
 //agglEndZsort();
        
