@@ -14,7 +14,7 @@
 #define ROLLACCELBANDLIMIT 0.02
 #define ROLLBACK 8
 
-#define YAWTIME 0.01
+#define YAWTIME 0.02
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/5)
