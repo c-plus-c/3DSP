@@ -55,6 +55,22 @@ void initObjects(){
 	}
 }
 
+void allocFireballs(int pid){
+	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
+	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
+		fireballInit(&Objects[offset + i],pid);
+	}
+}
+
+Object* getFreeFireball(int pid){
+	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
+	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
+		if(!Objects[offset + i].visibility)
+			return &Objects[offset+i];
+	}
+	return NULL;
+}
+
 void moveObjects(){
 	int i;
 	_dprintf( "move\n");
@@ -110,9 +126,15 @@ void  main( void ) {
 	v = _SystemVSyncCount;
 
 	initObjects();
+
+	//better for
 	playerInit(&Objects[0], 0);
+	allocFireballs(0);
 	playerInit(&Objects[1], 1);
+	allocFireballs(1);
 	playerInit(&Objects[2], 2);
+	allocFireballs(2);
+
 
 	while( 1 ) {
 		agGamePadSync();
@@ -162,7 +184,7 @@ void  main( void ) {
 
 			drawNum(100<<2,100<<2,_SystemVSyncCount);
 
-agglEndZsort();
+//agglEndZsort();
        
 		/* 半透明、Ｚバッファ非更新 */
 	//agglEnable( AGGL_BLEND );

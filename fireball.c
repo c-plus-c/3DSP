@@ -1,5 +1,14 @@
 #include "fireball.h"
 
+
+void fireballInit(Object *dp,int pid){
+	dp->mov = fireball_move;
+	dp->drw = fireball_drw;
+
+	dp->pid = pid;
+	dp->visibility = 0;
+}
+
 /* TODO:今西
 描画
 */
@@ -28,6 +37,7 @@ void fireball_drw(Object *dp){
 
 	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_BULLETMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	agglEndZsort();
 	
 				/* 半透明、Ｚバッファ非更新 */
 	agglEnable( AGGL_BLEND );

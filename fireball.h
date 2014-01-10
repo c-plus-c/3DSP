@@ -5,7 +5,7 @@
 #include "Object.h"
 #include "extern.h"
 
-#define BULLET_VELOCITY 2.5
+#define BULLET_VELOCITY 1.5
 
 /* TODO:今西
 描画

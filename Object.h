@@ -5,7 +5,11 @@
 
 #define PI (3.1415)
 
-#define OBJECT_MAX 100
+#define OBJECT_MAX 200
+
+#define FIREBALL_OFFSET 10
+#define FIREBALL_PER_PLAYER 50
+//50~99-- fireball(pid=1) ...
 
 typedef struct Vec3f_t
 {
@@ -22,6 +26,7 @@ typedef enum Stat_t
 typedef struct ObjectLocal {
   int     pid;		//controller id
   int     visibility;
+
   Vec3f	direction;
   Vec3f	translation;
   Stat	stat;

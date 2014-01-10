@@ -40,4 +40,6 @@ extern void drawNum(int x,int y, long long int num);
 
 extern void drawStr(int x,int y, char* str);
 
+extern Object* getFreeFireball(int pid);
+
 #endif

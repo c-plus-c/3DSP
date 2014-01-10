@@ -6,7 +6,7 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 5
+#define VELOCITY 0.6
 #define PITCHACCELBAND 0.001
 #define PITCHACCELBANDLIMIT 0.01
 
@@ -174,7 +174,13 @@ void player_move(Object *dp)
   
   if((pad & GAMEPAD_A) != 0)
   {
-	//ここで砲撃したい
+  	Object* fireball;
+	fireball = getFreeFireball(dp->pid);
+	if(fireball != NULL){
+		fireball->visibility = 1;
+		fireball->direction = dp->direction;
+		fireball->translation = dp->translation;
+	}
   }
 
   //ピッチロールヨー角から自機の方向ベクトルを算出
