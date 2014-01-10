@@ -12,7 +12,7 @@ void DrawSky()
 
 		/* ツリー形状を求める */
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_SKYBACKTREE ]), &(age3dMotion[ AG_AG3D_SKYBACKMOTION ]), (float)1, node );
-	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_SKYBACKMODEL ]), node,&(age3dDCmd[ AG_AG3D_SKYBACKMODEL ]), AG3D_ONBLEND_ONDEPTH );
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_SKYBACKMODEL ]), node,&(age3dDCmd[ AG_AG3D_SKYBACKMODEL ]), AG3D_ONBLEND_ONDEPTH  );
 	
 		/* 半透明、Ｚバッファ更新 */
 	//agglEnable( AGGL_BLEND );
