@@ -129,7 +129,7 @@ extern "C" {
 #define AG_CG_125	(99)
 #define AG_CG_126	(100)
 #define AG_CG_BLACK	(101)
-#define AG_CG_SKYSPHERE_EDITED	(102)
+#define AG_CG_SKYSPHERE	(102)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
