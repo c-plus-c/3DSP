@@ -130,6 +130,7 @@ extern "C" {
 #define AG_CG_126	(100)
 #define AG_CG_BLACK	(101)
 #define AG_CG_SKYSPHERE	(102)
+#define AG_CG_NEWBODY	(103)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -146,6 +147,7 @@ extern "C" {
 #define AG_AG3D_PLANEMODEL	(1)
 #define AG_AG3D_BULLETMODEL	(2)
 #define AG_AG3D_SKYBACKMODEL	(3)
+#define AG_AG3D_NEWPLANEMODEL	(4)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
@@ -154,6 +156,7 @@ extern "C" {
 #define AG_AG3D_PLANETREE	(1)
 #define AG_AG3D_BULLETTREE	(2)
 #define AG_AG3D_SKYBACKTREE	(3)
+#define AG_AG3D_NEWPLANETREE	(4)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
@@ -162,6 +165,7 @@ extern "C" {
 #define AG_AG3D_PLANEMOTION	(1)
 #define AG_AG3D_BULLETMOTION	(2)
 #define AG_AG3D_SKYBACKMOTION	(3)
+#define AG_AG3D_NEWPLANEMOTION	(4)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
@@ -172,14 +176,14 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[103];
+extern const AGERomMember ageRM[104];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
-extern const AG3DModelHeadChunk age3dModel[4];
-extern const AG3DDCmdHeadChunk age3dDCmd[4];
-extern const AG3DTreeHeadChunk age3dTree[4];
-extern const AG3DMotionHeadChunk age3dMotion[4];
+extern const AG3DModelHeadChunk age3dModel[5];
+extern const AG3DDCmdHeadChunk age3dDCmd[5];
+extern const AG3DTreeHeadChunk age3dTree[5];
+extern const AG3DMotionHeadChunk age3dMotion[5];
 extern const AG3DCameraHeadChunk age3dCamera[2];
 extern const s16 ageVGCnt;
 
