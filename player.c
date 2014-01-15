@@ -24,9 +24,9 @@
 #define BRAKEMAX 2.4
 
 #define BLINK_COUNT 60
-#define FIREBALL_INTERVAL 2
-#define FIREBALL_LIMIT 10
-#define FIREBALL_RELOAD_INTERVAL 20
+#define FIREBALL_INTERVAL 1
+#define FIREBALL_LIMIT 20
+#define FIREBALL_RELOAD_INTERVAL 5
 
 
 void playerInit(Object *dp,int pid)
@@ -179,7 +179,7 @@ void player_move(Object *dp)
 	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
 
-  if(frameCount/2%FIREBALL_RELOAD_INTERVAL == 0){
+  if(frameCount%FIREBALL_RELOAD_INTERVAL == 0){
   	if(dp->fireballCount < FIREBALL_LIMIT)
   		dp->fireballCount++;
   }

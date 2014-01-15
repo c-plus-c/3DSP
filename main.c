@@ -26,7 +26,8 @@ u32 DrawBuffer[2][65536*32];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
-volatile u32 frameCount=0;
+static volatile u32 _SystemVSyncCount=0;
+int frameCount = 0;
 
 Object Objects[OBJECT_MAX];
 
@@ -42,13 +43,14 @@ void draw( int frame , int motion_number );
 
 static s32 ifnc_vsync(int type)
 {
-    frameCount++;
+    _SystemVSyncCount++;
     // i_exec_swap=0;
     return(1);
 }
 
 void initObjects(){
 	int i;
+	_dprintf( "init\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -57,6 +59,7 @@ void initObjects(){
 
 void moveObjects(){
 	int i;
+	_dprintf( "move\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].mov(&Objects[i]);
@@ -65,6 +68,7 @@ void moveObjects(){
 
 void drawObjects(){
 	int i;
+	_dprintf( "draw\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].drw(&Objects[i]);
@@ -74,7 +78,6 @@ void drawObjects(){
 
 void  main( void ) {
 	int page, i;
-	int frame;
 	int MotionNumber = MotionList[0];
 	Page displayingPage =TITLE;
 	u32 v;
@@ -100,12 +103,11 @@ void  main( void ) {
 
 	page = 0;
 	DBuf.CmdCount = 0;
-	frame = 0;
 	
 	PadInit();
 
-	agGamePadSyncInit( &frameCount, 30);
-	v = frameCount;
+	agGamePadSyncInit( &_SystemVSyncCount, 30);
+	v = _SystemVSyncCount;
 
 	initObjects();
 
@@ -119,10 +121,10 @@ void  main( void ) {
 	while( 1 ) {
 		agGamePadSync();
 
-        // while( v >= frameCount ) {
+        // while( v >= _SystemVSyncCount ) {
         //     AG_IDLE_PROC();
         //     agGamePadSyncIdle();
-        //     _dprintf("%d",frameCount);
+        //     _dprintf("%d",_SystemVSyncCount);
         // }
 		if(displayingPage == TITLE){
 
@@ -133,6 +135,7 @@ void  main( void ) {
 	            }
      	   }
 		}else if(displayingPage == INGAME){
+			frameCount++;
 
 	        // for( n=0 ; n < 3 ; n++ ) {
 	        //     pad = agGamePadGetData(n);
@@ -159,21 +162,21 @@ void  main( void ) {
 			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
 			moveObjects();
-			// drawHud(&Objects[agGamePadGetMyID()], frameCount);
-			draw( frame , MotionNumber );
+			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);
+			draw( frameCount , MotionNumber );
 			drawObjects();
-			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
+			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
 
 			agglDepthMask( AGGL_TRUE );
 
 
 			agglFinishFrame();
 
-			frame++;
-			if ( frame >= ag3dGetMotionFrames( &(age3dMotion[ MotionNumber ]) ) ) {
-				frame = 0;
-				MotionNumber = MotionList[ rand() % (sizeof( MotionList )/sizeof( MotionList[0] )) ];
-			};
+			// frame++;
+			// if ( frame >= ag3dGetMotionFrames( &(age3dMotion[ MotionNumber ]) ) ) {
+			// 	frame = 0;
+			// 	MotionNumber = MotionList[ rand() % (sizeof( MotionList )/sizeof( MotionList[0] )) ];
+			// };
 
 
 			agDrawEODL( &DBuf );
