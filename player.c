@@ -307,20 +307,20 @@ void player_drw(Object *dp)
 	switch(dp->pid){
 		case 0:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MODEL ]), (float)1, node );
-			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL ]), node, AG3D_ONBLEND_ONDEPTH);
+			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL ]), AG3D_ONBLEND_ONDEPTH);
 		break;
 		case 1:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE2TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE2MODEL ]), (float)1, node );
-			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE2MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE2MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE2MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 		case 2:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MODEL ]), (float)1, node );
-			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE3MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 		
 		case 3:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MODEL ]), (float)1, node );
-			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE4MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 	}
 	
