@@ -27,11 +27,11 @@ extern "C" {
 /***************************************************************/
 /*                    Rom Member Symbol                        */
 /***************************************************************/
-#define AG_CG_CANNON	(0)
-#define AG_CG_VERTICAL_EDGE	(1)
-#define AG_CG_HORIZON_EDGE	(2)
-#define AG_CG_MAINWING_EDGED	(3)
-#define AG_CG_BODY	(4)
+#define AG_CG_MAINWING_EDGED	(0)
+#define AG_CG_NEWBODY	(1)
+#define AG_CG_CANNON	(2)
+#define AG_CG_VERTICAL_EDGE	(3)
+#define AG_CG_HORIZON_EDGE	(4)
 #define AG_CG_OCEAN	(5)
 #define AG_CG_32	(6)
 #define AG_CG_33	(7)
@@ -129,15 +129,14 @@ extern "C" {
 #define AG_CG_126	(99)
 #define AG_CG_BLACK	(100)
 #define AG_CG_SKYSPHERE	(101)
-#define AG_CG_NEWBODY	(102)
-#define AG_CG_NEWBODY_2	(103)
-#define AG_CG_NEWBODY_3	(104)
-#define AG_CG_NEWBODY_4	(105)
-#define AG_CG_RADAR	(106)
-#define AG_CG_RED_ICON	(107)
-#define AG_CG_BLUE_ICON	(108)
-#define AG_CG_YELLOW_ICON	(109)
-#define AG_CG_WHITE_ICON	(110)
+#define AG_CG_NEWBODY_2	(102)
+#define AG_CG_NEWBODY_3	(103)
+#define AG_CG_NEWBODY_4	(104)
+#define AG_CG_RADAR	(105)
+#define AG_CG_RED_ICON	(106)
+#define AG_CG_BLUE_ICON	(107)
+#define AG_CG_YELLOW_ICON	(108)
+#define AG_CG_WHITE_ICON	(109)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -191,7 +190,7 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[111];
+extern const AGERomMember ageRM[110];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
