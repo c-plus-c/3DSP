@@ -62,8 +62,24 @@ int drawStr(int x,int y, char* str){
 	return left;
 }
 
+void drawRect(int x,int y,int w,int h){
+    AGGLfloat a,r,g,b;
+
+    a = 1;
+    r = 1;
+    g = 0;
+    b = 0;
+    agglColor4f( r, g, b, a );
+    agglDrawSpritei( x,y,x+w,y+h, 0.0f );
+}
+
 void drawHud(Object *dp, u32 frameCount){
-	int x,y;
+	int x,y,i;
+	int offsetX = 400,offsetY = 400;
+	int s = 10;
+
+	drawRect(offsetX,offsetY,s,s);
+	drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
 
 	x = 0;
 	x = drawStr(x,0, "Time Limit : ");
@@ -73,4 +89,15 @@ void drawHud(Object *dp, u32 frameCount){
 	x = 0;
 	x = drawStr(x,100<<2, "Life : ");
 	x = drawNum(x,100<<2, dp-> life);
+	
+	for(i=0;i<PLAYER_NUMS;i++){
+		Object *dp2 = &Objects[i];
+		if(dp->pid != dp2->pid){
+			int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
+			int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
+
+			drawRect(offsetX+dx,offsetY+dz,s,s);
+			drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
+		}
+	}
 }

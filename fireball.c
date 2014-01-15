@@ -1,6 +1,6 @@
 #include "fireball.h"
 
-#define RANGE_COUNT 300
+#define RANGE_COUNT 150
 
 void fireballInit(Object *dp,int pid){
 	dp->mov = fireball_move;
