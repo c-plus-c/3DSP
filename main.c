@@ -51,7 +51,7 @@ void initObjects(){
 	int i;
 	_dprintf( "init\n");
 	for(i=0;i<OBJECT_MAX;i++){
-		Objects[i].visibility = 0;
+		Objects[i].stat = INVISIBLE;
 	}
 }
 
@@ -60,7 +60,7 @@ void moveObjects(){
 	int i;
 	_dprintf( "move\n");
 	for(i=0;i<OBJECT_MAX;i++){
-		if(Objects[i].visibility)
+		if(Objects[i].stat != INVISIBLE)
 			Objects[i].mov(&Objects[i]);
 	}
 }
@@ -69,7 +69,7 @@ void drawObjects(){
 	int i;
 	_dprintf( "draw\n");
 	for(i=0;i<OBJECT_MAX;i++){
-		if(Objects[i].visibility)
+		if(Objects[i].stat != INVISIBLE)
 			Objects[i].drw(&Objects[i]);
 	}
 }

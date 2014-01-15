@@ -20,15 +20,15 @@ typedef struct Vec3f_t
 }Vec3f;
 
 typedef enum Stat_t
-  {
-  IDLE,DEAD
+{
+  VISIBLE, INVISIBLE, BLINK
 }Stat;
 
 typedef struct ObjectLocal {
   int     pid;		//controller id
-  int     visibility;
 
   int     life;
+  int     moveCount;
 
   Vec3f	direction;
   Vec3f	translation;

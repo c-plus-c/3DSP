@@ -23,6 +23,8 @@
 #define BRAKEMIN 1
 #define BRAKEMAX 2.4
 
+#define BLINK_COUNT 60
+
 
 void playerInit(Object *dp,int pid)
 {
@@ -43,7 +45,7 @@ void playerInit(Object *dp,int pid)
 
 	dp->pid = pid;
 
-	dp->visibility=1;
+	dp->stat=VISIBLE;
 	
 	dp->pitchAccelerator=0;
 	dp->rollAccelerator=0;
@@ -178,10 +180,17 @@ void player_move(Object *dp)
   	Object* fireball;
 	fireball = getFreeFireball(dp->pid);
 	if(fireball != NULL){
-		fireball->visibility = 1;
+		fireball->stat = VISIBLE;
 		fireball->direction = dp->direction;
 		fireball->translation = dp->translation;
+		fireball->moveCount = 0;
 	}
+  }
+
+  if(dp->stat == BLINK){
+  	dp->moveCount++;
+  	if(dp->moveCount > BLINK_COUNT)
+  		dp->stat = VISIBLE;
   }
 
   //ピッチロールヨー角から自機の方向ベクトルを算出
@@ -253,6 +262,11 @@ void player_drw(Object *dp)
 {
 
 	int err;
+
+	if(dp->stat == BLINK)
+		if(dp->moveCount/10%2 == 0)
+			return;
+
 	/* 描画 */
 		/* 不透明 */
 	agglEnable( AGGL_BLEND );

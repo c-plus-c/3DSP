@@ -1,12 +1,13 @@
 #include "fireball.h"
 
+#define RANGE_COUNT 300
 
 void fireballInit(Object *dp,int pid){
 	dp->mov = fireball_move;
 	dp->drw = fireball_drw;
 
 	dp->pid = pid;
-	dp->visibility = 0;
+	dp->stat = INVISIBLE;
 }
 
 /* TODO:今西
@@ -52,6 +53,9 @@ void fireball_drw(Object *dp){
 int collision(Object *dp, Object *dp2){
   Vec3f	translation = dp->translation, translation2 = dp2->translation;
 
+  if(dp2->stat == BLINK)
+  	return 0;
+
   if(!( translation2.X + 0.5 > translation.X && translation2.X - 0.5 < translation.X ))
   	return 0;
 
@@ -76,9 +80,15 @@ void fireball_move(Object *dp){
 	for(i =0;i<PLAYER_NUMS;i++){
 		if(collision(dp, &Objects[i])){
 			Objects[i].life--;
-			dp->visibility = 0;
+			Objects[i].stat = BLINK;
+			Objects[i].moveCount = 0;
+
+			dp->stat = INVISIBLE;
 		}
 	}
+	dp->moveCount++;
+	if(dp->moveCount > RANGE_COUNT)
+		dp->stat = INVISIBLE;
 }
 
 void allocFireballs(int pid){
@@ -91,7 +101,7 @@ void allocFireballs(int pid){
 Object* getFreeFireball(int pid){
 	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
 	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		if(!Objects[offset + i].visibility)
+		if(Objects[offset + i].stat == INVISIBLE)
 			return &Objects[offset+i];
 	}
 	return NULL;
