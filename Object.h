@@ -19,6 +19,13 @@ typedef struct Vec3f_t
   float Z;
 }Vec3f;
 
+typedef struct Vector2f_t
+{
+  float X;
+  float Y;
+}Vector2f;
+
+
 typedef enum Stat_t
 {
   VISIBLE, INVISIBLE, BLINK

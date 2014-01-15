@@ -62,6 +62,16 @@ int drawStr(int x,int y, char* str){
 	return left;
 }
 
+Vector2f Rotate(Vector2f from,int degree)
+{
+	Vector2f ret;
+	float rad=degree*PI/180;
+	ret.X=from.X*cosf(rad)-from.Y*sinf(rad);
+	ret.Y=from.X*sinf(rad)+from.Y*cosf(rad);
+	
+	return ret;
+}
+
 void drawRect(int x,int y,int w,int h){
     AGGLfloat a,r,g,b;
 
@@ -73,31 +83,98 @@ void drawRect(int x,int y,int w,int h){
     agglDrawSpritei( x,y,x+w,y+h, 0.0f );
 }
 
+
+void drawTex(int texNum, int x,int y,int w, int h,float r){
+	int s = 10<<2;
+
+	agDrawSETDBMODE( &DBuf , 0xff , AG_BLEND_NORMAL , 2 , 1 );		
+
+	ageTransferAAC( &DBuf, texNum, 0, NULL, NULL );
+	{
+		Vector2f rotation;
+		float s, c;
+		AGPolyT* p;
+
+		s = sinf( r );
+		c = cosf( r );
+
+		p = agDrawTRIANGLE_T( &DBuf , (4-1) , 0 , 0 , 0 , 0 );
+
+		rotation.X=-w*c-h*s;
+		rotation.Y=-w*s+h*c;
+		
+		p->x = (s16)((int)rotation.X+x)<<2;
+		p->y = (s16)((int)rotation.Y+y)<<2;
+		p->u = 0<<12;
+		p->v = 0<<12;
+		p++;
+
+		rotation=Rotate(rotation,-90);
+		p->x = (s16)((int)rotation.X+x)<<2;
+		p->y = (s16)((int)rotation.Y+y)<<2;
+		p->u = 1<<12;
+		p->v = 0<<12;
+		p++;
+
+		rotation=Rotate(rotation,180);
+
+		p->x = (s16)((int)rotation.X+x)<<2;
+		p->y = (s16)((int)rotation.Y+y)<<2;
+		p->u = 0<<12;
+		p->v = 1<<12;
+		p++;
+
+		rotation=Rotate(rotation,90);
+
+		p->x = (s16)((int)rotation.X+x)<<2;
+		p->y = (s16)((int)rotation.Y+y)<<2;
+		p->u = 1<<12;
+		p->v = 1<<12;
+	};
+}
+
+void drawRadar(Object *dp){
+	int offsetX = 824,offsetY = 528;
+	drawTex(AG_CG_RADAR,offsetX,offsetY,180,180,0);
+
+	for(i=0;i<PLAYER_NUMS;i++){
+		Object *dp2 = &Objects[i];
+		if(dp2->pid != dp->pid){
+			drawTex(AG_CG_RED_ICON,100,100,10,15,PI*50/180);
+			drawTex(AG_CG_RED_ICON,200,100,PI*100/180);
+			drawTex(AG_CG_RED_ICON,300,100,PI*200/180);
+		}
+	}
+}
+
+
 void drawHud(Object *dp, u32 frameCount){
 	int x,y,i;
 	int offsetX = 400,offsetY = 400;
 	int s = 10;
 
-	drawRect(offsetX,offsetY,s,s);
-	drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
+	drawRadar(dp);
 
-	x = 0;
-	x = drawStr(x,0, "Time Limit : ");
-	x = drawNum(x,0, 100 - (frameCount/60));
-	x = drawStr(x,0, " sec");
+	// drawRect(offsetX,offsetY,s,s);
+	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
 
-	x = 0;
-	x = drawStr(x,100<<2, "Life : ");
-	x = drawNum(x,100<<2, dp-> life);
+	// x = 0;
+	// x = drawStr(x,0, "Time Limit : ");
+	// x = drawNum(x,0, 100 - (frameCount/60));
+	// x = drawStr(x,0, " sec");
+
+	// x = 0;
+	// x = drawStr(x,100<<2, "Life : ");
+	// x = drawNum(x,100<<2, dp-> life);
 	
-	for(i=0;i<PLAYER_NUMS;i++){
-		Object *dp2 = &Objects[i];
-		if(dp->pid != dp2->pid){
-			int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
-			int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
+	// for(i=0;i<PLAYER_NUMS;i++){
+	// 	Object *dp2 = &Objects[i];
+	// 	if(dp->pid != dp2->pid){
+	// 		int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
+	// 		int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
 
-			drawRect(offsetX+dx,offsetY+dz,s,s);
-			drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
-		}
-	}
+	// 		drawRect(offsetX+dx,offsetY+dz,s,s);
+	// 		drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
+	// 	}
+	// }
 }

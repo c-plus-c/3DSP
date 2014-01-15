@@ -162,10 +162,10 @@ void  main( void ) {
 			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
 			moveObjects();
-			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
 			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);
 			draw( frame , MotionNumber );
 			drawObjects();
+			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
 
 //agglEndZsort();
        
