@@ -131,6 +131,14 @@ extern "C" {
 #define AG_CG_BLACK	(101)
 #define AG_CG_SKYSPHERE	(102)
 #define AG_CG_NEWBODY	(103)
+#define AG_CG_NEWBODY_2	(104)
+#define AG_CG_NEWBODY_3	(105)
+#define AG_CG_NEWBODY_4	(106)
+#define AG_CG_RADAR	(107)
+#define AG_CG_RED_ICON	(108)
+#define AG_CG_BLUE_ICON	(109)
+#define AG_CG_YELLOW_ICON	(110)
+#define AG_CG_WHITE_ICON	(111)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -147,7 +155,10 @@ extern "C" {
 #define AG_AG3D_PLANEMODEL	(1)
 #define AG_AG3D_BULLETMODEL	(2)
 #define AG_AG3D_SKYBACKMODEL	(3)
-#define AG_AG3D_NEWPLANEMODEL	(4)
+#define AG_AG3D_NEWPLANE1MODEL	(4)
+#define AG_AG3D_NEWPLANE2MODEL	(5)
+#define AG_AG3D_NEWPLANE3MODEL	(6)
+#define AG_AG3D_NEWPLANE4MODEL	(7)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
@@ -156,7 +167,10 @@ extern "C" {
 #define AG_AG3D_PLANETREE	(1)
 #define AG_AG3D_BULLETTREE	(2)
 #define AG_AG3D_SKYBACKTREE	(3)
-#define AG_AG3D_NEWPLANETREE	(4)
+#define AG_AG3D_NEWPLANE1TREE	(4)
+#define AG_AG3D_NEWPLANE2TREE	(5)
+#define AG_AG3D_NEWPLANE3TREE	(6)
+#define AG_AG3D_NEWPLANE4TREE	(7)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
@@ -165,7 +179,10 @@ extern "C" {
 #define AG_AG3D_PLANEMOTION	(1)
 #define AG_AG3D_BULLETMOTION	(2)
 #define AG_AG3D_SKYBACKMOTION	(3)
-#define AG_AG3D_NEWPLANEMOTION	(4)
+#define AG_AG3D_NEWPLANE1MOTION	(4)
+#define AG_AG3D_NEWPLANE2MOTION	(5)
+#define AG_AG3D_NEWPLANE3MOTION	(6)
+#define AG_AG3D_NEWPLANE4MOTION	(7)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
@@ -176,14 +193,14 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[104];
+extern const AGERomMember ageRM[112];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
-extern const AG3DModelHeadChunk age3dModel[5];
-extern const AG3DDCmdHeadChunk age3dDCmd[5];
-extern const AG3DTreeHeadChunk age3dTree[5];
-extern const AG3DMotionHeadChunk age3dMotion[5];
+extern const AG3DModelHeadChunk age3dModel[8];
+extern const AG3DDCmdHeadChunk age3dDCmd[8];
+extern const AG3DTreeHeadChunk age3dTree[8];
+extern const AG3DMotionHeadChunk age3dMotion[8];
 extern const AG3DCameraHeadChunk age3dCamera[2];
 extern const s16 ageVGCnt;
 

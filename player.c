@@ -288,25 +288,25 @@ void player_drw(Object *dp)
 	//ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ AG_AG3D_AG3DEXPORTMOTION ]), (float)1, node );
 	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_ONBLEND_ONDEPTH);
 
-	ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANETREE ]), &(age3dMotion[ AG_AG3D_NEWPLANEMODEL ]), (float)1, node );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANEMODEL ]), node, AG3D_ONBLEND_ONDEPTH);
-	
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_OFFBLEND_ONDEPTH );
-	
-		/* 半透明、Ｚバッファ更新 */
-	//agglEnable( AGGL_BLEND );
-
-	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
-	//agglEndZsort();
-	
-			/* 半透明、Ｚバッファ非更新 */
-	//agglEnable( AGGL_BLEND );
-	//agglDepthMask( AGGL_FALSE );
-
-	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	//agglEndZsort();
+	switch(dp->pid){
+		case 0:
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MODEL ]), (float)1, node );
+			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL ]), node, AG3D_ONBLEND_ONDEPTH);
+		break;
+		case 1:
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE2TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE2MODEL ]), (float)1, node );
+			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE2MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+		break;
+		case 2:
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MODEL ]), (float)1, node );
+			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+		break;
+		
+		case 3:
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MODEL ]), (float)1, node );
+			ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, AG3D_ONBLEND_ONDEPTH);		
+		break;
+	}
 	
 	agglPopMatrix();
 }
