@@ -15,6 +15,7 @@
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define myabs(a) ((a) > 0 ? (a) : (-a))
+#define SKY_SPHERE_RADIUS 500.0
 
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
