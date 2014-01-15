@@ -8,7 +8,7 @@ void DrawSky()
 	agglDepthMask( AGGL_TRUE );
 
 	agglPushMatrix();
-	agglScalef(5000,5000,5000);
+	agglScalef(500,500,500);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
