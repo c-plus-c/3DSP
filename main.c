@@ -49,7 +49,6 @@ static s32 ifnc_vsync(int type)
 
 void initObjects(){
 	int i;
-	_dprintf( "init\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -58,7 +57,6 @@ void initObjects(){
 
 void moveObjects(){
 	int i;
-	_dprintf( "move\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].mov(&Objects[i]);
@@ -67,7 +65,6 @@ void moveObjects(){
 
 void drawObjects(){
 	int i;
-	_dprintf( "draw\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].drw(&Objects[i]);
@@ -107,7 +104,7 @@ void  main( void ) {
 	
 	PadInit();
 
-	agGamePadSyncInit( &_SystemVSyncCount, 60);
+	agGamePadSyncInit( &_SystemVSyncCount, 30);
 	v = _SystemVSyncCount;
 
 	initObjects();
@@ -167,17 +164,7 @@ void  main( void ) {
 			drawObjects();
 			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
 
-//agglEndZsort();
-       
-		/* 半透明、Ｚバッファ非更新 */
-	//agglEnable( AGGL_BLEND );
-	//agglDepthMask( AGGL_FALSE );
-
-	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	//agglEndZsort();
-
-	agglDepthMask( AGGL_TRUE );
+			agglDepthMask( AGGL_TRUE );
 
 
 			agglFinishFrame();

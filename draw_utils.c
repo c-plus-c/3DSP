@@ -134,24 +134,18 @@ void drawTex(int texNum, int x,int y,int w, int h,float r){
 }
 
 void drawRadar(Object *dp){
-	int offsetX = 824,offsetY = 528,i;
+	int offsetX = 924,offsetY = 668,i;
 	int texs[] = {AG_CG_RED_ICON,AG_CG_BLUE_ICON,AG_CG_YELLOW_ICON,AG_CG_WHITE_ICON};
 
 	drawTex(AG_CG_RADAR,offsetX,offsetY,100,100,0);
 
-	drawTex(texs[dp->pid],offsetX,offsetY,10,15,PI);
-
 	for(i=0;i<PLAYER_NUMS;i++){
 		Object *dp2 = &Objects[i];
-		if(dp2->pid != dp->pid){
-			int dx, dz;
+		int dx, dz;
 
-			dx = dp->translation.X - dp2->translation.X;
-			dz = dp->translation.Z - dp2->translation.Z;
-
-			drawTex(texs[dp2->pid],(int)((float)dx*200/SKY_SPHERE_RADIUS+offsetX),(int)((float)dz*200/SKY_SPHERE_RADIUS+offsetY),
-				10,15,atan2f(dp2->direction.Z,dp2->direction.X)+PI);
-		}
+		drawTex(texs[dp2->pid],(int)(dp2->translation.X*100/SKY_SPHERE_RADIUS+offsetX),(int)(dp2->translation.Z*100/SKY_SPHERE_RADIUS+offsetY),
+			6,9,atan2f(dp2->direction.Z,dp2->direction.X)-PI/2);
+		drawNum(((int)(dp2->translation.X*200/SKY_SPHERE_RADIUS+offsetX))<<2,((int)(dp2->translation.Z*200/SKY_SPHERE_RADIUS+offsetY))<<2,dp2->translation.Y);
 	}
 }
 
