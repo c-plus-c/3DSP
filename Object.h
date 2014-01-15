@@ -36,6 +36,8 @@ typedef struct ObjectLocal {
 
   int     life;
   int     moveCount;
+  int     fireballCount;
+  int     shotFrame;
 
   Vec3f	direction;
   Vec3f	translation;

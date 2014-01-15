@@ -43,6 +43,8 @@ extern int drawStr(int x,int y, char* str);
 
 extern void drawHud(Object *dp, u32 frameCount);
 
+extern volatile u32 frameCount;
+
 extern void allocFireballs(int pid);
 extern Object* getFreeFireball(int pid);
 

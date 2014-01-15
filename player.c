@@ -24,6 +24,9 @@
 #define BRAKEMAX 2.4
 
 #define BLINK_COUNT 60
+#define FIREBALL_INTERVAL 2
+#define FIREBALL_LIMIT 10
+#define FIREBALL_RELOAD_INTERVAL 20
 
 
 void playerInit(Object *dp,int pid)
@@ -46,6 +49,7 @@ void playerInit(Object *dp,int pid)
 	dp->pid = pid;
 
 	dp->stat=VISIBLE;
+	dp->fireballCount = FIREBALL_LIMIT;
 	
 	dp->pitchAccelerator=0;
 	dp->rollAccelerator=0;
@@ -174,16 +178,28 @@ void player_move(Object *dp)
 	dp->brakeVariable-=BRAKEINCREMENTATION;
 	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
-  
+
+  if(frameCount/2%FIREBALL_RELOAD_INTERVAL == 0){
+  	if(dp->fireballCount < FIREBALL_LIMIT)
+  		dp->fireballCount++;
+  }
+
   if((pad & GAMEPAD_A) != 0)
   {
   	Object* fireball;
-	fireball = getFreeFireball(dp->pid);
-	if(fireball != NULL){
-		fireball->stat = VISIBLE;
-		fireball->direction = dp->direction;
-		fireball->translation = dp->translation;
-		fireball->moveCount = 0;
+  	if(dp->shotFrame < FIREBALL_INTERVAL){
+  		dp->shotFrame++;
+  	}else if(dp->fireballCount > 0){
+		fireball = getFreeFireball(dp->pid);
+		if(fireball != NULL){
+			fireball->stat = VISIBLE;
+			fireball->direction = dp->direction;
+			fireball->translation = dp->translation;
+			fireball->moveCount = 0;
+
+			dp->fireballCount--;
+			dp->shotFrame = 0;
+		}
 	}
   }
 

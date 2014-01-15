@@ -26,7 +26,7 @@ u32 DrawBuffer[2][65536*32];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
-static volatile u32 _SystemVSyncCount=0;
+volatile u32 frameCount=0;
 
 Object Objects[OBJECT_MAX];
 
@@ -42,7 +42,7 @@ void draw( int frame , int motion_number );
 
 static s32 ifnc_vsync(int type)
 {
-    _SystemVSyncCount++;
+    frameCount++;
     // i_exec_swap=0;
     return(1);
 }
@@ -104,8 +104,8 @@ void  main( void ) {
 	
 	PadInit();
 
-	agGamePadSyncInit( &_SystemVSyncCount, 30);
-	v = _SystemVSyncCount;
+	agGamePadSyncInit( &frameCount, 30);
+	v = frameCount;
 
 	initObjects();
 
@@ -119,10 +119,10 @@ void  main( void ) {
 	while( 1 ) {
 		agGamePadSync();
 
-        // while( v >= _SystemVSyncCount ) {
+        // while( v >= frameCount ) {
         //     AG_IDLE_PROC();
         //     agGamePadSyncIdle();
-        //     _dprintf("%d",_SystemVSyncCount);
+        //     _dprintf("%d",frameCount);
         // }
 		if(displayingPage == TITLE){
 
@@ -159,10 +159,10 @@ void  main( void ) {
 			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
 			moveObjects();
-			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);
+			// drawHud(&Objects[agGamePadGetMyID()], frameCount);
 			draw( frame , MotionNumber );
 			drawObjects();
-			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
+			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
 
 			agglDepthMask( AGGL_TRUE );
 

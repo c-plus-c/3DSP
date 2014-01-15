@@ -1,6 +1,6 @@
 #include "fireball.h"
 
-#define RANGE_COUNT 70
+#define RANGE_COUNT 60
 
 void fireballInit(Object *dp,int pid){
 	dp->mov = fireball_move;
@@ -52,17 +52,19 @@ void fireball_drw(Object *dp){
 // fireball, player
 int collision(Object *dp, Object *dp2){
   Vec3f	translation = dp->translation, translation2 = dp2->translation;
+  int s = 1;
 
   if(dp2->stat == BLINK)
   	return 0;
 
-  if(!( translation2.X + 0.5 > translation.X && translation2.X - 0.5 < translation.X ))
+
+  if(!( translation2.X + s > translation.X && translation2.X - s < translation.X ))
   	return 0;
 
-  if(!( translation2.Y + 0.5 > translation.Y && translation2.Y - 0.5 < translation.Y ))
+  if(!( translation2.Y + s > translation.Y && translation2.Y - s < translation.Y ))
   	return 0;
 
-  if(!( translation2.Z + 0.5 > translation.Z && translation2.Z - 0.5 < translation.Z ))
+  if(!( translation2.Z + s > translation.Z && translation2.Z - s < translation.Z ))
   	return 0;
 
   return 1;

@@ -157,6 +157,7 @@ void drawHud(Object *dp, u32 frameCount){
 	int s = 10;
 
 	drawRadar(dp);
+	drawNum(300<<2,300<<2,dp->fireballCount);
 
 	// drawRect(offsetX,offsetY,s,s);
 	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
