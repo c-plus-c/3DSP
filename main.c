@@ -150,15 +150,11 @@ void  main( void ) {
 	aglAddInterruptCallback(AG_INT_TYPE_VBLA,ifnc_vsync);
 
 #ifdef DEBUG
-	_dprintf( ">> sample [ag3d_Model] start.\n" );
+	_dprintf( ">> Dogfighters start.\n" );
 #endif
 
 	agglInitialize();
 	agglDisplaySize( FB_WIDTH , FB_HEIGHT );
-
-	ag3dInitTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), node );
-	ag3dInitTree( &(age3dTree[ AG_AG3D_PLANETREE ]),node);
-
 	DBuf.CmdCount = 0;
 	
 	PadInit();
