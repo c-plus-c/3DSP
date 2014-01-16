@@ -183,8 +183,8 @@ void  main( void ) {
 
 			agTransferDrawWait();
 
+			aglWaitVSyncN( 2 );
 			aglSwap();
-			aglWaitVSync();
 		}
 	}
 }
