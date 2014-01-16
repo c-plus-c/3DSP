@@ -2,7 +2,7 @@
 #include "Object.h"
 #include "extern.h"
 
-#define BULLET_VELOCITY 1.5
+#define BULLET_VELOCITY 3
 
 #define RANGE_COUNT 60
 
@@ -41,16 +41,16 @@ void hormingBullet_move(Object *dp){
 	y1=Objects[dp->target_pid].translation.Y-dp->translation.Y;
 	z1=Objects[dp->target_pid].translation.Z-dp->translation.Z;
 	
+	l1=sqrtf(x1*x1+y1*y1+z1*z1);
 	if(l1!=0.0){
-		l1=sqrtf(x1*x1+y1*y1+z1*z1);
 		x1/=l1;
 		y1/=l1;
 		z1/=l1;
 	}
 	
-	x1*=BULLET_VELOCITY;
-	y1*=BULLET_VELOCITY;
-	z1*=BULLET_VELOCITY;
+	x1*=BULLET_VELOCITY*3;
+	y1*=BULLET_VELOCITY*3;
+	z1*=BULLET_VELOCITY*3;
 	
 	xo=dp->direction.X+x1;
 	yo=dp->direction.Y+y1;

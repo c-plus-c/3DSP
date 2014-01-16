@@ -24,6 +24,7 @@
 
 #define HORMING_AMMO_COST 7
 
+#define ACTIVE_RADIUS 300.0
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
 extern AG3Danimenode node[512];

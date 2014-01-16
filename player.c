@@ -35,7 +35,7 @@ void playerInit(Object *dp,int pid)
 {
 	dp->translation.X=0;
 	dp->translation.Y=200;
-	dp->translation.Z=40;
+	dp->translation.Z=-200;
 	
 	dp->direction.X=0;
 	dp->direction.Y=0;
@@ -76,6 +76,7 @@ void player_move(Object *dp)
   float cp,sp,cb,sb,ch,sh;
   float tx,ty,tz;
   float nx,ny,nz;
+  float l2;
   u32 pad;
 
   pad = agGamePadGetData(dp->pid);
@@ -268,6 +269,32 @@ void player_move(Object *dp)
   dp->translation.X+=dp->direction.X*VELOCITY/dp->brakeVariable;
   dp->translation.Y+=dp->direction.Y*VELOCITY/dp->brakeVariable; 
   dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
+  
+  l2=dp->translation.X*dp->translation.X+dp->translation.Y*dp->translation.Y+dp->translation.Z*dp->translation.Z;
+  if(l2>=ACTIVE_RADIUS*ACTIVE_RADIUS)
+  {
+	float l=dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z;
+	l=sqrtf(l2);
+	
+	dp->direction.X=(-dp->translation.X)/l;
+	dp->direction.Y=0;
+	dp->direction.Z=(-dp->translation.Z)/l;
+	
+	dp->translation.X+=dp->direction.X*10;
+	dp->translation.Y+=dp->direction.Y*10; 
+	dp->translation.Z+=dp->direction.Z*10;
+	
+	dp->pitch=asinf(-dp->direction.Y);
+	dp->yaw=atan2f(dp->direction.Z, dp->direction.X)+PI/2;
+	
+	ch=cosf(dp->yaw);
+	sh=sinf(dp->yaw);
+	cp=cosf(dp->pitch);
+	sp=sinf(dp->pitch);
+	
+  }
+  
+  
 
   //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){
@@ -301,8 +328,8 @@ void player_move(Object *dp)
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
-	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	//agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
   }
 }
 
