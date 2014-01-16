@@ -2,13 +2,7 @@
 
 #define RANGE_COUNT 60
 
-void fireballInit(Object *dp,int pid){
-	dp->mov = fireball_move;
-	dp->drw = fireball_drw;
 
-	dp->pid = pid;
-	dp->stat = INVISIBLE;
-}
 
 /* TODO:今西
 描画
@@ -93,12 +87,14 @@ void fireball_move(Object *dp){
 		dp->stat = INVISIBLE;
 }
 
-void allocFireballs(int pid){
-	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
-	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		fireballInit(&Objects[offset + i],pid);
-	}
+void fireballInit(Object *dp,int pid){
+	dp->mov = fireball_move;
+	dp->drw = fireball_drw;
+
+	dp->pid = pid;
+	dp->stat = INVISIBLE;
 }
+
 
 Object* getFreeFireball(int pid){
 	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;

@@ -6,13 +6,7 @@
 
 #define RANGE_COUNT 60
 
-void hormingBulletInit(Object *dp,int pid){
-	dp->mov = hormingBullet_move;
-	dp->drw = hormingBullet_drw;
 
-	dp->pid = pid;
-	dp->stat = INVISIBLE;
-}
 
 /* TODO:今西
 描画
@@ -59,6 +53,25 @@ void hormingBullet_move(Object *dp){
 	if(dp->moveCount > RANGE_COUNT)
 		dp->stat = INVISIBLE;
 }
+
+void hormingBulletInit(Object *dp,int pid){
+	dp->mov = hormingBullet_move;
+	dp->drw = hormingBullet_drw;
+
+	dp->pid = pid;
+	dp->stat = INVISIBLE;
+}
+
+
+Object* getFreeHormingBullet(int pid){
+	int offset = HORMING_OFFSET+HORMING_PER_PLAYER*pid, i;
+	for(i = 0;i<HORMING_PER_PLAYER;i++){
+		if(Objects[offset + i].stat == INVISIBLE)
+			return &Objects[offset+i];
+	}
+	return NULL;
+}
+
 /*
 void allocFireballs(int pid){
 	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;

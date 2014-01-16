@@ -44,11 +44,10 @@ extern void drawHud(Object *dp, u32 frameCount);
 
 extern int frameCount;
 
-extern void allocFireballs(int pid);
 extern Object* getFreeFireball(int pid);
+extern Object* getFreeHormingBullet(int pid);
 
-extern void hormingBullet_move(Object *dp);
-extern void hormingBullet_drw(Object *dp);
 extern void hormingBulletInit(Object *dp,int pid);
+extern void fireballInit(Object *dp,int pid);
 
 #endif

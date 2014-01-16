@@ -28,6 +28,8 @@
 #define FIREBALL_LIMIT 20
 #define FIREBALL_RELOAD_INTERVAL 5
 
+#define HORMING_AMMO_COST 7
+
 
 void playerInit(Object *dp,int pid)
 {
@@ -170,7 +172,7 @@ void player_move(Object *dp)
   }
   
   //ブレーキ
-  if((pad & GAMEPAD_B) != 0)
+  if((pad & GAMEPAD_L) != 0)
   {
 	dp->brakeVariable+=BRAKEINCREMENTATION;
 	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
@@ -198,6 +200,25 @@ void player_move(Object *dp)
 			fireball->moveCount = 0;
 
 			dp->fireballCount--;
+			dp->shotFrame = 0;
+		}
+	}
+  }
+
+  if((pad & GAMEPAD_B) != 0)
+  {
+  	Object* horming;
+  	if(dp->shotFrame < FIREBALL_INTERVAL){
+  		dp->shotFrame++;
+  	}else if(dp->fireballCount > HORMING_AMMO_COST){
+		horming = getFreeHormingBullet(dp->pid);
+		if(horming != NULL){
+			horming->stat = VISIBLE;
+			horming->direction = dp->direction;
+			horming->translation = dp->translation;
+			horming->moveCount = 0;
+
+			dp->fireballCount-=HORMING_AMMO_COST;
 			dp->shotFrame = 0;
 		}
 	}

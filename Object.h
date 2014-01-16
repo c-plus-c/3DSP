@@ -5,11 +5,13 @@
 
 #define PI (3.1415)
 
-#define OBJECT_MAX 200
+#define OBJECT_MAX 220
 #define PLAYER_NUMS 3
 
-#define FIREBALL_OFFSET 10
+#define FIREBALL_OFFSET 30
 #define FIREBALL_PER_PLAYER 60
+#define HORMING_OFFSET 4
+#define HORMING_PER_PLAYER 5
 //50~99-- fireball(pid=1) ...
 
 typedef struct Vec3f_t

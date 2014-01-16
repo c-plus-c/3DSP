@@ -33,7 +33,7 @@ Object Objects[OBJECT_MAX];
 
 typedef enum Page_t
   {
-  TITLE,INGAME
+  TITLE,INSTRUCTION,INGAME
 }Page;
 
 Page displayingPage;
@@ -100,6 +100,21 @@ void postrender(){
 	aglWaitVSync();
 }
 
+void allocFireballs(int pid){
+	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
+	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
+		fireballInit(&Objects[offset + i],pid);
+	}
+}
+
+void allocHormingBullets(int pid){
+	int offset = HORMING_OFFSET + HORMING_PER_PLAYER*pid, i;
+
+	for(i = 0;i<HORMING_PER_PLAYER;i++){
+		hormingBulletInit(&Objects[offset + i],pid);
+	}
+}
+
 void startGame(){
 	int i;
 
@@ -109,6 +124,7 @@ void startGame(){
 	{
 		playerInit(&Objects[i], i);
 		allocFireballs(i);
+		allocHormingBullets(i);
 	}
 
 	displayingPage = INGAME;
@@ -123,6 +139,7 @@ void  main( void ) {
 	u32 pad;
 
 	displayingPage = TITLE;
+	frameCount = 0;
 
 
 	agpDisableCpuInterrupts();
@@ -163,12 +180,31 @@ void  main( void ) {
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
 			postrender();
-	        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
-	            pad = agGamePadGetData(n);
-	            if ( (pad & GAMEPAD_START) ) {
-	            	startGame();
-	            }
-     	 	}
+			if(frameCount > 60)
+		        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
+		            pad = agGamePadGetData(n);
+		            if (pad & GAMEPAD_START) {
+		            	startGame();
+		            }
+		            if (pad & GAMEPAD_SELECT){
+		            	displayingPage = INSTRUCTION;
+		            	frameCount = 0;
+		            }
+	     	 	}
+		}else if(displayingPage == INSTRUCTION){
+			prerender();
+			drawRect(0,0,1024,768,1,1,1);
+			drawStr(100<<2,100<<2,"hello");
+
+			postrender();
+			if(frameCount > 60)
+		        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
+		            pad = agGamePadGetData(n);
+		            if (pad & GAMEPAD_SELECT){
+		            	displayingPage = TITLE;
+		            	frameCount = 0;
+		            }
+	     	 	}
 		}else if(displayingPage == INGAME){
 			prerender();
 

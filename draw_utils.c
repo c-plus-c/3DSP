@@ -78,13 +78,10 @@ void drawTex2(int texNum, int x, int y, int w,int h){
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
 }
 
-void drawRect(int x,int y,int w,int h){
-    AGGLfloat a,r,g,b;
+void drawRect(int x,int y,int w,int h,int r,int g,int b){
+    AGGLfloat a;
 
     a = 1;
-    r = 1;
-    g = 0;
-    b = 0;
     agglColor4f( r, g, b, a );
     agglDrawSpritei( x,y,x+w,y+h, 0.0f );
 }
