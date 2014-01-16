@@ -57,10 +57,6 @@ int collision(Object *dp, Object *dp2){
   if(dp2->pid == dp->pid)
   	return 0;
 
-  if(dp2->stat == BLINK)
-  	return 0;
-
-
   if(!( translation2.X + s > translation.X && translation2.X - s < translation.X ))
   	return 0;
 
@@ -83,10 +79,12 @@ void fireball_move(Object *dp){
 	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
 
 	for(i =0;i<PLAYER_NUMS;i++){
-		if(collision(dp, &Objects[i])){
-			Objects[i].life--;
-			Objects[i].stat = BLINK;
-			Objects[i].moveCount = 0;
+		if(collision(dp, &Objects[i]) && Objects[i].stat){
+			if(Objects[i].stat != BLINK){
+				Objects[i].life--;
+				Objects[i].stat = BLINK;
+				Objects[i].moveCount = 0;
+			}
 
 			dp->stat = INVISIBLE;
 		}
