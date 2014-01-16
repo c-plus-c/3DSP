@@ -131,42 +131,32 @@ void ManualMove(Object *dp)
 	dp->pitchAccelerator-=PITCHACCELBAND;
 	if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
 	dp->pitch+=dp->pitchAccelerator;
+	/*
 	if(dp->pitch<-PITCHLIMIT){
 		dp->pitch=-PITCHLIMIT;
 		dp->pitchAccelerator=0;
+	}
+	*/
+	if(dp->pitch<0)
+	{
+		dp->pitch+=2*PI;
 	}
   }else if((pad & GAMEPAD_D) != 0){ //下降
 	if(dp->pitchAccelerator<0) dp->pitchAccelerator=0;
 	dp->pitchAccelerator+=PITCHACCELBAND;
 	if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
 	dp->pitch+=dp->pitchAccelerator;
+	/*
 	if(dp->pitch>PITCHLIMIT){
 		dp->pitch=PITCHLIMIT;
 		dp->pitchAccelerator=0;
 	}
-  }else{ //水平に戻す
-	if(dp->pitch<0)
-	{
-		dp->pitchAccelerator+=PITCHACCELBAND;
-		if(dp->pitchAccelerator>PITCHACCELBANDLIMIT) dp->pitchAccelerator=PITCHACCELBANDLIMIT;
-		dp->pitch+=dp->pitchAccelerator;
-		if(dp->pitch<-PITCHLIMIT) dp->pitch=-PITCHLIMIT;
-		else if(dp->pitch>=0){
-			dp->pitch=0;
-			dp->pitchAccelerator=0;
-		}
-	}else if(dp->pitch>0){
-		dp->pitchAccelerator-=PITCHACCELBAND;
-		if(dp->pitchAccelerator<-PITCHACCELBANDLIMIT) dp->pitchAccelerator=-PITCHACCELBANDLIMIT;
-		dp->pitch+=dp->pitchAccelerator;
-		if(dp->pitch>PITCHLIMIT) dp->pitch=PITCHLIMIT;
-		else if(dp->pitch<=0){
-			dp->pitch=0;
-			dp->pitchAccelerator=0;
-		}
-	}else{
-		dp->pitchAccelerator=0;
+	*/
+	if(dp->pitch>2*PI){
+		dp->pitch-=2*PI;
 	}
+  }else{
+	dp->pitchAccelerator=0;
   }
   
   //ブレーキ
@@ -296,7 +286,7 @@ void player_move(Object *dp)
 
   //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){
-	float fovy,f,cr,aspect;
+	float fovy,f,cr,aspect,p1,p2;
 	AGGLfloat c[3];
 	AGGLfloat t[3];
 	AGGLfloat u[3];
@@ -317,7 +307,14 @@ void player_move(Object *dp)
 	u[2]=nz;
   
 	cr=dp->roll*(PITCHLIMIT/ROLLLIMIT);
-	f=max(myabs(dp->pitch),myabs(cr))*25.0/PI;
+	
+	p1=2*PI-dp->pitch;
+	p2=dp->pitch;
+	
+	p1/=1.5;
+	p2/=1.5;
+	
+	f=myabs(cr)*25.0/PI;
 	fovy=25.0+f;
 	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
 	agglMatrixMode( AGGL_PROJECTION );
