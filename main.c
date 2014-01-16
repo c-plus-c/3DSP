@@ -22,7 +22,7 @@ char	zsortbuf[1024*10*50];
 
 char	vtxbuf[10240*2];
 
-u32 DrawBuffer[2][65536*32];
+u32 DrawBuffer[65536*32];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
@@ -35,6 +35,8 @@ typedef enum Page_t
   {
   TITLE,INGAME
 }Page;
+
+Page displayingPage;
 
 AGDrawBuffer DBuf;
 
@@ -50,7 +52,6 @@ static s32 ifnc_vsync(int type)
 
 void initObjects(){
 	int i;
-	_dprintf( "init\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -59,7 +60,6 @@ void initObjects(){
 
 void moveObjects(){
 	int i;
-	_dprintf( "move\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].mov(&Objects[i]);
@@ -68,21 +68,61 @@ void moveObjects(){
 
 void drawObjects(){
 	int i;
-	_dprintf( "draw\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		if(Objects[i].stat != INVISIBLE)
 			Objects[i].drw(&Objects[i]);
 	}
 }
 
+void prerender(){
+
+	if( DBuf.CmdCount > 0 ) {
+		agTransferDrawDMAAsync( &(DBuf) );
+	}
+
+	agDrawBufferInit( &DBuf, DrawBuffer );
+
+	agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
+
+	AG3DGLUglinit();
+
+	agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
+	agglClearDepthf( 1.0f );
+	agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
+}
+
+void postrender(){
+	agglDepthMask( AGGL_TRUE );
+	agglFinishFrame();
+	agDrawEODL( &DBuf );
+	agTransferDrawWait();
+	aglSwap();
+	aglWaitVSync();
+}
+
+void startGame(){
+	int i;
+
+
+	initObjects();
+	for (i = 0; i < PLAYER_NUMS; ++i)
+	{
+		playerInit(&Objects[i], i);
+		allocFireballs(i);
+	}
+
+	displayingPage = INGAME;
+	frameCount = 0;
+}
 
 void  main( void ) {
-	int page, i;
+	int i;
 	int MotionNumber = MotionList[0];
-	Page displayingPage =TITLE;
 	u32 v;
 	int n;
 	u32 pad;
+
+	displayingPage = TITLE;
 
 
 	agpDisableCpuInterrupts();
@@ -101,7 +141,6 @@ void  main( void ) {
 	ag3dInitTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), node );
 	ag3dInitTree( &(age3dTree[ AG_AG3D_PLANETREE ]),node);
 
-	page = 0;
 	DBuf.CmdCount = 0;
 	
 	PadInit();
@@ -109,82 +148,40 @@ void  main( void ) {
 	agGamePadSyncInit( &_SystemVSyncCount, 30);
 	v = _SystemVSyncCount;
 
-	initObjects();
-
-	for (i = 0; i < PLAYER_NUMS; ++i)
-	{
-		playerInit(&Objects[i], i);
-		allocFireballs(i);
-	}
+	
 
 
 	while( 1 ) {
 		agGamePadSync();
-
+		frameCount++;
         // while( v >= _SystemVSyncCount ) {
         //     AG_IDLE_PROC();
         //     agGamePadSyncIdle();
         //     _dprintf("%d",_SystemVSyncCount);
         // }
 		if(displayingPage == TITLE){
-
+			prerender();
+			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
+			postrender();
 	        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
 	            pad = agGamePadGetData(n);
 	            if ( (pad & GAMEPAD_START) ) {
-	            	displayingPage = INGAME;
+	            	startGame();
 	            }
-     	   }
+     	 	}
 		}else if(displayingPage == INGAME){
-			frameCount++;
+			prerender();
 
-	        // for( n=0 ; n < 3 ; n++ ) {
-	        //     pad = agGamePadGetData(n);
-	        //     if ( (pad & GAMEPAD_START) ) {
-	        //     	initObjects();
-	        //     }
-     	   // }
-
-			if( DBuf.CmdCount > 0 ) {
-				agTransferDrawDMAAsync( &(DBuf) );
-			}
-
-			page ^= 1;
-			agDrawBufferInit( &DBuf, DrawBuffer[page] );
-
-			agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
-
-			AG3DGLUglinit();
-
-			
 			/* gl”wŒi‰Šú‰» */
-			agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
-			agglClearDepthf( 1.0f );
-			agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 
 			moveObjects();
-			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);
+			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);cm
 			draw( frameCount , MotionNumber );
 			drawObjects();
-			drawHud(&Objects[(int)agGamePadGetMyID()], _SystemVSyncCount);
+			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
 
-			agglDepthMask( AGGL_TRUE );
+			postrender();
 
-
-			agglFinishFrame();
-
-			// frame++;
-			// if ( frame >= ag3dGetMotionFrames( &(age3dMotion[ MotionNumber ]) ) ) {
-			// 	frame = 0;
-			// 	MotionNumber = MotionList[ rand() % (sizeof( MotionList )/sizeof( MotionList[0] )) ];
-			// };
-
-
-			agDrawEODL( &DBuf );
-
-			agTransferDrawWait();
-
-			aglSwap();
-			aglWaitVSync();
 		}
 	}
 }
