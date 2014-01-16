@@ -216,9 +216,7 @@ void player_move(Object *dp)
 			int i;
 			float l2min;
 			horming->stat = VISIBLE;
-			horming->direction.X=0;
-			horming->direction.Y=0;
-			horming->direction.Z=0;
+			horming->direction=dp->direction;
 			horming->translation=dp->translation;
 			horming->moveCount = 0;
 

@@ -2,7 +2,7 @@
 #include "Object.h"
 #include "extern.h"
 
-#define BULLET_VELOCITY 3
+#define BULLET_VELOCITY 1.5
 
 #define RANGE_COUNT 60
 
@@ -36,12 +36,12 @@ void hormingBullet_drw(Object *dp){
 void hormingBullet_move(Object *dp){
 	int i;
 	float x1,y1,z1,xo,yo,zo,l1,o1;
-	/*
+	
 	x1=Objects[dp->target_pid].translation.X-dp->translation.X;
 	y1=Objects[dp->target_pid].translation.Y-dp->translation.Y;
 	z1=Objects[dp->target_pid].translation.Z-dp->translation.Z;
 	
-	if(l1!=0){
+	if(l1!=0.0){
 		l1=sqrtf(x1*x1+y1*y1+z1*z1);
 		x1/=l1;
 		y1/=l1;
@@ -52,13 +52,13 @@ void hormingBullet_move(Object *dp){
 	y1*=BULLET_VELOCITY;
 	z1*=BULLET_VELOCITY;
 	
-	xo=dp->translation.X+x1;
-	yo=dp->translation.Y+y1;
-	zo=dp->translation.Z+z1;
+	xo=dp->direction.X+x1;
+	yo=dp->direction.Y+y1;
+	zo=dp->direction.Z+z1;
 	
 	o1=sqrtf(xo*xo+yo*yo+zo*zo);
 	
-	if(o1!=0)
+	if(o1!=0.0)
 	{
 		xo/=o1;
 		yo/=o1;
@@ -71,7 +71,7 @@ void hormingBullet_move(Object *dp){
 	dp->direction.X=xo;
 	dp->direction.Y=yo;
 	dp->direction.Z=zo;
-	*/
+	
 	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
 	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
 	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
