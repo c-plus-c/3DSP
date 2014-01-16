@@ -146,10 +146,10 @@ void drawRadar(Object *dp){
 		Object *dp2 = &Objects[i];
 		int dx, dz;
 
-		drawTex(texs[dp2->pid],(int)(dp2->translation.X*100/SKY_SPHERE_RADIUS+offsetX),(int)(dp2->translation.Z*100/SKY_SPHERE_RADIUS+offsetY),
+		drawTex(texs[dp2->pid],(int)(dp2->translation.X*100/ACTIVE_RADIUS+offsetX),(int)(dp2->translation.Z*100/ACTIVE_RADIUS+offsetY),
 			6,9,atan2f(dp2->direction.Z,dp2->direction.X)-PI/2);
-		drawNum((((int)(dp2->translation.X*100/SKY_SPHERE_RADIUS)<<2) +(offsetX<<2)),
-			(((int)(dp2->translation.Z*100/SKY_SPHERE_RADIUS)<<2) +(offsetY<<2)),dp2->translation.Y);
+		drawNum((((int)(dp2->translation.X*100/ACTIVE_RADIUS)<<2) +(offsetX<<2)),
+			(((int)(dp2->translation.Z*100/ACTIVE_RADIUS)<<2) +(offsetY<<2)),dp2->translation.Y);
 	}
 }
 

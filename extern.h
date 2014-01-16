@@ -17,6 +17,7 @@
 #define myabs(a) ((a) > 0 ? (a) : (-a))
 #define SKY_SPHERE_RADIUS 1500.0
 
+#define ACTIVE_RADIUS 300.0
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
 extern AG3Danimenode node[512];
