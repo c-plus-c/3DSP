@@ -2,7 +2,13 @@
 
 #define RANGE_COUNT 60
 
+void fireballInit(Object *dp,int pid){
+	dp->mov = fireball_move;
+	dp->drw = fireball_drw;
 
+	dp->pid = pid;
+	dp->stat = INVISIBLE;
+}
 
 /* TODO:今西
 描画
@@ -48,6 +54,9 @@ int collision(Object *dp, Object *dp2){
   Vec3f	translation = dp->translation, translation2 = dp2->translation;
   int s = 1;
 
+  if(dp2->pid == dp->pid)
+  	return 0;
+
   if(dp2->stat == BLINK)
   	return 0;
 
@@ -87,13 +96,6 @@ void fireball_move(Object *dp){
 		dp->stat = INVISIBLE;
 }
 
-void fireballInit(Object *dp,int pid){
-	dp->mov = fireball_move;
-	dp->drw = fireball_drw;
-
-	dp->pid = pid;
-	dp->stat = INVISIBLE;
-}
 
 
 Object* getFreeFireball(int pid){
