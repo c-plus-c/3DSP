@@ -96,8 +96,9 @@ void postrender(){
 	agglFinishFrame();
 	agDrawEODL( &DBuf );
 	agTransferDrawWait();
+
+	aglWaitVSyncN( 2 );
 	aglSwap();
-	aglWaitVSync();
 }
 
 void allocFireballs(int pid){
@@ -217,9 +218,7 @@ void  main( void ) {
 			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
 
 			postrender();
-
-			aglWaitVSyncN( 2 );
-			aglSwap();
+;
 		}
 	}
 }
