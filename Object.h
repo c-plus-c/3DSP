@@ -51,6 +51,8 @@ typedef struct ObjectLocal {
   float pitchAccelerator;
   float rollAccelerator;
   float brakeVariable;
+  
+  int target_pid;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );

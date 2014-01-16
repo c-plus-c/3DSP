@@ -213,13 +213,29 @@ void player_move(Object *dp)
   	}else if(dp->fireballCount > HORMING_AMMO_COST){
 		horming = getFreeHormingBullet(dp->pid);
 		if(horming != NULL){
+			int i;
+			float l2min;
 			horming->stat = VISIBLE;
-			horming->direction = dp->direction;
-			horming->translation = dp->translation;
+			horming->direction.X=0;
+			horming->direction.Y=0;
+			horming->direction.Z=0;
+			horming->translation=dp->translation;
 			horming->moveCount = 0;
 
 			dp->fireballCount-=HORMING_AMMO_COST;
 			dp->shotFrame = 0;
+			
+			l2min=100000.0;
+			for(i=0;i<PLAYER_NUMS;i++)
+			{
+				float l;
+				if(Objects[i].pid==dp->pid) continue;
+				l=Objects[i].translation.X*Objects[i].translation.X+Objects[i].translation.Y*Objects[i].translation.Y+Objects[i].translation.Z*Objects[i].translation.Z;
+				if(l<l2min){
+					horming->target_pid=i;
+					l=l2min;
+				}
+			}
 		}
 	}
   }

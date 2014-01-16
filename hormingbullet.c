@@ -35,7 +35,41 @@ void hormingBullet_drw(Object *dp){
 */
 void hormingBullet_move(Object *dp){
 	int i;
-
+	float x1,y1,z1,xo,yo,zo,l1,o1;
+	x1=Objects[dp->target_pid].translation.X-dp->translation.X;
+	y1=Objects[dp->target_pid].translation.Y-dp->translation.Y;
+	z1=Objects[dp->target_pid].translation.Z-dp->translation.Z;
+	
+	if(l1!=0){
+		l1=sqrtf(x1*x1+y1*y1+z1*z1);
+		x1/=l1;
+		y1/=l1;
+		z1/=l1;
+	}
+	
+	x1*=BULLET_VELOCITY;
+	y1*=BULLET_VELOCITY;
+	z1*=BULLET_VELOCITY;
+	
+	xo=dp->translation.X+x1;
+	yo=dp->translation.Y+y1;
+	zo=dp->translation.Z+z1;
+	
+	o1=sqrtf(xo*xo+yo*yo+zo*zo);
+	
+	if(o1!=0)
+	{
+		xo/=o1;
+		yo/=o1;
+		zo/=o1;
+	}
+	xo*=BULLET_VELOCITY;
+	yo*=BULLET_VELOCITY;
+	zo*=BULLET_VELOCITY;
+	
+	dp->direction.X=xo;
+	dp->direction.Y=yo;
+	dp->direction.Z=zo;
 	
 	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
 	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
@@ -59,7 +93,6 @@ void hormingBulletInit(Object *dp,int pid){
 	dp->mov = hormingBullet_move;
 	dp->drw = hormingBullet_drw;
 
-
 	dp->pid = pid;
 	dp->stat = INVISIBLE;
 }
@@ -73,21 +106,3 @@ Object* getFreeHormingBullet(int pid){
 	}
 	return NULL;
 }
-
-/*
-void allocFireballs(int pid){
-	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
-	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		fireballInit(&Objects[offset + i],pid);
-	}
-}
-
-Object* getFreeFireball(int pid){
-	int offset = FIREBALL_OFFSET+FIREBALL_PER_PLAYER*pid, i;
-	for(i = 0;i<FIREBALL_PER_PLAYER;i++){
-		if(Objects[offset + i].stat == INVISIBLE)
-			return &Objects[offset+i];
-	}
-	return NULL;
-}
-*/
