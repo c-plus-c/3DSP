@@ -58,6 +58,8 @@ void playerInit(Object *dp,int pid)
 	
 	dp->brakeVariable=1;
 	dp->life = 10;
+	
+	dp->autoPilotReturn=0;
 }
 
 
@@ -68,20 +70,14 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 {
 	return 0;
 }
-/* TODO:今西
-パッド処理
-*/
-void player_move(Object *dp)
+
+void ManualMove(Object *dp)
 {
-  float cp,sp,cb,sb,ch,sh;
-  float tx,ty,tz;
-  float nx,ny,nz;
-  float l2;
   u32 pad;
 
   pad = agGamePadGetData(dp->pid);
   
-  if( (pad & GAMEPAD_L) != 0 ){ //左に旋回
+  if( (pad & GAMEPAD_L) != 0){ //左に旋回
 	if(dp->rollAccelerator>0) dp->rollAccelerator=0;
 	dp->rollAccelerator-=ROLLACCELBAND;
 	if(dp->rollAccelerator<-ROLLACCELBANDLIMIT) dp->rollAccelerator=-ROLLACCELBANDLIMIT;
@@ -91,7 +87,7 @@ void player_move(Object *dp)
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*YAWTIME;
-  }else if( (pad & GAMEPAD_R) != 0 ){ //右に旋回
+  }else if( (pad & GAMEPAD_R) != 0){ //右に旋回
   
 	if(dp->rollAccelerator<0) dp->rollAccelerator=0;
 	dp->rollAccelerator+=ROLLACCELBAND;
@@ -102,7 +98,8 @@ void player_move(Object *dp)
 		dp->rollAccelerator=0;
 	}
     dp->yaw-=dp->roll*YAWTIME;
-  }else{ //旋回解除処理
+
+   }else{ //旋回解除処理
   
 	if(dp->roll<0)
 	{
@@ -238,7 +235,30 @@ void player_move(Object *dp)
 		}
 	}
   }
+}
 
+void AutoMove(Object *dp)
+{
+	dp->yaw+=0.05;
+}
+/* TODO:今西
+パッド処理
+*/
+void player_move(Object *dp)
+{
+  float cp,sp,cb,sb,ch,sh;
+  float tx,ty,tz;
+  float nx,ny,nz;
+
+
+  if(dp->autoPilotReturn==0)
+  {
+	ManualMove(dp);
+  }else
+  {
+	AutoMove(dp);
+  }
+  
   if(dp->stat == BLINK){
   	dp->moveCount++;
   	if(dp->moveCount > BLINK_COUNT)
@@ -270,29 +290,7 @@ void player_move(Object *dp)
   dp->translation.Y+=dp->direction.Y*VELOCITY/dp->brakeVariable; 
   dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
   
-  l2=dp->translation.X*dp->translation.X+dp->translation.Y*dp->translation.Y+dp->translation.Z*dp->translation.Z;
-  if(l2>=ACTIVE_RADIUS*ACTIVE_RADIUS)
-  {
-	float l=dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z;
-	l=sqrtf(l2);
-	
-	dp->direction.X=(-dp->translation.X)/l;
-	dp->direction.Y=0;
-	dp->direction.Z=(-dp->translation.Z)/l;
-	
-	dp->translation.X+=dp->direction.X*10;
-	dp->translation.Y+=dp->direction.Y*10; 
-	dp->translation.Z+=dp->direction.Z*10;
-	
-	dp->pitch=asinf(-dp->direction.Y);
-	dp->yaw=atan2f(dp->direction.Z, dp->direction.X)+PI/2;
-	
-	ch=cosf(dp->yaw);
-	sh=sinf(dp->yaw);
-	cp=cosf(dp->pitch);
-	sp=sinf(dp->pitch);
-	
-  }
+  dp->autoPilotReturn=(dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z>=ACTIVE_RADIUS*ACTIVE_RADIUS)?1:0;
   
   
 

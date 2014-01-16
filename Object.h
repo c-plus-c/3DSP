@@ -55,6 +55,7 @@ typedef struct ObjectLocal {
   float brakeVariable;
   
   int target_pid;
+  int autoPilotReturn;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );
