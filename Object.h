@@ -12,6 +12,8 @@
 #define FIREBALL_PER_PLAYER 60
 #define HORMING_OFFSET 4
 #define HORMING_PER_PLAYER 5
+#define GAMEPAD_LL 64
+#define GAMEPAD_RR 128
 //50~99-- fireball(pid=1) ...
 
 typedef struct Vec3f_t

@@ -52,7 +52,7 @@ void fireball_drw(Object *dp){
 // fireball, player
 int collision(Object *dp, Object *dp2){
   Vec3f	translation = dp->translation, translation2 = dp2->translation;
-  int s = 1;
+  int s = 2;
 
   if(dp2->pid == dp->pid)
   	return 0;

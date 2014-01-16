@@ -172,7 +172,7 @@ void player_move(Object *dp)
   }
   
   //ブレーキ
-  if((pad & GAMEPAD_X) != 0)
+  if((pad & GAMEPAD_LL) != 0)
   {
 	dp->brakeVariable+=BRAKEINCREMENTATION;
 	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
