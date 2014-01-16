@@ -36,9 +36,10 @@ void hormingBullet_drw(Object *dp){
 void hormingBullet_move(Object *dp){
 	int i;
 
-	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
-	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
-	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
+	
+	//dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
+	//dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
+	//dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
 
 	for(i =0;i<PLAYER_NUMS;i++){
 		if(collision(dp, &Objects[i])){
@@ -57,6 +58,7 @@ void hormingBullet_move(Object *dp){
 void hormingBulletInit(Object *dp,int pid){
 	dp->mov = hormingBullet_move;
 	dp->drw = hormingBullet_drw;
+
 
 	dp->pid = pid;
 	dp->stat = INVISIBLE;

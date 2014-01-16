@@ -218,6 +218,8 @@ void  main( void ) {
 
 			postrender();
 
+			aglWaitVSyncN( 2 );
+			aglSwap();
 		}
 	}
 }
@@ -229,9 +231,9 @@ void draw( int frame , int motion_number  ) {
 	/* ƒ‰ƒCƒgÝ’è */
 {
 		const static AGGLfloat lpos[4] = { 1.0f, 1.0f, 1.0f, 0.0f } ;
-		const static AGGLfloat lamb[3] = { 0.5f, 0.3f, 0.3f } ;
-		const static AGGLfloat ldif[3] = { 0.5f, 0.5f, 0.5f } ;
-		const static AGGLfloat lspc[3] = { 0.0f, 0.0f, 0.0f } ;
+		const static AGGLfloat lamb[3] = { 1.0f, 1.0f, 1.0f } ;
+		const static AGGLfloat ldif[3] = { 1.0f, 1.0f, 1.0f } ;
+		const static AGGLfloat lspc[3] = { 1.0f, 1.0f, 1.0f } ;
 		agglLightfv( AGGL_LIGHT0, AGGL_AMBIENT,  lamb);
 		agglLightfv( AGGL_LIGHT0, AGGL_DIFFUSE,  ldif);
 		agglLightfv( AGGL_LIGHT0, AGGL_SPECULAR, lspc);
@@ -240,6 +242,7 @@ void draw( int frame , int motion_number  ) {
 };
 
 	DrawPlane();
+	agglDisable( AGGL_LIGHTING );
 	DrawSky();
 }
 
