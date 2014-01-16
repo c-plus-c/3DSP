@@ -36,6 +36,7 @@ void hormingBullet_drw(Object *dp){
 void hormingBullet_move(Object *dp){
 	int i;
 	float x1,y1,z1,xo,yo,zo,l1,o1;
+	/*
 	x1=Objects[dp->target_pid].translation.X-dp->translation.X;
 	y1=Objects[dp->target_pid].translation.Y-dp->translation.Y;
 	z1=Objects[dp->target_pid].translation.Z-dp->translation.Z;
@@ -70,7 +71,7 @@ void hormingBullet_move(Object *dp){
 	dp->direction.X=xo;
 	dp->direction.Y=yo;
 	dp->direction.Z=zo;
-	
+	*/
 	dp->translation.X+=dp->direction.X*BULLET_VELOCITY;
 	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
 	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
@@ -84,6 +85,7 @@ void hormingBullet_move(Object *dp){
 			dp->stat = INVISIBLE;
 		}
 	}
+	
 	dp->moveCount++;
 	if(dp->moveCount > RANGE_COUNT)
 		dp->stat = INVISIBLE;
