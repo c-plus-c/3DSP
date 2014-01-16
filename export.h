@@ -137,6 +137,7 @@ extern "C" {
 #define AG_CG_BLUE_ICON	(107)
 #define AG_CG_YELLOW_ICON	(108)
 #define AG_CG_WHITE_ICON	(109)
+#define AG_CG_TOP	(110)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -190,7 +191,7 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[110];
+extern const AGERomMember ageRM[111];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
