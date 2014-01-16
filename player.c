@@ -355,12 +355,6 @@ void player_drw(Object *dp)
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
-	
-		/* ツリー形状を求める */
-
-	//ag3dCalcTree( &(age3dTree[ AG_AG3D_AG3DEXPORTTREE ]), &(age3dMotion[ AG_AG3D_AG3DEXPORTMOTION ]), (float)1, node );
-	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_AG3DEXPORTMODEL ]), node, &(age3dDCmd[ AG_AG3D_AG3DEXPORTMODEL ]), AG3D_ONBLEND_ONDEPTH);
-
 	switch(dp->pid){
 		case 0:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MODEL ]), (float)1, node );

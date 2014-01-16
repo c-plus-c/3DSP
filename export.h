@@ -129,18 +129,19 @@ extern "C" {
 #define AG_CG_125	(99)
 #define AG_CG_126	(100)
 #define AG_CG_BLACK	(101)
-#define AG_CG_SKYSPHERE	(102)
-#define AG_CG_NEWBODY_2	(103)
-#define AG_CG_NEWBODY_3	(104)
-#define AG_CG_NEWBODY_4	(105)
-#define AG_CG_RADAR	(106)
-#define AG_CG_RED_ICON	(107)
-#define AG_CG_BLUE_ICON	(108)
-#define AG_CG_YELLOW_ICON	(109)
-#define AG_CG_WHITE_ICON	(110)
-#define AG_CG_TOP	(111)
-#define AG_CG_HORMINGBULLETICON	(112)
-#define AG_CG_RED	(113)
+#define AG_CG_NEWBODY_2	(102)
+#define AG_CG_NEWBODY_3	(103)
+#define AG_CG_NEWBODY_4	(104)
+#define AG_CG_RADAR	(105)
+#define AG_CG_RED_ICON	(106)
+#define AG_CG_BLUE_ICON	(107)
+#define AG_CG_YELLOW_ICON	(108)
+#define AG_CG_WHITE_ICON	(109)
+#define AG_CG_TOP	(110)
+#define AG_CG_HORMINGBULLETICON	(111)
+#define AG_CG_RED	(112)
+#define AG_CG_SKYSPHERE	(113)
+#define AG_CG_SKY_EDITED	(114)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -156,12 +157,12 @@ extern "C" {
 #define AG_AG3D_AG3DEXPORTMODEL	(0)
 #define AG_AG3D_PLANEMODEL	(1)
 #define AG_AG3D_BULLETMODEL	(2)
-#define AG_AG3D_SKYBACKMODEL	(3)
-#define AG_AG3D_NEWPLANE1MODEL	(4)
-#define AG_AG3D_NEWPLANE2MODEL	(5)
-#define AG_AG3D_NEWPLANE3MODEL	(6)
-#define AG_AG3D_NEWPLANE4MODEL	(7)
-#define AG_AG3D_HORMINGBULLETMODEL	(8)
+#define AG_AG3D_NEWPLANE1MODEL	(3)
+#define AG_AG3D_NEWPLANE2MODEL	(4)
+#define AG_AG3D_NEWPLANE3MODEL	(5)
+#define AG_AG3D_NEWPLANE4MODEL	(6)
+#define AG_AG3D_HORMINGBULLETMODEL	(7)
+#define AG_AG3D_SKYBACKMODEL	(8)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
@@ -169,12 +170,12 @@ extern "C" {
 #define AG_AG3D_AG3DEXPORTTREE	(0)
 #define AG_AG3D_PLANETREE	(1)
 #define AG_AG3D_BULLETTREE	(2)
-#define AG_AG3D_SKYBACKTREE	(3)
-#define AG_AG3D_NEWPLANE1TREE	(4)
-#define AG_AG3D_NEWPLANE2TREE	(5)
-#define AG_AG3D_NEWPLANE3TREE	(6)
-#define AG_AG3D_NEWPLANE4TREE	(7)
-#define AG_AG3D_HORMINGBULLETTREE	(8)
+#define AG_AG3D_NEWPLANE1TREE	(3)
+#define AG_AG3D_NEWPLANE2TREE	(4)
+#define AG_AG3D_NEWPLANE3TREE	(5)
+#define AG_AG3D_NEWPLANE4TREE	(6)
+#define AG_AG3D_HORMINGBULLETTREE	(7)
+#define AG_AG3D_SKYBACKTREE	(8)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
@@ -182,12 +183,12 @@ extern "C" {
 #define AG_AG3D_AG3DEXPORTMOTION	(0)
 #define AG_AG3D_PLANEMOTION	(1)
 #define AG_AG3D_BULLETMOTION	(2)
-#define AG_AG3D_SKYBACKMOTION	(3)
-#define AG_AG3D_NEWPLANE1MOTION	(4)
-#define AG_AG3D_NEWPLANE2MOTION	(5)
-#define AG_AG3D_NEWPLANE3MOTION	(6)
-#define AG_AG3D_NEWPLANE4MOTION	(7)
-#define AG_AG3D_HORMINGBULLETMOTION	(8)
+#define AG_AG3D_NEWPLANE1MOTION	(3)
+#define AG_AG3D_NEWPLANE2MOTION	(4)
+#define AG_AG3D_NEWPLANE3MOTION	(5)
+#define AG_AG3D_NEWPLANE4MOTION	(6)
+#define AG_AG3D_HORMINGBULLETMOTION	(7)
+#define AG_AG3D_SKYBACKMOTION	(8)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
@@ -197,7 +198,7 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[114];
+extern const AGERomMember ageRM[115];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
