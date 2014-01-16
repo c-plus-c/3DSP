@@ -17,6 +17,13 @@
 #define myabs(a) ((a) > 0 ? (a) : (-a))
 #define SKY_SPHERE_RADIUS 1500.0
 
+#define BLINK_COUNT 60
+#define FIREBALL_INTERVAL 1
+#define AMMO_LIMIT 20
+#define FIREBALL_RELOAD_INTERVAL 5
+
+#define HORMING_AMMO_COST 7
+
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
 extern AG3Danimenode node[512];

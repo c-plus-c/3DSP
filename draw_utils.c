@@ -78,11 +78,15 @@ void drawTex2(int texNum, int x, int y, int w,int h){
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
 }
 
-void drawRect(int x,int y,int w,int h,int r,int g,int b){
-    AGGLfloat a;
+void drawRect(int x,int y,int w,int h,int _r,int _g,int _b){
+    AGGLfloat a,r,g,b;
 
     a = 1;
+    r = (float)_r/255.0;
+    g = (float)_g/255.0;
+    b = (float)_b/255.0;
     agglColor4f( r, g, b, a );
+    agglDisable(AGGL_TEXTURE_2D);
     agglDrawSpritei( x,y,x+w,y+h, 0.0f );
 }
 
@@ -153,6 +157,12 @@ void drawRadar(Object *dp){
 	}
 }
 
+void drawAmmoBar(Object *dp){
+	int w = 300,h = 20;
+	drawRect(50,700-50,w,h,249,192,81);
+	drawRect(50,700-50, (int)((float)w * dp->fireballCount/AMMO_LIMIT),h,235,115,12 );
+}
+
 
 void drawHud(Object *dp, u32 frameCount){
 	int x,y,i;
@@ -160,7 +170,7 @@ void drawHud(Object *dp, u32 frameCount){
 	int s = 10;
 
 	drawRadar(dp);
-	drawNum(300<<2,300<<2,dp->fireballCount);
+	drawAmmoBar(dp);
 
 	// drawRect(offsetX,offsetY,s,s);
 	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);

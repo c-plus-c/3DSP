@@ -25,7 +25,7 @@
 
 #define BLINK_COUNT 60
 #define FIREBALL_INTERVAL 1
-#define FIREBALL_LIMIT 20
+#define AMMO_LIMIT 20
 #define FIREBALL_RELOAD_INTERVAL 5
 
 #define HORMING_AMMO_COST 7
@@ -51,7 +51,7 @@ void playerInit(Object *dp,int pid)
 	dp->pid = pid;
 
 	dp->stat=VISIBLE;
-	dp->fireballCount = FIREBALL_LIMIT;
+	dp->fireballCount = AMMO_LIMIT;
 	
 	dp->pitchAccelerator=0;
 	dp->rollAccelerator=0;
@@ -182,7 +182,7 @@ void player_move(Object *dp)
   }
 
   if(frameCount%FIREBALL_RELOAD_INTERVAL == 0){
-  	if(dp->fireballCount < FIREBALL_LIMIT)
+  	if(dp->fireballCount < AMMO_LIMIT)
   		dp->fireballCount++;
   }
 
