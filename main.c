@@ -55,6 +55,7 @@ static s32 ifnc_vsync(int type)
 
 void initObjects(){
 	int i;
+	_dprintf("initObjects\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -78,6 +79,7 @@ void drawObjects(){
 }
 
 void prerender(){
+	_dprintf("prerender\n");
 
 	if( DBuf.CmdCount > 0 ) {
 		agTransferDrawDMAAsync( &(DBuf) );
@@ -95,6 +97,8 @@ void prerender(){
 }
 
 void postrender(){
+
+	_dprintf("postrender\n");
 	agglDepthMask( AGGL_TRUE );
 	agglFinishFrame();
 	agDrawEODL( &DBuf );
@@ -126,10 +130,13 @@ void startGame(){
 
 void initGame(){
 	int i;
+	_dprintf("initGame\n");
+
 	initObjects();
 
 	for(i=0;i<PLAYER_MAX;i++){
 		playerJoined[i] = 0;
+		Objects[i].stat = INVISIBLE;
 	}
 }
 
@@ -187,9 +194,6 @@ void  main( void ) {
 		if(displayingPage == TITLE){
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
-			for(n=0;n<playerNum;n++){
-				_dprintf("title%d\n",Objects[n].pid);
-			}
 			if(frameCount > 60){
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
@@ -211,10 +215,6 @@ void  main( void ) {
 	     	 	}
 	     	}
 			postrender();
-
-			for(n=0;n<playerNum;n++){
-				_dprintf("title-%d\n",Objects[n].pid);
-			}
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
 			drawRect(0,0,1024,768,1,1,1);
@@ -233,11 +233,6 @@ void  main( void ) {
 		}else if(displayingPage == INGAME){
 
 			int c=0;
-			if(frameCount < 10){
-				for(n=0;n<playerNum;n++){
-					_dprintf("title%d-%d\n",frameCount,Objects[n].pid);
-				}
-			}
 			prerender();
 			/* gl”wŒi‰Šú‰» */
 
