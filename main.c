@@ -133,6 +133,7 @@ void initGame(){
 	_dprintf("initGame\n");
 
 	initObjects();
+	playerNum = 0;
 
 	for(i=0;i<PLAYER_MAX;i++){
 		playerJoined[i] = 0;
