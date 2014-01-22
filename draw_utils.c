@@ -148,7 +148,7 @@ void drawRadar(Object *dp){
 
 	drawTex(AG_CG_RADAR,offsetX,offsetY,100,100,0);
 
-	for(i=0;i<PLAYER_NUMS;i++){
+	for(i=0;i<playerNum;i++){
 		Object *dp2 = &Objects[i];
 		int dx, dz;
 

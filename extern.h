@@ -40,6 +40,8 @@ extern char	vtxbuf[10240*2];
 
 extern const int MotionList[1];
 
+extern int playerNum;
+
 extern Object Objects[OBJECT_MAX];
 
 extern AGDrawBuffer DBuf;

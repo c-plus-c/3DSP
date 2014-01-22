@@ -6,7 +6,7 @@
 #define PI (3.1415)
 
 #define OBJECT_MAX 220
-#define PLAYER_NUMS 3
+#define PLAYER_MAX 3
 
 #define FIREBALL_OFFSET 30
 #define FIREBALL_PER_PLAYER 60
@@ -32,7 +32,7 @@ typedef struct Vector2f_t
 
 typedef enum Stat_t
 {
-  VISIBLE, INVISIBLE, BLINK
+  VISIBLE, INVISIBLE, BLINK, DEAD
 }Stat;
 
 typedef struct ObjectLocal {

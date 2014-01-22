@@ -31,9 +31,12 @@ int frameCount = 0;
 
 Object Objects[OBJECT_MAX];
 
+int playerNum = 0;
+int playerJoined[PLAYER_MAX];
+
 typedef enum Page_t
   {
-  TITLE,INSTRUCTION,INGAME
+  TITLE,INSTRUCTION,INGAME,SCORE
 }Page;
 
 Page displayingPage;
@@ -117,19 +120,26 @@ void allocHormingBullets(int pid){
 }
 
 void startGame(){
-	int i;
-
-
-	initObjects();
-	for (i = 0; i < PLAYER_NUMS; ++i)
-	{
-		playerInit(&Objects[i], i);
-		allocFireballs(i);
-		allocHormingBullets(i);
-	}
-
 	displayingPage = INGAME;
 	frameCount = 0;
+}
+
+void initGame(){
+	int i;
+	initObjects();
+
+	for(i=0;i<PLAYER_MAX;i++){
+		playerJoined[i] = 0;
+	}
+}
+
+void joinPlayer(int pid){
+	playerInit(&Objects[playerNum],pid);
+	allocFireballs(pid);
+	allocHormingBullets(pid);
+
+	playerJoined[pid] = 1;
+	playerNum++;
 }
 
 void  main( void ) {
@@ -163,6 +173,7 @@ void  main( void ) {
 	v = _SystemVSyncCount;
 
 	
+	initGame();
 
 
 	while( 1 ) {
@@ -176,18 +187,26 @@ void  main( void ) {
 		if(displayingPage == TITLE){
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
-			postrender();
 			if(frameCount > 60)
-		        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
+		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
+		            	if(!playerJoined[n])
+		            		joinPlayer(n);
+		            }else if(playerJoined[n]){
 		            	startGame();
 		            }
+
+		            if(playerJoined[n]){
+		            	drawStr((100*n)<<2,100<<2,"hello");
+		            }
+
 		            if (pad & GAMEPAD_SELECT){
 		            	displayingPage = INSTRUCTION;
 		            	frameCount = 0;
 		            }
 	     	 	}
+			postrender();
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
 			drawRect(0,0,1024,768,1,1,1);
@@ -195,14 +214,16 @@ void  main( void ) {
 
 			postrender();
 			if(frameCount > 60)
-		        for( n=0 ; n < PLAYER_NUMS ; n++ ) {
+		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_SELECT){
 		            	displayingPage = TITLE;
+		            	initGame();
 		            	frameCount = 0;
 		            }
 	     	 	}
 		}else if(displayingPage == INGAME){
+			int c=0;
 			prerender();
 
 			/* gl”wŒi‰Šú‰» */
@@ -213,8 +234,30 @@ void  main( void ) {
 			drawObjects();
 			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
 
+			for(n=0;n<playerNum;n++){
+				if(Objects[n].stat != DEAD){
+					c++;
+				}
+			}
+			if(c==1){
+				displayingPage = SCORE;
+				frameCount = 0;
+			}
+
 			postrender();
-;
+		}else if(displayingPage == SCORE){
+			prerender();
+			drawStr(100<<2,100<<2,"hello");
+			postrender();
+
+	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
+	            pad = agGamePadGetData(n);
+	            if (pad & GAMEPAD_SELECT){
+	            	displayingPage = TITLE;
+	            	initGame();
+	            	frameCount = 0;
+	            }
+     	 	}
 		}
 	}
 }

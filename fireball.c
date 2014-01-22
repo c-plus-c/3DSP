@@ -78,12 +78,17 @@ void fireball_move(Object *dp){
 	dp->translation.Y+=dp->direction.Y*BULLET_VELOCITY; 
 	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
 
-	for(i =0;i<PLAYER_NUMS;i++){
+	for(i =0;i<playerNum;i++){
 		if(collision(dp, &Objects[i]) && Objects[i].stat){
 			if(Objects[i].stat != BLINK){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
 				Objects[i].moveCount = 0;
+			}
+
+			
+			if(Objects[i].life <= 0){
+				Objects[i].stat = DEAD;
 			}
 
 			dp->stat = INVISIBLE;

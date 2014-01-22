@@ -33,9 +33,9 @@
 
 void playerInit(Object *dp,int pid)
 {
-	dp->translation.X=0;
-	dp->translation.Y=200;
-	dp->translation.Z=-200;
+	dp->translation.X=100*(pid/2);
+	dp->translation.Y=100;
+	dp->translation.Z=100*(pid%2);
 	
 	dp->direction.X=0;
 	dp->direction.Y=0;
@@ -214,7 +214,7 @@ void ManualMove(Object *dp)
 			dp->shotFrame = 0;
 			
 			l2min=100000.0;
-			for(i=0;i<PLAYER_NUMS;i++)
+			for(i=0;i<playerNum;i++)
 			{
 				float l;
 				if(Objects[i].pid==dp->pid) continue;
