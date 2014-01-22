@@ -187,6 +187,9 @@ void  main( void ) {
 		if(displayingPage == TITLE){
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
+			for(n=0;n<playerNum;n++){
+				_dprintf("title%d\n",Objects[n].pid);
+			}
 			if(frameCount > 60)
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
@@ -206,6 +209,9 @@ void  main( void ) {
 		            	frameCount = 0;
 		            }
 	     	 	}
+			for(n=0;n<playerNum;n++){
+				_dprintf("title-%d\n",Objects[n].pid);
+			}
 			postrender();
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
@@ -226,6 +232,9 @@ void  main( void ) {
 			int c=0;
 			prerender();
 
+			for(n=0;n<playerNum;n++){
+				_dprintf("ingame%d\n",Objects[n].pid);
+			}
 			/* gl”wŒi‰Šú‰» */
 
 			moveObjects();
@@ -243,6 +252,8 @@ void  main( void ) {
 				displayingPage = SCORE;
 				frameCount = 0;
 			}
+
+
 
 			postrender();
 		}else if(displayingPage == SCORE){
