@@ -190,7 +190,7 @@ void  main( void ) {
 			for(n=0;n<playerNum;n++){
 				_dprintf("title%d\n",Objects[n].pid);
 			}
-			if(frameCount > 60)
+			if(frameCount > 60){
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
@@ -209,10 +209,12 @@ void  main( void ) {
 		            	frameCount = 0;
 		            }
 	     	 	}
+	     	}
+			postrender();
+
 			for(n=0;n<playerNum;n++){
 				_dprintf("title-%d\n",Objects[n].pid);
 			}
-			postrender();
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
 			drawRect(0,0,1024,768,1,1,1);
@@ -229,12 +231,14 @@ void  main( void ) {
 		            }
 	     	 	}
 		}else if(displayingPage == INGAME){
-			int c=0;
-			prerender();
 
-			for(n=0;n<playerNum;n++){
-				_dprintf("ingame%d\n",Objects[n].pid);
+			int c=0;
+			if(frameCount < 10){
+				for(n=0;n<playerNum;n++){
+					_dprintf("title%d-%d\n",frameCount,Objects[n].pid);
+				}
 			}
+			prerender();
 			/* gl”wŒi‰Šú‰» */
 
 			moveObjects();

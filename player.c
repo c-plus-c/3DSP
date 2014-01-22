@@ -76,7 +76,7 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 Object* getPlayer(int pid){
 	int i;
 	for(i=0;i<playerNum;i++){
-		if(Objects[i].pid = pid)
+		if(Objects[i].pid == pid)
 			return &Objects[i];
 	}
 
