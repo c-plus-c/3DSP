@@ -73,6 +73,16 @@ int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz)
 	return 0;
 }
 
+Object* getPlayer(int pid){
+	int i;
+	for(i=0;i<playerNum;i++){
+		if(Objects[i].pid = pid)
+			return &Objects[i];
+	}
+
+	return NULL;
+}
+
 void ManualMove(Object *dp)
 {
   u32 pad;

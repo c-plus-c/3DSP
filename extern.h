@@ -60,4 +60,6 @@ extern Object* getFreeHormingBullet(int pid);
 extern void hormingBulletInit(Object *dp,int pid);
 extern void fireballInit(Object *dp,int pid);
 
+extern Object* getPlayer(int pid);
+
 #endif

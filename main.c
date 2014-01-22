@@ -64,7 +64,7 @@ void initObjects(){
 void moveObjects(){
 	int i;
 	for(i=0;i<OBJECT_MAX;i++){
-		if(Objects[i].stat != INVISIBLE)
+		if(Objects[i].stat != INVISIBLE && Objects[i].stat != DEAD)
 			Objects[i].mov(&Objects[i]);
 	}
 }
@@ -72,7 +72,7 @@ void moveObjects(){
 void drawObjects(){
 	int i;
 	for(i=0;i<OBJECT_MAX;i++){
-		if(Objects[i].stat != INVISIBLE)
+		if(Objects[i].stat != INVISIBLE && Objects[i].stat != DEAD)
 			Objects[i].drw(&Objects[i]);
 	}
 }
@@ -232,7 +232,7 @@ void  main( void ) {
 			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);cm
 			draw( frameCount , MotionNumber );
 			drawObjects();
-			drawHud(&Objects[(int)agGamePadGetMyID()], frameCount);
+			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 
 			for(n=0;n<playerNum;n++){
 				if(Objects[n].stat != DEAD){
@@ -252,7 +252,7 @@ void  main( void ) {
 
 	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 	            pad = agGamePadGetData(n);
-	            if (pad & GAMEPAD_SELECT){
+	            if (pad & GAMEPAD_START){
 	            	displayingPage = TITLE;
 	            	initGame();
 	            	frameCount = 0;
