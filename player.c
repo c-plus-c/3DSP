@@ -59,7 +59,9 @@ void playerInit(Object *dp,int pid)
 	dp->brakeVariable=1;
 	dp->life = 10;
 	
-	dp->autoPilotReturn=0;
+	dp->sideOut=0;
+	dp->upperOut=0;
+	dp->lowerOut=0;
 }
 
 
@@ -229,7 +231,11 @@ void ManualMove(Object *dp)
 
 void AutoMove(Object *dp)
 {
-	dp->yaw+=0.05;
+	if(dp->sideOut==1) dp->yaw+=0.05;
+	
+	if(dp->upperOut==1) dp->pitch+=0.05;
+	
+	if(dp->lowerOut==1) dp->pitch-=0.05;
 }
 /* TODO:今西
 パッド処理
@@ -241,12 +247,13 @@ void player_move(Object *dp)
   float nx,ny,nz;
 
 
-  if(dp->autoPilotReturn==0)
-  {
-	ManualMove(dp);
-  }else
+  if(dp->sideOut==1||dp->upperOut==1||dp->lowerOut==1)
   {
 	AutoMove(dp);
+  }
+  else
+  {
+	ManualMove(dp);
   }
   
   if(dp->stat == BLINK){
@@ -280,8 +287,9 @@ void player_move(Object *dp)
   dp->translation.Y+=dp->direction.Y*VELOCITY/dp->brakeVariable; 
   dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
   
-  dp->autoPilotReturn=(dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z>=ACTIVE_RADIUS*ACTIVE_RADIUS)?1:0;
-  
+  dp->sideOut=(dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z>=ACTIVE_RADIUS*ACTIVE_RADIUS)?1:0;
+  dp->upperOut=(dp->translation.Y>=300)?1:0;
+  dp->lowerOut=(dp->translation.Y<=0)?1:0;
   
 
   //カメラ位置の計算
