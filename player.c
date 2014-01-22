@@ -60,8 +60,6 @@ void playerInit(Object *dp,int pid)
 	dp->life = 10;
 	
 	dp->sideOut=0;
-	dp->upperOut=0;
-	dp->lowerOut=0;
 }
 
 
@@ -241,11 +239,7 @@ void ManualMove(Object *dp)
 
 void AutoMove(Object *dp)
 {
-	if(dp->sideOut==1) dp->yaw+=0.05;
-	
-	if(dp->upperOut==1) dp->pitch+=0.05;
-	
-	if(dp->lowerOut==1) dp->pitch-=0.05;
+	if(dp->sideOut==1) dp->yaw+=0.02;
 }
 /* TODO:今西
 パッド処理
@@ -257,7 +251,7 @@ void player_move(Object *dp)
   float nx,ny,nz;
 
 
-  if(dp->sideOut==1||dp->upperOut==1||dp->lowerOut==1)
+  if(dp->sideOut==1)
   {
 	AutoMove(dp);
   }
@@ -298,9 +292,9 @@ void player_move(Object *dp)
   dp->translation.Z+=dp->direction.Z*VELOCITY/dp->brakeVariable;
   
   dp->sideOut=(dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z>=ACTIVE_RADIUS*ACTIVE_RADIUS)?1:0;
-  dp->upperOut=(dp->translation.Y>=300)?1:0;
-  dp->lowerOut=(dp->translation.Y<=0)?1:0;
   
+  if(dp->translation.Y<=0) dp->translation.Y=0;
+  else if(dp->translation.Y>=300) dp->translation.Y=300;
 
   //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){

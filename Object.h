@@ -56,8 +56,6 @@ typedef struct ObjectLocal {
   
   int target_pid;
   int sideOut;
-  int upperOut;
-  int lowerOut;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );
