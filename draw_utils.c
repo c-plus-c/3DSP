@@ -73,7 +73,7 @@ Vector2f Rotate(Vector2f from,int degree)
 }
 
 void drawTex2(int texNum, int x, int y, int w,int h){
-	ageTransferAAC( &DBuf, texNum, NULL, NULL );
+	ageTransferAAC( &DBuf, texNum,0, NULL, NULL );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
 }
