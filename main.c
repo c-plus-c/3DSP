@@ -27,11 +27,11 @@ u32 DrawBuffer[65536*32];
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
 static volatile u32 _SystemVSyncCount=0;
-int frameCount = 0;
+int frameCount;
 
 Object Objects[OBJECT_MAX];
 
-int playerNum = 0;
+int playerNum;
 int playerJoined[PLAYER_MAX];
 
 typedef enum Page_t
