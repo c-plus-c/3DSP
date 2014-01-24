@@ -266,8 +266,16 @@ void  main( void ) {
 			sortPlayerByRank();
 
 			for(n=0;n<playerNum;n++){
+				int l;
+				if(frameCount > (n+1)*30){
+					l = 200;
+				}else{
+					int c = frameCount - n*60;
+					l = 200 + (30-c)*(30-c);
+				}
+
 				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
-				drawTex3(AG_CG_NO1+Objects[n].pid,200<<2,(100+100*n)<<2);
+				drawTex3(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2);
 			}
 
 			postrender();
