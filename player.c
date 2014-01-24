@@ -335,8 +335,8 @@ void player_move(Object *dp)
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
-	//agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
   }
 }
 
@@ -369,20 +369,20 @@ void player_drw(Object *dp)
 
 	switch(dp->pid){
 		case 0:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MODEL ]), (float)1, node );
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL ]), AG3D_ONBLEND_ONDEPTH);
 		break;
 		case 1:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE2TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE2MODEL ]), (float)1, node );
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE2TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE2MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE2MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE2MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 		case 2:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MODEL ]), (float)1, node );
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE3MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 		
 		case 3:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MODEL ]), (float)1, node );
+			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE4MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
 	}
