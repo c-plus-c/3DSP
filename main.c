@@ -270,7 +270,7 @@ void  main( void ) {
 				if(frameCount > (n+1)*30){
 					l = 200;
 				}else{
-					int c = frameCount - n*60;
+					int c = frameCount - n*30;
 					l = 200 + (30-c)*(30-c);
 				}
 
