@@ -267,7 +267,7 @@ void  main( void ) {
 
 			for(n=0;n<playerNum;n++){
 				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
-				drawTex3(AG_CG_NO1+n,200<<2,(100+100*n)<<2);
+				drawTex3(AG_CG_NO1+Objects[n].pid,200<<2,(100+100*n)<<2);
 			}
 
 			postrender();
