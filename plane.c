@@ -8,7 +8,10 @@ void DrawPlane()
 	agglDepthMask( AGGL_TRUE );
 	
 	agglPushMatrix();
-	agglScalef(1500,1,1500);
+	
+	agglBillboard( AGGL_BILLBOARD_PLUSY,  AGGL_BILLBOARD_ROTFREE,  AGGL_BILLBOARD_TOEYE);
+	
+	agglScalef(50,1,50);
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 

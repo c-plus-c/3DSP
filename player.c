@@ -335,8 +335,8 @@ void player_move(Object *dp)
 	agglMatrixMode( AGGL_MODELVIEW );
 
 	agglLoadIdentity() ;
-	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
-	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	//agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
+	agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
   }
 }
 

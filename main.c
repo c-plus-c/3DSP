@@ -249,11 +249,12 @@ void  main( void ) {
 					c++;
 				}
 			}
-			
+			/*
 			if(c==1){
 				displayingPage = SCORE;
 				frameCount = 0;
 			}
+			*/
 			
 
 
