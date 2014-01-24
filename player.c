@@ -57,7 +57,7 @@ void playerInit(Object *dp,int pid)
 	dp->rollAccelerator=0;
 	
 	dp->brakeVariable=1;
-	dp->life = 10;
+	dp->life = PLAYER_LIFE;
 	
 	dp->sideOut=0;
 }
@@ -255,7 +255,7 @@ void player_move(Object *dp)
   {
 	AutoMove(dp);
   }
-  else
+  else if(displayingPage != READY)
   {
 	ManualMove(dp);
   }

@@ -24,7 +24,7 @@ char	zsortbuf[1024*10*50];
 
 char	vtxbuf[10240*2];
 
-u32 DrawBuffer[65536*32];
+u32 DrawBuffer[65536*64];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
@@ -35,11 +35,6 @@ Object Objects[OBJECT_MAX];
 
 int playerNum;
 int playerJoined[PLAYER_MAX];
-
-typedef enum Page_t
-  {
-  TITLE,INSTRUCTION,INGAME,SCORE,READY
-}Page;
 
 Page displayingPage;
 
@@ -58,7 +53,6 @@ static s32 ifnc_vsync(int type)
 
 void initObjects(){
 	int i;
-	_dprintf("initObjects\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -82,7 +76,6 @@ void drawObjects(){
 }
 
 void prerender(){
-	_dprintf("prerender\n");
 
 	if( DBuf.CmdCount > 0 ) {
 		agTransferDrawDMAAsync( &(DBuf) );
@@ -101,7 +94,6 @@ void prerender(){
 
 void postrender(){
 
-	_dprintf("postrender\n");
 	agglDepthMask( AGGL_TRUE );
 	agglFinishFrame();
 	agDrawEODL( &DBuf );
@@ -133,7 +125,6 @@ void startGame(){
 
 void initGame(){
 	int i;
-	_dprintf("initGame\n");
 
 	initObjects();
 	playerNum = 0;
@@ -202,8 +193,11 @@ void  main( void ) {
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
-		            	if(!playerJoined[n])
-		            		joinPlayer(n);
+		            	if(!playerJoined[n]){
+		            		for(i=0;i<3;i++){
+		            			joinPlayer(i);
+		            		}
+		            	}
 		            }else if(playerJoined[n]){
 		            	startGame();
 		            }
@@ -237,11 +231,12 @@ void  main( void ) {
 		}else if(displayingPage == READY){
 			prerender();
 
-			drawTex3(AG_CG_READY,262<<2,184<<2,500<<2,400<<2);
-
+			
+			moveObjects();
 			draw( frameCount , MotionNumber );
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
+			drawTex3(AG_CG_READY,452<<2,318<<2);
 
 			postrender();
 
@@ -267,10 +262,10 @@ void  main( void ) {
 				}
 			}
 			
-			if(c==1){
-				displayingPage = SCORE;
-				frameCount = 0;
-			}
+			// if(c==1){
+			// 	displayingPage = SCORE;
+			// 	frameCount = 0;
+			// }
 
 			postrender();
 		}else if(displayingPage == SCORE){

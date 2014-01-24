@@ -78,23 +78,31 @@ void drawTex2(int texNum, int x, int y, int w,int h){
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
 }
 
-void drawTex3(int texNum, int x,int y){
+void drawTex4(int texNum, int x, int y,float ratio){
+	int w,h;
+	ageTransferAAC( &DBuf, texNum,0, &w, &h );
+	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+	agDrawSPRITE( &DBuf, 1, x, y, x+w*ratio, y+h*ratio );
+}
+
+int drawTex3(int texNum, int x,int y){
 	int w,h;
 	ageTransferAAC( &DBuf, texNum,0, &w, &h );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
+	return w;
 }
 
 void drawRect(int x,int y,int w,int h,int _r,int _g,int _b){
     AGGLfloat a,r,g,b;
 
-    a = 1;
+    a = 1.0;
     r = (float)_r/255.0;
     g = (float)_g/255.0;
     b = (float)_b/255.0;
-    agglColor4f( r, g, b, a );
-    agglDisable(AGGL_TEXTURE_2D);
-    agglDrawSpritei( x,y,x+w,y+h, 0.0f );
+	agDrawSETFCOLOR( &DBuf, ARGB( 255, _r, _g, _b ) );
+	agDrawSETDBMODE( &DBuf, 0xff, 0, 0, 1 );
+	agDrawSPRITE( &DBuf, 0, x<<2, y<<2, (x+w)<<2, (y+h)<<2 );
 }
 
 
@@ -164,20 +172,60 @@ void drawRadar(Object *dp){
 	}
 }
 
-void drawAmmoBar(Object *dp){
-	int w = 300,h = 20;
-	drawRect(50,700-50,w,h,249,192,81);
-	drawRect(50,700-50, (int)((float)w * dp->fireballCount/AMMO_LIMIT),h,235,115,12 );
+void drawBar(int x,int y,int w,int h,int amount, int max, int colorSet){
+	int r,g,b,r2,g2,b2;
+
+	if(colorSet == 0){
+		r=	249;
+		g=	192;
+		b=	81;
+		r2=	235;
+		g2=	115;
+		b2=	12;
+	}else{
+		r=	153;
+		g=	217;
+		b=	219;
+		r2=	74;
+		g2=	83;
+		b2=	142;
+	}
+
+	drawRect(x,y,w,h,255,255,255);
+	drawRect(x+1,y+1,w-2,h-2,r,g,b);
+	drawRect(x,y, (int)((float)w * amount/max),h,255,255,255);
+	drawRect(x+1,y+1, (int)((float)w * amount/max)-2,h-2,r2,g2,b2);
 }
 
+void drawSelfInfo(Object *dp){
+	int bw = 300,bh= 10,l;
+
+	drawTex3(AG_CG_NO1+dp->pid,20,60);
+	drawBar(80,17,500,10,dp->life,PLAYER_LIFE,0);
+	drawBar(80,26,300,10,dp->fireballCount,AMMO_LIMIT,1);
+}
+
+void drawEnemyInfo(Object *dp, int idx){
+	drawTex4(AG_CG_NO1+dp->pid,10,50 + 290*idx,0.5);
+	drawBar(80,15+70*idx,150,6,dp->life,PLAYER_LIFE,0);
+	drawBar(80,20+70*idx,70,6,dp->fireballCount,AMMO_LIMIT,1);
+}
 
 void drawHud(Object *dp, u32 frameCount){
-	int x,y,i;
+	int n,i=1;
 	int offsetX = 400,offsetY = 400;
 	int s = 10;
 
+	drawSelfInfo(dp);
+	for(n=0;n<playerNum;n++){
+		if(Objects[n].pid != dp->pid){
+			drawEnemyInfo(&Objects[n],i);
+			i++;
+		}
+	}
 	drawRadar(dp);
-	drawAmmoBar(dp);
+
+
 
 	// drawRect(offsetX,offsetY,s,s);
 	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
