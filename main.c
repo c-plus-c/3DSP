@@ -91,7 +91,7 @@ void prerender(){
 
 	AG3DGLUglinit();
 
-	agglClearColor( 0.125f, 0.200f, 0.300f, 0.0f );
+	agglClearColor( 0.015625f, 0.48046875f, 0.9921875f, 0.0f );
 	agglClearDepthf( 1.0f );
 	agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 }
