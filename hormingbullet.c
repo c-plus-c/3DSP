@@ -86,6 +86,7 @@ void hormingBullet_move(Object *dp){
 
 			if(Objects[i].life <= 0){
 				Objects[i].stat = DEAD;
+				Objects[i].moveCount = frameCount;
 			}
 
 			dp->stat = INVISIBLE;

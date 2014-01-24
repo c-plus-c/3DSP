@@ -78,6 +78,13 @@ void drawTex2(int texNum, int x, int y, int w,int h){
 	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
 }
 
+void drawTex3(int texNum, int x,int y){
+	int w,h;
+	ageTransferAAC( &DBuf, texNum,0, &w, &h );
+	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
+}
+
 void drawRect(int x,int y,int w,int h,int _r,int _g,int _b){
     AGGLfloat a,r,g,b;
 

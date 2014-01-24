@@ -44,6 +44,7 @@ Page displayingPage;
 AGDrawBuffer DBuf;
 
 void AG3DGLUglinit( void );
+void sortPlayerByRank();
 void draw( int frame , int motion_number );
 
 static s32 ifnc_vsync(int type)
@@ -248,29 +249,53 @@ void  main( void ) {
 					c++;
 				}
 			}
-			/*
+			
 			if(c==1){
 				displayingPage = SCORE;
 				frameCount = 0;
 			}
-			*/
+			
 
 
 
 			postrender();
 		}else if(displayingPage == SCORE){
 			prerender();
-			drawStr(100<<2,100<<2,"hello");
+			drawRect(0,0,1024,768,129,137,177);
+
+			sortPlayerByRank();
+
+			for(n=0;n<playerNum;n++){
+				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
+				drawTex3(AG_CG_NO1+n,200<<2,(100+100*n)<<2);
+			}
+
 			postrender();
 
-	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
-	            pad = agGamePadGetData(n);
-	            if (pad & GAMEPAD_START){
-	            	displayingPage = TITLE;
-	            	initGame();
-	            	frameCount = 0;
-	            }
-     	 	}
+			if(frameCount > 60)
+		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
+		            pad = agGamePadGetData(n);
+		            if (pad & GAMEPAD_START){
+		            	displayingPage = TITLE;
+		            	initGame();
+		            	frameCount = 0;
+		            }
+	     	 	}
+		}
+	}
+}
+
+void sortPlayerByRank(){
+	int i,j;
+	for(i=0;i<playerNum;i++){
+		int max = Objects[i].moveCount;
+		for(j=i;j<playerNum;j++){
+			if(max < Objects[i].moveCount){
+				Object tmp = Objects[j];
+				Objects[j] = Objects[i];
+				Objects[i] = tmp;
+				max = Objects[j].moveCount;
+			}
 		}
 	}
 }
