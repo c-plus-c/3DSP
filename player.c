@@ -227,7 +227,7 @@ void ManualMove(Object *dp)
 			for(i=0;i<playerNum;i++)
 			{
 				float l,dx,dy,dz;
-				if(Objects[i].pid==dp->pid && Objects[i].stat == DEAD) continue;
+				if(Objects[i].pid==dp->pid || Objects[i].stat == DEAD) continue;
 				
 				dx=Objects[i].translation.X-dp->translation.X;
 				dy=Objects[i].translation.Y-dp->translation.Y;
@@ -236,7 +236,7 @@ void ManualMove(Object *dp)
 				l=dx*dx+dy*dy+dz*dz;
 				if(l<l2min){
 					horming->target_pid=i;
-					l=l2min;
+					l2min=l;
 				}
 			}
 		}
@@ -357,7 +357,7 @@ void player_drw(Object *dp)
 	int err;
 
 	if(dp->stat == BLINK)
-		if(dp->moveCount/10%2 == 0)
+		if(dp->moveCount%3 == 0)
 			return;
 
 	/* 描画 */
