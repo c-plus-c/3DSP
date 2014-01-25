@@ -52,7 +52,7 @@ void fireball_drw(Object *dp){
 // fireball, player
 int collision(Object *dp, Object *dp2){
   Vec3f	translation = dp->translation, translation2 = dp2->translation;
-  int s = 2;
+  float s = 2;
 
   if(dp2->pid == dp->pid)
   	return 0;
@@ -79,7 +79,7 @@ void fireball_move(Object *dp){
 	dp->translation.Z+=dp->direction.Z*BULLET_VELOCITY;
 
 	for(i =0;i<playerNum;i++){
-		if(collision(dp, &Objects[i]) && Objects[i].stat){
+		if(collision(dp, &Objects[i])){
 			if(Objects[i].stat != BLINK){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
