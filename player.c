@@ -26,9 +26,9 @@
 #define BLINK_COUNT 60
 #define FIREBALL_INTERVAL 1
 #define AMMO_LIMIT 20
-#define FIREBALL_RELOAD_INTERVAL 5
+#define FIREBALL_RELOAD_INTERVAL 6
 
-#define HORMING_AMMO_COST 7
+#define HORMING_AMMO_COST 10
 
 
 void playerInit(Object *dp,int pid)

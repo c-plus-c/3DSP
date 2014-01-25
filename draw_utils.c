@@ -93,14 +93,14 @@ int drawTex3(int texNum, int x,int y){
 	return w;
 }
 
-void drawRect(int x,int y,int w,int h,int _r,int _g,int _b){
-    AGGLfloat a,r,g,b;
+void drawRect(int x,int y,int w,int h,int r,int g,int b){
+	agDrawSETFCOLOR( &DBuf, ARGB( 255, r, g, b) );
+	agDrawSETDBMODE( &DBuf, 0xff, 0, 0, 1 );
+	agDrawSPRITE( &DBuf, 0, x<<2, y<<2, (x+w)<<2, (y+h)<<2 );
+}
 
-    a = 1.0;
-    r = (float)_r/255.0;
-    g = (float)_g/255.0;
-    b = (float)_b/255.0;
-	agDrawSETFCOLOR( &DBuf, ARGB( 255, _r, _g, _b ) );
+void drawRect2(int x, int y, int w, int h, int a, int r, int g, int b){
+	agDrawSETFCOLOR( &DBuf, ARGB( a, r, g, b) );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 0, 1 );
 	agDrawSPRITE( &DBuf, 0, x<<2, y<<2, (x+w)<<2, (y+h)<<2 );
 }
@@ -164,7 +164,7 @@ void drawRadar(Object *dp){
 	for(i=0;i<playerNum;i++){
 		Object *dp2 = &Objects[i];
 		int dx, dz;
-		if(dp2->stat==DEAD) continue;
+
 		drawTex(texs[dp2->pid],(int)(dp2->translation.X*100/ACTIVE_RADIUS+offsetX),(int)(dp2->translation.Z*100/ACTIVE_RADIUS+offsetY),
 			6,9,atan2f(dp2->direction.Z,dp2->direction.X)-PI/2);
 		drawNum((((int)(dp2->translation.X*100/ACTIVE_RADIUS)<<2) +(offsetX<<2)),
@@ -206,7 +206,7 @@ void drawSelfInfo(Object *dp){
 }
 
 void drawEnemyInfo(Object *dp, int idx){
-	drawTex4(AG_CG_NO1+dp->pid,10,50 + 290*idx,0.5);
+	drawTex4(AG_CG_NO1+dp->pid,30,50 + 290*idx,0.5);
 	drawBar(80,15+70*idx,150,6,dp->life,PLAYER_LIFE,0);
 	drawBar(80,20+70*idx,70,6,dp->fireballCount,AMMO_LIMIT,1);
 }
@@ -221,9 +221,32 @@ void drawHud(Object *dp, u32 frameCount){
 		if(Objects[n].pid != dp->pid){
 			drawEnemyInfo(&Objects[n],i);
 			i++;
-		}else if(dp->targeted>0){
-			drawTex2(AG_CG_HBW, 10<<2,650<<2,264<<2,91<<2);
 		}
 	}
 	drawRadar(dp);
+
+
+
+	// drawRect(offsetX,offsetY,s,s);
+	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
+
+	// x = 0;
+	// x = drawStr(x,0, "Time Limit : ");
+	// x = drawNum(x,0, 100 - (frameCount/60));
+	// x = drawStr(x,0, " sec");
+
+	// x = 0;
+	// x = drawStr(x,100<<2, "Life : ");
+	// x = drawNum(x,100<<2, dp-> life);
+	
+	// for(i=0;i<PLAYER_NUMS;i++){
+	// 	Object *dp2 = &Objects[i];
+	// 	if(dp->pid != dp2->pid){
+	// 		int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
+	// 		int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
+
+	// 		drawRect(offsetX+dx,offsetY+dz,s,s);
+	// 		drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
+	// 	}
+	// }
 }

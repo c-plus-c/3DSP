@@ -39,7 +39,7 @@ typedef enum Stat_t
 
 typedef enum Page_t
   {
-  TITLE,INSTRUCTION,INGAME,SCORE,READY
+  TITLE,INSTRUCTION,INGAME,SCORE,READY, TRANSITION
 }Page;
 
 typedef struct ObjectLocal {

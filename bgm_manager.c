@@ -28,3 +28,10 @@ void StopCurrentBGM()
 {
 	ageSndMgrStop(handle);
 }
+
+void playBgm(int rom_index){
+	StopCurrentBGM();
+	ReleaseCurrentBGMHandle();
+	SetCurrentBGMHandle(rom_index,1);
+	PlayCurrentBGM();
+}

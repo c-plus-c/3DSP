@@ -13,6 +13,7 @@
 #include "extern.h"
 
 #define READY_COUNT 120
+#define TRANSITION_COUNT 10
 
 extern void DrawPlane();
 
@@ -39,6 +40,7 @@ int playerNum;
 int playerJoined[PLAYER_MAX];
 
 Page displayingPage;
+Page destPage;
 
 AGDrawBuffer DBuf;
 
@@ -94,7 +96,31 @@ void prerender(){
 	agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 }
 
+void prerenderWithoutColoring(){
+		if( DBuf.CmdCount > 0 ) {
+		agTransferDrawDMAAsync( &(DBuf) );
+	}
+
+	agDrawBufferInit( &DBuf, DrawBuffer );
+
+	agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
+
+	AG3DGLUglinit();
+
+}
+
 void postrender(){
+	if(frameCount <= TRANSITION_COUNT){
+		if(displayingPage != destPage){
+			_dprintf("%d %d\n",frameCount,(int)(((float)255/TRANSITION_COUNT)*(frameCount)));
+			drawRect2(0,0,1024,768,(int)(((float)255/TRANSITION_COUNT)*(frameCount)),1,1,1);
+		}else{
+			_dprintf("%d - %d\n",frameCount,(int)(((float)255/TRANSITION_COUNT)*(TRANSITION_COUNT - frameCount)));
+			drawRect2(0,0,1024,768,(int)(((float)255/TRANSITION_COUNT)*(TRANSITION_COUNT - frameCount)),1,1,1);
+		}
+	}
+
+
 
 	agglDepthMask( AGGL_TRUE );
 	agglFinishFrame();
@@ -120,10 +146,6 @@ void allocHormingBullets(int pid){
 	}
 }
 
-void startGame(){
-	displayingPage = READY;
-	frameCount = 0;
-}
 
 void initGame(){
 	int i;
@@ -155,6 +177,24 @@ void joinPlayer(int pid){
 	playerNum++;
 }
 
+void setPage(Page page){
+	_dprintf("setpage\n");
+	if(displayingPage != destPage)
+		return;
+	destPage = page;
+	frameCount = 0;
+
+	if(page == INGAME)
+		playBgm(AS_SND_INGAME);
+	else if(page == TITLE)
+		playBgm(AS_SND_TITLE);
+	else if(page == SCORE)
+		playBgm(AS_SND_RESULT);
+	else if(page == READY)
+		StopCurrentBGM();
+}
+
+
 void  main( void ) {
 	int i;
 	int MotionNumber = MotionList[0];
@@ -162,9 +202,8 @@ void  main( void ) {
 	int n;
 	u32 pad;
 	int err;
+	displayingPage == TITLE;
 
-	displayingPage = TITLE;
-	frameCount = 0;
 
 
 	agpDisableCpuInterrupts();
@@ -188,6 +227,7 @@ void  main( void ) {
 	
 	initGame();
 
+	setPage(TITLE);
 
 	while( 1 ) {
 		agGamePadSync();
@@ -196,17 +236,15 @@ void  main( void ) {
 		if(displayingPage == TITLE){
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
-			if(frameCount > 60){
+			if(frameCount > 20){
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
 		            	if(!playerJoined[n]){
-		            		for(i=0;i<3;i++){
-		            			joinPlayer(i);
-		            		}
+		            		joinPlayer(n);
 		            	}
 		            }else if(playerJoined[n]){
-		            	startGame();
+		            	setPage(READY);
 						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 
@@ -215,8 +253,7 @@ void  main( void ) {
 		            }
 
 		            if (pad & GAMEPAD_SELECT){
-		            	displayingPage = INSTRUCTION;
-		            	frameCount = 0;
+		            	setPage(INSTRUCTION);
 						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 	     	 	}
@@ -228,13 +265,12 @@ void  main( void ) {
 			drawStr(100<<2,100<<2,"hello");
 
 			postrender();
-			if(frameCount > 60)
+			if(frameCount > 20)
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_SELECT){
-		            	displayingPage = TITLE;
+		            	setPage(TITLE);
 		            	initGame();
-		            	frameCount = 0;
 		            }
 	     	 	}
 		}else if(displayingPage == READY){
@@ -245,13 +281,15 @@ void  main( void ) {
 			draw( frameCount , MotionNumber );
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
-			drawTex3(AG_CG_READY,452<<2,318<<2);
+			if(frameCount > READY_COUNT/2)
+				drawTex3(AG_CG_START,430<<2,318<<2);
+			else
+				drawTex3(AG_CG_READY,452<<2,318<<2);
 
 			postrender();
 
 			if(frameCount > READY_COUNT){
-				displayingPage = INGAME;
-				frameCount = 0;
+				setPage(INGAME);
 			}
 
 		}else if(displayingPage == INGAME){
@@ -265,6 +303,7 @@ void  main( void ) {
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 
+
 			for(n=0;n<playerNum;n++){
 				if(Objects[n].stat != DEAD){
 					c++;
@@ -272,8 +311,7 @@ void  main( void ) {
 			}
 
 			if(c==1){
-				displayingPage = SCORE;
-				frameCount = 0;
+				setPage(SCORE);
 			}
 			
 
@@ -307,11 +345,17 @@ void  main( void ) {
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START){
-		            	displayingPage = TITLE;
+		            	setPage(TITLE);
 		            	initGame();
-		            	frameCount = 0;
 		            }
 	     	 	}
+		}
+		if(displayingPage != destPage){
+			if(frameCount>=TRANSITION_COUNT||destPage == INGAME){
+				_dprintf("hello\n");
+				displayingPage = destPage;
+				frameCount = 0;
+			}
 		}
 	}
 }
@@ -319,13 +363,11 @@ void  main( void ) {
 void sortPlayerByRank(){
 	int i,j;
 	for(i=0;i<playerNum;i++){
-		int max = Objects[i].moveCount;
-		for(j=i;j<playerNum;j++){
-			if(max < Objects[i].moveCount){
+		for(j=i+1;j<playerNum;j++){
+			if(Objects[i].moveCount < Objects[i].moveCount){
 				Object tmp = Objects[j];
 				Objects[j] = Objects[i];
 				Objects[i] = tmp;
-				max = Objects[j].moveCount;
 			}
 		}
 	}

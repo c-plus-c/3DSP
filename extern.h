@@ -79,4 +79,6 @@ extern void ReleaseCurrentBGMHandle();
 
 extern void StopCurrentBGM();
 
+extern void playBgm();
+
 #endif
