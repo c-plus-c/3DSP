@@ -22,7 +22,7 @@ char	zsortbuf[1024*10*50];
 
 char	vtxbuf[10240*2];
 
-u32 DrawBuffer[65536*32];
+u32 DrawBuffer[65536*64];
 
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
@@ -80,7 +80,6 @@ void drawObjects(){
 }
 
 void prerender(){
-	_dprintf("prerender\n");
 
 	if( DBuf.CmdCount > 0 ) {
 		agTransferDrawDMAAsync( &(DBuf) );
@@ -92,14 +91,13 @@ void prerender(){
 
 	AG3DGLUglinit();
 
-	agglClearColor( 0.015625f, 0.48046875f, 0.9921875f, 0.0f );
+	agglClearColor( 0.02f, 0.48f, 0.99f, 0.0f );
 	agglClearDepthf( 1.0f );
 	agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 }
 
 void postrender(){
 
-	_dprintf("postrender\n");
 	agglDepthMask( AGGL_TRUE );
 	agglFinishFrame();
 	agDrawEODL( &DBuf );
@@ -140,6 +138,7 @@ void initGame(){
 		playerJoined[i] = 0;
 		Objects[i].stat = INVISIBLE;
 	}
+	
 }
 
 void joinPlayer(int pid){
@@ -157,6 +156,7 @@ void  main( void ) {
 	u32 v;
 	int n;
 	u32 pad;
+	int err;
 
 	displayingPage = TITLE;
 	frameCount = 0;
@@ -326,9 +326,11 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	DrawPlane();
 	agglDisable( AGGL_LIGHTING );
 	DrawSky();
+	agglEnable( AGGL_LIGHTING );
+	DrawPlane();
+	
 }
 
 void AG3DGLUglinit( void ) {

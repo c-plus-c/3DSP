@@ -293,8 +293,8 @@ void player_move(Object *dp)
   
   dp->sideOut=(dp->translation.X*dp->translation.X+dp->translation.Z*dp->translation.Z>=ACTIVE_RADIUS*ACTIVE_RADIUS)?1:0;
   
-  if(dp->translation.Y<=0) dp->translation.Y=0;
-  else if(dp->translation.Y>=300) dp->translation.Y=300;
+  if(dp->translation.Y<=ACTIVE_LOWEST) dp->translation.Y=ACTIVE_LOWEST;
+  else if(dp->translation.Y>=ACTIVE_HIGHEST) dp->translation.Y=ACTIVE_HIGHEST;
 
   //カメラ位置の計算
   if(agGamePadGetMyID()==dp->pid){
@@ -380,7 +380,6 @@ void player_drw(Object *dp)
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE3MODEL ]), AG3D_ONBLEND_ONDEPTH);		
 		break;
-		
 		case 3:
 			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MOTION ]), (float)1, node );
 			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE4MODEL ]), AG3D_ONBLEND_ONDEPTH);		
@@ -388,4 +387,8 @@ void player_drw(Object *dp)
 	}
 	
 	agglPopMatrix();
+	
+    agglMatrixMode( AGGL_TEXTURE ) ;
+    agglLoadIdentity() ;
+    agglMatrixMode( AGGL_MODELVIEW );
 }
