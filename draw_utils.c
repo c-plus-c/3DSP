@@ -164,7 +164,7 @@ void drawRadar(Object *dp){
 	for(i=0;i<playerNum;i++){
 		Object *dp2 = &Objects[i];
 		int dx, dz;
-
+		if(dp2->stat==DEAD) continue;
 		drawTex(texs[dp2->pid],(int)(dp2->translation.X*100/ACTIVE_RADIUS+offsetX),(int)(dp2->translation.Z*100/ACTIVE_RADIUS+offsetY),
 			6,9,atan2f(dp2->direction.Z,dp2->direction.X)-PI/2);
 		drawNum((((int)(dp2->translation.X*100/ACTIVE_RADIUS)<<2) +(offsetX<<2)),
