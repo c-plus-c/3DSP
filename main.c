@@ -24,6 +24,8 @@ char	vtxbuf[10240*2];
 
 u32 DrawBuffer[65536*64];
 
+AGESoundManagerData SndMgr;
+
 const int MotionList[] = { AG_AG3D_AG3DEXPORTMOTION};
 
 static volatile u32 _SystemVSyncCount=0;
@@ -131,6 +133,7 @@ void initGame(){
 	int i;
 	_dprintf("initGame\n");
 
+	GenerateClouds();
 	initObjects();
 	playerNum = 0;
 
@@ -138,7 +141,14 @@ void initGame(){
 		playerJoined[i] = 0;
 		Objects[i].stat = INVISIBLE;
 	}
-	
+	ageSndMgrInit(&SndMgr, AGE_SOUND_ROM_OFFSET);
+
+	for (i = 0; i < AG_SND_MAX_MASTERVOLUME; i++) {
+		ageSndMgrSetMasterVolume(i, 255);
+	};
+
+	ageSndMgrSetChannelVolume(0, 128);
+	ageSndMgrSetChannelVolume(1, 128);
 }
 
 void joinPlayer(int pid){
@@ -167,7 +177,6 @@ void  main( void ) {
 	agpEnableCpuInterrupts();
 
 	aglAddInterruptCallback(AG_INT_TYPE_VBLA,ifnc_vsync);
-
 #ifdef DEBUG
 	_dprintf( ">> Dogfighters start.\n" );
 #endif
@@ -187,12 +196,8 @@ void  main( void ) {
 
 	while( 1 ) {
 		agGamePadSync();
+		ageSndMgrRun();
 		frameCount++;
-        // while( v >= _SystemVSyncCount ) {
-        //     AG_IDLE_PROC();
-        //     agGamePadSyncIdle();
-        //     _dprintf("%d",_SystemVSyncCount);
-        // }
 		if(displayingPage == TITLE){
 			prerender();
 			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
@@ -326,11 +331,11 @@ void draw( int frame , int motion_number  ) {
 		agglEnable( AGGL_LIGHT0 );
 };
 
-	agglDisable( AGGL_LIGHTING );
-	DrawSky();
 	agglEnable( AGGL_LIGHTING );
 	DrawPlane();
-	
+	agglDisable( AGGL_LIGHTING );
+	DrawSky();
+	DrawClouds();
 }
 
 void AG3DGLUglinit( void ) {

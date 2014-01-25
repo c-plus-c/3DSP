@@ -9,6 +9,7 @@
 #include <aggl.h>
 #include <ag3d.h>
 #include <ag3danime.h>
+#include <agesndmgr.h>
 
 #include "Object.h"
 
@@ -64,5 +65,7 @@ extern void hormingBulletInit(Object *dp,int pid);
 extern void fireballInit(Object *dp,int pid);
 
 extern Object* getPlayer(int pid);
+
+extern float frand(void);
 
 #endif

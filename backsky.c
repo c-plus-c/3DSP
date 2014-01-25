@@ -34,16 +34,13 @@ void DrawSky()
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_SKYBACKMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
 	agglEndZsort();
 	
-	
-				/* 半透明、Ｚバッファ非更新 */
-				/*
-	agglEnable( AGGL_BLEND );
-	agglDepthMask( AGGL_FALSE );
+	//agglEnable( AGGL_BLEND );
+	//agglDepthMask( AGGL_FALSE );
 
-	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_SKYBACKMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	agglEndZsort();
-	*/
+	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_SKYBACKMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
+	//agglEndZsort();
+	
 	
 	agglPopMatrix();
 }

@@ -8,13 +8,13 @@
 
 #define VELOCITY 0.6
 #define PITCHACCELBAND 0.001
-#define PITCHACCELBANDLIMIT 0.01
+#define PITCHACCELBANDLIMIT 0.03
 
-#define ROLLACCELBAND 0.002
-#define ROLLACCELBANDLIMIT 0.02
+#define ROLLACCELBAND 0.005
+#define ROLLACCELBANDLIMIT 0.05
 #define ROLLBACK 8
 
-#define YAWTIME 0.02
+#define YAWTIME 0.04
 
 #define ROLLLIMIT (PI/6)
 #define PITCHLIMIT (PI/5)
@@ -200,6 +200,7 @@ void ManualMove(Object *dp)
 			dp->fireballCount--;
 			dp->shotFrame = 0;
 		}
+		ageSndMgrPlayOneshot( AS_SND_SHOT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
   }
 
@@ -233,6 +234,7 @@ void ManualMove(Object *dp)
 				}
 			}
 		}
+		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
   }
 }
