@@ -8,6 +8,8 @@
 #define OBJECT_MAX 220
 #define PLAYER_MAX 3
 
+#define PLAYER_LIFE 10
+
 #define FIREBALL_OFFSET 30
 #define FIREBALL_PER_PLAYER 60
 #define HORMING_OFFSET 4
@@ -34,6 +36,11 @@ typedef enum Stat_t
 {
   VISIBLE, INVISIBLE, BLINK, DEAD
 }Stat;
+
+typedef enum Page_t
+  {
+  TITLE,INSTRUCTION,INGAME,SCORE,READY
+}Page;
 
 typedef struct ObjectLocal {
   int     pid;		//controller id

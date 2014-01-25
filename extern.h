@@ -41,6 +41,7 @@ extern char	zsortbuf[1024*10*50];
 /* 推奨サイズは agglGet**(AGGL_TEMPORARY_VERTEX_SIZE)で得られる値 * ag3dGetModelVtxs(man_model) */
 extern char	vtxbuf[10240*2];
 
+extern Page displayingPage;
 
 extern const int MotionList[1];
 

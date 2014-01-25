@@ -12,6 +12,8 @@
 #include "pad.h"
 #include "extern.h"
 
+#define READY_COUNT 120
+
 extern void DrawPlane();
 
 extern void DrawSky();
@@ -36,11 +38,6 @@ Object Objects[OBJECT_MAX];
 int playerNum;
 int playerJoined[PLAYER_MAX];
 
-typedef enum Page_t
-  {
-  TITLE,INSTRUCTION,INGAME,SCORE
-}Page;
-
 Page displayingPage;
 
 AGDrawBuffer DBuf;
@@ -58,7 +55,6 @@ static s32 ifnc_vsync(int type)
 
 void initObjects(){
 	int i;
-	_dprintf("initObjects\n");
 	for(i=0;i<OBJECT_MAX;i++){
 		Objects[i].stat = INVISIBLE;
 	}
@@ -125,13 +121,12 @@ void allocHormingBullets(int pid){
 }
 
 void startGame(){
-	displayingPage = INGAME;
+	displayingPage = READY;
 	frameCount = 0;
 }
 
 void initGame(){
 	int i;
-	_dprintf("initGame\n");
 
 	GenerateClouds();
 	initObjects();
@@ -205,8 +200,11 @@ void  main( void ) {
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
-		            	if(!playerJoined[n])
-		            		joinPlayer(n);
+		            	if(!playerJoined[n]){
+		            		for(i=0;i<3;i++){
+		            			joinPlayer(i);
+		            		}
+		            	}
 		            }else if(playerJoined[n]){
 		            	startGame();
 						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
@@ -239,6 +237,23 @@ void  main( void ) {
 		            	frameCount = 0;
 		            }
 	     	 	}
+		}else if(displayingPage == READY){
+			prerender();
+
+			
+			moveObjects();
+			draw( frameCount , MotionNumber );
+			drawObjects();
+			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
+			drawTex3(AG_CG_READY,452<<2,318<<2);
+
+			postrender();
+
+			if(frameCount > READY_COUNT){
+				displayingPage = INGAME;
+				frameCount = 0;
+			}
+
 		}else if(displayingPage == INGAME){
 
 			int c=0;
@@ -246,7 +261,6 @@ void  main( void ) {
 			/* gl”wŒi‰Šú‰» */
 
 			moveObjects();
-			// drawHud(&Objects[agGamePadGetMyID()], _SystemVSyncCount);cm
 			draw( frameCount , MotionNumber );
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
@@ -256,15 +270,12 @@ void  main( void ) {
 					c++;
 				}
 			}
-			/*
+
 			if(c==1){
 				displayingPage = SCORE;
 				frameCount = 0;
 			}
-			*/
 			
-
-
 
 			postrender();
 		}else if(displayingPage == SCORE){
@@ -275,20 +286,24 @@ void  main( void ) {
 
 			for(n=0;n<playerNum;n++){
 				int l;
-				if(frameCount > (n+1)*30){
+				if(frameCount > (n+1)*20){
 					l = 200;
 				}else{
-					int c = frameCount - n*30;
-					l = 200 + (30-c)*(30-c);
+					int c = frameCount - n*20;
+					l = 200 + (20-c)*(20-c);
 				}
 
 				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
 				drawTex3(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2);
 			}
 
+			if(frameCount > (playerNum+1)*20){
+				drawTex2(AG_CG_STARTAL,700<<2,700<<2,250<<2,32<<2);
+			}
+
 			postrender();
 
-			if(frameCount > 60)
+			if(frameCount > (playerNum+1)*20)
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START){
