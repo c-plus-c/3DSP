@@ -90,14 +90,16 @@ void hormingBullet_move(Object *dp){
 				Objects[i].moveCount = frameCount;
 				ageSndMgrPlayOneshot( AS_SND_DIE , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
-
+			Objects[dp->target_pid].targeted=0;
 			dp->stat = INVISIBLE;
 		}
 	}
 	
 	dp->moveCount++;
-	if(dp->moveCount > RANGE_COUNT)
+	if(dp->moveCount > RANGE_COUNT){
 		dp->stat = INVISIBLE;
+		Objects[dp->target_pid].targeted=0;
+	}
 }
 
 void hormingBulletInit(Object *dp,int pid){

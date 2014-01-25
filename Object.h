@@ -63,6 +63,8 @@ typedef struct ObjectLocal {
   
   int target_pid;
   int sideOut;
+  
+  int targeted;
 
   void  (*mov)( struct ObjectLocal *dp );
   void  (*drw)( struct ObjectLocal *dp );

@@ -169,6 +169,7 @@ extern "C" {
 #define AG_CG_CLOUD04	(139)
 #define AG_CG_CELL	(140)
 #define AG_CG_BOTTOMCLOUD	(141)
+#define AG_CG_HBW	(142)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -251,7 +252,7 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[142];
+extern const AGERomMember ageRM[143];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];

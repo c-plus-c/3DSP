@@ -221,32 +221,9 @@ void drawHud(Object *dp, u32 frameCount){
 		if(Objects[n].pid != dp->pid){
 			drawEnemyInfo(&Objects[n],i);
 			i++;
+		}else if(dp->targeted==1){
+			drawTex2(AG_CG_HBW, 10<<2,650<<2,264<<2,91<<2);
 		}
 	}
 	drawRadar(dp);
-
-
-
-	// drawRect(offsetX,offsetY,s,s);
-	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
-
-	// x = 0;
-	// x = drawStr(x,0, "Time Limit : ");
-	// x = drawNum(x,0, 100 - (frameCount/60));
-	// x = drawStr(x,0, " sec");
-
-	// x = 0;
-	// x = drawStr(x,100<<2, "Life : ");
-	// x = drawNum(x,100<<2, dp-> life);
-	
-	// for(i=0;i<PLAYER_NUMS;i++){
-	// 	Object *dp2 = &Objects[i];
-	// 	if(dp->pid != dp2->pid){
-	// 		int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
-	// 		int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
-
-	// 		drawRect(offsetX+dx,offsetY+dz,s,s);
-	// 		drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
-	// 	}
-	// }
 }

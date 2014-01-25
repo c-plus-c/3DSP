@@ -60,6 +60,8 @@ void playerInit(Object *dp,int pid)
 	dp->life = PLAYER_LIFE;
 	
 	dp->sideOut=0;
+	
+	dp->targeted=0;
 }
 
 
@@ -239,6 +241,8 @@ void ManualMove(Object *dp)
 					l2min=l;
 				}
 			}
+			
+			Objects[horming->target_pid].targeted=1;
 		}
 		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
