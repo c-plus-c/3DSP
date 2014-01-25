@@ -82,11 +82,13 @@ void hormingBullet_move(Object *dp){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
 				Objects[i].moveCount = 0;
+				ageSndMgrPlayOneshot( AS_SND_HIT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
 
 			if(Objects[i].life <= 0){
 				Objects[i].stat = DEAD;
 				Objects[i].moveCount = frameCount;
+				ageSndMgrPlayOneshot( AS_SND_DIE , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
 
 			dp->stat = INVISIBLE;
