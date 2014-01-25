@@ -22,7 +22,7 @@ extern "C" {
 #define AGE_ZMD	(1)
 #define AGE_AAC_ADDR	(13631488)
 #define AGE_AAC_SIZE	(13631488)
-#define AGE_SOUND_ROM_OFFSET	(0x800000)
+#define AGE_SOUND_ROM_OFFSET	(0x40000)
 
 /***************************************************************/
 /*                    Rom Member Symbol                        */
@@ -235,6 +235,20 @@ extern "C" {
 #define AG_AG3D_AG3DEXPORTPERSP	(0)
 
 /***************************************************************/
+/*                       Sound Member Symbol                   */
+/***************************************************************/
+#define AS_SND_INGAME	(0)
+#define AS_SND_RESULT	(1)
+#define AS_SND_TITLE	(2)
+#define AS_SND_DIE	(3)
+#define AS_SND_HSHOT	(4)
+#define AS_SND_SELECT	(5)
+#define AS_SND_SHOT	(6)
+#define AS_SND_WARNING	(7)
+#define AS_SND_HIT	(8)
+#define AS_SND_IN	(9)
+
+/***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
 extern const AGERomMember ageRM[142];
@@ -247,6 +261,7 @@ extern const AG3DTreeHeadChunk age3dTree[13];
 extern const AG3DMotionHeadChunk age3dMotion[13];
 extern const AG3DCameraHeadChunk age3dCamera[1];
 extern const s16 ageVGCnt;
+extern const AGESoundRomMember ageSRM[10];
 
 #ifdef __cplusplus
 }
