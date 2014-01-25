@@ -242,7 +242,7 @@ void ManualMove(Object *dp)
 				}
 			}
 			
-			Objects[horming->target_pid].targeted=1;
+			Objects[horming->target_pid].targeted=2;
 		}
 		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
@@ -307,9 +307,10 @@ void player_move(Object *dp)
   
   if(dp->translation.Y<=ACTIVE_LOWEST) dp->translation.Y=ACTIVE_LOWEST;
   else if(dp->translation.Y>=ACTIVE_HIGHEST) dp->translation.Y=ACTIVE_HIGHEST;
-
-  //カメラ位置の計算
+  
+  
   if(agGamePadGetMyID()==dp->pid){
+  //カメラ位置の計算
 	float fovy,f,cr,aspect,p1,p2;
 	AGGLfloat c[3];
 	AGGLfloat t[3];
@@ -349,6 +350,11 @@ void player_move(Object *dp)
 	agglLoadIdentity() ;
 	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
 	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
+	
+	if(dp->targeted==2){
+		ageSndMgrPlayOneshot( AS_SND_WARNING , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+		dp->targeted=1;
+	}
   }
 }
 
