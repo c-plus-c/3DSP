@@ -29,6 +29,8 @@
 
 #define ACTIVE_HIGHEST 200
 #define ACTIVE_LOWEST 20
+
+#define SOUND_VOLUME 128
 /* ノード情報バッファ */
 /* 必要サイズは ag3dGetNodeSize() * ag3dGetTreeNodes(man_tree) */
 extern AG3Danimenode node[512];
@@ -68,5 +70,13 @@ extern void fireballInit(Object *dp,int pid);
 extern Object* getPlayer(int pid);
 
 extern float frand(void);
+
+extern void SetCurrentBGMHandle(int rom_index,int loop);
+
+extern void PlayCurrentBGM();
+
+extern void ReleaseCurrentBGMHandle();
+
+extern void StopCurrentBGM();
 
 #endif

@@ -207,7 +207,7 @@ void  main( void ) {
 		            	}
 		            }else if(playerJoined[n]){
 		            	startGame();
-						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 
 		            if(playerJoined[n]){
@@ -217,7 +217,7 @@ void  main( void ) {
 		            if (pad & GAMEPAD_SELECT){
 		            	displayingPage = INSTRUCTION;
 		            	frameCount = 0;
-						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 	     	 	}
 	     	}
@@ -352,7 +352,7 @@ void draw( int frame , int motion_number  ) {
 	DrawPlane();
 	agglDisable( AGGL_LIGHTING );
 	DrawSky();
-	DrawClouds();
+	//DrawClouds();
 }
 
 void AG3DGLUglinit( void ) {

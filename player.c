@@ -200,13 +200,14 @@ void ManualMove(Object *dp)
 			dp->fireballCount--;
 			dp->shotFrame = 0;
 		}
-		ageSndMgrPlayOneshot( AS_SND_SHOT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+		ageSndMgrPlayOneshot( AS_SND_SHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
   }
 
   if((pad & GAMEPAD_B) != 0)
   {
   	Object* horming;
+	
   	if(dp->shotFrame < FIREBALL_INTERVAL){
   		dp->shotFrame++;
   	}else if(dp->fireballCount > HORMING_AMMO_COST){
@@ -222,19 +223,24 @@ void ManualMove(Object *dp)
 			dp->fireballCount-=HORMING_AMMO_COST;
 			dp->shotFrame = 0;
 			
-			l2min=100000.0;
+			l2min=100000000.0;
 			for(i=0;i<playerNum;i++)
 			{
-				float l;
-				if(Objects[i].pid==dp->pid) continue;
-				l=Objects[i].translation.X*Objects[i].translation.X+Objects[i].translation.Y*Objects[i].translation.Y+Objects[i].translation.Z*Objects[i].translation.Z;
+				float l,dx,dy,dz;
+				if(Objects[i].pid==dp->pid && Objects[i].stat == DEAD) continue;
+				
+				dx=Objects[i].translation.X-dp->translation.X;
+				dy=Objects[i].translation.Y-dp->translation.Y;
+				dz=Objects[i].translation.Z-dp->translation.Z;
+				
+				l=dx*dx+dy*dy+dz*dz;
 				if(l<l2min){
 					horming->target_pid=i;
 					l=l2min;
 				}
 			}
 		}
-		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , 128 , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
   }
 }
