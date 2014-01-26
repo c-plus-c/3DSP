@@ -250,7 +250,7 @@ void ManualMove(Object *dp)
 			for(i=0;i<playerNum;i++)
 			{
 				float l,dx,dy,dz;
-				if(Objects[i].pid==dp->pid || Objects[i].stat == DEAD) continue;
+				if(Objects[i].pid==dp->pid || Objects[i].stat == DEAD || Objects[i].stat == DYING) continue;
 				
 				dx=Objects[i].translation.X-dp->translation.X;
 				dy=Objects[i].translation.Y-dp->translation.Y;
