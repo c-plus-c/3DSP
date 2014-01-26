@@ -385,14 +385,16 @@ void player_drw(Object *dp)
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
 	ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE+dp->pid ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MOTION+dp->pid ]), (float)1, node );
-	//ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), AG3D_ONBLEND_ONDEPTH);
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), AG3D_ONBLEND_ONDEPTH);
 	
+	
+	/*
 	agglEnable( AGGL_BLEND );
 
 	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
 	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), node, AG3D_ONBLEND_ONDEPTH );
 	agglEndZsort();
-	
+	*/
 	
 
 	

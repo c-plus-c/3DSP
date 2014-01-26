@@ -18,12 +18,12 @@ void DrawPlane()
 	
 
 	
-	//agglEnable( AGGL_BLEND );
-	//agglDepthMask( AGGL_FALSE );
+	agglEnable( AGGL_BLEND );
+	agglDepthMask( AGGL_TRUE );
 
-	//agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
-	//ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_BOTTOMCLOUDMODEL ]), node, AG3D_ONBLEND_OFFDEPTH );
-	//agglEndZsort();
+	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_BOTTOMCLOUDMODEL ]), node, AG3D_ONBLEND_ONDEPTH );
+	agglEndZsort();
 	
 	agglPopMatrix();
 }
