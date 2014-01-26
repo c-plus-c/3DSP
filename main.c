@@ -396,9 +396,10 @@ void draw( int frame , int motion_number  ) {
 };
 
 	agglEnable( AGGL_LIGHTING );
+	DrawCubes();
 	DrawPlane();
 	agglDisable( AGGL_LIGHTING );
-	DrawSky();
+	//DrawSky();
 	//DrawClouds();
 }
 

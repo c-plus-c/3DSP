@@ -170,6 +170,7 @@ extern "C" {
 #define AG_CG_CELL	(140)
 #define AG_CG_BOTTOMCLOUD	(141)
 #define AG_CG_HBW	(142)
+#define AG_CG_PHM14_0185	(143)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -195,6 +196,7 @@ extern "C" {
 #define AG_AG3D_CLOUD4MODEL	(10)
 #define AG_AG3D_SKYBACKMODEL	(11)
 #define AG_AG3D_BOTTOMCLOUDMODEL	(12)
+#define AG_AG3D_CUBEMODEL	(13)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
@@ -212,6 +214,7 @@ extern "C" {
 #define AG_AG3D_CLOUD4TREE	(10)
 #define AG_AG3D_SKYBACKTREE	(11)
 #define AG_AG3D_BOTTOMCLOUDTREE	(12)
+#define AG_AG3D_CUBETREE	(13)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
@@ -229,6 +232,7 @@ extern "C" {
 #define AG_AG3D_CLOUD4MOTION	(10)
 #define AG_AG3D_SKYBACKMOTION	(11)
 #define AG_AG3D_BOTTOMCLOUDMOTION	(12)
+#define AG_AG3D_CUBEMOTION	(13)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
@@ -252,14 +256,14 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[143];
+extern const AGERomMember ageRM[144];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
-extern const AG3DModelHeadChunk age3dModel[13];
-extern const AG3DDCmdHeadChunk age3dDCmd[13];
-extern const AG3DTreeHeadChunk age3dTree[13];
-extern const AG3DMotionHeadChunk age3dMotion[13];
+extern const AG3DModelHeadChunk age3dModel[14];
+extern const AG3DDCmdHeadChunk age3dDCmd[14];
+extern const AG3DTreeHeadChunk age3dTree[14];
+extern const AG3DMotionHeadChunk age3dMotion[14];
 extern const AG3DCameraHeadChunk age3dCamera[1];
 extern const s16 ageVGCnt;
 extern const AGESoundRomMember ageSRM[10];

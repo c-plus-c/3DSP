@@ -148,6 +148,7 @@ const AGERomMember ageRM[] = {
 	{     127957,          0,  100,  100,   56,  8,        992, NULL },		/* AG_CG_CELL */
 	{     128902,          0, 1024, 1024,  512,  8,      45088, NULL },		/* AG_CG_BOTTOMCLOUD */
 	{     135133,          0,  330,  130,  168,  8,      11840, NULL },		/* AG_CG_HBW */
+	{     136613,          0,  427,  640,  216,  6,      15416, NULL },		/* AG_CG_PHM14_0185 */
 };
 
 /***************************************************************/
@@ -17247,6 +17248,66 @@ const AG3Dushort age3dVidx0012[] = {
 const AG3DShape age3dShape0012[] = {
 	{   0,   1, 0x0a, 2,   1,    0,     0,     0,     0,  0,    -1,    -1,     0,  1,  3 },
 };
+const AG3Duchar age3dStrip0013[] = {
+	  34,
+};
+const AG3DVtxFloat age3dVertex0013[] = {
+	 {    -1.002497f,    -1.002497f,     1.002497f }, {     1.002497f,    -1.002497f,     1.002497f },
+	 {    -1.002497f,     1.002497f,     1.002497f }, {     1.002497f,     1.002497f,     1.002497f },
+	 {    -1.002497f,     1.002497f,     1.002497f }, {     1.002497f,     1.002497f,     1.002497f },
+	 {    -1.002497f,     1.002497f,    -1.002497f }, {     1.002497f,     1.002497f,    -1.002497f },
+	 {    -1.002497f,     1.002497f,    -1.002497f }, {     1.002497f,     1.002497f,    -1.002497f },
+	 {    -1.002497f,    -1.002497f,    -1.002497f }, {     1.002497f,    -1.002497f,    -1.002497f },
+	 {    -1.002497f,    -1.002497f,    -1.002497f }, {     1.002497f,    -1.002497f,    -1.002497f },
+	 {    -1.002497f,    -1.002497f,     1.002497f }, {     1.002497f,    -1.002497f,     1.002497f },
+	 {     1.002497f,    -1.002497f,     1.002497f }, {     1.002497f,    -1.002497f,    -1.002497f },
+	 {     1.002497f,     1.002497f,     1.002497f }, {     1.002497f,     1.002497f,    -1.002497f },
+	 {    -1.002497f,    -1.002497f,    -1.002497f }, {    -1.002497f,    -1.002497f,     1.002497f },
+	 {    -1.002497f,     1.002497f,    -1.002497f }, {    -1.002497f,     1.002497f,     1.002497f },
+};
+const AG3DNrmFloat age3dNormal0013[] = {
+	 {     0.000000f,     0.000000f,     1.000000f }, {     0.000000f,     0.000000f,     1.000000f },
+	 {     0.000000f,     0.000000f,     1.000000f }, {     0.000000f,     0.000000f,     1.000000f },
+	 {     0.000000f,     1.000000f,     0.000000f }, {     0.000000f,     1.000000f,     0.000000f },
+	 {     0.000000f,     1.000000f,     0.000000f }, {     0.000000f,     1.000000f,     0.000000f },
+	 {     0.000000f,     0.000000f,    -1.000000f }, {     0.000000f,     0.000000f,    -1.000000f },
+	 {     0.000000f,     0.000000f,    -1.000000f }, {     0.000000f,     0.000000f,    -1.000000f },
+	 {     0.000000f,    -1.000000f,     0.000000f }, {     0.000000f,    -1.000000f,     0.000000f },
+	 {     0.000000f,    -1.000000f,     0.000000f }, {     0.000000f,    -1.000000f,     0.000000f },
+	 {     1.000000f,     0.000000f,     0.000000f }, {     1.000000f,     0.000000f,     0.000000f },
+	 {     1.000000f,     0.000000f,     0.000000f }, {     1.000000f,     0.000000f,     0.000000f },
+	 {    -1.000000f,     0.000000f,     0.000000f }, {    -1.000000f,     0.000000f,     0.000000f },
+	 {    -1.000000f,     0.000000f,     0.000000f }, {    -1.000000f,     0.000000f,     0.000000f },
+};
+const AG3DUvFloat age3dUV0013[] = {
+	 {  0.375000f,  1.000000f }, {  0.625000f,  1.000000f }, {  0.375000f,  0.750000f },
+	 {  0.625000f,  0.750000f }, {  0.375000f,  0.750000f }, {  0.625000f,  0.750000f },
+	 {  0.375000f,  0.500000f }, {  0.625000f,  0.500000f }, {  0.375000f,  0.500000f },
+	 {  0.625000f,  0.500000f }, {  0.375000f,  0.250000f }, {  0.625000f,  0.250000f },
+	 {  0.375000f,  0.250000f }, {  0.625000f,  0.250000f }, {  0.375000f,  0.000000f },
+	 {  0.625000f,  0.000000f }, {  0.625000f,  1.000000f }, {  0.875000f,  1.000000f },
+	 {  0.625000f,  0.750000f }, {  0.875000f,  0.750000f }, {  0.125000f,  1.000000f },
+	 {  0.375000f,  1.000000f }, {  0.125000f,  0.750000f }, {  0.375000f,  0.750000f },
+};
+const AG3DMatFloat age3dMat0013[] = {
+	{
+		{ 255, 255, 255, 255 },
+		{ 255, 255, 255, 255 },
+		{ 255, 255, 255, 255 },
+		{ 255, 255, 255, 255 },
+		0.000000f, AG_CG_PHM14_0185, 0x07
+	},
+};
+const AG3Dushort age3dVidx0013[] = {
+	      0,      1,      2,      3,      3,      4,      4,      5,
+	      6,      7,      7,      8,      8,      9,     10,     11,
+	     11,     12,     12,     13,     14,     15,     15,     16,
+	     16,     17,     18,     19,     19,     20,     20,     21,
+	     22,     23,
+};
+const AG3DShape age3dShape0013[] = {
+	{   0,   1, 0x0a, 2,   1,    0,     0,     0,     0,  0,    -1,    -1,     0,  1,  3 },
+};
 const AG3DModelHeadChunk age3dModel[] = {
 	{ 0, 1, 0,
 	 AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT,
@@ -17351,6 +17412,14 @@ const AG3DModelHeadChunk age3dModel[] = {
 	      1, { (void*)age3dMat0012 },       0, { NULL },
 	     0, { NULL },   237, { (void*)age3dVidx0012 },
 	     0, { NULL },     1, { (void*)age3dShape0012 }
+	},
+	{ 0, 1, 0,
+	 AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT,
+	      1, { (void*)age3dStrip0013 },     24, { (void*)age3dVertex0013 },
+	     24, { (void*)age3dNormal0013 },    24, { (void*)age3dUV0013 },
+	      1, { (void*)age3dMat0013 },       0, { NULL },
+	     0, { NULL },    34, { (void*)age3dVidx0013 },
+	     0, { NULL },     1, { (void*)age3dShape0013 }
 	},
 };
 /***************************************************************/
@@ -17474,6 +17543,12 @@ static const AG3DDCmdDraw age3dDCmdDraw0012[] = {
 static const AG3DDCmdShape age3dDCmdShape0012[] = {
 	{    1,    0, 1, 3, 1 },
 };
+static const AG3DDCmdDraw age3dDCmdDraw0013[] = {
+	{     138540,      88,    0,    0 },
+};
+static const AG3DDCmdShape age3dDCmdShape0013[] = {
+	{    1,    0, 1, 3, 1 },
+};
 const AG3DDCmdHeadChunk age3dDCmd[] = {
 	{ 0, 7, 0,    0, {NULL                        },    5, {(void *)age3dDCmdDraw0000},    5, {(void *)age3dDCmdShape0000} },
 	{ 0, 7, 0,    0, {NULL                        },    1, {(void *)age3dDCmdDraw0001},    1, {(void *)age3dDCmdShape0001} },
@@ -17488,6 +17563,7 @@ const AG3DDCmdHeadChunk age3dDCmd[] = {
 	{ 0, 7, 0,    0, {NULL                        },    1, {(void *)age3dDCmdDraw0010},    1, {(void *)age3dDCmdShape0010} },
 	{ 0, 7, 0,    0, {NULL                        },    1, {(void *)age3dDCmdDraw0011},    1, {(void *)age3dDCmdShape0011} },
 	{ 0, 7, 0,    0, {NULL                        },    1, {(void *)age3dDCmdDraw0012},    1, {(void *)age3dDCmdShape0012} },
+	{ 0, 7, 0,    0, {NULL                        },    1, {(void *)age3dDCmdDraw0013},    1, {(void *)age3dDCmdShape0013} },
 };
 /***************************************************************/
 /*                       AG3D Tree Lists                       */
@@ -17556,6 +17632,13 @@ const AG3DNode age3dTreeNode0012[] = {
 	{ 0x0001, 0xffff, 0xffffffff, 0xffffffff, 0xffffffff, 1 },
 	{ 0xffff, 0xffff, 0xffffffff, 0xffffffff, 0xffffffff, 1 },
 };
+const AG3DMovFloat age3dTreeTrans0013[] = {
+	{     0.008842f,     1.002497f,    -0.000295f }, 
+};
+const AG3DNode age3dTreeNode0013[] = {
+	{ 0x0001, 0xffff, 0xffffffff, 0xffffffff, 0xffffffff, 1 },
+	{ 0xffff, 0xffff, 0xffffffff, 0xffffffff, 0x00000000, 1 },
+};
 const AG3DTreeHeadChunk age3dTree[] = {
 	{ 0, 2, 0, 1,
 	 AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT,
@@ -17609,6 +17692,10 @@ const AG3DTreeHeadChunk age3dTree[] = {
 	 AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT,
 	     0, NULL,     0, NULL,
 	     0, NULL,     2, (void*)age3dTreeNode0012 },
+	{ 0, 2, 0, 1,
+	 AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT, AG3D_VALUETYPE_FLOAT,
+	     0, NULL,     0, NULL,
+	     1, (void*)age3dTreeTrans0013,     2, (void*)age3dTreeNode0013 },
 };
 /***************************************************************/
 /*                      AG3D Motion Lists                      */
@@ -17740,6 +17827,23 @@ const AG3DMotionNode age3dMotionNode0012[] = {
 	{ {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
 	  {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
 	  {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff } },
+};
+const AG3DMotionMovFloat age3dMotionTrans0_0013[] = {
+	 {     0.008842f },
+};
+const AG3DMotionMovFloat age3dMotionTrans1_0013[] = {
+	 {     1.002497f },
+};
+const AG3DMotionMovFloat age3dMotionTrans2_0013[] = {
+	 {    -0.000295f },
+};
+const AG3DMotionNode age3dMotionNode0013[] = {
+	{ {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
+	  {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
+	  {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff } },
+	{ {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
+	  {      0,      0,      0 }, { 0xffffffff, 0xffffffff, 0xffffffff },
+	  {      1,      1,      1 }, { 0x00000000, 0x00000000, 0x00000000 } },
 };
 const AG3DMotionHeadChunk age3dMotion[] = {
 	{ 0, 3, 0, 1, 1,
@@ -17988,6 +18092,25 @@ const AG3DMotionHeadChunk age3dMotion[] = {
 	   { NULL },
 	   { NULL } },
 	      2, { (void*)age3dMotionNode0012 }
+	},
+	{ 0, 3, 0, 1, 1,
+	 AG3D_MFCTYPE_SCL_ALLFRAME_FLOAT,
+	 AG3D_MFCTYPE_ROT_ALLFRAME_FLOAT,
+	 AG3D_MFCTYPE_MOV_ALLFRAME_FLOAT,
+	 24.000000f,
+	 {      0,      0,      0 },
+	 { { NULL },
+	   { NULL },
+	   { NULL } },
+	 {      0,      0,      0 },
+	 { { NULL },
+	   { NULL },
+	   { NULL } },
+	 {      1,      1,      1 },
+	 { { (void*)age3dMotionTrans0_0013 },
+	   { (void*)age3dMotionTrans1_0013 },
+	   { (void*)age3dMotionTrans2_0013 } },
+	      2, { (void*)age3dMotionNode0013 }
 	},
 };
 /***************************************************************/

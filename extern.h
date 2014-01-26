@@ -81,4 +81,6 @@ extern void StopCurrentBGM();
 
 extern void playBgm();
 
+extern void DrawCubes();
+
 #endif
