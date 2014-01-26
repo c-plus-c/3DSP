@@ -112,10 +112,8 @@ void prerenderWithoutColoring(){
 void postrender(){
 	if(frameCount <= TRANSITION_COUNT){
 		if(displayingPage != destPage){
-			_dprintf("%d %d\n",frameCount,(int)(((float)255/TRANSITION_COUNT)*(frameCount)));
 			drawRect2(0,0,1024,768,(int)(((float)255/TRANSITION_COUNT)*(frameCount)),1,1,1);
 		}else{
-			_dprintf("%d - %d\n",frameCount,(int)(((float)255/TRANSITION_COUNT)*(TRANSITION_COUNT - frameCount)));
 			drawRect2(0,0,1024,768,(int)(((float)255/TRANSITION_COUNT)*(TRANSITION_COUNT - frameCount)),1,1,1);
 		}
 	}
@@ -170,7 +168,6 @@ void joinPlayer(int pid){
 }
 
 void setPage(Page page){
-	_dprintf("setpage\n");
 	if(displayingPage != destPage)
 		return;
 	destPage = page;
@@ -185,6 +182,37 @@ void setPage(Page page){
 	else if(page == READY){
 		StopCurrentBGM();
 	}
+}
+
+void setCameraLongShot(){
+	float fovy,f,cr,aspect,p1,p2;
+	AGGLfloat c[3];
+	AGGLfloat t[3];
+	AGGLfloat u[3];
+    
+	c[0]=ACTIVE_RADIUS*2;
+	c[1]=400;
+	c[2]=0;
+  
+	t[0]=-ACTIVE_RADIUS;
+	t[1]=20;
+	t[2]=0;
+  
+	u[0]=-1;
+	u[1]=1;
+	u[2]=0;
+	
+	
+	f=myabs(cr)*25.0/PI;
+	fovy=25.0+f;
+	aspect = ((AGGLfloat)FB_WIDTH) / ((AGGLfloat)FB_HEIGHT);
+	agglMatrixMode( AGGL_PROJECTION );
+	agglLoadIdentity();
+	agglPerspectivef(fovy , aspect, 1, 20000 ); 
+	agglMatrixMode( AGGL_MODELVIEW );
+
+	agglLoadIdentity() ;
+	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
 }
 
 
@@ -308,6 +336,10 @@ void  main( void ) {
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 
+			if(getPlayer((int)agGamePadGetMyID())->stat == DEAD){
+				setCameraLongShot();
+			}
+
 
 			for(n=0;n<playerNum;n++){
 				if(Objects[n].stat != DEAD){
@@ -357,7 +389,6 @@ void  main( void ) {
 		}
 		if(displayingPage != destPage){
 			if(frameCount>=TRANSITION_COUNT||destPage == INGAME){
-				_dprintf("hello\n");
 				displayingPage = destPage;
 				frameCount = 0;
 			}
@@ -398,7 +429,7 @@ void draw( int frame , int motion_number  ) {
 	agglEnable( AGGL_LIGHTING );
 	DrawPlane();
 	agglDisable( AGGL_LIGHTING );
-	DrawSky();
+	// DrawSky();
 	//DrawClouds();
 }
 
