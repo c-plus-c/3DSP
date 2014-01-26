@@ -359,18 +359,18 @@ void  main( void ) {
 
 			for(n=0;n<playerNum;n++){
 				int l;
-				if(frameCount > (n+1)*20){
+				if(frameCount > (n+1)*10){
 					l = 200;
 				}else{
-					int c = frameCount - n*20;
-					l = 200 + (20-c)*(20-c);
+					int c = frameCount - n*10;
+					l = 200 + (10-c)*(10-c)*(10-c);
 				}
 				_dprintf("%d\n",Objects[n].deadFrame);
-				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
-				drawTex3(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2);
+				drawTex2(AG_CG_1ST+n,100<<2,(100+100*n)<<2,105<<2,45<<2);
+				drawTex2(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2,150<<2,45<<2);
 			}
 
-			if(frameCount > (playerNum+1)*20){
+			if(frameCount > (playerNum+1)*10){
 				drawTex2(AG_CG_STARTAL,700<<2,700<<2,250<<2,32<<2);
 			}
 
