@@ -158,14 +158,6 @@ void initGame(){
 		playerJoined[i] = 0;
 		Objects[i].stat = INVISIBLE;
 	}
-	ageSndMgrInit(&SndMgr, AGE_SOUND_ROM_OFFSET);
-
-	for (i = 0; i < AG_SND_MAX_MASTERVOLUME; i++) {
-		ageSndMgrSetMasterVolume(i, 255);
-	};
-
-	ageSndMgrSetChannelVolume(0, 128);
-	ageSndMgrSetChannelVolume(1, 128);
 }
 
 void joinPlayer(int pid){
@@ -186,12 +178,13 @@ void setPage(Page page){
 
 	if(page == INGAME)
 		playBgm(AS_SND_INGAME);
-	else if(page == TITLE)
+	else if(page == TITLE && displayingPage!=INSTRUCTION)
 		playBgm(AS_SND_TITLE);
 	else if(page == SCORE)
 		playBgm(AS_SND_RESULT);
-	else if(page == READY)
+	else if(page == READY){
 		StopCurrentBGM();
+	}
 }
 
 
@@ -225,6 +218,15 @@ void  main( void ) {
 	v = _SystemVSyncCount;
 
 	
+	ageSndMgrInit(&SndMgr, AGE_SOUND_ROM_OFFSET);
+
+	for (i = 0; i < AG_SND_MAX_MASTERVOLUME; i++) {
+		ageSndMgrSetMasterVolume(i, 255);
+	};
+
+	ageSndMgrSetChannelVolume(0, 128);
+	ageSndMgrSetChannelVolume(1, 128);
+	
 	initGame();
 
 	setPage(TITLE);
@@ -256,7 +258,7 @@ void  main( void ) {
 
 		            if (pad & GAMEPAD_SELECT){
 		            	setPage(INSTRUCTION);
-						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+						ageSndMgrPlayOneshot( AS_SND_IN , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 	     	 	}
 	     	}
@@ -271,6 +273,7 @@ void  main( void ) {
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_SELECT){
+						ageSndMgrPlayOneshot( AS_SND_IN , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            	setPage(TITLE);
 		            	initGame();
 		            }

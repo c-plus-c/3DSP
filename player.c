@@ -373,7 +373,6 @@ void player_move(Object *dp)
 */
 void player_drw(Object *dp)
 {
-
 	int err;
 
 	if(dp->stat == BLINK)
@@ -395,28 +394,19 @@ void player_drw(Object *dp)
 		/* ツリー→ワールド座標変換 */
 	ag3dSetRoot( 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, node );
 
-	switch(dp->pid){
-		case 0:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MOTION ]), (float)1, node );
-			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL ]), AG3D_ONBLEND_ONDEPTH);
-		break;
-		case 1:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE2TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE2MOTION ]), (float)1, node );
-			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE2MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE2MODEL ]), AG3D_ONBLEND_ONDEPTH);		
-		break;
-		case 2:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE3TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE3MOTION ]), (float)1, node );
-			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE3MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE3MODEL ]), AG3D_ONBLEND_ONDEPTH);		
-		break;
-		case 3:
-			ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE4TREE ]), &(age3dMotion[ AG_AG3D_NEWPLANE4MOTION ]), (float)1, node );
-			ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE4MODEL ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE4MODEL ]), AG3D_ONBLEND_ONDEPTH);		
-		break;
-	}
+	ag3dCalcTree( &(age3dTree[ AG_AG3D_NEWPLANE1TREE+dp->pid ]), &(age3dMotion[ AG_AG3D_NEWPLANE1MOTION+dp->pid ]), (float)1, node );
+	ag3dDrawAnimenodeDCmd( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), node, &(age3dDCmd[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), AG3D_ONBLEND_ONDEPTH);
+	
+	
+	/*
+	agglEnable( AGGL_BLEND );
+
+	agglBeginZsort( AGGL_FAR_FIRST, sizeof(zsortbuf), zsortbuf );
+	ag3dDrawAnimenode( &(age3dModel[ AG_AG3D_NEWPLANE1MODEL+dp->pid ]), node, AG3D_ONBLEND_ONDEPTH );
+	agglEndZsort();
+	*/
+	
+
 	
 	agglPopMatrix();
-	
-    agglMatrixMode( AGGL_TEXTURE ) ;
-    agglLoadIdentity() ;
-    agglMatrixMode( AGGL_MODELVIEW );
 }

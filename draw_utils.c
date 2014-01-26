@@ -223,6 +223,8 @@ void drawHud(Object *dp, u32 frameCount){
 		if(Objects[n].pid != dp->pid){
 			drawEnemyInfo(&Objects[n],i);
 			i++;
+		}else if(dp->targeted>0){
+			drawTex2(AG_CG_HBW, 10<<2, 650<<2, 264<<2, 91<<2);
 		}
 	}
 	drawRadar(dp);
