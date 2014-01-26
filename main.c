@@ -269,9 +269,9 @@ void  main( void ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
 		            	if(!playerJoined[n]){
-		            		// joinPlayer(n);
-		            		for(i=0;i<3;i++)
-		            			joinPlayer(i);
+		            		joinPlayer(n);
+		            		// for(i=0;i<3;i++)
+		            		// 	joinPlayer(i);
 		            	}
 		            }else if(playerJoined[n]){
 		            	setPage(READY);

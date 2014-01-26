@@ -181,11 +181,11 @@ void ManualMove(Object *dp)
   }
   
   //ブレーキ
-  if((pad & GAMEPAD_LL) != 0)
+  if((pad & GAMEPAD_RR) != 0)
   {
 	dp->brakeVariable+=BRAKEINCREMENTATION;
 	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
-  }else if((pad & GAMEPAD_RR) != 0){
+  }else if((pad & GAMEPAD_LL) != 0){
   	if(dp->ammo > BOOST_AMMO_COST){	
 		dp->brakeVariable+=BOOSTINCREMENTATION;
 		dp->brakeVariable=max(BOOSTMIN,dp->brakeVariable);
