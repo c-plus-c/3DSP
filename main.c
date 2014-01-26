@@ -365,7 +365,7 @@ void  main( void ) {
 					int c = frameCount - n*20;
 					l = 200 + (20-c)*(20-c);
 				}
-
+				_dprintf("%d\n",Objects[n].deadFrame);
 				drawTex3(AG_CG_1ST+n,100<<2,(100+100*n)<<2);
 				drawTex3(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2);
 			}
@@ -397,8 +397,15 @@ void  main( void ) {
 void sortPlayerByRank(){
 	int i,j;
 	for(i=0;i<playerNum;i++){
+		if(Objects[i].stat != DEAD){
+				Object tmp = Objects[0];
+				Objects[0] = Objects[i];
+				Objects[i] = tmp;
+		}
+	}
+	for(i=1;i<playerNum;i++){
 		for(j=i+1;j<playerNum;j++){
-			if(Objects[i].moveCount < Objects[i].moveCount){
+			if(Objects[i].deadFrame < Objects[j].deadFrame){
 				Object tmp = Objects[j];
 				Objects[j] = Objects[i];
 				Objects[i] = tmp;

@@ -25,7 +25,7 @@
 
 #define BOOSTINCREMENTATION -0.1
 #define BOOSTMAX 1
-#define BOOSTMIN 0.4
+#define BOOSTMIN 0.5
 
 #define BOOST_AMMO_COST 0.5
 
@@ -42,9 +42,9 @@
 
 void playerInit(Object *dp,int pid)
 {
-	dp->translation.X=100*(pid/2);
+	dp->translation.X=100*(pid/2)-50;
 	dp->translation.Y=100;
-	dp->translation.Z=100*(pid%2);
+	dp->translation.Z=100*(pid%2)-50;
 	
 	dp->direction.X=0;
 	dp->direction.Y=0;
@@ -180,7 +180,6 @@ void ManualMove(Object *dp)
 	dp->pitchAccelerator=0;
   }
   
-  _dprintf("%d %f\n",pad,dp->brakeVariable);
   //ブレーキ
   if((pad & GAMEPAD_LL) != 0)
   {

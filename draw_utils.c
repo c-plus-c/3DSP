@@ -233,6 +233,10 @@ void drawHud(Object *dp, u32 frameCount){
 	}
 	drawRadar(dp);
 
+	if(dp->sideOut == 1){
+		drawTex2(AG_CG_HBW, 10<<2, 650<<2, 264<<2, 91<<2);
+	}
+
 
 
 	// drawRect(offsetX,offsetY,s,s);

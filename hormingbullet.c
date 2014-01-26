@@ -2,9 +2,9 @@
 #include "Object.h"
 #include "extern.h"
 
-#define BULLET_VELOCITY 1.5
+#define BULLET_VELOCITY 2.5
 
-#define RANGE_COUNT 60
+#define RANGE_COUNT 120
 
 
 
