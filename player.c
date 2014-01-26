@@ -253,6 +253,12 @@ void AutoMove(Object *dp)
 {
 	if(dp->sideOut==1) dp->yaw+=0.02;
 }
+
+void DyingMove(Object *dp)
+{
+	
+}
+
 /* TODO:今西
 パッド処理
 */
@@ -266,6 +272,10 @@ void player_move(Object *dp)
   if(dp->sideOut==1)
   {
 	AutoMove(dp);
+  }
+  else if(dp->stat == DYING)
+  {
+  	DyingMove(dp);
   }
   else if(displayingPage != READY)
   {

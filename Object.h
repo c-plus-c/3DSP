@@ -5,12 +5,12 @@
 
 #define PI (3.1415)
 
-#define OBJECT_MAX 220
+#define OBJECT_MAX 200
 #define PLAYER_MAX 3
 
 #define PLAYER_LIFE 10
 
-#define FIREBALL_OFFSET 30
+#define FIREBALL_OFFSET 20
 #define FIREBALL_PER_PLAYER 60
 #define HORMING_OFFSET 4
 #define HORMING_PER_PLAYER 5
@@ -34,12 +34,12 @@ typedef struct Vector2f_t
 
 typedef enum Stat_t
 {
-  VISIBLE, INVISIBLE, BLINK, DEAD
+  VISIBLE, INVISIBLE, BLINK, DEAD, DYING
 }Stat;
 
 typedef enum Page_t
   {
-  TITLE,INSTRUCTION,INGAME,SCORE,READY, TRANSITION
+  TITLE,INSTRUCTION,INGAME,SCORE,READY
 }Page;
 
 typedef struct ObjectLocal {
@@ -49,6 +49,7 @@ typedef struct ObjectLocal {
   int     moveCount;
   int     fireballCount;
   int     shotFrame;
+  int     deadFrame;
 
   Vec3f	direction;
   Vec3f	translation;

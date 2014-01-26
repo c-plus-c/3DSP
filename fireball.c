@@ -80,7 +80,7 @@ void fireball_move(Object *dp){
 
 	for(i =0;i<playerNum;i++){
 		if(collision(dp, &Objects[i])){
-			if(Objects[i].stat != BLINK){
+			if(Objects[i].stat != BLINK&&Objects[i].stat != DYING){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
 				Objects[i].moveCount = 0;
@@ -89,8 +89,10 @@ void fireball_move(Object *dp){
 
 			
 			if(Objects[i].life <= 0){
-				Objects[i].stat = DEAD;
-				Objects[i].moveCount = frameCount;
+				Objects[i].stat = DYING;
+				Objects[i].deadFrame = frameCount;
+				Objects[i].moveCount = 0;
+				
 				ageSndMgrPlayOneshot( AS_SND_DIE , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
 

@@ -241,7 +241,9 @@ void  main( void ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
 		            	if(!playerJoined[n]){
-		            		joinPlayer(n);
+		            		// joinPlayer(n);
+		            		for(i=0;i<3;i++)
+		            			joinPlayer(i);
 		            	}
 		            }else if(playerJoined[n]){
 		            	setPage(READY);
@@ -282,9 +284,9 @@ void  main( void ) {
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 			if(frameCount > READY_COUNT/2)
-				drawTex3(AG_CG_START,430<<2,318<<2);
+				drawTex2(AG_CG_START,262<<2,168<<2,500<<2,400<<2);
 			else
-				drawTex3(AG_CG_READY,452<<2,318<<2);
+				drawTex2(AG_CG_READY,162<<2,168<<2,700<<2,400<<2);
 
 			postrender();
 
