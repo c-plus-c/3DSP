@@ -30,7 +30,7 @@
 #define AMMO_LIMIT 20
 #define FIREBALL_RELOAD_INTERVAL 6
 
-#define HORMING_AMMO_COST 10
+#define HORMING_AMMO_COST 15
 
 
 void playerInit(Object *dp,int pid)
@@ -264,9 +264,9 @@ void AutoMove(Object *dp)
 void DyingMove(Object *dp)
 {
 	if(dp->pitch > -PI/3){
-		dp->pitch -= PITCHACCELBANDLIMIT;
+		dp->pitch -= PITCHACCELBANDLIMIT/2;
 	}else{
-		dp->pitch += PITCHACCELBANDLIMIT;
+		dp->pitch += PITCHACCELBANDLIMIT/2;
 	}
 	dp->yaw += frand()/4-0.125;
 }
