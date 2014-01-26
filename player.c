@@ -6,7 +6,7 @@
 #include "pad.h"
 #include "extern.h"
 
-#define VELOCITY 0.6
+#define VELOCITY 1
 #define PITCHACCELBAND 0.001
 #define PITCHACCELBANDLIMIT 0.03
 
@@ -24,6 +24,8 @@
 #define BRAKEMAX 2.4
 
 #define BLINK_COUNT 60
+#define DYING_COUNT 120
+
 #define FIREBALL_INTERVAL 1
 #define AMMO_LIMIT 20
 #define FIREBALL_RELOAD_INTERVAL 6
@@ -206,6 +208,11 @@ void ManualMove(Object *dp)
 	}
   }
 
+//TODO delete
+  if((pad & GAMEPAD_Y) != 0){
+  	dp->stat = DYING;
+  }
+
   if((pad & GAMEPAD_B) != 0)
   {
   	Object* horming;
@@ -256,7 +263,12 @@ void AutoMove(Object *dp)
 
 void DyingMove(Object *dp)
 {
-	
+	if(dp->pitch > -PI/3){
+		dp->pitch -= PITCHACCELBANDLIMIT;
+	}else{
+		dp->pitch += PITCHACCELBANDLIMIT;
+	}
+	dp->yaw += frand()/4-0.125;
 }
 
 /* TODO:今西
@@ -287,6 +299,13 @@ void player_move(Object *dp)
   	if(dp->moveCount > BLINK_COUNT)
   		dp->stat = VISIBLE;
   }
+
+  if(dp->stat == DYING){
+  	dp->moveCount++;
+  	if(dp->moveCount > DYING_COUNT)
+  		dp->stat = DEAD;
+  }
+
 
   //ピッチロールヨー角から自機の方向ベクトルを算出
   ch=cosf(dp->yaw);
@@ -375,7 +394,7 @@ void player_drw(Object *dp)
 {
 	int err;
 
-	if(dp->stat == BLINK)
+	if(dp->stat == BLINK || dp->stat == DYING)
 		if(dp->moveCount%3 == 0)
 			return;
 
