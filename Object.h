@@ -47,7 +47,7 @@ typedef struct ObjectLocal {
 
   int     life;
   int     moveCount;
-  int     fireballCount;
+  float     ammo;
   int     shotFrame;
   int     deadFrame;
 

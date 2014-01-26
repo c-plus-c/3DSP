@@ -23,6 +23,12 @@
 #define BRAKEMIN 1
 #define BRAKEMAX 2.4
 
+#define BOOSTINCREMENTATION -0.1
+#define BOOSTMAX 1
+#define BOOSTMIN 0.4
+
+#define BOOST_AMMO_COST 0.5
+
 #define BLINK_COUNT 60
 #define DYING_COUNT 120
 
@@ -30,7 +36,8 @@
 #define AMMO_LIMIT 20
 #define FIREBALL_RELOAD_INTERVAL 6
 
-#define HORMING_AMMO_COST 15
+#define HORMING_AMMO_COST 10
+#define FIREBALL_AMMO_COST 1
 
 
 void playerInit(Object *dp,int pid)
@@ -53,7 +60,7 @@ void playerInit(Object *dp,int pid)
 	dp->pid = pid;
 
 	dp->stat=VISIBLE;
-	dp->fireballCount = AMMO_LIMIT;
+	dp->ammo = AMMO_LIMIT;
 	
 	dp->pitchAccelerator=0;
 	dp->rollAccelerator=0;
@@ -173,19 +180,27 @@ void ManualMove(Object *dp)
 	dp->pitchAccelerator=0;
   }
   
+  _dprintf("%d %f\n",pad,dp->brakeVariable);
   //ブレーキ
   if((pad & GAMEPAD_LL) != 0)
   {
 	dp->brakeVariable+=BRAKEINCREMENTATION;
 	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
+  }else if((pad & GAMEPAD_RR) != 0){
+  	if(dp->ammo > BOOST_AMMO_COST){	
+		dp->brakeVariable+=BOOSTINCREMENTATION;
+		dp->brakeVariable=max(BOOSTMIN,dp->brakeVariable);
+		dp->ammo -= BOOST_AMMO_COST;
+	}
   }else{
 	dp->brakeVariable-=BRAKEINCREMENTATION;
 	dp->brakeVariable=max(BRAKEMIN,dp->brakeVariable);
   }
 
+
   if(frameCount%FIREBALL_RELOAD_INTERVAL == 0){
-  	if(dp->fireballCount < AMMO_LIMIT)
-  		dp->fireballCount++;
+  	if(dp->ammo < AMMO_LIMIT)
+  		dp->ammo += 1;
   }
 
   if((pad & GAMEPAD_A) != 0)
@@ -193,7 +208,7 @@ void ManualMove(Object *dp)
   	Object* fireball;
   	if(dp->shotFrame < FIREBALL_INTERVAL){
   		dp->shotFrame++;
-  	}else if(dp->fireballCount > 0){
+  	}else if(dp->ammo > 0){
 		fireball = getFreeFireball(dp->pid);
 		if(fireball != NULL){
 			fireball->stat = VISIBLE;
@@ -201,17 +216,17 @@ void ManualMove(Object *dp)
 			fireball->translation = dp->translation;
 			fireball->moveCount = 0;
 
-			dp->fireballCount--;
+			dp->ammo -= FIREBALL_AMMO_COST;
 			dp->shotFrame = 0;
 		}
 		ageSndMgrPlayOneshot( AS_SND_SHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
   }
 
-//TODO delete
-  if((pad & GAMEPAD_Y) != 0){
-  	dp->stat = DYING;
-  }
+// //TODO delete
+//   if((pad & GAMEPAD_Y) != 0){
+//   	dp->stat = DYING;
+//   }
 
   if((pad & GAMEPAD_B) != 0)
   {
@@ -219,7 +234,7 @@ void ManualMove(Object *dp)
 	
   	if(dp->shotFrame < FIREBALL_INTERVAL){
   		dp->shotFrame++;
-  	}else if(dp->fireballCount > HORMING_AMMO_COST){
+  	}else if(dp->ammo > HORMING_AMMO_COST){
 		horming = getFreeHormingBullet(dp->pid);
 		if(horming != NULL){
 			int i;
@@ -229,7 +244,7 @@ void ManualMove(Object *dp)
 			horming->translation=dp->translation;
 			horming->moveCount = 0;
 
-			dp->fireballCount-=HORMING_AMMO_COST;
+			dp->ammo-=HORMING_AMMO_COST;
 			dp->shotFrame = 0;
 			
 			l2min=100000000.0;

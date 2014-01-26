@@ -178,7 +178,7 @@ void drawRadar(Object *dp){
 	}
 }
 
-void drawBar(int x,int y,int w,int h,int amount, int max, int colorSet){
+void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 	int r,g,b,r2,g2,b2;
 
 	if(colorSet == 0){
@@ -208,13 +208,13 @@ void drawSelfInfo(Object *dp){
 
 	drawTex3(AG_CG_NO1+dp->pid,20,60);
 	drawBar(80,17,500,10,dp->life,PLAYER_LIFE,0);
-	drawBar(80,26,300,10,dp->fireballCount,AMMO_LIMIT,1);
+	drawBar(80,26,300,10,dp->ammo,AMMO_LIMIT,1);
 }
 
 void drawEnemyInfo(Object *dp, int idx){
 	drawTex4(AG_CG_NO1+dp->pid,30,50 + 290*idx,0.5);
 	drawBar(80,15+70*idx,150,6,dp->life,PLAYER_LIFE,0);
-	drawBar(80,20+70*idx,70,6,dp->fireballCount,AMMO_LIMIT,1);
+	drawBar(80,20+70*idx,70,6,dp->ammo,AMMO_LIMIT,1);
 }
 
 void drawHud(Object *dp, u32 frameCount){
