@@ -158,14 +158,6 @@ void initGame(){
 		playerJoined[i] = 0;
 		Objects[i].stat = INVISIBLE;
 	}
-	ageSndMgrInit(&SndMgr, AGE_SOUND_ROM_OFFSET);
-
-	for (i = 0; i < AG_SND_MAX_MASTERVOLUME; i++) {
-		ageSndMgrSetMasterVolume(i, 255);
-	};
-
-	ageSndMgrSetChannelVolume(0, 128);
-	ageSndMgrSetChannelVolume(1, 128);
 }
 
 void joinPlayer(int pid){
@@ -190,8 +182,9 @@ void setPage(Page page){
 		playBgm(AS_SND_TITLE);
 	else if(page == SCORE)
 		playBgm(AS_SND_RESULT);
-	else if(page == READY)
+	else if(page == READY){
 		StopCurrentBGM();
+	}
 }
 
 
@@ -224,6 +217,15 @@ void  main( void ) {
 	agGamePadSyncInit( &_SystemVSyncCount, 30);
 	v = _SystemVSyncCount;
 
+	
+	ageSndMgrInit(&SndMgr, AGE_SOUND_ROM_OFFSET);
+
+	for (i = 0; i < AG_SND_MAX_MASTERVOLUME; i++) {
+		ageSndMgrSetMasterVolume(i, 255);
+	};
+
+	ageSndMgrSetChannelVolume(0, 128);
+	ageSndMgrSetChannelVolume(1, 128);
 	
 	initGame();
 
