@@ -362,9 +362,9 @@ void player_move(Object *dp)
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
 	nz=(sb*sh+ch*sp*cb)*ty;
-	c[0]=dp->translation.X-15*dp->direction.X+2.5*nx;
-	c[1]=dp->translation.Y-15*dp->direction.Y+2.5*ny;
-	c[2]=dp->translation.Z-15*dp->direction.Z+2.5*nz;
+	c[0]=dp->translation.X-20*dp->direction.X+2.5*nx;
+	c[1]=dp->translation.Y-20*dp->direction.Y+2.5*ny;
+	c[2]=dp->translation.Z-20*dp->direction.Z+2.5*nz;
   
 	t[0]=dp->translation.X+1*nx;
 	t[1]=dp->translation.Y+1*ny;
