@@ -178,7 +178,7 @@ void setPage(Page page){
 
 	if(page == INGAME)
 		playBgm(AS_SND_INGAME);
-	else if(page == TITLE)
+	else if(page == TITLE && displayingPage!=INSTRUCTION)
 		playBgm(AS_SND_TITLE);
 	else if(page == SCORE)
 		playBgm(AS_SND_RESULT);
@@ -256,7 +256,7 @@ void  main( void ) {
 
 		            if (pad & GAMEPAD_SELECT){
 		            	setPage(INSTRUCTION);
-						ageSndMgrPlayOneshot( AS_SND_SELECT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+						ageSndMgrPlayOneshot( AS_SND_IN , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            }
 	     	 	}
 	     	}
@@ -271,6 +271,7 @@ void  main( void ) {
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_SELECT){
+						ageSndMgrPlayOneshot( AS_SND_IN , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 		            	setPage(TITLE);
 		            	initGame();
 		            }
