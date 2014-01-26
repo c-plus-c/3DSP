@@ -16,7 +16,7 @@
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define myabs(a) ((a) > 0 ? (a) : (-a))
-#define SKY_SPHERE_RADIUS 1500.0
+#define SKY_SPHERE_RADIUS 1000.0
 
 #define BLINK_COUNT 60
 #define FIREBALL_INTERVAL 1

@@ -90,8 +90,7 @@ void prerender(){
 	agglBeginFrame( &DBuf, aglGetDispFrame(), AGGL_RGB_888, AG_Z_INDEX, 32, vtxbuf, sizeof(vtxbuf) );
 
 	AG3DGLUglinit();
-
-	agglClearColor( 0.02f, 0.48f, 0.99f, 0.0f );
+	agglClearColor( 144.0/255.0, 215.0/255.0, 236.0/255.0, 0.0f );
 	agglClearDepthf( 1.0f );
 	agglClear( (AGGLbitfield)(AGGL_COLOR_BUFFER_BIT | AGGL_DEPTH_BUFFER_BIT) );
 }
@@ -148,7 +147,6 @@ void allocHormingBullets(int pid){
 void initGame(){
 	int i;
 
-	GenerateClouds();
 	initObjects();
 	playerNum = 0;
 
@@ -429,7 +427,9 @@ void draw( int frame , int motion_number  ) {
 	agglEnable( AGGL_LIGHTING );
 	DrawCubes();
 	DrawPlane();
+	
 	agglDisable( AGGL_LIGHTING );
+	DrawSky();
 }
 
 void AG3DGLUglinit( void ) {

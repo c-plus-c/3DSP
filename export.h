@@ -163,14 +163,11 @@ extern "C" {
 #define AG_CG_124	(133)
 #define AG_CG_125	(134)
 #define AG_CG_126	(135)
-#define AG_CG_CLOUD01	(136)
-#define AG_CG_CLOUD02	(137)
-#define AG_CG_CLOUD03	(138)
-#define AG_CG_CLOUD04	(139)
-#define AG_CG_CELL	(140)
-#define AG_CG_BOTTOMCLOUD	(141)
-#define AG_CG_HBW	(142)
-#define AG_CG_PHM14_0185	(143)
+#define AG_CG_BOTTOMCLOUD	(136)
+#define AG_CG_HBW	(137)
+#define AG_CG_PHM14_0185	(138)
+#define AG_CG_SKY	(139)
+#define AG_CG_AUTOPILOTNOTICE	(140)
 
 /***************************************************************/
 /*                     RM3 Member Symbol                       */
@@ -190,13 +187,9 @@ extern "C" {
 #define AG_AG3D_NEWPLANE3MODEL	(4)
 #define AG_AG3D_NEWPLANE4MODEL	(5)
 #define AG_AG3D_HORMINGBULLETMODEL	(6)
-#define AG_AG3D_CLOUD1MODEL	(7)
-#define AG_AG3D_CLOUD2MODEL	(8)
-#define AG_AG3D_CLOUD3MODEL	(9)
-#define AG_AG3D_CLOUD4MODEL	(10)
-#define AG_AG3D_SKYBACKMODEL	(11)
-#define AG_AG3D_BOTTOMCLOUDMODEL	(12)
-#define AG_AG3D_CUBEMODEL	(13)
+#define AG_AG3D_BOTTOMCLOUDMODEL	(7)
+#define AG_AG3D_CUBEMODEL	(8)
+#define AG_AG3D_SKYSPHEREMODEL	(9)
 
 /***************************************************************/
 /*                        AG3D Tree Symbol                     */
@@ -208,13 +201,9 @@ extern "C" {
 #define AG_AG3D_NEWPLANE3TREE	(4)
 #define AG_AG3D_NEWPLANE4TREE	(5)
 #define AG_AG3D_HORMINGBULLETTREE	(6)
-#define AG_AG3D_CLOUD1TREE	(7)
-#define AG_AG3D_CLOUD2TREE	(8)
-#define AG_AG3D_CLOUD3TREE	(9)
-#define AG_AG3D_CLOUD4TREE	(10)
-#define AG_AG3D_SKYBACKTREE	(11)
-#define AG_AG3D_BOTTOMCLOUDTREE	(12)
-#define AG_AG3D_CUBETREE	(13)
+#define AG_AG3D_BOTTOMCLOUDTREE	(7)
+#define AG_AG3D_CUBETREE	(8)
+#define AG_AG3D_SKYSPHERETREE	(9)
 
 /***************************************************************/
 /*                       AG3D Motion Symbol                    */
@@ -226,13 +215,9 @@ extern "C" {
 #define AG_AG3D_NEWPLANE3MOTION	(4)
 #define AG_AG3D_NEWPLANE4MOTION	(5)
 #define AG_AG3D_HORMINGBULLETMOTION	(6)
-#define AG_AG3D_CLOUD1MOTION	(7)
-#define AG_AG3D_CLOUD2MOTION	(8)
-#define AG_AG3D_CLOUD3MOTION	(9)
-#define AG_AG3D_CLOUD4MOTION	(10)
-#define AG_AG3D_SKYBACKMOTION	(11)
-#define AG_AG3D_BOTTOMCLOUDMOTION	(12)
-#define AG_AG3D_CUBEMOTION	(13)
+#define AG_AG3D_BOTTOMCLOUDMOTION	(7)
+#define AG_AG3D_CUBEMOTION	(8)
+#define AG_AG3D_SKYSPHEREMOTION	(9)
 
 /***************************************************************/
 /*                        AG3D Camera Symbol                   */
@@ -256,14 +241,14 @@ extern "C" {
 /***************************************************************/
 /*                          Data Member                        */
 /***************************************************************/
-extern const AGERomMember ageRM[144];
+extern const AGERomMember ageRM[141];
 extern const AGERM3Member ageRM3[1];
 extern const u32 ageReserve[1];
 extern const u32 ageUser[1];
-extern const AG3DModelHeadChunk age3dModel[14];
-extern const AG3DDCmdHeadChunk age3dDCmd[14];
-extern const AG3DTreeHeadChunk age3dTree[14];
-extern const AG3DMotionHeadChunk age3dMotion[14];
+extern const AG3DModelHeadChunk age3dModel[10];
+extern const AG3DDCmdHeadChunk age3dDCmd[10];
+extern const AG3DTreeHeadChunk age3dTree[10];
+extern const AG3DMotionHeadChunk age3dMotion[10];
 extern const AG3DCameraHeadChunk age3dCamera[1];
 extern const s16 ageVGCnt;
 extern const AGESoundRomMember ageSRM[10];
