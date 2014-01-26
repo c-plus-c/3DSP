@@ -27,8 +27,8 @@
 
 #define ACTIVE_RADIUS 300.0
 
-#define ACTIVE_HIGHEST 200
-#define ACTIVE_LOWEST 20
+#define ACTIVE_HIGHEST 300
+#define ACTIVE_LOWEST 40
 
 #define SOUND_VOLUME 128
 /* ノード情報バッファ */

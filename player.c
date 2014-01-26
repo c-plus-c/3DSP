@@ -25,7 +25,7 @@
 
 #define BOOSTINCREMENTATION -0.1
 #define BOOSTMAX 1
-#define BOOSTMIN 0.4
+#define BOOSTMIN 0.5
 
 #define BOOST_AMMO_COST 0.5
 
@@ -180,7 +180,6 @@ void ManualMove(Object *dp)
 	dp->pitchAccelerator=0;
   }
   
-  _dprintf("%d %f\n",pad,dp->brakeVariable);
   //ブレーキ
   if((pad & GAMEPAD_LL) != 0)
   {
