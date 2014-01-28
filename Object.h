@@ -65,6 +65,7 @@ typedef struct ObjectLocal {
   int target_pid;
   int sideOut;
   
+  //odd = Shot at the frame (3 = targeted by 1 rocket and shot at the frame),(4=targeted by 2 rockets)
   int targeted;
 
   void  (*mov)( struct ObjectLocal *dp );

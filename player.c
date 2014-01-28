@@ -7,7 +7,7 @@
 #include "extern.h"
 
 #define VELOCITY 1
-#define PITCHACCELBAND 0.001
+#define PITCHACCELBAND 0.0005
 #define PITCHACCELBANDLIMIT 0.03
 
 #define ROLLACCELBAND 0.005
@@ -25,18 +25,17 @@
 
 #define BOOSTINCREMENTATION -0.1
 #define BOOSTMAX 1
-#define BOOSTMIN 0.5
+#define BOOSTMIN 0.4
 
-#define BOOST_AMMO_COST 0.5
+#define BOOST_AMMO_COST 1
 
 #define BLINK_COUNT 60
 #define DYING_COUNT 120
 
 #define FIREBALL_INTERVAL 1
-#define AMMO_LIMIT 20
-#define FIREBALL_RELOAD_INTERVAL 6
+#define FIREBALL_RELOAD_INTERVAL 4
 
-#define HORMING_AMMO_COST 10
+#define HORMING_AMMO_COST 20
 #define FIREBALL_AMMO_COST 1
 
 
@@ -258,12 +257,14 @@ void ManualMove(Object *dp)
 				
 				l=dx*dx+dy*dy+dz*dz;
 				if(l<l2min){
-					horming->target_pid=i;
+					horming->target_pid=Objects[i].pid;
 					l2min=l;
 				}
 			}
 			
-			Objects[horming->target_pid].targeted=2;
+			if(horming->target_pid == agGamePadGetMyID())
+				ageSndMgrPlayOneshot( AS_SND_WARNING , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+			getPlayer(horming->target_pid)->targeted++;
 		}
 		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
@@ -394,10 +395,6 @@ void player_move(Object *dp)
 	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
 	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
 	
-	if(dp->targeted==2){
-		ageSndMgrPlayOneshot( AS_SND_WARNING , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
-		dp->targeted=1;
-	}
   }
 }
 

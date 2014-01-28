@@ -2,9 +2,9 @@
 #include "Object.h"
 #include "extern.h"
 
-#define BULLET_VELOCITY 3
+#define BULLET_VELOCITY 2.5
 
-#define RANGE_COUNT 120
+#define RANGE_COUNT 100
 
 
 
@@ -56,14 +56,13 @@ void hormingBullet_move(Object *dp){
 		y1/=l1;
 		z1/=l1;
 	}
-	
-	x1*=BULLET_VELOCITY*3;
-	y1*=BULLET_VELOCITY*3;
-	z1*=BULLET_VELOCITY*3;
 
-	xo=round(dp->direction.X,x1,(float)dp->moveCount/10*dp->moveCount/10);
-	yo=round(dp->direction.Y,y1,(float)dp->moveCount/10*dp->moveCount/10);
-	zo=round(dp->direction.Z,z1,(float)dp->moveCount/10*dp->moveCount/10);
+
+	// _dprintf("%f %f %f \n",x1,y1,z1);
+
+	xo=round(dp->direction.X,x1,x1*x1*dp->moveCount/2);
+	yo=round(dp->direction.Y,y1,y1*y1*dp->moveCount/2);
+	zo=round(dp->direction.Z,z1,z1*z1*dp->moveCount/2);
 	
 	o1=sqrtf(xo*xo+yo*yo+zo*zo);
 	
@@ -91,6 +90,7 @@ void hormingBullet_move(Object *dp){
 				ageSndMgrPlayOneshot( AS_SND_HIT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}else{
 				dp->stat = INVISIBLE;
+				getPlayer(dp->target_pid)->targeted--;
 				continue;
 			}
 
@@ -100,15 +100,17 @@ void hormingBullet_move(Object *dp){
 				Objects[i].moveCount = 0;
 				ageSndMgrPlayOneshot( AS_SND_DIE , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
-			Objects[dp->target_pid].targeted=0;
+			getPlayer(dp->target_pid)->targeted--;
 			dp->stat = INVISIBLE;
+			return;
 		}
 	}
+	
 	
 	dp->moveCount++;
 	if(dp->moveCount > RANGE_COUNT){
 		dp->stat = INVISIBLE;
-		Objects[dp->target_pid].targeted=0;
+		getPlayer(dp->target_pid)->targeted--;
 	}
 }
 
