@@ -263,7 +263,7 @@ void  main( void ) {
 		frameCount++;
 		if(displayingPage == TITLE){
 			prerender();
-			drawTex2(AG_CG_TOP,0,0,1024<<2,768<<2);
+			drawTex2(AG_CG_TOP,0,0,1024,768);
 			if(frameCount > 20){
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
@@ -314,9 +314,9 @@ void  main( void ) {
 			drawObjects();
 			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 			if(frameCount > READY_COUNT/2)
-				drawTex2(AG_CG_START,262<<2,168<<2,500<<2,400<<2);
+				drawTex2(AG_CG_START,262,168,500,400);
 			else
-				drawTex2(AG_CG_READY,162<<2,168<<2,700<<2,400<<2);
+				drawTex2(AG_CG_READY,162,168,700,400);
 
 			postrender();
 
@@ -354,8 +354,8 @@ void  main( void ) {
 			postrender();
 		}else if(displayingPage == SCORE){
 			prerender();
-			
-			drawTex2(AG_CG_RESULTBACK,0,0,1024<<2,768<<2);
+
+			drawTex2(AG_CG_RESULTBACK,0,0,1024,768);
 
 			sortPlayerByRank();
 
@@ -368,12 +368,12 @@ void  main( void ) {
 					l = 200 + (10-c)*(10-c)*(10-c);
 				}
 				_dprintf("%d\n",Objects[n].deadFrame);
-				drawTex2(AG_CG_1ST+n,100<<2,(100+100*n)<<2,70<<2,30<<2);
-				drawTex2(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2,100<<2,30<<2);
+				drawTex2(AG_CG_1ST+n,100,(100+100*n),70,30);
+				drawTex2(AG_CG_NO1+Objects[n].pid,l,(100+100*n),100,30);
 			}
 
 			if(frameCount > (playerNum+1)*10){
-				drawTex2(AG_CG_STARTAL,700<<2,700<<2,250<<2,32<<2);
+				drawTex2(AG_CG_STARTAL,700,700,250,32);
 			}
 
 			postrender();

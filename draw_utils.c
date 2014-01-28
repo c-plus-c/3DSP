@@ -75,21 +75,21 @@ Vector2f Rotate(Vector2f from,int degree)
 void drawTex2(int texNum, int x, int y, int w,int h){
 	ageTransferAAC( &DBuf, texNum,0, NULL, NULL );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
-	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
+	agDrawSPRITE( &DBuf, 1, x<<2, y<<2, (x+w)<<2, (y+h)<<2 );
 }
 
 void drawTex4(int texNum, int x, int y,float ratio){
 	int w,h;
 	ageTransferAAC( &DBuf, texNum,0, &w, &h );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
-	agDrawSPRITE( &DBuf, 1, x, y, x+w*ratio, y+h*ratio );
+	agDrawSPRITE( &DBuf, 1, x<<2, y<<2, ((int)(x+w*ratio))<<2, ((int)(y+h*ratio))<<2 );
 }
 
 int drawTex3(int texNum, int x,int y){
 	int w,h;
 	ageTransferAAC( &DBuf, texNum,0, &w, &h );
 	agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
-	agDrawSPRITE( &DBuf, 1, x, y, x+w, y+h );
+	agDrawSPRITE( &DBuf, 1, x<<2, y<<2, (x+w)<<2, (y+h)<<2 );
 	return w;
 }
 
@@ -225,7 +225,7 @@ void drawSelfInfo(Object *dp){
 }
 
 void drawEnemyInfo(Object *dp, int idx){
-	drawTex4(AG_CG_NO1+dp->pid,30,50 + 290*idx,0.5);
+	drawTex3(AG_CG_NO1+dp->pid,20,70*idx);
 	drawBar(80,15+70*idx,150,6,dp->life,PLAYER_LIFE,0);
 	drawBar(80,20+70*idx,70,6,dp->ammo,AMMO_LIMIT,1);
 }
@@ -243,13 +243,13 @@ void drawHud(Object *dp, u32 frameCount){
 			drawEnemyInfo(&Objects[n],i);
 			i++;
 		}else if(dp->targeted>0){
-			drawTex2(AG_CG_HBW, 10<<2, 650<<2, 264<<2, 91<<2);
+			drawTex2(AG_CG_HBW, 10, 650, 264, 91);
 			drawHormingOnRadar(dp);
 		}
 	}
 
 	if(dp->sideOut == 1 && frameCount/10%2 == 0){
-		drawTex2(AG_CG_AUTOPILOTNOTICE, 724<<2, 50<<2, 250<<2, 70<<2);
+		drawTex2(AG_CG_AUTOPILOTNOTICE, 724, 50, 250, 70);
 	}
 
 
