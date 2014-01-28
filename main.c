@@ -436,7 +436,7 @@ void draw( int frame , int motion_number  ) {
 	//agglEnable( AGGL_LIGHTING );
 	
 	agglDisable( AGGL_LIGHTING );
-	DrawCubes();
+	//DrawCubes();
 	DrawPlane();
 	DrawSky();
 }
