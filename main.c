@@ -292,7 +292,8 @@ void  main( void ) {
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
 			drawRect(0,0,1024,768,1,1,1);
-			drawStr(100<<2,100<<2,"hello");
+			drawStr(100<<2,100<<2,"20123hellohello");
+			drawNum(100<<2,200<<2,20123);
 
 			postrender();
 			if(frameCount > 20)
@@ -353,7 +354,8 @@ void  main( void ) {
 			postrender();
 		}else if(displayingPage == SCORE){
 			prerender();
-			drawRect(0,0,1024,768,129,137,177);
+			
+			drawTex2(AG_CG_RESULTBACK,0,0,1024<<2,768<<2);
 
 			sortPlayerByRank();
 

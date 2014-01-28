@@ -15,14 +15,14 @@ int drawNum(int x,int y, long long int num){
 	int d = 30,l = x,f = 0;
 	for(;d>=0;d--){
 		if(num/pow(10,d) > 0 || f==1){
-			int number=num/pow(10,d) + '0' - ' ' + AG_CG_32;
+			int number=num/pow(10,d) + '0' - ' ' + AG_CG_S10_32;
 			agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
 			ageTransferAAC( &DBuf,number, 0, &w, &h );
 			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
-			agDrawSPRITE( &DBuf, 1, l, y, l+w, y+h );
+			agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
 
 			num -= pow(10,d) *( num/pow(10,d));
-			l += w;
+			l += w<<2;
 			f = 1;
 		}
 	}
@@ -47,17 +47,17 @@ int drawStr(int x,int y, char* str){
 
 	for(i=0;i<l;i++){
 		if(str[i] == '\n'){
-			y += h;
+			y += h<<2;
 			left = x;
 			continue;
 		}
 
 		agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
-		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_32, 0, &w, &h );
+		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_S32_32, 0, &w, &h );
 		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
-		agDrawSPRITE( &DBuf, 1, left, y, left+(w), y+(h) );
+		agDrawSPRITE( &DBuf, 1, left, y, left+(w<<2), y+(h<<2));
 
-		left += (w);
+		left += (w<<2);
 	}
 	return left;
 }
