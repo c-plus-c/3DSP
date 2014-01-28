@@ -178,6 +178,19 @@ void drawRadar(Object *dp){
 	}
 }
 
+void drawHormingOnRadar(Object *dp){
+	int i;
+	for(i = HORMING_OFFSET;i<HORMING_OFFSET + HORMING_PER_PLAYER*PLAYER_MAX;i++){
+		Object *dp2 = &Objects[i];
+		if(dp2->stat != VISIBLE)
+			continue;
+		if(Objects[i].target_pid == dp->pid){
+			int offsetX = 874,offsetY = 618;
+			drawRect((int)(dp2->translation.X*100/ACTIVE_RADIUS+offsetX)-1,(int)(dp2->translation.Z*100/ACTIVE_RADIUS+offsetY)-1,3,3,255,0,0);
+		}
+	}
+}
+
 void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 	int r,g,b,r2,g2,b2;
 
@@ -222,6 +235,8 @@ void drawHud(Object *dp, u32 frameCount){
 	int offsetX = 400,offsetY = 400;
 	int s = 10;
 
+	// _dprintf("%d\n",dp->targeted);
+	drawRadar(dp);
 	drawSelfInfo(dp);
 	for(n=0;n<playerNum;n++){
 		if(Objects[n].pid != dp->pid){
@@ -229,9 +244,9 @@ void drawHud(Object *dp, u32 frameCount){
 			i++;
 		}else if(dp->targeted>0){
 			drawTex2(AG_CG_HBW, 10<<2, 650<<2, 264<<2, 91<<2);
+			drawHormingOnRadar(dp);
 		}
 	}
-	drawRadar(dp);
 
 	if(dp->sideOut == 1 && frameCount/10%2 == 0){
 		drawTex2(AG_CG_AUTOPILOTNOTICE, 724<<2, 50<<2, 250<<2, 70<<2);

@@ -12,7 +12,7 @@
 #include "pad.h"
 #include "extern.h"
 
-#define READY_COUNT 120
+#define READY_COUNT 90
 #define TRANSITION_COUNT 10
 
 extern void DrawPlane();
@@ -366,8 +366,8 @@ void  main( void ) {
 					l = 200 + (10-c)*(10-c)*(10-c);
 				}
 				_dprintf("%d\n",Objects[n].deadFrame);
-				drawTex2(AG_CG_1ST+n,100<<2,(100+100*n)<<2,105<<2,45<<2);
-				drawTex2(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2,150<<2,45<<2);
+				drawTex2(AG_CG_1ST+n,100<<2,(100+100*n)<<2,70<<2,30<<2);
+				drawTex2(AG_CG_NO1+Objects[n].pid,l<<2,(100+100*n)<<2,100<<2,30<<2);
 			}
 
 			if(frameCount > (playerNum+1)*10){
@@ -376,7 +376,7 @@ void  main( void ) {
 
 			postrender();
 
-			if(frameCount > (playerNum+1)*20)
+			if(frameCount > (playerNum+1)*10)
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START){

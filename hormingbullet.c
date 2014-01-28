@@ -4,7 +4,7 @@
 
 #define BULLET_VELOCITY 2.5
 
-#define RANGE_COUNT 120
+#define RANGE_COUNT 100
 
 
 
@@ -31,15 +31,24 @@ void hormingBullet_drw(Object *dp){
 	agglPopMatrix();
 }
 
+float round(float x, float dx, float maxmargin){
+	float newMargin = min(maxmargin, myabs(dx));
+	if(dx>0){
+		return x+newMargin;
+	}else{
+		return x-newMargin;
+	}
+}
+
 /* TODO:今西
 */
 void hormingBullet_move(Object *dp){
 	int i;
 	float x1,y1,z1,xo,yo,zo,l1,o1;
 	
-	x1=Objects[dp->target_pid].translation.X-dp->translation.X;
-	y1=Objects[dp->target_pid].translation.Y-dp->translation.Y;
-	z1=Objects[dp->target_pid].translation.Z-dp->translation.Z;
+	x1=getPlayer(dp->target_pid)->translation.X-dp->translation.X;
+	y1=getPlayer(dp->target_pid)->translation.Y-dp->translation.Y;
+	z1=getPlayer(dp->target_pid)->translation.Z-dp->translation.Z;
 	
 	l1=sqrtf(x1*x1+y1*y1+z1*z1);
 	if(l1!=0.0){
@@ -47,14 +56,13 @@ void hormingBullet_move(Object *dp){
 		y1/=l1;
 		z1/=l1;
 	}
-	
-	x1*=BULLET_VELOCITY*3;
-	y1*=BULLET_VELOCITY*3;
-	z1*=BULLET_VELOCITY*3;
-	
-	xo=dp->direction.X+x1;
-	yo=dp->direction.Y+y1;
-	zo=dp->direction.Z+z1;
+
+
+	// _dprintf("%f %f %f \n",x1,y1,z1);
+
+	xo=round(dp->direction.X,x1,x1*x1*dp->moveCount/2);
+	yo=round(dp->direction.Y,y1,y1*y1*dp->moveCount/2);
+	zo=round(dp->direction.Z,z1,z1*z1*dp->moveCount/2);
 	
 	o1=sqrtf(xo*xo+yo*yo+zo*zo);
 	
@@ -64,9 +72,6 @@ void hormingBullet_move(Object *dp){
 		yo/=o1;
 		zo/=o1;
 	}
-	xo*=BULLET_VELOCITY;
-	yo*=BULLET_VELOCITY;
-	zo*=BULLET_VELOCITY;
 	
 	dp->direction.X=xo;
 	dp->direction.Y=yo;
@@ -78,11 +83,15 @@ void hormingBullet_move(Object *dp){
 
 	for(i =0;i<playerNum;i++){
 		if(collision(dp, &Objects[i])){
-			if(Objects[i].stat != BLINK&&Objects[i].stat != DYING){
+			if(Objects[i].stat != BLINK&&Objects[i].stat != DYING && Objects[i].stat != DEAD){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
 				Objects[i].moveCount = 0;
 				ageSndMgrPlayOneshot( AS_SND_HIT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+			}else{
+				dp->stat = INVISIBLE;
+				getPlayer(dp->target_pid)->targeted--;
+				continue;
 			}
 
 			if(Objects[i].life <= 0){
@@ -91,15 +100,17 @@ void hormingBullet_move(Object *dp){
 				Objects[i].moveCount = 0;
 				ageSndMgrPlayOneshot( AS_SND_DIE , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 			}
-			Objects[dp->target_pid].targeted=0;
+			getPlayer(dp->target_pid)->targeted--;
 			dp->stat = INVISIBLE;
+			return;
 		}
 	}
+	
 	
 	dp->moveCount++;
 	if(dp->moveCount > RANGE_COUNT){
 		dp->stat = INVISIBLE;
-		Objects[dp->target_pid].targeted=0;
+		getPlayer(dp->target_pid)->targeted--;
 	}
 }
 

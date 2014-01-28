@@ -7,7 +7,7 @@
 #include "extern.h"
 
 #define VELOCITY 1
-#define PITCHACCELBAND 0.001
+#define PITCHACCELBAND 0.0005
 #define PITCHACCELBANDLIMIT 0.03
 
 #define ROLLACCELBAND 0.005
@@ -25,18 +25,17 @@
 
 #define BOOSTINCREMENTATION -0.1
 #define BOOSTMAX 1
-#define BOOSTMIN 0.5
+#define BOOSTMIN 0.4
 
-#define BOOST_AMMO_COST 0.5
+#define BOOST_AMMO_COST 1
 
 #define BLINK_COUNT 60
 #define DYING_COUNT 120
 
 #define FIREBALL_INTERVAL 1
-#define AMMO_LIMIT 20
-#define FIREBALL_RELOAD_INTERVAL 6
+#define FIREBALL_RELOAD_INTERVAL 4
 
-#define HORMING_AMMO_COST 10
+#define HORMING_AMMO_COST 20
 #define FIREBALL_AMMO_COST 1
 
 
@@ -181,11 +180,11 @@ void ManualMove(Object *dp)
   }
   
   //ブレーキ
-  if((pad & GAMEPAD_LL) != 0)
+  if((pad & GAMEPAD_RR) != 0)
   {
 	dp->brakeVariable+=BRAKEINCREMENTATION;
 	dp->brakeVariable=min(BRAKEMAX,dp->brakeVariable);
-  }else if((pad & GAMEPAD_RR) != 0){
+  }else if((pad & GAMEPAD_LL) != 0){
   	if(dp->ammo > BOOST_AMMO_COST){	
 		dp->brakeVariable+=BOOSTINCREMENTATION;
 		dp->brakeVariable=max(BOOSTMIN,dp->brakeVariable);
@@ -250,7 +249,7 @@ void ManualMove(Object *dp)
 			for(i=0;i<playerNum;i++)
 			{
 				float l,dx,dy,dz;
-				if(Objects[i].pid==dp->pid || Objects[i].stat == DEAD) continue;
+				if(Objects[i].pid==dp->pid || Objects[i].stat == DEAD || Objects[i].stat == DYING) continue;
 				
 				dx=Objects[i].translation.X-dp->translation.X;
 				dy=Objects[i].translation.Y-dp->translation.Y;
@@ -258,12 +257,14 @@ void ManualMove(Object *dp)
 				
 				l=dx*dx+dy*dy+dz*dz;
 				if(l<l2min){
-					horming->target_pid=i;
+					horming->target_pid=Objects[i].pid;
 					l2min=l;
 				}
 			}
 			
-			Objects[horming->target_pid].targeted=2;
+			if(horming->target_pid == agGamePadGetMyID())
+				ageSndMgrPlayOneshot( AS_SND_WARNING , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
+			getPlayer(horming->target_pid)->targeted++;
 		}
 		ageSndMgrPlayOneshot( AS_SND_HSHOT , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
 	}
@@ -362,9 +363,9 @@ void player_move(Object *dp)
 	nx=(-ch*sb+sh*sp*cb)*ty;
 	ny=(cb*cp)*ty;
 	nz=(sb*sh+ch*sp*cb)*ty;
-	c[0]=dp->translation.X-20*dp->direction.X+2.5*nx;
-	c[1]=dp->translation.Y-20*dp->direction.Y+2.5*ny;
-	c[2]=dp->translation.Z-20*dp->direction.Z+2.5*nz;
+	c[0]=dp->translation.X-(20+3/dp->brakeVariable)*dp->direction.X+2.5*nx;
+	c[1]=dp->translation.Y-(20+3/dp->brakeVariable)*dp->direction.Y+2.5*ny;
+	c[2]=dp->translation.Z-(20+3/dp->brakeVariable)*dp->direction.Z+2.5*nz;
   
 	t[0]=dp->translation.X+1*nx;
 	t[1]=dp->translation.Y+1*ny;
@@ -394,10 +395,6 @@ void player_move(Object *dp)
 	agglLookAtf(c[0],c[1],c[2],t[0],t[1],t[2],u[0],u[1],u[2]);
 	//agglLookAtf(100,100,100,dp->translation.X,dp->translation.Y,dp->translation.Z,0,1,0);
 	
-	if(dp->targeted==2){
-		ageSndMgrPlayOneshot( AS_SND_WARNING , 0 , SOUND_VOLUME , AGE_SNDMGR_PANMODE_LR12 , 128 , 0 );
-		dp->targeted=1;
-	}
   }
 }
 

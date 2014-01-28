@@ -8,7 +8,7 @@
 #define OBJECT_MAX 200
 #define PLAYER_MAX 3
 
-#define PLAYER_LIFE 1
+#define PLAYER_LIFE 10
 
 #define FIREBALL_OFFSET 20
 #define FIREBALL_PER_PLAYER 60
@@ -65,6 +65,7 @@ typedef struct ObjectLocal {
   int target_pid;
   int sideOut;
   
+  //odd = Shot at the frame (3 = targeted by 1 rocket and shot at the frame),(4=targeted by 2 rockets)
   int targeted;
 
   void  (*mov)( struct ObjectLocal *dp );
