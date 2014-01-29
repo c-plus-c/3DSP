@@ -12,11 +12,56 @@ long long int pow(long a,int b){
 
 int drawNum(int x,int y, long long int num){
 	int w,h;
-	int d = 30,l = x,f = 0;
+	int d = 3,l = x,f = 0;
+	if(num == 0){
+		ageTransferAAC( &DBuf,'0'-' '+AG_CG_S10_32, 0, &w, &h );
+		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+		agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
+
+		l += w<<2;
+	}
 	for(;d>=0;d--){
 		if(num/pow(10,d) > 0 || f==1){
 			int number=num/pow(10,d) + '0' - ' ' + AG_CG_S10_32;
-			agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
+			ageTransferAAC( &DBuf,number, 0, &w, &h );
+			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+			agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
+
+			num -= pow(10,d) *( num/pow(10,d));
+			l += w<<2;
+			f = 1;
+		}
+	}
+	return l;
+}
+
+int drawNumAlignRight(int x, int y,long long int num ){
+	int w,h,ws=0,dn = num;
+	int d = 3,l = x,f = 0;
+	if(num == 0){
+		ageTransferAAC( &DBuf,'0'-' '+AG_CG_S10_32, 0, &w, &h );
+		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+		agDrawSPRITE( &DBuf, 1, l-(w<<2), y, l, y+(h<<2) );
+
+		l += w<<2;
+	}
+	for(;d>=0;d--){
+		if(num/pow(10,d) > 0 || f==1){
+			int number=num/pow(10,d) + '0' - ' ' + AG_CG_S10_32;
+			ageTransferAAC( &DBuf,number, 0, &w, &h );
+
+			num -= pow(10,d) *( num/pow(10,d));
+			ws += w<<2;
+			f = 1;
+		}
+	}
+	l = x-ws;
+	f=0;
+	d=3;
+	num = dn;
+	for(;d>=0;d--){
+		if(num/pow(10,d) > 0 || f==1){
+			int number=num/pow(10,d) + '0' - ' ' + AG_CG_S10_32;
 			ageTransferAAC( &DBuf,number, 0, &w, &h );
 			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 			agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
@@ -52,7 +97,6 @@ int drawStr(int x,int y, char* str){
 			continue;
 		}
 
-		agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
 		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_S32_32, 0, &w, &h );
 		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 		agDrawSPRITE( &DBuf, 1, left, y, left+(w<<2), y+(h<<2));
@@ -74,7 +118,6 @@ int drawSmallStr(int x, int y, char* str){
 			continue;
 		}
 
-		agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
 		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_S10_32, 0, &w, &h );
 		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
 		agDrawSPRITE( &DBuf, 1, left, y, left+(w<<2), y+(h<<2));
@@ -232,9 +275,9 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 		b2=	142;
 	}
 
-	drawRect(x,y,w,h,255,255,255);
+	drawRect(x,y,w,h,0,0,0);
 	drawRect(x+1,y+1,w-2,h-2,r,g,b);
-	drawRect(x,y, (int)((float)w * amount/max),h,255,255,255);
+	drawRect(x,y, (int)((float)w * amount/max),h,0,0,0);
 	drawRect(x+1,y+1, (int)((float)w * amount/max)-2,h-2,r2,g2,b2);
 }
 
@@ -242,17 +285,18 @@ void drawSelfInfo(Object *dp){
 	int bw = 300,bh= 10,l;
 
 	drawTex3(AG_CG_NO1+dp->pid,10,43);
-	drawBar(110,45,500,14,dp->life,PLAYER_LIFE,0);
-	drawBar(110,58,300,14,dp->ammo,AMMO_LIMIT,1);
+	drawBar(110,45,500,16,dp->life,PLAYER_LIFE,0);
+	drawBar(110,60,300,16,dp->ammo,AMMO_LIMIT,1);
 
-	l=drawNum(114<<2,43<<2,dp->life);
+	drawNumAlignRight(134<<2,44<<2,dp->life);
 	//ずれてる、スラッシュです
-	l=drawSmallStr(l,43<<2,"-");
-	drawNum(l,43<<2,PLAYER_LIFE);
+	l=drawSmallStr(134<<2,45<<2,"/");
+	drawNum(l,44<<2,PLAYER_LIFE);
 
-	l=drawNum(114<<2,56<<2,(int)dp->ammo);
-	l=drawSmallStr(l,56<<2,"-");
-	drawNum(l,56<<2,AMMO_LIMIT);
+	drawNumAlignRight(134<<2,59<<2,(int)dp->ammo);
+	//ずれてる、スラッシュです
+	l=drawSmallStr(134<<2,60<<2,"/");
+	drawNum(l,59<<2,AMMO_LIMIT);
 }
 
 void drawEnemyInfo(Object *dp, int idx){

@@ -5,13 +5,13 @@
 
 #define PI (3.1415)
 
-#define OBJECT_MAX 200
+#define OBJECT_MAX 110
 #define PLAYER_MAX 3
 
-#define PLAYER_LIFE 1
+#define PLAYER_LIFE 10
 
 #define FIREBALL_OFFSET 20
-#define FIREBALL_PER_PLAYER 60
+#define FIREBALL_PER_PLAYER 30
 #define HORMING_OFFSET 4
 #define HORMING_PER_PLAYER 5
 #define GAMEPAD_LL 64
