@@ -8,7 +8,7 @@
 #define OBJECT_MAX 110
 #define PLAYER_MAX 3
 
-#define PLAYER_LIFE 1
+#define PLAYER_LIFE 10
 
 #define FIREBALL_OFFSET 20
 #define FIREBALL_PER_PLAYER 30
