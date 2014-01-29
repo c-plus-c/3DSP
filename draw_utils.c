@@ -325,7 +325,7 @@ void drawSelfInfo(Object *dp){
 	l=drawSmallStr(134<<2,45<<2,"/");
 	drawNum(l,44<<2,PLAYER_LIFE);
 
-	drawNumAlignRight(134<<2,59<<2,(int)dp->ammo);
+	drawNumAlignRight(131<<2,59<<2,(int)dp->ammo);
 	//ずれてる、スラッシュです
 	l=drawSmallStr(134<<2,60<<2,"/");
 	drawNum(l,59<<2,AMMO_LIMIT);
