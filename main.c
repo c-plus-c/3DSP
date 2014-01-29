@@ -324,30 +324,44 @@ void  main( void ) {
 			}
 
 		}else if(displayingPage == INGAME){
+			int pause = 0;
 
 			int c=0;
 			prerender();
 			/* gl”wŒi‰Šú‰» */
 
-			moveObjects();
-			draw( frameCount , MotionNumber );
-			drawObjects();
-			drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
 
-			if(getPlayer((int)agGamePadGetMyID())->stat == DEAD){
-				setCameraLongShot();
-			}
+	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
+	            pad = agGamePadGetData(n);
+	            if ((pad & GAMEPAD_SELECT)){
+	            	setPage(TITLE);
+	            	initGame();
+	            }
+     	 	}
+
+     	 	if(displayingPage == destPage){
+				moveObjects();
+				draw( frameCount , MotionNumber );
+				drawObjects();
+				drawHud(getPlayer((int)agGamePadGetMyID()), frameCount);
+
+				if(getPlayer((int)agGamePadGetMyID())->stat == DEAD){
+					setCameraLongShot();
+				}
 
 
-			for(n=0;n<playerNum;n++){
-				if(Objects[n].stat != DEAD){
-					c++;
+				for(n=0;n<playerNum;n++){
+					if(Objects[n].stat != DEAD){
+						c++;
+					}
+				}
+
+				if(c==1){
+					setPage(SCORE);
 				}
 			}
 
-			if(c==1){
-				setPage(SCORE);
-			}
+
 			
 
 			postrender();
