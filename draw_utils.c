@@ -293,6 +293,11 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 		r2=	255;
 		g2=	170;
 		b2=	68;
+		if(amount  == 0){
+			r=200;
+			g=0;
+			b=0;
+		}
 	}else{
 		r=	182;
 		g=	206;
@@ -300,11 +305,6 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 		r2=	130;
 		g2=	172;
 		b2=	186;
-	}
-	if(amount  == 0){
-		r=200;
-		g=0;
-		b=0;
 	}
 
 	drawRect(x,y,w,h,100,100,100);
@@ -360,5 +360,5 @@ void drawHud(Object *dp, u32 frameCount){
 	}
 
 	l=drawBigNum(470<<2,650<<2, (int)((float)1000/dp->brakeVariable));
-	drawStr(l,650<<2,"km");
+	drawStr(l+(10<<2),650<<2,"km/h");
 }
