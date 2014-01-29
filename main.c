@@ -356,20 +356,21 @@ void  main( void ) {
 			prerender();
 
 			drawTex2(AG_CG_RESULTBACK,0,0,1024,768);
+			drawTex3(AG_CG_RESULT,30,30);
 
 			sortPlayerByRank();
 
 			for(n=0;n<playerNum;n++){
 				int l;
 				if(frameCount > (n+1)*10){
-					l = 200;
+					l = 180;
 				}else{
 					int c = frameCount - n*10;
-					l = 200 + (10-c)*(10-c)*(10-c);
+					l = 180 + (10-c)*(10-c)*(10-c);
 				}
 				_dprintf("%d\n",Objects[n].deadFrame);
-				drawTex2(AG_CG_1ST+n,100,(100+100*n),70,30);
-				drawTex2(AG_CG_NO1+Objects[n].pid,l,(100+100*n),100,30);
+				drawTex2(AG_CG_1ST+n,80,(120+100*n),70,30);
+				drawTex2(AG_CG_NO1+Objects[n].pid,l,(120+100*n),100,30);
 			}
 
 			if(frameCount > (playerNum+1)*10){
