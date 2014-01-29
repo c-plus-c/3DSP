@@ -21,13 +21,13 @@
 
 #define BRAKEINCREMENTATION 0.1
 #define BRAKEMIN 1
-#define BRAKEMAX 2.4
+#define BRAKEMAX 3
 
 #define BOOSTINCREMENTATION -0.1
 #define BOOSTMAX 1
 #define BOOSTMIN 0.4
 
-#define BOOST_AMMO_COST 1
+#define BOOST_AMMO_COST 0.6
 
 #define BLINK_COUNT 60
 #define DYING_COUNT 120
