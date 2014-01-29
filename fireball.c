@@ -80,7 +80,7 @@ void fireball_move(Object *dp){
 
 	for(i =0;i<playerNum;i++){
 		if(collision(dp, &Objects[i])){
-			if(Objects[i].stat != BLINK&&Objects[i].stat != DYING){
+			if(Objects[i].stat != BLINK&&Objects[i].stat != DYING&& Objects[i].stat != DEAD){
 				Objects[i].life--;
 				Objects[i].stat = BLINK;
 				Objects[i].moveCount = 0;
