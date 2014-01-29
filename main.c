@@ -291,9 +291,7 @@ void  main( void ) {
 			postrender();
 		}else if(displayingPage == INSTRUCTION){
 			prerender();
-			drawRect(0,0,1024,768,1,1,1);
-			drawStr(100<<2,100<<2,"20123hellohello");
-			drawNum(100<<2,200<<2,20123);
+			drawTex2(AG_CG_MANUAL,0,0,1024,768);
 
 			postrender();
 			if(frameCount > 20)
