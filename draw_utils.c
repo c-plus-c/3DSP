@@ -62,6 +62,28 @@ int drawStr(int x,int y, char* str){
 	return left;
 }
 
+int drawSmallStr(int x, int y, char* str){
+		int l = strlen(str);
+	int i,left = x;
+	int w, h;
+
+	for(i=0;i<l;i++){
+		if(str[i] == '\n'){
+			y += h<<2;
+			left = x;
+			continue;
+		}
+
+		agDrawSETFCOLOR( &DBuf, ARGB( 255, 255, 0, 0 ) );
+		ageTransferAAC( &DBuf, str[i] - ' ' + AG_CG_S10_32, 0, &w, &h );
+		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+		agDrawSPRITE( &DBuf, 1, left, y, left+(w<<2), y+(h<<2));
+
+		left += (w<<2);
+	}
+	return left;
+}
+
 Vector2f Rotate(Vector2f from,int degree)
 {
 	Vector2f ret;
@@ -219,15 +241,24 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 void drawSelfInfo(Object *dp){
 	int bw = 300,bh= 10,l;
 
-	drawTex3(AG_CG_NO1+dp->pid,20,40);
-	drawBar(140,45,500,10,dp->life,PLAYER_LIFE,0);
-	drawBar(140,54,300,10,dp->ammo,AMMO_LIMIT,1);
+	drawTex3(AG_CG_NO1+dp->pid,10,43);
+	drawBar(110,45,500,14,dp->life,PLAYER_LIFE,0);
+	drawBar(110,58,300,14,dp->ammo,AMMO_LIMIT,1);
+
+	l=drawNum(114<<2,43<<2,dp->life);
+	//ずれてる、スラッシュです
+	l=drawSmallStr(l,43<<2,"-");
+	drawNum(l,43<<2,PLAYER_LIFE);
+
+	l=drawNum(114<<2,56<<2,(int)dp->ammo);
+	l=drawSmallStr(l,56<<2,"-");
+	drawNum(l,56<<2,AMMO_LIMIT);
 }
 
 void drawEnemyInfo(Object *dp, int idx){
-	drawTex3(AG_CG_NO1_MINI+dp->pid,20,55+40*idx);
-	drawBar(140,60+40*idx,150,6,dp->life,PLAYER_LIFE,0);
-	drawBar(140,65+40*idx,80,6,dp->ammo,AMMO_LIMIT,1);
+	drawTex3(AG_CG_NO1_MINI+dp->pid,34,55+40*idx);
+	drawBar(110,60+40*idx,150,8,dp->life,PLAYER_LIFE,0);
+	drawBar(110,67+40*idx,80,8,dp->ammo,AMMO_LIMIT,1);
 }
 
 void drawHud(Object *dp, u32 frameCount){
