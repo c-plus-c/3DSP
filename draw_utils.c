@@ -224,7 +224,7 @@ void drawRadar(Object *dp){
 	int offsetX = 874,offsetY = 618,i;
 	int texs[] = {AG_CG_RED_ICON,AG_CG_BLUE_ICON,AG_CG_YELLOW_ICON,AG_CG_WHITE_ICON};
 
-	drawTex(AG_CG_RADAR,offsetX,offsetY,100,100,0);
+	// drawTex(AG_CG_RADAR,offsetX,offsetY,100,100,0);
 
 	for(i=0;i<playerNum;i++){
 		Object *dp2 = &Objects[i];
@@ -260,12 +260,12 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 	int r,g,b,r2,g2,b2;
 
 	if(colorSet == 0){
-		r=	249;
-		g=	192;
-		b=	81;
-		r2=	235;
-		g2=	115;
-		b2=	12;
+		r=	255;
+		g=	204;
+		b=	85;
+		r2=	255;
+		g2=	170;
+		b2=	68;
 	}else{
 		r=	153;
 		g=	217;
@@ -275,9 +275,9 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 		b2=	142;
 	}
 
-	drawRect(x,y,w,h,0,0,0);
+	drawRect(x,y,w,h,50,50,50);
 	drawRect(x+1,y+1,w-2,h-2,r,g,b);
-	drawRect(x,y, (int)((float)w * amount/max),h,0,0,0);
+	drawRect(x,y, (int)((float)w * amount/max),h,50,50,50);
 	drawRect(x+1,y+1, (int)((float)w * amount/max)-2,h-2,r2,g2,b2);
 }
 
