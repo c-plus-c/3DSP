@@ -219,15 +219,15 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 void drawSelfInfo(Object *dp){
 	int bw = 300,bh= 10,l;
 
-	drawTex3(AG_CG_NO1+dp->pid,20,60);
-	drawBar(80,17,500,10,dp->life,PLAYER_LIFE,0);
-	drawBar(80,26,300,10,dp->ammo,AMMO_LIMIT,1);
+	drawTex3(AG_CG_NO1+dp->pid,20,40);
+	drawBar(140,45,500,10,dp->life,PLAYER_LIFE,0);
+	drawBar(140,54,300,10,dp->ammo,AMMO_LIMIT,1);
 }
 
 void drawEnemyInfo(Object *dp, int idx){
-	drawTex3(AG_CG_NO1+dp->pid,20,70*idx);
-	drawBar(80,15+70*idx,150,6,dp->life,PLAYER_LIFE,0);
-	drawBar(80,20+70*idx,70,6,dp->ammo,AMMO_LIMIT,1);
+	drawTex3(AG_CG_NO1_MINI+dp->pid,20,55+40*idx);
+	drawBar(140,60+40*idx,150,6,dp->life,PLAYER_LIFE,0);
+	drawBar(140,65+40*idx,80,6,dp->ammo,AMMO_LIMIT,1);
 }
 
 void drawHud(Object *dp, u32 frameCount){
