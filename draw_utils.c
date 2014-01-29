@@ -35,6 +35,31 @@ int drawNum(int x,int y, long long int num){
 	return l;
 }
 
+int drawBigNum(int x, int y, long long int num){
+	int w,h;
+	int d = 3,l = x,f = 0;
+	if(num == 0){
+		ageTransferAAC( &DBuf,'0'-' '+AG_CG_S32_32, 0, &w, &h );
+		agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+		agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
+
+		l += w<<2;
+	}
+	for(;d>=0;d--){
+		if(num/pow(10,d) > 0 || f==1){
+			int number=num/pow(10,d) + '0' - ' ' + AG_CG_S32_32;
+			ageTransferAAC( &DBuf,number, 0, &w, &h );
+			agDrawSETDBMODE( &DBuf, 0xff, 0, 2, 1 );
+			agDrawSPRITE( &DBuf, 1, l, y, l+(w<<2), y+(h<<2) );
+
+			num -= pow(10,d) *( num/pow(10,d));
+			l += w<<2;
+			f = 1;
+		}
+	}
+	return l;
+}
+
 int drawNumAlignRight(int x, int y,long long int num ){
 	int w,h,ws=0,dn = num;
 	int d = 3,l = x,f = 0;
@@ -262,24 +287,29 @@ void drawBar(int x,int y,int w,int h,float amount, int max, int colorSet){
 	int r,g,b,r2,g2,b2;
 
 	if(colorSet == 0){
-		r=	249;
-		g=	192;
-		b=	81;
-		r2=	235;
-		g2=	115;
-		b2=	12;
+		r=	255;
+		g=	204;
+		b=	85;
+		r2=	255;
+		g2=	170;
+		b2=	68;
+		if(amount  == 0){
+			r=200;
+			g=0;
+			b=0;
+		}
 	}else{
-		r=	153;
-		g=	217;
-		b=	219;
-		r2=	74;
-		g2=	83;
-		b2=	142;
+		r=	182;
+		g=	206;
+		b=	216;
+		r2=	130;
+		g2=	172;
+		b2=	186;
 	}
 
-	drawRect(x,y,w,h,0,0,0);
+	drawRect(x,y,w,h,100,100,100);
 	drawRect(x+1,y+1,w-2,h-2,r,g,b);
-	drawRect(x,y, (int)((float)w * amount/max),h,0,0,0);
+	drawRect(x,y, (int)((float)w * amount/max),h,100,100,100);
 	drawRect(x+1,y+1, (int)((float)w * amount/max)-2,h-2,r2,g2,b2);
 }
 
@@ -295,7 +325,7 @@ void drawSelfInfo(Object *dp){
 	l=drawSmallStr(134<<2,45<<2,"/");
 	drawNum(l,44<<2,PLAYER_LIFE);
 
-	drawNumAlignRight(134<<2,59<<2,(int)dp->ammo);
+	drawNumAlignRight(131<<2,59<<2,(int)dp->ammo);
 	//ずれてる、スラッシュです
 	l=drawSmallStr(134<<2,60<<2,"/");
 	drawNum(l,59<<2,AMMO_LIMIT);
@@ -310,7 +340,7 @@ void drawEnemyInfo(Object *dp, int idx){
 void drawHud(Object *dp, u32 frameCount){
 	int n,i=1;
 	int offsetX = 400,offsetY = 400;
-	int s = 10;
+	int s = 10,l;
 
 	// _dprintf("%d\n",dp->targeted);
 	drawRadar(dp);
@@ -329,28 +359,6 @@ void drawHud(Object *dp, u32 frameCount){
 		drawTex2(AG_CG_AUTOPILOTNOTICE, 724, 50, 250, 70);
 	}
 
-
-
-	// drawRect(offsetX,offsetY,s,s);
-	// drawNum(offsetX<<2,offsetY<<2,dp->translation.Y);
-
-	// x = 0;
-	// x = drawStr(x,0, "Time Limit : ");
-	// x = drawNum(x,0, 100 - (frameCount/60));
-	// x = drawStr(x,0, " sec");
-
-	// x = 0;
-	// x = drawStr(x,100<<2, "Life : ");
-	// x = drawNum(x,100<<2, dp-> life);
-	
-	// for(i=0;i<PLAYER_NUMS;i++){
-	// 	Object *dp2 = &Objects[i];
-	// 	if(dp->pid != dp2->pid){
-	// 		int dx = ((int)(dp2->translation.X - dp->translation.X))/4;
-	// 		int dz = ((int)(dp2->translation.Z - dp->translation.Z))/4;
-
-	// 		drawRect(offsetX+dx,offsetY+dz,s,s);
-	// 		drawNum((offsetX+dx)<<2,(offsetY+dz)<<2,dp2->translation.Y);
-	// 	}
-	// }
+	l=drawBigNum(470<<2,650<<2, (int)((float)1000/dp->brakeVariable));
+	drawStr(l+(10<<2),650<<2,"km/h");
 }

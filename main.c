@@ -14,6 +14,7 @@
 
 #define READY_COUNT 90
 #define TRANSITION_COUNT 10
+#define SCORE_TRANSITION_COUNT 30
 
 extern void DrawPlane();
 
@@ -176,7 +177,7 @@ void setPage(Page page){
 	else if(page == TITLE && displayingPage!=INSTRUCTION)
 		playBgm(AS_SND_TITLE);
 	else if(page == SCORE)
-		playBgm(AS_SND_RESULT);
+		StopCurrentBGM();
 	else if(page == READY){
 		StopCurrentBGM();
 	}
@@ -269,9 +270,9 @@ void  main( void ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START) {
 		            	if(!playerJoined[n]){
-		            		// joinPlayer(n);
-		            		for(i=0;i<3;i++)
-		            			joinPlayer(i);
+		            		joinPlayer(n);
+		            		// for(i=0;i<3;i++)
+		            		// 	joinPlayer(i);
 		            	}
 		            }else if(playerJoined[n]){
 		            	setPage(READY);
@@ -354,29 +355,34 @@ void  main( void ) {
 			prerender();
 
 			drawTex2(AG_CG_RESULTBACK,0,0,1024,768);
+			drawTex3(AG_CG_RESULT,30,30);
 
 			sortPlayerByRank();
 
+			if(frameCount == SCORE_TRANSITION_COUNT)
+				playBgm(AS_SND_RESULT);
+
 			for(n=0;n<playerNum;n++){
 				int l;
-				if(frameCount > (n+1)*10){
-					l = 200;
+				if(frameCount > (n+1)*10+SCORE_TRANSITION_COUNT){
+					l = 180;
 				}else{
-					int c = frameCount - n*10;
-					l = 200 + (10-c)*(10-c)*(10-c);
+					int c = frameCount - n*10 - SCORE_TRANSITION_COUNT;
+					l = 180 + (10-c)*(10-c)*(10-c);
 				}
-				_dprintf("%d\n",Objects[n].deadFrame);
-				drawTex2(AG_CG_1ST+n,100,(100+100*n),70,30);
-				drawTex2(AG_CG_NO1+Objects[n].pid,l,(100+100*n),100,30);
+
+				drawTex2(AG_CG_1ST+n,80,(120+100*n),70,30);
+				if(frameCount > SCORE_TRANSITION_COUNT)
+					drawTex2(AG_CG_NO1+Objects[n].pid,l,(120+100*n),100,30);
 			}
 
-			if(frameCount > (playerNum+1)*10){
-				drawTex2(AG_CG_STARTAL,700,700,250,32);
+			if(frameCount > (playerNum+1)*10 + SCORE_TRANSITION_COUNT){
+				drawTex2(AG_CG_STARTAL,1014-430,700,410,50);
 			}
 
 			postrender();
 
-			if(frameCount > (playerNum+1)*10)
+			if(frameCount > (playerNum+1)*10 + SCORE_TRANSITION_COUNT)
 		        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 		            pad = agGamePadGetData(n);
 		            if (pad & GAMEPAD_START){
