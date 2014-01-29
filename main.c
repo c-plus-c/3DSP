@@ -432,11 +432,10 @@ void draw( int frame , int motion_number  ) {
 		agglLightfv( AGGL_LIGHT0, AGGL_POSITION, lpos);
 		agglEnable( AGGL_LIGHT0 );
 };
-
-	agglEnable( AGGL_LIGHTING );
 	
 	//agglDisable( AGGL_LIGHTING );
-	DrawCubes();
+	//DrawCubes();
+	agglEnable( AGGL_LIGHTING );
 	DrawPlane();
 	DrawSky();
 }

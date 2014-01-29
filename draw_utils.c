@@ -226,6 +226,7 @@ void drawRadar(Object *dp){
 
 	drawTex(AG_CG_RADAR,offsetX,offsetY,100,100,0);
 
+	
 	for(i=0;i<playerNum;i++){
 		Object *dp2 = &Objects[i];
 		int dx, dz;
@@ -241,6 +242,7 @@ void drawRadar(Object *dp){
 		drawNum((((int)(dp2->translation.X*100/ACTIVE_RADIUS)<<2) +(offsetX<<2)),
 			(((int)(dp2->translation.Z*100/ACTIVE_RADIUS)<<2) +(offsetY<<2)),dp2->translation.Y);
 	}
+	
 }
 
 void drawHormingOnRadar(Object *dp){
