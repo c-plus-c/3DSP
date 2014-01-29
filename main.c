@@ -172,6 +172,8 @@ void setPage(Page page){
 	destPage = page;
 	frameCount = 0;
 
+	
+	StopCurrentBGM();
 	if(page == INGAME)
 		playBgm(AS_SND_INGAME);
 	else if(page == TITLE && displayingPage!=INSTRUCTION)
@@ -331,13 +333,6 @@ void  main( void ) {
 			/* gl”wŒi‰Šú‰» */
 
 
-	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
-	            pad = agGamePadGetData(n);
-	            if ((pad & GAMEPAD_SELECT)){
-	            	setPage(TITLE);
-	            	initGame();
-	            }
-     	 	}
 
      	 	if(displayingPage == destPage){
 				moveObjects();
@@ -356,15 +351,21 @@ void  main( void ) {
 					}
 				}
 
-				if(c==1){
-					setPage(SCORE);
-				}
 			}
 
 
-			
-
 			postrender();
+
+			if(c==1){
+				setPage(SCORE);
+			}
+	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
+	            pad = agGamePadGetData(n);
+	            if ((pad & GAMEPAD_SELECT)){
+	            	setPage(TITLE);
+	            	initGame();
+	            }
+     	 	}
 		}else if(displayingPage == SCORE){
 			prerender();
 
