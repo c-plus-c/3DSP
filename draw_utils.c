@@ -355,6 +355,8 @@ void drawHud(Object *dp, u32 frameCount){
 		}
 	}
 
+	drawTex(AG_CG_BLACK,500,500,50,50,dp->pitch);
+
 	if(dp->sideOut == 1 && frameCount/10%2 == 0){
 		drawTex2(AG_CG_AUTOPILOTNOTICE, 724, 50, 250, 70);
 	}

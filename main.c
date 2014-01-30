@@ -356,9 +356,9 @@ void  main( void ) {
 
 			postrender();
 
-			if(c==1){
-				setPage(SCORE);
-			}
+			// if(c==1){
+			// 	setPage(SCORE);
+			// }
 	        for( n=0 ; n < PLAYER_MAX ; n++ ) {
 	            pad = agGamePadGetData(n);
 	            if ((pad & GAMEPAD_SELECT)){
