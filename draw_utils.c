@@ -355,12 +355,12 @@ void drawHud(Object *dp, u32 frameCount){
 		}
 	}
 
-	drawTex(AG_CG_BLACK,500,500,50,50,dp->pitch);
+
 
 	if(dp->sideOut == 1 && frameCount/10%2 == 0){
 		drawTex2(AG_CG_AUTOPILOTNOTICE, 724, 50, 250, 70);
 	}
-
-	l=drawBigNum(470<<2,650<<2, (int)((float)1000/dp->brakeVariable));
+	drawTex(AG_CG_PLANE_SIDE_50,440,675,25,25,-dp->pitch+PI);
+	l=drawBigNum(476<<2,650<<2, (int)((float)1000/dp->brakeVariable));
 	drawStr(l+(10<<2),650<<2,"km/h");
 }
