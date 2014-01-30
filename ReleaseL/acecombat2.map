@@ -1,4 +1,4 @@
-Optimizing Linkage Editor (V.9.04.00.000)         29-Jan-2014 23:58:36
+Optimizing Linkage Editor (V.9.04.00.000)         30-Jan-2014 00:14:53
 
 *** Options ***
 
@@ -50,19 +50,19 @@ Pinit
 Cinit
                                   80000900  8000092b        2c   4
 P
-                                  8000092c  8002dc2b     2d300   4
+                                  8000092c  8002dc3f     2d314   4
 C
-                                  8002dc2c  8008a3bf     5c794   4
+                                  8002dc40  8008a3d3     5c794   4
 D
-                                  8008a3c0  8008a4ab        ec   4
+                                  8008a3d4  8008a4bf        ec   4
 Q
-                                  8c000000  8c02d2ff     2d300   4
+                                  8c000000  8c02d313     2d314   4
 R
-                                  8c02d300  8c02d3eb        ec   4
+                                  8c02d314  8c02d3ff        ec   4
 S
-                                  8c02d3ec  8c089b7f     5c794   4
+                                  8c02d400  8c089b93     5c794   4
 B
-                                  8c089b80  8d0b36db   1029b5c   4
+                                  8c089b94  8d0b36ef   1029b5c   4
 STACK
                                   8dff0000  8dff0001         2   4
 
@@ -238,169 +238,169 @@ FILE=SH7730_Main
 
 SECTION=P
 FILE=ReleaseL/main.o
-                                  8000092c  800014bb       b90
+                                  8000092c  800014cf       ba4
 FILE=ReleaseL/pad.o
-                                  800014bc  800014eb        30
+                                  800014d0  800014ff        30
 FILE=ReleaseL/fireball.o
-                                  800014ec  800017af       2c4
+                                  80001500  800017c3       2c4
 FILE=ReleaseL/player.o
-                                  800017b0  80002113       964
+                                  800017c4  80002127       964
 FILE=ReleaseL/plane.o
-                                  80002114  800021bf        ac
+                                  80002128  800021d3        ac
 FILE=ReleaseL/draw_utils.o
-                                  800021c0  800033df      1220
+                                  800021d4  800033f3      1220
 FILE=ReleaseL/backsky.o
-                                  800033e0  8000349b        bc
+                                  800033f4  800034af        bc
 FILE=ReleaseL/hormingbullet.o
-                                  8000349c  8000385f       3c4
+                                  800034b0  80003873       3c4
 FILE=ReleaseL/myrand.o
-                                  80003860  800038bb        5c
+                                  80003874  800038cf        5c
 FILE=ReleaseL/bgm_manager.o
-                                  800038bc  8000391b        60
+                                  800038d0  8000392f        60
 FILE=amlib
-                                  8000391c  80003c03       2e8
+                                  80003930  80003c17       2e8
 FILE=agdraw
-                                  80003c04  80003e93       290
+                                  80003c18  80003ea7       290
 FILE=agtransfer
-                                  80003e94  80003fbb       128
+                                  80003ea8  80003fcf       128
 FILE=agetool
-                                  80003fbc  800041f7       23c
+                                  80003fd0  8000420b       23c
 FILE=agesndmgr
-                                  800041f8  800049e3       7ec
+                                  8000420c  800049f7       7ec
 FILE=__q_mvn
-                                  800049e4  80004aa3        c0
+                                  800049f8  80004ab7        c0
 FILE=__cmpgt64
-                                  80004aa4  80004ac1        1e
+                                  80004ab8  80004ad5        1e
 FILE=__convf64
-                                  80004ac4  80004b67        a4
+                                  80004ad8  80004b7b        a4
 FILE=__div64s
-                                  80004b68  80004e17       2b0
+                                  80004b7c  80004e2b       2b0
 FILE=__mul64
-                                  80004e18  80004e53        3c
+                                  80004e2c  80004e67        3c
 FILE=atan2f
-                                  80004e54  80004ea3        50
+                                  80004e68  80004eb7        50
 FILE=cosf
-                                  80004ea4  80004ec3        20
+                                  80004eb8  80004ed7        20
 FILE=sinf
-                                  80004ec4  80004ef3        30
+                                  80004ed8  80004f07        30
 FILE=SH7730_agp
-                                  80004ef4  800051b7       2c4
+                                  80004f08  800051cb       2c4
 FILE=agGamePad
-                                  800051b8  800054e7       330
+                                  800051cc  800054fb       330
 FILE=ag3danimate
-                                  800054e8  8000ab6f      5688
+                                  800054fc  8000ab83      5688
 FILE=ag3ddata_dcmd
-                                  8000ab70  8000b69f       b30
+                                  8000ab84  8000b6b3       b30
 FILE=aggl401
-                                  8000b6a0  8002bb2f     20490
+                                  8000b6b4  8002bb43     20490
 FILE=dprintf
-                                  8002bb30  8002c19f       670
+                                  8002bb44  8002c1b3       670
 FILE=__divls
-                                  8002c1a0  8002c293        f4
+                                  8002c1b4  8002c2a7        f4
 FILE=_i_atn2s
-                                  8002c294  8002c2e7        54
+                                  8002c2a8  8002c2fb        54
 FILE=memcpy
-                                  8002c2e8  8002c87b       594
+                                  8002c2fc  8002c88f       594
 FILE=memset
-                                  8002c87c  8002c90b        90
+                                  8002c890  8002c91f        90
 FILE=sincosfsub_fpu
-                                  8002c90c  8002ca13       108
+                                  8002c920  8002ca27       108
 FILE=tanf
-                                  8002ca14  8002cb73       160
+                                  8002ca28  8002cb87       160
 FILE=SH7730_Int
-                                  8002cb74  8002ce6f       2fc
+                                  8002cb88  8002ce83       2fc
 FILE=SH7730_Sci
-                                  8002ce70  8002cebf        50
+                                  8002ce84  8002ced3        50
 FILE=SH7730_Sci2
-                                  8002cec0  8002ced9        1a
+                                  8002ced4  8002ceed        1a
 FILE=initialize
-                                  8002cedc  8002d20f       334
+                                  8002cef0  8002d223       334
 FILE=SH7730_GamePad
-                                  8002d210  8002d253        44
+                                  8002d224  8002d267        44
 FILE=aggltransfer
-                                  8002d254  8002d2ab        58
+                                  8002d268  8002d2bf        58
 FILE=__modls
-                                  8002d2ac  8002d39f        f4
+                                  8002d2c0  8002d3b3        f4
 FILE=_i_atans
-                                  8002d3a0  8002d5ef       250
+                                  8002d3b4  8002d603       250
 FILE=fmodf
-                                  8002d5f0  8002d63b        4c
+                                  8002d604  8002d64f        4c
 FILE=nanf
-                                  8002d63c  8002d64f        14
+                                  8002d650  8002d663        14
 FILE=SH7730_Scif0
-                                  8002d650  8002d867       218
+                                  8002d664  8002d87b       218
 FILE=SH7730_Scif4
-                                  8002d868  8002da37       1d0
+                                  8002d87c  8002da4b       1d0
 FILE=_a_atans
-                                  8002da38  8002da57        20
+                                  8002da4c  8002da6b        20
 FILE=_i_fmds
-                                  8002da58  8002db7b       124
+                                  8002da6c  8002db8f       124
 FILE=_i_ldes
-                                  8002db7c  8002dc2b        b0
+                                  8002db90  8002dc3f        b0
 
 SECTION=C
 FILE=ReleaseL/main.o
-                                  8002dc2c  8002dc69        3e
+                                  8002dc40  8002dc7d        3e
 FILE=ReleaseL/export.o
-                                  8002dc6c  80089f9f     5c334
+                                  8002dc80  80089fb3     5c334
 FILE=ReleaseL/draw_utils.o
-                                  80089fa0  80089fb8        19
+                                  80089fb4  80089fcc        19
 FILE=ReleaseL/cubes.o
-                                  80089fbc  8008a003        48
+                                  80089fd0  8008a017        48
 FILE=agetool
-                                  8008a004  8008a04b        48
+                                  8008a018  8008a05f        48
 FILE=agGamePad
-                                  8008a04c  8008a097        4c
+                                  8008a060  8008a0ab        4c
 FILE=aggl401
-                                  8008a098  8008a217       180
+                                  8008a0ac  8008a22b       180
 FILE=dprintf
-                                  8008a218  8008a28e        77
+                                  8008a22c  8008a2a2        77
 FILE=tanf
-                                  8008a290  8008a2c3        34
+                                  8008a2a4  8008a2d7        34
 FILE=SH7730_Int
-                                  8008a2c4  8008a2da        17
+                                  8008a2d8  8008a2ee        17
 FILE=consts
-                                  8008a2dc  8008a33f        64
+                                  8008a2f0  8008a353        64
 FILE=_i_atans
-                                  8008a340  8008a357        18
+                                  8008a354  8008a36b        18
 FILE=SH7730_Scif0
-                                  8008a358  8008a36b        14
-FILE=SH7730_Scif4
                                   8008a36c  8008a37f        14
+FILE=SH7730_Scif4
+                                  8008a380  8008a393        14
 FILE=_a_atans
-                                  8008a380  8008a397        18
+                                  8008a394  8008a3ab        18
 FILE=floatval
-                                  8008a398  8008a3bf        28
+                                  8008a3ac  8008a3d3        28
 
 SECTION=D
 FILE=ReleaseL/main.o
-                                  8008a3c0  8008a3c3         4
-FILE=ReleaseL/myrand.o
-                                  8008a3c4  8008a3d3        10
-FILE=agesndmgr
                                   8008a3d4  8008a3d7         4
-FILE=agGamePad
+FILE=ReleaseL/myrand.o
                                   8008a3d8  8008a3e7        10
+FILE=agesndmgr
+                                  8008a3e8  8008a3eb         4
+FILE=agGamePad
+                                  8008a3ec  8008a3fb        10
 FILE=aggl401
-                                  8008a3e8  8008a457        70
+                                  8008a3fc  8008a46b        70
 FILE=dprintf
-                                  8008a458  8008a45b         4
+                                  8008a46c  8008a46f         4
 FILE=sincosfsub_fpu
-                                  8008a45c  8008a497        3c
+                                  8008a470  8008a4ab        3c
 FILE=SH7730_Sci
-                                  8008a498  8008a49b         4
+                                  8008a4ac  8008a4af         4
 FILE=aggltransfer
-                                  8008a49c  8008a49f         4
+                                  8008a4b0  8008a4b3         4
 FILE=aggldrawdcmdshift
-                                  8008a4a0  8008a4a3         4
+                                  8008a4b4  8008a4b7         4
 FILE=SH7730_Scif0
-                                  8008a4a4  8008a4a7         4
+                                  8008a4b8  8008a4bb         4
 FILE=SH7730_Scif4
-                                  8008a4a8  8008a4ab         4
+                                  8008a4bc  8008a4bf         4
 
 SECTION=Q
 FILE=ReleaseL/main.o
-                                  8c000000  8c000b8f       b90
+                                  8c000000  8c000ba3       ba4
   _ifnc_vsync
                                   8c000000         c   func ,l         * 
   _initObjects
@@ -422,261 +422,251 @@ FILE=ReleaseL/main.o
   _joinPlayer
                                   8c0002bc        3c   func ,g         *   ch
   _setPage
-                                  8c0002f8        44   func ,g         * 
+                                  8c0002f8        5c   func ,g         * 
   _setCameraLongShot
-                                  8c00033c        aa   func ,g         * 
+                                  8c000354        aa   func ,g         * 
   _main
-                                  8c0003e6       4e4   func ,g         *   ch
+                                  8c0003fe       4de   func ,g         *   ch
   _sortPlayerByRank
-                                  8c0008ca        cc   func ,g         * 
+                                  8c0008dc        ce   func ,g         * 
   _draw
-                                  8c000996        8a   func ,g         *   ch
+                                  8c0009aa        8a   func ,g         *   ch
   _AG3DGLUglinit
-                                  8c000a20       170   func ,g         * 
+                                  8c000a34       170   func ,g         * 
 FILE=ReleaseL/pad.o
-                                  8c000b90  8c000bbf        30
+                                  8c000ba4  8c000bd3        30
   _PadInit
-                                  8c000b90        30   func ,g         *   ch
+                                  8c000ba4        30   func ,g         *   ch
 FILE=ReleaseL/fireball.o
-                                  8c000bc0  8c000e83       2c4
+                                  8c000bd4  8c000e97       2c4
   _fireballInit
-                                  8c000bc0        14   func ,g         * 
+                                  8c000bd4        14   func ,g         * 
   _fireball_drw
-                                  8c000bd4        74   func ,g         * 
+                                  8c000be8        74   func ,g         * 
   _collision
-                                  8c000c48        92   func ,g         * 
+                                  8c000c5c        92   func ,g         * 
   _fireball_move
-                                  8c000cda        ea   func ,g         * 
+                                  8c000cee        ea   func ,g         * 
   _getFreeFireball
-                                  8c000dc4        c0   func ,g         * 
+                                  8c000dd8        c0   func ,g         * 
 FILE=ReleaseL/player.o
-                                  8c000e84  8c0017e7       964
+                                  8c000e98  8c0017fb       964
   _playerInit
-                                  8c000e84        90   func ,g         * 
+                                  8c000e98        90   func ,g         * 
   _getPlayer
-                                  8c000f14        30   func ,g         * 
+                                  8c000f28        30   func ,g         * 
   _ManualMove
-                                  8c000f44       428   func ,g         *   ch
+                                  8c000f58       428   func ,g         *   ch
   _AutoMove
-                                  8c00136c        1a   func ,g         * 
+                                  8c001380        1a   func ,g         * 
   _DyingMove
-                                  8c001386        9e   func ,g         *   ch
+                                  8c00139a        9e   func ,g         *   ch
   _player_move
-                                  8c001424       278   func ,g         * 
+                                  8c001438       278   func ,g         * 
   _player_drw
-                                  8c00169c       14c   func ,g         * 
+                                  8c0016b0       14c   func ,g         * 
 FILE=ReleaseL/plane.o
-                                  8c0017e8  8c001893        ac
+                                  8c0017fc  8c0018a7        ac
   _DrawPlane
-                                  8c0017e8        ac   func ,g         * 
+                                  8c0017fc        ac   func ,g         * 
 FILE=ReleaseL/draw_utils.o
-                                  8c001894  8c002ab3      1220
+                                  8c0018a8  8c002ac7      1220
   _pow
-                                  8c001894        54   func ,g         * 
+                                  8c0018a8        54   func ,g         * 
   _drawNum
-                                  8c0018e8       200   func ,g         * 
+                                  8c0018fc       200   func ,g         * 
   _drawBigNum
-                                  8c001ae8       208   func ,g         * 
+                                  8c001afc       208   func ,g         * 
   _drawNumAlignRight
-                                  8c001cf0       30c   func ,g         * 
+                                  8c001d04       30c   func ,g         * 
   _strlen
-                                  8c001ffc        30   func ,g         * 
+                                  8c002010        30   func ,g         * 
   _drawStr
-                                  8c00202c        a4   func ,g         * 
+                                  8c002040        a4   func ,g         * 
   _drawSmallStr
-                                  8c0020d0        a4   func ,g         * 
+                                  8c0020e4        a4   func ,g         * 
   _Rotate
-                                  8c002174        6a   func ,g         * 
+                                  8c002188        6a   func ,g         * 
   _drawTex2
-                                  8c0021de        68   func ,g         * 
+                                  8c0021f2        68   func ,g         * 
   _drawTex3
-                                  8c002246        8e   func ,g         * 
+                                  8c00225a        8e   func ,g         * 
   _drawRect
-                                  8c0022d4        78   func ,g         * 
+                                  8c0022e8        78   func ,g         * 
   _drawRect2
-                                  8c00234c        76   func ,g         *   ch
+                                  8c002360        76   func ,g         *   ch
   _drawTex
-                                  8c0023c2       180   func ,g         *   ch
+                                  8c0023d6       180   func ,g         *   ch
   _drawRadar
-                                  8c002542       198   func ,g         *   ch
+                                  8c002556       198   func ,g         *   ch
   _drawHormingOnRadar
-                                  8c0026da        9a   func ,g         * 
+                                  8c0026ee        9a   func ,g         * 
   _drawBar
-                                  8c002774        f6   func ,g         * 
+                                  8c002788        f6   func ,g         * 
   _drawSelfInfo
-                                  8c00286a        f2   func ,g         * 
+                                  8c00287e        f2   func ,g         * 
   _drawEnemyInfo
-                                  8c00295c        64   func ,g         * 
+                                  8c002970        64   func ,g         * 
   _drawHud
-                                  8c0029c0        f4   func ,g         *   ch
+                                  8c0029d4        f4   func ,g         *   ch
 FILE=ReleaseL/backsky.o
-                                  8c002ab4  8c002b6f        bc
+                                  8c002ac8  8c002b83        bc
   _DrawSky
-                                  8c002ab4        bc   func ,g         * 
+                                  8c002ac8        bc   func ,g         * 
 FILE=ReleaseL/hormingbullet.o
-                                  8c002b70  8c002f33       3c4
+                                  8c002b84  8c002f47       3c4
   _hormingBullet_drw
-                                  8c002b70        76   func ,g         * 
+                                  8c002b84        76   func ,g         * 
   _round
-                                  8c002be6        2a   func ,g         * 
+                                  8c002bfa        2a   func ,g         * 
   _hormingBullet_move
-                                  8c002c10       2a4   func ,g         * 
+                                  8c002c24       2a4   func ,g         * 
   _hormingBulletInit
-                                  8c002eb4        14   func ,g         * 
+                                  8c002ec8        14   func ,g         * 
   _getFreeHormingBullet
-                                  8c002ec8        6c   func ,g         * 
+                                  8c002edc        6c   func ,g         * 
 FILE=ReleaseL/myrand.o
-                                  8c002f34  8c002f8f        5c
+                                  8c002f48  8c002fa3        5c
   _frand
-                                  8c002f34        5c   func ,g         * 
+                                  8c002f48        5c   func ,g         * 
 FILE=ReleaseL/bgm_manager.o
-                                  8c002f90  8c002fef        60
+                                  8c002fa4  8c003003        60
   _SetCurrentBGMHandle
-                                  8c002f90        26   func ,g         *   ch
+                                  8c002fa4        26   func ,g         *   ch
   _PlayCurrentBGM
-                                  8c002fb6         6   func ,g         *   ch
+                                  8c002fca         6   func ,g         *   ch
   _ReleaseCurrentBGMHandle
-                                  8c002fbc         6   func ,g         *   ch
+                                  8c002fd0         6   func ,g         *   ch
   _StopCurrentBGM
-                                  8c002fc2         8   func ,g         * 
+                                  8c002fd6         8   func ,g         * 
   _playBgm
-                                  8c002fca        26   func ,g         *   ch
+                                  8c002fde        26   func ,g         *   ch
 FILE=amlib
-                                  8c002ff0  8c0032d7       2e8
+                                  8c003004  8c0032eb       2e8
   _aglInitialize
-                                  8c002ff0        4a   func ,g         * 
+                                  8c003004        4a   func ,g         * 
   _aglGetReg
-                                  8c00303a         c   func ,g         * 
+                                  8c00304e         c   func ,g         * 
   _aglSetReg
-                                  8c003046         c   func ,g         * 
+                                  8c00305a         c   func ,g         * 
   _aglSetFBIndex
-                                  8c003052        22   func ,g         * 
+                                  8c003066        22   func ,g         * 
   _aglGetDspAIndex
-                                  8c003074        1a   func ,g         * 
+                                  8c003088        1a   func ,g         * 
   _aglGetDspBIndex
-                                  8c00308e        1a   func ,g         * 
+                                  8c0030a2        1a   func ,g         * 
   _aglGetDispFrameA
-                                  8c0030a8         8   func ,g         * 
+                                  8c0030bc         8   func ,g         * 
   _aglGetDispFrameB
-                                  8c0030b0         8   func ,g         * 
+                                  8c0030c4         8   func ,g         * 
   _aglGetDispFrame
-                                  8c0030b8        10   func ,g         * 
+                                  8c0030cc        10   func ,g         * 
   _aglSwap
-                                  8c0030c8         c   func ,g         * 
+                                  8c0030dc         c   func ,g         * 
   _aglSwapA
-                                  8c0030d4        1e   func ,g         * 
+                                  8c0030e8        1e   func ,g         * 
   _aglSwapB
-                                  8c0030f2        22   func ,g         *   ch
+                                  8c003106        22   func ,g         *   ch
   _aglWaitVSyncA
-                                  8c003114        38   func ,g         *   ch
+                                  8c003128        38   func ,g         *   ch
   _aglWaitVSyncB
-                                  8c00314c        10   func ,g         * 
+                                  8c003160        10   func ,g         * 
   _aglWaitVSyncN
-                                  8c00315c         e   func ,g         * 
+                                  8c003170         e   func ,g         * 
   _aglWaitVSyncNA
-                                  8c00316a        20   func ,g         * 
+                                  8c00317e        20   func ,g         * 
   _aglWaitVSyncNB
-                                  8c00318a        20   func ,g         * 
+                                  8c00319e        20   func ,g         * 
   _aglIntHandler
-                                  8c0031aa        82   func ,g         * 
+                                  8c0031be        82   func ,g         * 
   _aglSearchNewCallbackSpace
-                                  8c00322c        30   func ,l         * 
+                                  8c003240        30   func ,l         * 
   _aglAddInterruptCallback
-                                  8c00325c        70   func ,g         *   ch
+                                  8c003270        70   func ,g         *   ch
   _aglSetMainDisplay
-                                  8c0032cc         c   func ,g         *   ch
+                                  8c0032e0         c   func ,g         *   ch
 FILE=agdraw
-                                  8c0032d8  8c003567       290
+                                  8c0032ec  8c00357b       290
   _agDrawBufferInit
-                                  8c0032d8        14   func ,g         * 
+                                  8c0032ec        14   func ,g         * 
   _agDrawEODL
-                                  8c0032ec        30   func ,g         * 
+                                  8c003300        30   func ,g         * 
   _agDrawSETFCOLOR
-                                  8c00331c        1a   func ,g         * 
+                                  8c003330        1a   func ,g         * 
   _agDrawSETTXATR
-                                  8c003336        b4   func ,g         * 
+                                  8c00334a        b4   func ,g         * 
   _agDrawSETDBMODE
-                                  8c0033ea        36   func ,g         * 
+                                  8c0033fe        36   func ,g         * 
   _agDrawSPRITE
-                                  8c003420        40   func ,g         * 
+                                  8c003434        40   func ,g         * 
   _agDrawTRIANGLE_T
-                                  8c003460        52   func ,g         * 
+                                  8c003474        52   func ,g         * 
   _agDrawTXLOAD2AAC
-                                  8c0034b2        7a   func ,g         * 
+                                  8c0034c6        7a   func ,g         * 
   _agDrawUSER
-                                  8c00352c        10   func ,g         * 
+                                  8c003540        10   func ,g         * 
   _agDrawUSER1
-                                  8c00353c        14   func ,g         * 
+                                  8c003550        14   func ,g         * 
   _agDrawUSER2
-                                  8c003550        18   func ,g         * 
+                                  8c003564        18   func ,g         * 
 FILE=agtransfer
-                                  8c003568  8c00368f       128
+                                  8c00357c  8c0036a3       128
   _agTransferDrawDMAAsync
-                                  8c003568        8c   func ,g         *   ch
+                                  8c00357c        8c   func ,g         *   ch
   _agTransferDrawWait
-                                  8c0035f4        9c   func ,g         *   ch
+                                  8c003608        9c   func ,g         *   ch
 FILE=agetool
-                                  8c003690  8c0038cb       23c
+                                  8c0036a4  8c0038df       23c
   _ageTransferAAC
-                                  8c003690       110   func ,g         *   ch
+                                  8c0036a4       110   func ,g         *   ch
   _ageTransferAAC_Biliner
-                                  8c0037a0       12c   func ,g         *   ch
+                                  8c0037b4       12c   func ,g         *   ch
 FILE=agesndmgr
-                                  8c0038cc  8c0040b7       7ec
+                                  8c0038e0  8c0040cb       7ec
   _ageSndMgrSetLoopFlag
-                                  8c0038cc        34   func ,l         * 
+                                  8c0038e0        34   func ,l         * 
   _ageSndMgrSetStereo
-                                  8c003900        34   func ,l         * 
+                                  8c003914        34   func ,l         * 
   _ageSndMgrSetOneSeekPoint
-                                  8c003934        34   func ,l         * 
+                                  8c003948        34   func ,l         * 
   _ageSndMgrSendCommand
-                                  8c003968        3a   func ,g         *   ch
+                                  8c00397c        3a   func ,g         *   ch
   _ageSndMgrInit
-                                  8c0039a2        e4   func ,g         *   ch
+                                  8c0039b6        e4   func ,g         *   ch
   _ageSndMgrSetMasterVolume
-                                  8c003a86        1a   func ,g         * 
+                                  8c003a9a        1a   func ,g         * 
   _ageSndMgrSetChannelVolume
-                                  8c003aa0        1e   func ,g         * 
+                                  8c003ab4        1e   func ,g         * 
   _ageSndMgrAllocMono
-                                  8c003abe        da   func ,l         *   ch
+                                  8c003ad2        da   func ,l         *   ch
   _ageSndMgrAllocStereo
-                                  8c003b98       10a   func ,l         * 
+                                  8c003bac       10a   func ,l         * 
   _ageSndMgrAlloc
-                                  8c003ca2        7a   func ,g         * 
+                                  8c003cb6        7a   func ,g         * 
   _ageSndMgrRelease
-                                  8c003d1c        7c   func ,g         * 
+                                  8c003d30        7c   func ,g         * 
   _ageSndMgrPlay
-                                  8c003d98        66   func ,g         * 
+                                  8c003dac        66   func ,g         * 
   _ageSndMgrPlayOneshot
-                                  8c003dfe        62   func ,g         * 
+                                  8c003e12        62   func ,g         * 
   _ageSndMgrRun
-                                  8c003e60        5e   func ,g         *   ch
+                                  8c003e74        5e   func ,g         *   ch
   _ageSndMgrSetPanMode
-                                  8c003ebe        30   func ,g         * 
+                                  8c003ed2        30   func ,g         * 
   _ageSndMgrSetPan
-                                  8c003eee        ee   func ,g         *   ch
+                                  8c003f02        ee   func ,g         *   ch
   _ageSndMgrSetVolume
-                                  8c003fdc        8a   func ,g         * 
+                                  8c003ff0        8a   func ,g         * 
   _ageSndMgrStop
-                                  8c004066        52   func ,g         *   ch
+                                  8c00407a        52   func ,g         *   ch
 FILE=__q_mvn
-                                  8c0040b8  8c004177        c0
+                                  8c0040cc  8c00418b        c0
   __quick_mvn
-                                  8c0040b8         0   none ,g         * 
+                                  8c0040cc         0   none ,g         * 
   
-                                  8c0040c0         0   none ,l         * 
+                                  8c0040d4         0   none ,l         * 
   
-                                  8c0040c8         0   none ,l         * 
-  
-                                  8c0040ce         0   none ,l         * 
-  
-                                  8c0040d2         0   none ,l         * 
-  
-                                  8c0040d6         0   none ,l         * 
-  
-                                  8c0040da         0   none ,l         * 
-  
-                                  8c0040de         0   none ,l         * 
+                                  8c0040dc         0   none ,l         * 
   
                                   8c0040e2         0   none ,l         * 
   
@@ -702,1657 +692,1657 @@ FILE=__q_mvn
   
                                   8c00410e         0   none ,l         * 
   
-                                  8c004114         0   none ,l         * 
+                                  8c004112         0   none ,l         * 
   
-                                  8c004158         0   none ,l         * 
+                                  8c004116         0   none ,l         * 
   
-                                  8c00415e         0   none ,l         * 
+                                  8c00411a         0   none ,l         * 
+  
+                                  8c00411e         0   none ,l         * 
+  
+                                  8c004122         0   none ,l         * 
+  
+                                  8c004128         0   none ,l         * 
+  
+                                  8c00416c         0   none ,l         * 
   
                                   8c004172         0   none ,l         * 
+  
+                                  8c004186         0   none ,l         * 
 FILE=__cmpgt64
-                                  8c004178  8c004195        1e
+                                  8c00418c  8c0041a9        1e
   __cmpgt64
-                                  8c004178         0   none ,g         * 
+                                  8c00418c         0   none ,g         * 
   
-                                  8c00418e         0   none ,l         * 
+                                  8c0041a2         0   none ,l         * 
 FILE=__convf64
-                                  8c004198  8c00423b        a4
+                                  8c0041ac  8c00424f        a4
   __convf64
-                                  8c004198         0   none ,g         * 
+                                  8c0041ac         0   none ,g         * 
   __convf64u
-                                  8c004198         0   none ,g         * 
+                                  8c0041ac         0   none ,g         * 
   __convs64
-                                  8c004198         0   none ,g         * 
+                                  8c0041ac         0   none ,g         * 
   __convs64u
-                                  8c004198         0   none ,g         * 
+                                  8c0041ac         0   none ,g         * 
   
-                                  8c0041bc         0   none ,l         * 
+                                  8c0041d0         0   none ,l         * 
   
-                                  8c0041c2         0   none ,l         * 
+                                  8c0041d6         0   none ,l         * 
   
-                                  8c0041e6         0   none ,l         * 
+                                  8c0041fa         0   none ,l         * 
   
-                                  8c0041f0         0   none ,l         * 
+                                  8c004204         0   none ,l         * 
   
-                                  8c0041f2         0   none ,l         * 
+                                  8c004206         0   none ,l         * 
   
-                                  8c0041fc         0   none ,l         * 
-  
-                                  8c00420c         0   none ,l         * 
-  
-                                  8c004218         0   none ,l         * 
-  
-                                  8c00421a         0   none ,l         * 
+                                  8c004210         0   none ,l         * 
   
                                   8c004220         0   none ,l         * 
   
-                                  8c00422a         0   none ,l         * 
+                                  8c00422c         0   none ,l         * 
   
-                                  8c004230         0   none ,l         * 
+                                  8c00422e         0   none ,l         * 
+  
+                                  8c004234         0   none ,l         * 
+  
+                                  8c00423e         0   none ,l         * 
+  
+                                  8c004244         0   none ,l         * 
 FILE=__div64s
-                                  8c00423c  8c0044eb       2b0
+                                  8c004250  8c0044ff       2b0
   __div64s
-                                  8c00423c         0   none ,g         * 
+                                  8c004250         0   none ,g         * 
   
-                                  8c004258         0   none ,l         * 
+                                  8c00426c         0   none ,l         * 
   
-                                  8c00427c         0   none ,l         * 
+                                  8c004290         0   none ,l         * 
   
-                                  8c004286         0   none ,l         * 
+                                  8c00429a         0   none ,l         * 
   
-                                  8c004298         0   none ,l         * 
+                                  8c0042ac         0   none ,l         * 
   
-                                  8c0042b8         0   none ,l         * 
+                                  8c0042cc         0   none ,l         * 
   
-                                  8c0042bc         0   none ,l         * 
+                                  8c0042d0         0   none ,l         * 
   
-                                  8c0042d4         0   none ,l         * 
+                                  8c0042e8         0   none ,l         * 
   
-                                  8c0042f4         0   none ,l         * 
+                                  8c004308         0   none ,l         * 
   
-                                  8c004310         0   none ,l         * 
+                                  8c004324         0   none ,l         * 
   
-                                  8c004320         0   none ,l         * 
+                                  8c004334         0   none ,l         * 
   
-                                  8c00432c         0   none ,l         * 
+                                  8c004340         0   none ,l         * 
   
-                                  8c004330         0   none ,l         * 
+                                  8c004344         0   none ,l         * 
   
-                                  8c00433a         0   none ,l         * 
+                                  8c00434e         0   none ,l         * 
   
-                                  8c00433e         0   none ,l         * 
+                                  8c004352         0   none ,l         * 
   
-                                  8c004346         0   none ,l         * 
-  
-                                  8c004368         0   none ,l         * 
+                                  8c00435a         0   none ,l         * 
   
                                   8c00437c         0   none ,l         * 
   
-                                  8c0043c8         0   none ,l         * 
+                                  8c004390         0   none ,l         * 
   
-                                  8c0043d4         0   none ,l         * 
+                                  8c0043dc         0   none ,l         * 
   
-                                  8c00445a         0   none ,l         * 
+                                  8c0043e8         0   none ,l         * 
   
-                                  8c0044de         0   none ,l         * 
+                                  8c00446e         0   none ,l         * 
+  
+                                  8c0044f2         0   none ,l         * 
 FILE=__mul64
-                                  8c0044ec  8c004527        3c
+                                  8c004500  8c00453b        3c
   __mul64
-                                  8c0044ec         0   none ,g         * 
+                                  8c004500         0   none ,g         * 
 FILE=atan2f
-                                  8c004528  8c004577        50
+                                  8c00453c  8c00458b        50
   _atan2f
-                                  8c004528        50   func ,g         * 
+                                  8c00453c        50   func ,g         * 
 FILE=cosf
-                                  8c004578  8c004597        20
+                                  8c00458c  8c0045ab        20
   _cosf
-                                  8c004578        20   func ,g         * 
+                                  8c00458c        20   func ,g         * 
 FILE=sinf
-                                  8c004598  8c0045c7        30
+                                  8c0045ac  8c0045db        30
   _sinf
-                                  8c004598        30   func ,g         * 
+                                  8c0045ac        30   func ,g         * 
 FILE=SH7730_agp
-                                  8c0045c8  8c00488b       2c4
+                                  8c0045dc  8c00489f       2c4
   _agpPreInitialize
-                                  8c0045c8        5a   func ,g         * 
+                                  8c0045dc        5a   func ,g         * 
   _agpPostInitialize
-                                  8c004622        ca   func ,g         * 
+                                  8c004636        ca   func ,g         * 
   __Cache_Purge
-                                  8c0046ec        3a   func ,l         * 
+                                  8c004700        3a   func ,l         * 
   _agpDMAWriteStart
-                                  8c004726        c2   func ,g         * 
+                                  8c00473a        c2   func ,g         * 
   _agpDMAIsFinish
-                                  8c0047e8        16   func ,g         * 
+                                  8c0047fc        16   func ,g         * 
   _agpDMAStop
-                                  8c0047fe         8   func ,g         * 
+                                  8c004812         8   func ,g         * 
   _agpDisableCpuInterrupts
-                                  8c004806         e   func ,g         * 
+                                  8c00481a         e   func ,g         * 
   _agpEnableCpuInterrupts
-                                  8c004814        78   func ,g         *   ch
+                                  8c004828        78   func ,g         *   ch
 FILE=agGamePad
-                                  8c00488c  8c004bbb       330
+                                  8c0048a0  8c004bcf       330
   _agGamePadGetMyID
-                                  8c00488c         6   func ,g         * 
+                                  8c0048a0         6   func ,g         * 
   _agGamePadGetData
-                                  8c004892        2c   func ,g         * 
+                                  8c0048a6        2c   func ,g         * 
   _Send
-                                  8c0048be        1a   func ,l         * 
+                                  8c0048d2        1a   func ,l         * 
   __agGamePadSend
-                                  8c0048d8        48   func ,l         * 
+                                  8c0048ec        48   func ,l         * 
   __agGamePadSync
-                                  8c004920        b6   func ,l         * 
+                                  8c004934        b6   func ,l         * 
   _agGamePadSyncInit
-                                  8c0049d6       13e   func ,g         *   ch
+                                  8c0049ea       13e   func ,g         *   ch
   _agGamePadSyncIdle
-                                  8c004b14        5c   func ,g         * 
+                                  8c004b28        5c   func ,g         * 
   _agGamePadSync
-                                  8c004b70        4c   func ,g         * 
+                                  8c004b84        4c   func ,g         * 
 FILE=ag3danimate
-                                  8c004bbc  8c00a243      5688
+                                  8c004bd0  8c00a257      5688
   _ag3dBillboardParameters
-                                  8c004bbc         e   func ,g         * 
+                                  8c004bd0         e   func ,g         * 
   
-                                  8c004bca        52   func ,l         * 
+                                  8c004bde        52   func ,l         * 
   
-                                  8c004c1c        b8   func ,l         * 
+                                  8c004c30        b8   func ,l         * 
   
-                                  8c004cd4        d8   func ,l         * 
+                                  8c004ce8        d8   func ,l         * 
   
-                                  8c004dac        94   func ,l         * 
+                                  8c004dc0        94   func ,l         * 
   
-                                  8c004e40        80   func ,l         * 
+                                  8c004e54        80   func ,l         * 
   
-                                  8c004ec0        68   func ,l         * 
+                                  8c004ed4        68   func ,l         * 
   
-                                  8c004f28        e4   func ,l         * 
+                                  8c004f3c        e4   func ,l         * 
   
-                                  8c00500c        ec   func ,l         * 
+                                  8c005020        ec   func ,l         * 
   
-                                  8c0050f8        ca   func ,l         * 
+                                  8c00510c        ca   func ,l         * 
   
-                                  8c0051c2        fa   func ,l         * 
+                                  8c0051d6        fa   func ,l         * 
   
-                                  8c0052bc       108   func ,l         * 
+                                  8c0052d0       108   func ,l         * 
   
-                                  8c0053c4        f4   func ,l         * 
+                                  8c0053d8        f4   func ,l         * 
   
-                                  8c0054b8        7e   func ,l         * 
+                                  8c0054cc        7e   func ,l         * 
   
-                                  8c005536        ee   func ,l         * 
+                                  8c00554a        ee   func ,l         * 
   
-                                  8c005624       11e   func ,l         * 
+                                  8c005638       11e   func ,l         * 
   
-                                  8c005742        d4   func ,l         * 
+                                  8c005756        d4   func ,l         * 
   
-                                  8c005816        d8   func ,l         * 
+                                  8c00582a        d8   func ,l         * 
   
-                                  8c0058ee        3e   func ,l         * 
+                                  8c005902        3e   func ,l         * 
   _ag3dPerspective
-                                  8c00592c       154   func ,g         * 
+                                  8c005940       154   func ,g         * 
   _ag3dBlendPerspective
-                                  8c005a80       280   func ,g         * 
+                                  8c005a94       280   func ,g         * 
   _ag3dSetPerspective
-                                  8c005d00        40   func ,g         * 
+                                  8c005d14        40   func ,g         * 
   _ag3dLookAt
-                                  8c005d40       346   func ,g         * 
+                                  8c005d54       346   func ,g         * 
   _ag3dBlendLookAt
-                                  8c006086       738   func ,g         * 
+                                  8c00609a       738   func ,g         * 
   _ag3dLight
-                                  8c0067be       526   func ,g         * 
+                                  8c0067d2       526   func ,g         * 
   _ag3dBlendLight
-                                  8c006ce4       7a6   func ,g         * 
+                                  8c006cf8       7a6   func ,g         * 
   _ag3dCalcRoot
-                                  8c00748a       2c0   func ,g         * 
+                                  8c00749e       2c0   func ,g         * 
   _ag3dBlendCalcRoot
-                                  8c00774a       844   func ,g         * 
+                                  8c00775e       844   func ,g         * 
   _ag3dSetRoot
-                                  8c007f8e        7a   func ,g         * 
+                                  8c007fa2        7a   func ,g         * 
   _ag3dSetMatRoot
-                                  8c008008        68   func ,g         * 
+                                  8c00801c        68   func ,g         * 
   
-                                  8c008070       318   func ,l         * 
+                                  8c008084       318   func ,l         * 
   
-                                  8c008388       37c   func ,l         * 
+                                  8c00839c       37c   func ,l         * 
   _ag3dCalcTree
-                                  8c008704       37c   func ,g         * 
+                                  8c008718       37c   func ,g         * 
   
-                                  8c008a80       994   func ,l         * 
+                                  8c008a94       994   func ,l         * 
   
-                                  8c009414       76c   func ,l         * 
+                                  8c009428       76c   func ,l         * 
   _ag3dBlendCalcTree
-                                  8c009b80       6c4   func ,g         * 
+                                  8c009b94       6c4   func ,g         * 
 FILE=ag3ddata_dcmd
-                                  8c00a244  8c00ad73       b30
+                                  8c00a258  8c00ad87       b30
   _ag3dDrawAnimenodeDCmd
-                                  8c00a244       568   func ,g         * 
+                                  8c00a258       568   func ,g         * 
   _ag3dDrawAnimenodeDCmdAlpha
-                                  8c00a7ac       5c8   func ,g         * 
+                                  8c00a7c0       5c8   func ,g         * 
 FILE=aggl401
-                                  8c00ad74  8c02b203     20490
+                                  8c00ad88  8c02b217     20490
   _agglScissor
-                                  8c00ad74        34   func ,g         * 
+                                  8c00ad88        34   func ,g         * 
   _agglAlphaFunc
-                                  8c00ada8        66   func ,g         * 
+                                  8c00adbc        66   func ,g         * 
   _agglAlphaFuncx
-                                  8c00ae0e        6e   func ,g         * 
+                                  8c00ae22        6e   func ,g         * 
   _agglDepthFunc
-                                  8c00ae7c        50   func ,g         * 
+                                  8c00ae90        50   func ,g         * 
   _agglBlendFunc
-                                  8c00aecc        40   func ,g         * 
+                                  8c00aee0        40   func ,g         * 
   _agglClear
-                                  8c00af0c       450   func ,g         * 
+                                  8c00af20       450   func ,g         * 
   _agglClearColor
-                                  8c00b35c        54   func ,g         * 
+                                  8c00b370        54   func ,g         * 
   _agglClearColorx
-                                  8c00b3b0        70   func ,g         * 
+                                  8c00b3c4        70   func ,g         * 
   _agglClearDepthf
-                                  8c00b420        6c   func ,g         * 
+                                  8c00b434        6c   func ,g         * 
   _agglClearDepthx
-                                  8c00b48c        26   func ,g         * 
+                                  8c00b4a0        26   func ,g         * 
   _agglColorMask
-                                  8c00b4b2        28   func ,g         * 
+                                  8c00b4c6        28   func ,g         * 
   _agglDepthMask
-                                  8c00b4da        18   func ,g         * 
+                                  8c00b4ee        18   func ,g         * 
   _agglColor4f
-                                  8c00b4f2        b8   func ,g         * 
+                                  8c00b506        b8   func ,g         * 
   _agglColor4x
-                                  8c00b5aa        bc   func ,g         * 
+                                  8c00b5be        bc   func ,g         * 
   _agglNormal3f
-                                  8c00b666        22   func ,g         * 
+                                  8c00b67a        22   func ,g         * 
   _agglNormal3x
-                                  8c00b688        38   func ,g         * 
+                                  8c00b69c        38   func ,g         * 
   _agglLightf
-                                  8c00b6c0        e0   func ,g         * 
+                                  8c00b6d4        e0   func ,g         * 
   _agglLightx
-                                  8c00b7a0        d6   func ,g         * 
+                                  8c00b7b4        d6   func ,g         * 
   _agglLightfv
-                                  8c00b876       288   func ,g         * 
+                                  8c00b88a       288   func ,g         * 
   _agglLightxv
-                                  8c00bafe       2d0   func ,g         * 
+                                  8c00bb12       2d0   func ,g         * 
   _agglMaterialf
-                                  8c00bdce        50   func ,g         * 
+                                  8c00bde2        50   func ,g         * 
   _agglMaterialx
-                                  8c00be1e        5a   func ,g         * 
+                                  8c00be32        5a   func ,g         * 
   _agglMaterialfv
-                                  8c00be78       2d8   func ,g         * 
+                                  8c00be8c       2d8   func ,g         * 
   _agglMaterialxv
-                                  8c00c150       330   func ,g         * 
+                                  8c00c164       330   func ,g         * 
   _agglLightModelf
-                                  8c00c480        86   func ,g         * 
+                                  8c00c494        86   func ,g         * 
   _agglLightModelx
-                                  8c00c506        84   func ,g         * 
+                                  8c00c51a        84   func ,g         * 
   _agglLightModelfv
-                                  8c00c58a        d8   func ,g         * 
+                                  8c00c59e        d8   func ,g         * 
   _agglLightModelxv
-                                  8c00c662       10a   func ,g         * 
+                                  8c00c676       10a   func ,g         * 
   _agglShadeModel
-                                  8c00c76c        36   func ,g         * 
+                                  8c00c780        36   func ,g         * 
   _agglFrontFace
-                                  8c00c7a2        3c   func ,g         * 
+                                  8c00c7b6        3c   func ,g         * 
   _agglCullFace
-                                  8c00c7de        48   func ,g         * 
+                                  8c00c7f2        48   func ,g         * 
   _agglFogf
-                                  8c00c826        44   func ,g         * 
+                                  8c00c83a        44   func ,g         * 
   _agglFogx
-                                  8c00c86a        58   func ,g         * 
+                                  8c00c87e        58   func ,g         * 
   _agglFogfv
-                                  8c00c8c2        76   func ,g         * 
+                                  8c00c8d6        76   func ,g         * 
   _agglFogxv
-                                  8c00c938        d0   func ,g         * 
+                                  8c00c94c        d0   func ,g         * 
   
-                                  8c00ca08       25c   func ,l         * 
+                                  8c00ca1c       25c   func ,l         * 
   
-                                  8c00cc64       20e   func ,l         * 
+                                  8c00cc78       20e   func ,l         * 
   
-                                  8c00ce72       1ae   func ,l         * 
+                                  8c00ce86       1ae   func ,l         * 
   _agglRotatef
-                                  8c00d020       650   func ,g         * 
+                                  8c00d034       650   func ,g         * 
   _agglRotatex
-                                  8c00d670        1e   func ,g         * 
+                                  8c00d684        1e   func ,g         * 
   _agglRotateXf
-                                  8c00d68e       36a   func ,g         * 
+                                  8c00d6a2       36a   func ,g         * 
   _agglRotateXx
-                                  8c00d9f8         c   func ,g         * 
+                                  8c00da0c         c   func ,g         * 
   _agglRotateYf
-                                  8c00da04       346   func ,g         * 
+                                  8c00da18       346   func ,g         * 
   _agglRotateYx
-                                  8c00dd4a         c   func ,g         * 
+                                  8c00dd5e         c   func ,g         * 
   _agglRotateZf
-                                  8c00dd56       360   func ,g         * 
+                                  8c00dd6a       360   func ,g         * 
   _agglRotateZx
-                                  8c00e0b6         c   func ,g         * 
+                                  8c00e0ca         c   func ,g         * 
   _agglRotateXYZf
-                                  8c00e0c2       65a   func ,g         * 
+                                  8c00e0d6       65a   func ,g         * 
   _agglRotateXYZx
-                                  8c00e71c        18   func ,g         * 
+                                  8c00e730        18   func ,g         * 
   _agglRotateXYZfv
-                                  8c00e734       668   func ,g         * 
+                                  8c00e748       668   func ,g         * 
   _agglRotateXYZxv
-                                  8c00ed9c        36   func ,g         * 
+                                  8c00edb0        36   func ,g         * 
   _agglScalef
-                                  8c00edd2       2a8   func ,g         * 
+                                  8c00ede6       2a8   func ,g         * 
   _agglScalex
-                                  8c00f07a        18   func ,g         * 
+                                  8c00f08e        18   func ,g         * 
   _agglTranslatef
-                                  8c00f092       28c   func ,g         * 
+                                  8c00f0a6       28c   func ,g         * 
   _agglTranslatex
-                                  8c00f31e       29e   func ,g         * 
+                                  8c00f332       29e   func ,g         * 
   
-                                  8c00f5bc       352   func ,l         * 
+                                  8c00f5d0       352   func ,l         * 
   _agglMultMatrixf
-                                  8c00f90e       4a4   func ,g         * 
+                                  8c00f922       4a4   func ,g         * 
   _agglMultMatrixx
-                                  8c00fdb2        34   func ,g         * 
+                                  8c00fdc6        34   func ,g         * 
   
-                                  8c00fde6       182   func ,l         * 
+                                  8c00fdfa       182   func ,l         * 
   _agglFrustumf
-                                  8c00ff68       5a8   func ,g         * 
+                                  8c00ff7c       5a8   func ,g         * 
   _agglFrustumx
-                                  8c010510       5b8   func ,g         * 
+                                  8c010524       5b8   func ,g         * 
   
-                                  8c010ac8       116   func ,l         * 
+                                  8c010adc       116   func ,l         * 
   _agglOrthof
-                                  8c010bde       4d4   func ,g         * 
+                                  8c010bf2       4d4   func ,g         * 
   _agglOrthox
-                                  8c0110b2        4e   func ,g         * 
+                                  8c0110c6        4e   func ,g         * 
   
-                                  8c011100       3b4   func ,l         * 
+                                  8c011114       3b4   func ,l         * 
   _agglLookAtf
-                                  8c0114b4       126   func ,g         * 
+                                  8c0114c8       126   func ,g         * 
   _agglLookAtx
-                                  8c0115da       160   func ,g         * 
+                                  8c0115ee       160   func ,g         * 
   _agglPerspectivef
-                                  8c01173a       5be   func ,g         * 
+                                  8c01174e       5be   func ,g         * 
   _agglPerspectivex
-                                  8c011cf8       5d4   func ,g         * 
+                                  8c011d0c       5d4   func ,g         * 
   _agglLoadMatrixf
-                                  8c0122cc       10c   func ,g         * 
+                                  8c0122e0       10c   func ,g         * 
   _agglLoadMatrixx
-                                  8c0123d8       142   func ,g         * 
+                                  8c0123ec       142   func ,g         * 
   _agglLoadIdentity
-                                  8c01251a       142   func ,g         * 
+                                  8c01252e       142   func ,g         * 
   _agglMatrixMode
-                                  8c01265c        38   func ,g         * 
+                                  8c012670        38   func ,g         * 
   _agglPushMatrix
-                                  8c012694        f8   func ,g         * 
+                                  8c0126a8        f8   func ,g         * 
   _agglPopMatrix
-                                  8c01278c        c2   func ,g         * 
+                                  8c0127a0        c2   func ,g         * 
   _agglDepthRangef
-                                  8c01284e         4   func ,g         * 
+                                  8c012862         4   func ,g         * 
   _agglDepthRangex
-                                  8c012852         4   func ,g         * 
+                                  8c012866         4   func ,g         * 
   _agglViewport
-                                  8c012856        90   func ,g         * 
+                                  8c01286a        90   func ,g         * 
   _agglCurrentPaletteMatrix
-                                  8c0128e6        20   func ,g         * 
+                                  8c0128fa        20   func ,g         * 
   _agglLoadPaletteFromModelViewMatrix
-                                  8c012906        8e   func ,g         * 
+                                  8c01291a        8e   func ,g         * 
   
-                                  8c012994       564   func ,l         * 
+                                  8c0129a8       564   func ,l         * 
   
-                                  8c012ef8       912   func ,l         * 
+                                  8c012f0c       912   func ,l         * 
   _agglBillboard
-                                  8c01380a       1de   func ,g         * 
+                                  8c01381e       1de   func ,g         * 
   _agglXshiftParallaxf
-                                  8c0139e8       488   func ,g         * 
+                                  8c0139fc       488   func ,g         * 
   _agglXshiftParallaxx
-                                  8c013e70        12   func ,g         * 
+                                  8c013e84        12   func ,g         * 
   
-                                  8c013e82        62   func ,l         * 
+                                  8c013e96        62   func ,l         * 
   
-                                  8c013ee4        72   func ,l         * 
+                                  8c013ef8        72   func ,l         * 
   _agglInitialize
-                                  8c013f56       474   func ,g         * 
+                                  8c013f6a       474   func ,g         * 
   _agglDisplaySize
-                                  8c0143ca        94   func ,g         * 
+                                  8c0143de        94   func ,g         * 
   _agglBeginFrame
-                                  8c01445e       208   func ,g         * 
+                                  8c014472       208   func ,g         * 
   _agglFinishFrame
-                                  8c014666         e   func ,g         * 
+                                  8c01467a         e   func ,g         * 
   
-                                  8c014674        7a   func ,l         * 
+                                  8c014688        7a   func ,l         * 
   _agglBeginZsort
-                                  8c0146ee        50   func ,g         * 
+                                  8c014702        50   func ,g         * 
   _agglEndZsort
-                                  8c01473e        9a   func ,g         * 
+                                  8c014752        9a   func ,g         * 
   _agglBeginCheckZNearfar
-                                  8c0147d8         4   func ,g         * 
+                                  8c0147ec         4   func ,g         * 
   _agglEnable
-                                  8c0147dc       2ee   func ,g         * 
+                                  8c0147f0       2ee   func ,g         * 
   _agglDisable
-                                  8c014aca       2e0   func ,g         * 
+                                  8c014ade       2e0   func ,g         * 
   _agglSetdavrFunc
-                                  8c014daa        16   func ,g         * 
+                                  8c014dbe        16   func ,g         * 
   _agglEndmatrixFunc
-                                  8c014dc0        ac   func ,g         * 
+                                  8c014dd4        ac   func ,g         * 
   _agglDrawDirectSetupFunc
-                                  8c014e6c        28   func ,g         * 
+                                  8c014e80        28   func ,g         * 
   _agglDrawDirectSetupPtr
-                                  8c014e94        34   func ,g         * 
+                                  8c014ea8        34   func ,g         * 
   _agglDrawDirectSetupParam
-                                  8c014ec8        34   func ,g         * 
+                                  8c014edc        34   func ,g         * 
   _agglDrawDCmdSetSource
-                                  8c014efc        1e   func ,g         * 
+                                  8c014f10        1e   func ,g         * 
   _agglColorPointer
-                                  8c014f1a        9c   func ,g         * 
+                                  8c014f2e        9c   func ,g         * 
   _agglNormalPointer
-                                  8c014fb6        58   func ,g         * 
+                                  8c014fca        58   func ,g         * 
   _agglTexCoordPointer
-                                  8c01500e        70   func ,g         * 
+                                  8c015022        70   func ,g         * 
   _agglVertexPointer
-                                  8c01507e        96   func ,g         * 
+                                  8c015092        96   func ,g         * 
   _agglMatrixIndexPointer
-                                  8c015114        50   func ,g         * 
+                                  8c015128        50   func ,g         * 
   _agglWeightPointer
-                                  8c015164        62   func ,g         * 
+                                  8c015178        62   func ,g         * 
   _agglEnableClientState
-                                  8c0151c6        c0   func ,g         * 
+                                  8c0151da        c0   func ,g         * 
   _agglDisableClientState
-                                  8c015286        e6   func ,g         * 
+                                  8c01529a        e6   func ,g         * 
   _agglTexParameter
-                                  8c01536c        ca   func ,g         * 
+                                  8c015380        ca   func ,g         * 
   _agglTexEnv
-                                  8c015436        42   func ,g         * 
+                                  8c01544a        42   func ,g         * 
   _agglTex
-                                  8c015478        12   func ,g         * 
+                                  8c01548c        12   func ,g         * 
   
-                                  8c01548a       6ba   func ,l         * 
+                                  8c01549e       6ba   func ,l         * 
   
-                                  8c015b44        98   func ,l         * 
+                                  8c015b58        98   func ,l         * 
   
-                                  8c015bdc        40   func ,l         * 
+                                  8c015bf0        40   func ,l         * 
   
-                                  8c015c1c       166   func ,l         * 
+                                  8c015c30       166   func ,l         * 
   
-                                  8c015d82       4b4   func ,l         * 
+                                  8c015d96       4b4   func ,l         * 
   
-                                  8c016236       132   func ,l         * 
+                                  8c01624a       132   func ,l         * 
   
-                                  8c016368       4cc   func ,l         * 
+                                  8c01637c       4cc   func ,l         * 
   
-                                  8c016834       29c   func ,l         * 
+                                  8c016848       29c   func ,l         * 
   
-                                  8c016ad0       138   func ,l         * 
+                                  8c016ae4       138   func ,l         * 
   
-                                  8c016c08        7c   func ,l         * 
+                                  8c016c1c        7c   func ,l         * 
   
-                                  8c016c84        9a   func ,l         * 
+                                  8c016c98        9a   func ,l         * 
   
-                                  8c016d1e        50   func ,l         * 
+                                  8c016d32        50   func ,l         * 
   
-                                  8c016d6e        6a   func ,l         * 
+                                  8c016d82        6a   func ,l         * 
   
-                                  8c016dd8       26c   func ,l         * 
+                                  8c016dec       26c   func ,l         * 
   
-                                  8c017044        40   func ,l         * 
+                                  8c017058        40   func ,l         * 
   
-                                  8c017084        10   func ,l         * 
+                                  8c017098        10   func ,l         * 
   
-                                  8c017094       1c8   func ,l         * 
+                                  8c0170a8       1c8   func ,l         * 
   
-                                  8c01725c       104   func ,l         * 
+                                  8c017270       104   func ,l         * 
   
-                                  8c017360       134   func ,l         * 
+                                  8c017374       134   func ,l         * 
   
-                                  8c017494       2ea   func ,l         * 
+                                  8c0174a8       2ea   func ,l         * 
   
-                                  8c01777e       298   func ,l         * 
+                                  8c017792       298   func ,l         * 
   
-                                  8c017a16       2c8   func ,l         * 
+                                  8c017a2a       2c8   func ,l         * 
   
-                                  8c017cde       314   func ,l         * 
+                                  8c017cf2       314   func ,l         * 
   
-                                  8c017ff2       322   func ,l         * 
+                                  8c018006       322   func ,l         * 
   
-                                  8c018314       158   func ,l         * 
+                                  8c018328       158   func ,l         * 
   
-                                  8c01846c       17c   func ,l         * 
+                                  8c018480       17c   func ,l         * 
   
-                                  8c0185e8       124   func ,l         * 
+                                  8c0185fc       124   func ,l         * 
   
-                                  8c01870c        98   func ,l         * 
+                                  8c018720        98   func ,l         * 
   
-                                  8c0187a4        48   func ,l         * 
+                                  8c0187b8        48   func ,l         * 
   
-                                  8c0187ec         4   func ,l         * 
+                                  8c018800         4   func ,l         * 
   
-                                  8c0187f0       1da   func ,l         * 
+                                  8c018804       1da   func ,l         * 
   
-                                  8c0189ca        f8   func ,l         * 
+                                  8c0189de        f8   func ,l         * 
   
-                                  8c018ac2       156   func ,l         * 
+                                  8c018ad6       156   func ,l         * 
   
-                                  8c018c18        f2   func ,l         * 
+                                  8c018c2c        f2   func ,l         * 
   
-                                  8c018d0a       126   func ,l         * 
+                                  8c018d1e       126   func ,l         * 
   
-                                  8c018e30        fa   func ,l         * 
+                                  8c018e44        fa   func ,l         * 
   
-                                  8c018f2a       3d6   func ,l         * 
+                                  8c018f3e       3d6   func ,l         * 
   
-                                  8c019300       546   func ,l         * 
+                                  8c019314       546   func ,l         * 
   
-                                  8c019846       2da   func ,l         * 
+                                  8c01985a       2da   func ,l         * 
   
-                                  8c019b20       410   func ,l         * 
+                                  8c019b34       410   func ,l         * 
   
-                                  8c019f30       578   func ,l         * 
+                                  8c019f44       578   func ,l         * 
   
-                                  8c01a4a8       31a   func ,l         * 
+                                  8c01a4bc       31a   func ,l         * 
   
-                                  8c01a7c2       26a   func ,l         * 
+                                  8c01a7d6       26a   func ,l         * 
   
-                                  8c01aa2c       288   func ,l         * 
+                                  8c01aa40       288   func ,l         * 
   
-                                  8c01acb4       260   func ,l         * 
+                                  8c01acc8       260   func ,l         * 
   
-                                  8c01af14       2b2   func ,l         * 
+                                  8c01af28       2b2   func ,l         * 
   
-                                  8c01b1c6       2a4   func ,l         * 
+                                  8c01b1da       2a4   func ,l         * 
   
-                                  8c01b46a       29e   func ,l         * 
+                                  8c01b47e       29e   func ,l         * 
   _agglDrawArrays
-                                  8c01b708       fec   func ,g         * 
+                                  8c01b71c       fec   func ,g         * 
   _agglDrawElements
-                                  8c01c6f4       e0c   func ,g         * 
+                                  8c01c708       e0c   func ,g         * 
   _agglDrawDCmd
-                                  8c01d500       8e0   func ,g         * 
+                                  8c01d514       8e0   func ,g         * 
   _agglSpriteCoeff
-                                  8c01dde0        2e   func ,g         * 
+                                  8c01ddf4        2e   func ,g         * 
   _agglSpriteCoefx
-                                  8c01de0e        4a   func ,g         * 
+                                  8c01de22        4a   func ,g         * 
   
-                                  8c01de58       3f2   func ,l         * 
+                                  8c01de6c       3f2   func ,l         * 
   _agglDrawSpritef
-                                  8c01e24a        54   func ,g         * 
+                                  8c01e25e        54   func ,g         * 
   _agglDrawSpritex
-                                  8c01e29e        76   func ,g         * 
+                                  8c01e2b2        76   func ,g         * 
   _agglDrawSpritei
-                                  8c01e314        48   func ,g         * 
+                                  8c01e328        48   func ,g         * 
   
-                                  8c01e35c        9e   func ,l         * 
+                                  8c01e370        9e   func ,l         * 
   
-                                  8c01e3fa        34   func ,l         * 
+                                  8c01e40e        34   func ,l         * 
   
-                                  8c01e42e        2e   func ,l         * 
+                                  8c01e442        2e   func ,l         * 
   
-                                  8c01e45c        34   func ,l         * 
+                                  8c01e470        34   func ,l         * 
   
-                                  8c01e490        2e   func ,l         * 
+                                  8c01e4a4        2e   func ,l         * 
   
-                                  8c01e4be        66   func ,l         * 
+                                  8c01e4d2        66   func ,l         * 
   
-                                  8c01e524        34   func ,l         * 
+                                  8c01e538        34   func ,l         * 
   
-                                  8c01e558        24   func ,l         * 
+                                  8c01e56c        24   func ,l         * 
   
-                                  8c01e57c        24   func ,l         * 
+                                  8c01e590        24   func ,l         * 
   
-                                  8c01e5a0        e8   func ,l         * 
+                                  8c01e5b4        e8   func ,l         * 
   
-                                  8c01e688        e8   func ,l         * 
+                                  8c01e69c        e8   func ,l         * 
   
-                                  8c01e770       120   func ,l         * 
+                                  8c01e784       120   func ,l         * 
   
-                                  8c01e890        e6   func ,l         * 
+                                  8c01e8a4        e6   func ,l         * 
   
-                                  8c01e976        a2   func ,l         * 
+                                  8c01e98a        a2   func ,l         * 
   
-                                  8c01ea18        9c   func ,l         * 
+                                  8c01ea2c        9c   func ,l         * 
   
-                                  8c01eab4        a2   func ,l         * 
+                                  8c01eac8        a2   func ,l         * 
   
-                                  8c01eb56        ca   func ,l         * 
+                                  8c01eb6a        ca   func ,l         * 
   
-                                  8c01ec20        a6   func ,l         * 
+                                  8c01ec34        a6   func ,l         * 
   
-                                  8c01ecc6        a0   func ,l         * 
+                                  8c01ecda        a0   func ,l         * 
   
-                                  8c01ed66        78   func ,l         * 
+                                  8c01ed7a        78   func ,l         * 
   
-                                  8c01edde        90   func ,l         * 
+                                  8c01edf2        90   func ,l         * 
   
-                                  8c01ee6e        be   func ,l         * 
+                                  8c01ee82        be   func ,l         * 
   
-                                  8c01ef2c        ac   func ,l         * 
+                                  8c01ef40        ac   func ,l         * 
   
-                                  8c01efd8        4e   func ,l         * 
+                                  8c01efec        4e   func ,l         * 
   
-                                  8c01f026        22   func ,l         * 
+                                  8c01f03a        22   func ,l         * 
   
-                                  8c01f048        12   func ,l         * 
+                                  8c01f05c        12   func ,l         * 
   
-                                  8c01f05a        3e   func ,l         * 
+                                  8c01f06e        3e   func ,l         * 
   
-                                  8c01f098        34   func ,l         * 
+                                  8c01f0ac        34   func ,l         * 
   
-                                  8c01f0cc        3e   func ,l         * 
+                                  8c01f0e0        3e   func ,l         * 
   
-                                  8c01f10a        34   func ,l         * 
+                                  8c01f11e        34   func ,l         * 
   
-                                  8c01f13e        3a   func ,l         * 
+                                  8c01f152        3a   func ,l         * 
   
-                                  8c01f178        24   func ,l         * 
+                                  8c01f18c        24   func ,l         * 
   
-                                  8c01f19c        30   func ,l         * 
+                                  8c01f1b0        30   func ,l         * 
   
-                                  8c01f1cc        e6   func ,l         * 
+                                  8c01f1e0        e6   func ,l         * 
   
-                                  8c01f2b2        dc   func ,l         * 
+                                  8c01f2c6        dc   func ,l         * 
   
-                                  8c01f38e       106   func ,l         * 
+                                  8c01f3a2       106   func ,l         * 
   
-                                  8c01f494        dc   func ,l         * 
+                                  8c01f4a8        dc   func ,l         * 
   
-                                  8c01f570        f2   func ,l         * 
+                                  8c01f584        f2   func ,l         * 
   
-                                  8c01f662       10a   func ,l         * 
+                                  8c01f676       10a   func ,l         * 
   
-                                  8c01f76c        e8   func ,l         * 
+                                  8c01f780        e8   func ,l         * 
   
-                                  8c01f854        d6   func ,l         * 
+                                  8c01f868        d6   func ,l         * 
   
-                                  8c01f92a        9a   func ,l         * 
+                                  8c01f93e        9a   func ,l         * 
   
-                                  8c01f9c4        d0   func ,l         * 
+                                  8c01f9d8        d0   func ,l         * 
   
-                                  8c01fa94        96   func ,l         * 
+                                  8c01faa8        96   func ,l         * 
   
-                                  8c01fb2a        66   func ,l         * 
+                                  8c01fb3e        66   func ,l         * 
   
-                                  8c01fb90        5a   func ,l         * 
+                                  8c01fba4        5a   func ,l         * 
   
-                                  8c01fbea         4   func ,l         * 
+                                  8c01fbfe         4   func ,l         * 
   
-                                  8c01fbee        2a   func ,l         * 
+                                  8c01fc02        2a   func ,l         * 
   
-                                  8c01fc18        2a   func ,l         * 
+                                  8c01fc2c        2a   func ,l         * 
   
-                                  8c01fc42        40   func ,l         * 
+                                  8c01fc56        40   func ,l         * 
   
-                                  8c01fc82        2e   func ,l         * 
+                                  8c01fc96        2e   func ,l         * 
   
-                                  8c01fcb0         8   func ,l         * 
+                                  8c01fcc4         8   func ,l         * 
   
-                                  8c01fcb8         4   func ,l         * 
+                                  8c01fccc         4   func ,l         * 
   
-                                  8c01fcbc        24   func ,l         * 
+                                  8c01fcd0        24   func ,l         * 
   
-                                  8c01fce0        98   func ,l         * 
+                                  8c01fcf4        98   func ,l         * 
   
-                                  8c01fd78        80   func ,l         * 
+                                  8c01fd8c        80   func ,l         * 
   
-                                  8c01fdf8         a   func ,l         * 
+                                  8c01fe0c         a   func ,l         * 
   
-                                  8c01fe02         a   func ,l         * 
+                                  8c01fe16         a   func ,l         * 
   
-                                  8c01fe0c        f8   func ,l         * 
+                                  8c01fe20        f8   func ,l         * 
   
-                                  8c01ff04       128   func ,l         * 
+                                  8c01ff18       128   func ,l         * 
   
-                                  8c02002c        de   func ,l         * 
+                                  8c020040        de   func ,l         * 
   
-                                  8c02010a        d4   func ,l         * 
+                                  8c02011e        d4   func ,l         * 
   
-                                  8c0201de         8   func ,l         * 
+                                  8c0201f2         8   func ,l         * 
   
-                                  8c0201e6       73a   func ,l         * 
+                                  8c0201fa       73a   func ,l         * 
   
-                                  8c020920        78   func ,l         * 
+                                  8c020934        78   func ,l         * 
   
-                                  8c020998        1e   func ,l         * 
+                                  8c0209ac        1e   func ,l         * 
   
-                                  8c0209b6       116   func ,l         * 
+                                  8c0209ca       116   func ,l         * 
   
-                                  8c020acc        36   func ,l         * 
+                                  8c020ae0        36   func ,l         * 
   
-                                  8c020b02        84   func ,l         * 
+                                  8c020b16        84   func ,l         * 
   
-                                  8c020b86        3a   func ,l         * 
+                                  8c020b9a        3a   func ,l         * 
   
-                                  8c020bc0        92   func ,l         * 
+                                  8c020bd4        92   func ,l         * 
   
-                                  8c020c52        46   func ,l         * 
+                                  8c020c66        46   func ,l         * 
   
-                                  8c020c98        80   func ,l         * 
+                                  8c020cac        80   func ,l         * 
   
-                                  8c020d18        36   func ,l         * 
+                                  8c020d2c        36   func ,l         * 
   
-                                  8c020d4e        ba   func ,l         * 
+                                  8c020d62        ba   func ,l         * 
   
-                                  8c020e08        42   func ,l         * 
+                                  8c020e1c        42   func ,l         * 
   
-                                  8c020e4a        92   func ,l         * 
+                                  8c020e5e        92   func ,l         * 
   
-                                  8c020edc        46   func ,l         * 
+                                  8c020ef0        46   func ,l         * 
   
-                                  8c020f22        a0   func ,l         * 
+                                  8c020f36        a0   func ,l         * 
   
-                                  8c020fc2        50   func ,l         * 
+                                  8c020fd6        50   func ,l         * 
   
-                                  8c021012        82   func ,l         * 
+                                  8c021026        82   func ,l         * 
   
-                                  8c021094        68   func ,l         * 
+                                  8c0210a8        68   func ,l         * 
   
-                                  8c0210fc        96   func ,l         * 
+                                  8c021110        96   func ,l         * 
   
-                                  8c021192        4e   func ,l         * 
+                                  8c0211a6        4e   func ,l         * 
   
-                                  8c0211e0        92   func ,l         * 
+                                  8c0211f4        92   func ,l         * 
   
-                                  8c021272        4a   func ,l         * 
+                                  8c021286        4a   func ,l         * 
   
-                                  8c0212bc        a8   func ,l         * 
+                                  8c0212d0        a8   func ,l         * 
   
-                                  8c021364        88   func ,l         * 
+                                  8c021378        88   func ,l         * 
   
-                                  8c0213ec        8e   func ,l         * 
+                                  8c021400        8e   func ,l         * 
   
-                                  8c02147a        46   func ,l         * 
+                                  8c02148e        46   func ,l         * 
   
-                                  8c0214c0        a4   func ,l         * 
+                                  8c0214d4        a4   func ,l         * 
   
-                                  8c021564        5a   func ,l         * 
+                                  8c021578        5a   func ,l         * 
   
-                                  8c0215be        a0   func ,l         * 
+                                  8c0215d2        a0   func ,l         * 
   
-                                  8c02165e        7e   func ,l         * 
+                                  8c021672        7e   func ,l         * 
   
-                                  8c0216dc        b6   func ,l         * 
+                                  8c0216f0        b6   func ,l         * 
   
-                                  8c021792        68   func ,l         * 
+                                  8c0217a6        68   func ,l         * 
   
-                                  8c0217fa        8a   func ,l         * 
+                                  8c02180e        8a   func ,l         * 
   
-                                  8c021884        3e   func ,l         * 
+                                  8c021898        3e   func ,l         * 
   
-                                  8c0218c2        a6   func ,l         * 
+                                  8c0218d6        a6   func ,l         * 
   
-                                  8c021968        90   func ,l         * 
+                                  8c02197c        90   func ,l         * 
   
-                                  8c0219f8        9a   func ,l         * 
+                                  8c021a0c        9a   func ,l         * 
   
-                                  8c021a92        52   func ,l         * 
+                                  8c021aa6        52   func ,l         * 
   
-                                  8c021ae4        b8   func ,l         * 
+                                  8c021af8        b8   func ,l         * 
   
-                                  8c021b9c        6e   func ,l         * 
+                                  8c021bb0        6e   func ,l         * 
   
-                                  8c021c0a        96   func ,l         * 
+                                  8c021c1e        96   func ,l         * 
   
-                                  8c021ca0        78   func ,l         * 
+                                  8c021cb4        78   func ,l         * 
   
-                                  8c021d18        b4   func ,l         * 
+                                  8c021d2c        b4   func ,l         * 
   
-                                  8c021dcc        6a   func ,l         * 
+                                  8c021de0        6a   func ,l         * 
   
-                                  8c021e36        a8   func ,l         * 
+                                  8c021e4a        a8   func ,l         * 
   
-                                  8c021ede        5e   func ,l         * 
+                                  8c021ef2        5e   func ,l         * 
   
-                                  8c021f3c        f0   func ,l         * 
+                                  8c021f50        f0   func ,l         * 
   
-                                  8c02202c        78   func ,l         * 
+                                  8c022040        78   func ,l         * 
   
-                                  8c0220a4        98   func ,l         * 
+                                  8c0220b8        98   func ,l         * 
   
-                                  8c02213c        4e   func ,l         * 
+                                  8c022150        4e   func ,l         * 
   
-                                  8c02218a        b6   func ,l         * 
+                                  8c02219e        b6   func ,l         * 
   
-                                  8c022240        6e   func ,l         * 
+                                  8c022254        6e   func ,l         * 
   
-                                  8c0222ae        da   func ,l         * 
+                                  8c0222c2        da   func ,l         * 
   
-                                  8c022388        62   func ,l         * 
+                                  8c02239c        62   func ,l         * 
   
-                                  8c0223ea        c8   func ,l         * 
+                                  8c0223fe        c8   func ,l         * 
   
-                                  8c0224b2        7e   func ,l         * 
+                                  8c0224c6        7e   func ,l         * 
   
-                                  8c022530        a6   func ,l         * 
+                                  8c022544        a6   func ,l         * 
   
-                                  8c0225d6        82   func ,l         * 
+                                  8c0225ea        82   func ,l         * 
   
-                                  8c022658        c4   func ,l         * 
+                                  8c02266c        c4   func ,l         * 
   
-                                  8c02271c        7a   func ,l         * 
+                                  8c022730        7a   func ,l         * 
   
-                                  8c022796        b8   func ,l         * 
+                                  8c0227aa        b8   func ,l         * 
   
-                                  8c02284e        6e   func ,l         * 
+                                  8c022862        6e   func ,l         * 
   
-                                  8c0228bc       100   func ,l         * 
+                                  8c0228d0       100   func ,l         * 
   
-                                  8c0229bc        88   func ,l         * 
+                                  8c0229d0        88   func ,l         * 
   
-                                  8c022a44        a8   func ,l         * 
+                                  8c022a58        a8   func ,l         * 
   
-                                  8c022aec        5e   func ,l         * 
+                                  8c022b00        5e   func ,l         * 
   
-                                  8c022b4a        c6   func ,l         * 
+                                  8c022b5e        c6   func ,l         * 
   
-                                  8c022c10        ac   func ,l         * 
+                                  8c022c24        ac   func ,l         * 
   
-                                  8c022cbc        ba   func ,l         * 
+                                  8c022cd0        ba   func ,l         * 
   
-                                  8c022d76        72   func ,l         * 
+                                  8c022d8a        72   func ,l         * 
   
-                                  8c022de8        d8   func ,l         * 
+                                  8c022dfc        d8   func ,l         * 
   
-                                  8c022ec0        8e   func ,l         * 
+                                  8c022ed4        8e   func ,l         * 
   
-                                  8c022f4e        de   func ,l         * 
+                                  8c022f62        de   func ,l         * 
   
-                                  8c02302c        6e   func ,l         * 
+                                  8c023040        6e   func ,l         * 
   
-                                  8c02309a        d4   func ,l         * 
+                                  8c0230ae        d4   func ,l         * 
   
-                                  8c02316e        8a   func ,l         * 
+                                  8c023182        8a   func ,l         * 
   
-                                  8c0231f8        c8   func ,l         * 
+                                  8c02320c        c8   func ,l         * 
   
-                                  8c0232c0        a4   func ,l         * 
+                                  8c0232d4        a4   func ,l         * 
   
-                                  8c023364        e6   func ,l         * 
+                                  8c023378        e6   func ,l         * 
   
-                                  8c02344a        98   func ,l         * 
+                                  8c02345e        98   func ,l         * 
   
-                                  8c0234e2        b2   func ,l         * 
+                                  8c0234f6        b2   func ,l         * 
   
-                                  8c023594        e4   func ,l         * 
+                                  8c0235a8        e4   func ,l         * 
   
-                                  8c023678        ba   func ,l         * 
+                                  8c02368c        ba   func ,l         * 
   
-                                  8c023732        c6   func ,l         * 
+                                  8c023746        c6   func ,l         * 
   
-                                  8c0237f8        ba   func ,l         * 
+                                  8c02380c        ba   func ,l         * 
   
-                                  8c0238b2        e2   func ,l         * 
+                                  8c0238c6        e2   func ,l         * 
   
-                                  8c023994        c6   func ,l         * 
+                                  8c0239a8        c6   func ,l         * 
   
-                                  8c023a5a        d4   func ,l         * 
+                                  8c023a6e        d4   func ,l         * 
   
-                                  8c023b2e       1f8   func ,l         * 
+                                  8c023b42       1f8   func ,l         * 
   
-                                  8c023d26       206   func ,l         * 
+                                  8c023d3a       206   func ,l         * 
   
-                                  8c023f2c       1f2   func ,l         * 
+                                  8c023f40       1f2   func ,l         * 
   
-                                  8c02411e       216   func ,l         * 
+                                  8c024132       216   func ,l         * 
   
-                                  8c024334       1fa   func ,l         * 
+                                  8c024348       1fa   func ,l         * 
   
-                                  8c02452e       208   func ,l         * 
+                                  8c024542       208   func ,l         * 
   
-                                  8c024736       20e   func ,l         * 
+                                  8c02474a       20e   func ,l         * 
   
-                                  8c024944       224   func ,l         * 
+                                  8c024958       224   func ,l         * 
   
-                                  8c024b68        c8   func ,l         * 
+                                  8c024b7c        c8   func ,l         * 
   
-                                  8c024c30       25c   func ,l         * 
+                                  8c024c44       25c   func ,l         * 
   
-                                  8c024e8c       218   func ,l         * 
+                                  8c024ea0       218   func ,l         * 
   
-                                  8c0250a4       39e   func ,l         * 
+                                  8c0250b8       39e   func ,l         * 
   
-                                  8c025442       340   func ,l         * 
+                                  8c025456       340   func ,l         * 
   
-                                  8c025782       14c   func ,l         * 
+                                  8c025796       14c   func ,l         * 
   
-                                  8c0258ce       376   func ,l         * 
+                                  8c0258e2       376   func ,l         * 
   
-                                  8c025c44       2b0   func ,l         * 
+                                  8c025c58       2b0   func ,l         * 
   
-                                  8c025ef4       37c   func ,l         * 
+                                  8c025f08       37c   func ,l         * 
   
-                                  8c026270        1a   func ,l         * 
+                                  8c026284        1a   func ,l         * 
   
-                                  8c02628a       142   func ,l         * 
+                                  8c02629e       142   func ,l         * 
   
-                                  8c0263cc       75c   func ,l         * 
+                                  8c0263e0       75c   func ,l         * 
   
-                                  8c026b28       5f4   func ,l         * 
+                                  8c026b3c       5f4   func ,l         * 
   
-                                  8c02711c       584   func ,l         * 
+                                  8c027130       584   func ,l         * 
   
-                                  8c0276a0       166   func ,l         * 
+                                  8c0276b4       166   func ,l         * 
   
-                                  8c027806       178   func ,l         * 
+                                  8c02781a       178   func ,l         * 
   
-                                  8c02797e        9a   func ,l         * 
+                                  8c027992        9a   func ,l         * 
   
-                                  8c027a18       21e   func ,l         * 
+                                  8c027a2c       21e   func ,l         * 
   
-                                  8c027c36       192   func ,l         * 
+                                  8c027c4a       192   func ,l         * 
   
-                                  8c027dc8       63a   func ,l         * 
+                                  8c027ddc       63a   func ,l         * 
   
-                                  8c028402       418   func ,l         * 
+                                  8c028416       418   func ,l         * 
   
-                                  8c02881a       204   func ,l         * 
+                                  8c02882e       204   func ,l         * 
   _agglCubeTex
-                                  8c028a1e        66   func ,g         * 
+                                  8c028a32        66   func ,g         * 
   _agglGetError
-                                  8c028a84        10   func ,g         * 
+                                  8c028a98        10   func ,g         * 
   _agglGetBooleanv
-                                  8c028a94       8b8   func ,g         * 
+                                  8c028aa8       8b8   func ,g         * 
   _agglGetFixedv
-                                  8c02934c       764   func ,g         * 
+                                  8c029360       764   func ,g         * 
   _agglGetFloatv
-                                  8c029ab0       754   func ,g         * 
+                                  8c029ac4       754   func ,g         * 
   _agglGetIntegerv
-                                  8c02a204       834   func ,g         * 
+                                  8c02a218       834   func ,g         * 
   _agglGetLightfv
-                                  8c02aa38       11e   func ,g         * 
+                                  8c02aa4c       11e   func ,g         * 
   _agglGetLightxv
-                                  8c02ab56       1b2   func ,g         * 
+                                  8c02ab6a       1b2   func ,g         * 
   _agglGetMaterialfv
-                                  8c02ad08        a0   func ,g         * 
+                                  8c02ad1c        a0   func ,g         * 
   _agglGetMaterialxv
-                                  8c02ada8       108   func ,g         * 
+                                  8c02adbc       108   func ,g         * 
   _agglGetPointerv
-                                  8c02aeb0        68   func ,g         * 
+                                  8c02aec4        68   func ,g         * 
   _agglGetTexEnv
-                                  8c02af18        20   func ,g         * 
+                                  8c02af2c        20   func ,g         * 
   _agglGetTexParameter
-                                  8c02af38        94   func ,g         * 
+                                  8c02af4c        94   func ,g         * 
   _agglIsEnabled
-                                  8c02afcc       238   func ,g         * 
+                                  8c02afe0       238   func ,g         * 
 FILE=dprintf
-                                  8c02b204  8c02b873       670
+                                  8c02b218  8c02b887       670
   __prf_check
-                                  8c02b204        6e   func ,l         * 
+                                  8c02b218        6e   func ,l         * 
   __prline
-                                  8c02b272        22   func ,l         * 
+                                  8c02b286        22   func ,l         * 
   __prdata
-                                  8c02b294       172   func ,l         *   ch
+                                  8c02b2a8       172   func ,l         *   ch
   __dprintfunc_init
-                                  8c02b406         6   func ,g         * 
+                                  8c02b41a         6   func ,g         * 
   __put_db
-                                  8c02b40c        38   func ,l         *   ch
+                                  8c02b420        38   func ,l         *   ch
   __dprintf
-                                  8c02b444       430   func ,g         * 
+                                  8c02b458       430   func ,g         * 
 FILE=__divls
-                                  8c02b874  8c02b967        f4
+                                  8c02b888  8c02b97b        f4
   
-                                  8c02b874         0   none ,l         * 
+                                  8c02b888         0   none ,l         * 
   
-                                  8c02b87c         0   none ,l         * 
+                                  8c02b890         0   none ,l         * 
   
-                                  8c02b886         0   none ,l         * 
+                                  8c02b89a         0   none ,l         * 
   __divls
-                                  8c02b88c         0   none ,g         * 
+                                  8c02b8a0         0   none ,g         * 
   __divlu
-                                  8c02b894         0   none ,g         * 
+                                  8c02b8a8         0   none ,g         * 
   
-                                  8c02b8bc         0   none ,l         * 
+                                  8c02b8d0         0   none ,l         * 
   
-                                  8c02b914         0   none ,l         * 
+                                  8c02b928         0   none ,l         * 
   
-                                  8c02b91a         0   none ,l         * 
+                                  8c02b92e         0   none ,l         * 
 FILE=_i_atn2s
-                                  8c02b968  8c02b9bb        54
+                                  8c02b97c  8c02b9cf        54
   __in_atan2s
-                                  8c02b968        54   func ,g         * 
+                                  8c02b97c        54   func ,g         * 
 FILE=memcpy
-                                  8c02b9bc  8c02bf4f       594
+                                  8c02b9d0  8c02bf63       594
   _memcpy
-                                  8c02b9bc       344   func ,g         * 
+                                  8c02b9d0       344   func ,g         * 
   _moveLong1
-                                  8c02bd00       216   func ,l         * 
+                                  8c02bd14       216   func ,l         * 
   _moveChar1
-                                  8c02bf16        3a   func ,l         * 
+                                  8c02bf2a        3a   func ,l         * 
 FILE=memset
-                                  8c02bf50  8c02bfdf        90
+                                  8c02bf64  8c02bff3        90
   _memset
-                                  8c02bf50        90   func ,g         * 
+                                  8c02bf64        90   func ,g         * 
 FILE=sincosfsub_fpu
-                                  8c02bfe0  8c02c0e7       108
+                                  8c02bff4  8c02c0fb       108
   ___poly_sinf
-                                  8c02bfe0        28   func ,g         * 
+                                  8c02bff4        28   func ,g         * 
   ___poly_cosf
-                                  8c02c008        20   func ,g         * 
+                                  8c02c01c        20   func ,g         * 
   _poly_cosfn
-                                  8c02c028         c   func ,l         * 
+                                  8c02c03c         c   func ,l         * 
   _poly_sinfn
-                                  8c02c034         4   func ,l         * 
+                                  8c02c048         4   func ,l         * 
   ___internal_sincosf
-                                  8c02c038        b0   func ,g         *   ch
+                                  8c02c04c        b0   func ,g         *   ch
 FILE=tanf
-                                  8c02c0e8  8c02c247       160
+                                  8c02c0fc  8c02c25b       160
   _poly_tanf
-                                  8c02c0e8        42   func ,l         * 
+                                  8c02c0fc        42   func ,l         * 
   _poly_cotf
-                                  8c02c12a        54   func ,l         * 
+                                  8c02c13e        54   func ,l         * 
   _tanf
-                                  8c02c17e        ca   func ,g         *   ch
+                                  8c02c192        ca   func ,g         *   ch
 FILE=SH7730_Int
-                                  8c02c248  8c02c543       2fc
+                                  8c02c25c  8c02c557       2fc
   _Intevt_Init
-                                  8c02c248        1a   func ,l         * 
+                                  8c02c25c        1a   func ,l         * 
   _Intevt2_SetFunc
-                                  8c02c262        10   func ,g         * 
+                                  8c02c276        10   func ,g         * 
   _Intevt2_Entry
-                                  8c02c272        50   func ,g         * 
+                                  8c02c286        50   func ,g         * 
   _INTC_Init
-                                  8c02c2c2        ae   func ,g         * 
+                                  8c02c2d6        ae   func ,g         * 
   _INTC_ClearIPR
-                                  8c02c370        20   func ,g         * 
+                                  8c02c384        20   func ,g         * 
   _INTC_GetIPR
-                                  8c02c390        ba   func ,g         * 
+                                  8c02c3a4        ba   func ,g         * 
   _INTC_SetIPR
-                                  8c02c44a        b4   func ,g         * 
+                                  8c02c45e        b4   func ,g         * 
   __Exception_Entry
-                                  8c02c4fe         6   func ,l         * 
+                                  8c02c512         6   func ,l         * 
   _Exception_Entry1
-                                  8c02c504         8   func ,g         * 
+                                  8c02c518         8   func ,g         * 
   _Exception_Entry4
-                                  8c02c50c        38   func ,g         * 
+                                  8c02c520        38   func ,g         * 
 FILE=SH7730_Sci
-                                  8c02c544  8c02c593        50
+                                  8c02c558  8c02c5a7        50
   _IoSci_Init
-                                  8c02c544        18   func ,g         *   ch
+                                  8c02c558        18   func ,g         *   ch
   __putch
-                                  8c02c55c        10   func ,g         *   ch
+                                  8c02c570        10   func ,g         *   ch
   __putch_wait
-                                  8c02c56c        10   func ,g         *   ch
+                                  8c02c580        10   func ,g         *   ch
   __puts
-                                  8c02c57c        18   func ,g         *   ch
+                                  8c02c590        18   func ,g         *   ch
 FILE=SH7730_Sci2
-                                  8c02c594  8c02c5ad        1a
+                                  8c02c5a8  8c02c5c1        1a
   _IoSci2_Init
-                                  8c02c594        12   func ,g         *   ch
+                                  8c02c5a8        12   func ,g         *   ch
   _IoSci2_RecvData
-                                  8c02c5a6         4   func ,g         *   ch
+                                  8c02c5ba         4   func ,g         *   ch
   _IoSci2_SendData
-                                  8c02c5aa         4   func ,g         *   ch
+                                  8c02c5be         4   func ,g         *   ch
 FILE=initialize
-                                  8c02c5b0  8c02c8e3       334
+                                  8c02c5c4  8c02c8f7       334
   _agpVDPInitialize
-                                  8c02c5b0       27c   func ,g         * 
+                                  8c02c5c4       27c   func ,g         * 
   _agpSoundInitialize
-                                  8c02c82c        b8   func ,g         * 
+                                  8c02c840        b8   func ,g         * 
 FILE=SH7730_GamePad
-                                  8c02c8e4  8c02c927        44
+                                  8c02c8f8  8c02c93b        44
   _agpGamePadGetData
-                                  8c02c8e4        32   func ,g         * 
+                                  8c02c8f8        32   func ,g         * 
   _agpGamePadGetDipSw
-                                  8c02c916        12   func ,g         * 
+                                  8c02c92a        12   func ,g         * 
 FILE=aggltransfer
-                                  8c02c928  8c02c97f        58
+                                  8c02c93c  8c02c993        58
   _agglTransferAAC
-                                  8c02c928        48   func ,g         * 
+                                  8c02c93c        48   func ,g         * 
   _agglTransferAACFunc
-                                  8c02c970        10   func ,g         * 
+                                  8c02c984        10   func ,g         * 
 FILE=__modls
-                                  8c02c980  8c02ca73        f4
+                                  8c02c994  8c02ca87        f4
   __modls
-                                  8c02c980         0   none ,g         * 
+                                  8c02c994         0   none ,g         * 
   
-                                  8c02c986         0   none ,l         * 
+                                  8c02c99a         0   none ,l         * 
   __modlu
-                                  8c02c998         0   none ,g         * 
+                                  8c02c9ac         0   none ,g         * 
   
-                                  8c02c9be         0   none ,l         * 
+                                  8c02c9d2         0   none ,l         * 
   
-                                  8c02c9c4         0   none ,l         * 
+                                  8c02c9d8         0   none ,l         * 
   
-                                  8c02ca16         0   none ,l         * 
+                                  8c02ca2a         0   none ,l         * 
   
-                                  8c02ca1e         0   none ,l         * 
+                                  8c02ca32         0   none ,l         * 
   
-                                  8c02ca24         0   none ,l         * 
+                                  8c02ca38         0   none ,l         * 
   
-                                  8c02ca6e         0   none ,l         * 
+                                  8c02ca82         0   none ,l         * 
 FILE=_i_atans
-                                  8c02ca74  8c02ccc3       250
+                                  8c02ca88  8c02ccd7       250
   __in_atans
-                                  8c02ca74       250   func ,g         * 
+                                  8c02ca88       250   func ,g         * 
 FILE=fmodf
-                                  8c02ccc4  8c02cd0f        4c
+                                  8c02ccd8  8c02cd23        4c
   _fmodf
-                                  8c02ccc4        4c   func ,g         *   ch
+                                  8c02ccd8        4c   func ,g         *   ch
 FILE=nanf
-                                  8c02cd10  8c02cd23        14
+                                  8c02cd24  8c02cd37        14
   ___nanf_value
-                                  8c02cd10        14   func ,g         * 
+                                  8c02cd24        14   func ,g         * 
 FILE=SH7730_Scif0
-                                  8c02cd24  8c02cf3b       218
+                                  8c02cd38  8c02cf4f       218
   _IoScifx_SET_BRR
-                                  8c02cd24        b6   func ,l         * 
+                                  8c02cd38        b6   func ,l         * 
   _IoScif0_Init
-                                  8c02cdda        ba   func ,g         * 
+                                  8c02cdee        ba   func ,g         * 
   _IoScif0_SendReady
-                                  8c02ce94        14   func ,g         * 
+                                  8c02cea8        14   func ,g         * 
   _IoScif0_SendData
-                                  8c02cea8        1c   func ,g         * 
+                                  8c02cebc        1c   func ,g         * 
   __ioscif0_putch
-                                  8c02cec4        1c   func ,g         * 
+                                  8c02ced8        1c   func ,g         * 
   __ioscif0_putch_wait
-                                  8c02cee0        18   func ,g         * 
+                                  8c02cef4        18   func ,g         * 
   __ioscif0_puts
-                                  8c02cef8        44   func ,g         * 
+                                  8c02cf0c        44   func ,g         * 
 FILE=SH7730_Scif4
-                                  8c02cf3c  8c02d10b       1d0
+                                  8c02cf50  8c02d11f       1d0
   _IoScifx_SET_BRR
-                                  8c02cf3c        b6   func ,l         * 
+                                  8c02cf50        b6   func ,l         * 
   _IoScif4_Init
-                                  8c02cff2        ba   func ,g         * 
+                                  8c02d006        ba   func ,g         * 
   _IoScif4_RecvData
-                                  8c02d0ac        26   func ,g         * 
+                                  8c02d0c0        26   func ,g         * 
   _IoScif4_SendData
-                                  8c02d0d2        3a   func ,g         *   ch
+                                  8c02d0e6        3a   func ,g         *   ch
 FILE=_a_atans
-                                  8c02d10c  8c02d12b        20
+                                  8c02d120  8c02d13f        20
   __app_atans
-                                  8c02d10c        20   func ,g         * 
+                                  8c02d120        20   func ,g         * 
 FILE=_i_fmds
-                                  8c02d12c  8c02d24f       124
+                                  8c02d140  8c02d263       124
   __in_fmods
-                                  8c02d12c       124   func ,g         * 
+                                  8c02d140       124   func ,g         * 
 FILE=_i_ldes
-                                  8c02d250  8c02d2ff        b0
+                                  8c02d264  8c02d313        b0
   __in_ldexps
-                                  8c02d250        b0   func ,g         * 
+                                  8c02d264        b0   func ,g         * 
 
 SECTION=R
 FILE=ReleaseL/main.o
-                                  8c02d300  8c02d303         4
-  __SystemVSyncCount
-                                  8c02d300         4   data ,l         * 
-FILE=ReleaseL/myrand.o
-                                  8c02d304  8c02d313        10
-  _x$2
-                                  8c02d304         4   data ,l         * 
-  _y$3
-                                  8c02d308         4   data ,l         * 
-  _z$4
-                                  8c02d30c         4   data ,l         * 
-  _w$5
-                                  8c02d310         4   data ,l         * 
-FILE=agesndmgr
                                   8c02d314  8c02d317         4
-  _pSMgr
+  __SystemVSyncCount
                                   8c02d314         4   data ,l         * 
-FILE=agGamePad
+FILE=ReleaseL/myrand.o
                                   8c02d318  8c02d327        10
-  _SyncMode
+  _x$2
                                   8c02d318         4   data ,l         * 
-  _SyncID
+  _y$3
                                   8c02d31c         4   data ,l         * 
-  _SyncStat
+  _z$4
                                   8c02d320         4   data ,l         * 
-  _pd$18
+  _w$5
                                   8c02d324         4   data ,l         * 
+FILE=agesndmgr
+                                  8c02d328  8c02d32b         4
+  _pSMgr
+                                  8c02d328         4   data ,l         * 
+FILE=agGamePad
+                                  8c02d32c  8c02d33b        10
+  _SyncMode
+                                  8c02d32c         4   data ,l         * 
+  _SyncID
+                                  8c02d330         4   data ,l         * 
+  _SyncStat
+                                  8c02d334         4   data ,l         * 
+  _pd$18
+                                  8c02d338         4   data ,l         * 
 FILE=aggl401
-                                  8c02d328  8c02d397        70
+                                  8c02d33c  8c02d3ab        70
   
-                                  8c02d328         8   data ,l         * 
+                                  8c02d33c         8   data ,l         * 
   
-                                  8c02d330         8   data ,l         * 
+                                  8c02d344         8   data ,l         * 
   
-                                  8c02d338        20   data ,l         * 
+                                  8c02d34c        20   data ,l         * 
   
-                                  8c02d358        20   data ,l         * 
+                                  8c02d36c        20   data ,l         * 
   
-                                  8c02d378        20   data ,l         * 
+                                  8c02d38c        20   data ,l         * 
 FILE=dprintf
-                                  8c02d398  8c02d39b         4
+                                  8c02d3ac  8c02d3af         4
   __putch_func
-                                  8c02d398         4   data ,l         * 
+                                  8c02d3ac         4   data ,l         * 
 FILE=sincosfsub_fpu
-                                  8c02d39c  8c02d3d7        3c
+                                  8c02d3b0  8c02d3eb        3c
   _sinf_coeff
-                                  8c02d39c        10   data ,l         * 
+                                  8c02d3b0        10   data ,l         * 
   _cosf_coeff
-                                  8c02d3ac        10   data ,l         * 
+                                  8c02d3c0        10   data ,l         * 
   _pi4ptr_table
-                                  8c02d3bc         c   data ,l         * 
+                                  8c02d3d0         c   data ,l         * 
   _sub_table
-                                  8c02d3c8        10   data ,l         * 
+                                  8c02d3dc        10   data ,l         * 
 FILE=SH7730_Sci
-                                  8c02d3d8  8c02d3db         4
+                                  8c02d3ec  8c02d3ef         4
   _sci_skip
-                                  8c02d3d8         4   data ,l         * 
+                                  8c02d3ec         4   data ,l         * 
 FILE=aggltransfer
-                                  8c02d3dc  8c02d3df         4
+                                  8c02d3f0  8c02d3f3         4
   
-                                  8c02d3dc         4   data ,l         * 
+                                  8c02d3f0         4   data ,l         * 
 FILE=aggldrawdcmdshift
-                                  8c02d3e0  8c02d3e3         4
+                                  8c02d3f4  8c02d3f7         4
   __agglDrawDCmdArgmentShift_
-                                  8c02d3e0         4   data ,g         * 
+                                  8c02d3f4         4   data ,g         * 
 FILE=SH7730_Scif0
-                                  8c02d3e4  8c02d3e7         4
+                                  8c02d3f8  8c02d3fb         4
   _IoScifx_Init_Flag
-                                  8c02d3e4         4   data ,l         * 
+                                  8c02d3f8         4   data ,l         * 
 FILE=SH7730_Scif4
-                                  8c02d3e8  8c02d3eb         4
+                                  8c02d3fc  8c02d3ff         4
   _IoScifx_Init_Flag
-                                  8c02d3e8         4   data ,l         * 
+                                  8c02d3fc         4   data ,l         * 
 
 SECTION=S
 FILE=ReleaseL/main.o
-                                  8c02d3ec  8c02d429        3e
+                                  8c02d400  8c02d43d        3e
   _MotionList
-                                  8c02d3ec         4   data ,g         * 
+                                  8c02d400         4   data ,g         * 
   _lpos$66
-                                  8c02d3f0        10   data ,l         * 
+                                  8c02d404        10   data ,l         * 
   _lamb$67
-                                  8c02d400         c   data ,l         * 
+                                  8c02d414         c   data ,l         * 
   _ldif$68
-                                  8c02d40c         c   data ,l         * 
+                                  8c02d420         c   data ,l         * 
   _lspc$69
-                                  8c02d418         c   data ,l         * 
+                                  8c02d42c         c   data ,l         * 
 FILE=ReleaseL/export.o
-                                  8c02d42c  8c08975f     5c334
+                                  8c02d440  8c089773     5c334
   _ageRM
-                                  8c02d42c      15f0   data ,g         * 
+                                  8c02d440      15f0   data ,g         * 
   _age3dStrip0000
-                                  8c02ea1c        13   data ,g         * 
+                                  8c02ea30        13   data ,g         * 
   _age3dVertex0000
-                                  8c02ea30      5ef8   data ,g         * 
+                                  8c02ea44      5ef8   data ,g         * 
   _age3dNormal0000
-                                  8c034928      5ef8   data ,g         * 
+                                  8c03493c      5ef8   data ,g         * 
   _age3dUV0000
-                                  8c03a820      3f50   data ,g         * 
+                                  8c03a834      3f50   data ,g         * 
   _age3dMat0000
-                                  8c03e770        78   data ,g         * 
+                                  8c03e784        78   data ,g         * 
   _age3dVidx0000
-                                  8c03e7e8      1d3e   data ,g         * 
+                                  8c03e7fc      1d3e   data ,g         * 
   _age3dShape0000
-                                  8c040528        dc   data ,g         * 
+                                  8c04053c        dc   data ,g         * 
   _age3dStrip0001
-                                  8c040604         1   data ,g         * 
+                                  8c040618         1   data ,g         * 
   _age3dVertex0001
-                                  8c040608       438   data ,g         * 
+                                  8c04061c       438   data ,g         * 
   _age3dNormal0001
-                                  8c040a40       438   data ,g         * 
+                                  8c040a54       438   data ,g         * 
   _age3dUV0001
-                                  8c040e78       2d0   data ,g         * 
+                                  8c040e8c       2d0   data ,g         * 
   _age3dMat0001
-                                  8c041148        18   data ,g         * 
+                                  8c04115c        18   data ,g         * 
   _age3dVidx0001
-                                  8c041160       162   data ,g         * 
+                                  8c041174       162   data ,g         * 
   _age3dShape0001
-                                  8c0412c4        2c   data ,g         * 
+                                  8c0412d8        2c   data ,g         * 
   _age3dStrip0002
-                                  8c0412f0        13   data ,g         * 
+                                  8c041304        13   data ,g         * 
   _age3dVertex0002
-                                  8c041304      5ee0   data ,g         * 
+                                  8c041318      5ee0   data ,g         * 
   _age3dNormal0002
-                                  8c0471e4      5ee0   data ,g         * 
+                                  8c0471f8      5ee0   data ,g         * 
   _age3dUV0002
-                                  8c04d0c4      3f40   data ,g         * 
+                                  8c04d0d8      3f40   data ,g         * 
   _age3dMat0002
-                                  8c051004        78   data ,g         * 
+                                  8c051018        78   data ,g         * 
   _age3dVidx0002
-                                  8c05107c      1d36   data ,g         * 
+                                  8c051090      1d36   data ,g         * 
   _age3dShape0002
-                                  8c052db4        dc   data ,g         * 
+                                  8c052dc8        dc   data ,g         * 
   _age3dStrip0003
-                                  8c052e90        13   data ,g         * 
+                                  8c052ea4        13   data ,g         * 
   _age3dVertex0003
-                                  8c052ea4      5ee0   data ,g         * 
+                                  8c052eb8      5ee0   data ,g         * 
   _age3dNormal0003
-                                  8c058d84      5ee0   data ,g         * 
+                                  8c058d98      5ee0   data ,g         * 
   _age3dUV0003
-                                  8c05ec64      3f40   data ,g         * 
+                                  8c05ec78      3f40   data ,g         * 
   _age3dMat0003
-                                  8c062ba4        78   data ,g         * 
+                                  8c062bb8        78   data ,g         * 
   _age3dVidx0003
-                                  8c062c1c      1d36   data ,g         * 
+                                  8c062c30      1d36   data ,g         * 
   _age3dShape0003
-                                  8c064954        dc   data ,g         * 
+                                  8c064968        dc   data ,g         * 
   _age3dStrip0004
-                                  8c064a30        13   data ,g         * 
+                                  8c064a44        13   data ,g         * 
   _age3dVertex0004
-                                  8c064a44      5ee0   data ,g         * 
+                                  8c064a58      5ee0   data ,g         * 
   _age3dNormal0004
-                                  8c06a924      5ee0   data ,g         * 
+                                  8c06a938      5ee0   data ,g         * 
   _age3dUV0004
-                                  8c070804      3f40   data ,g         * 
+                                  8c070818      3f40   data ,g         * 
   _age3dMat0004
-                                  8c074744        78   data ,g         * 
+                                  8c074758        78   data ,g         * 
   _age3dVidx0004
-                                  8c0747bc      1d36   data ,g         * 
+                                  8c0747d0      1d36   data ,g         * 
   _age3dShape0004
-                                  8c0764f4        dc   data ,g         * 
+                                  8c076508        dc   data ,g         * 
   _age3dStrip0005
-                                  8c0765d0        13   data ,g         * 
+                                  8c0765e4        13   data ,g         * 
   _age3dVertex0005
-                                  8c0765e4      5ee0   data ,g         * 
+                                  8c0765f8      5ee0   data ,g         * 
   _age3dNormal0005
-                                  8c07c4c4      5ee0   data ,g         * 
+                                  8c07c4d8      5ee0   data ,g         * 
   _age3dUV0005
-                                  8c0823a4      3f40   data ,g         * 
+                                  8c0823b8      3f40   data ,g         * 
   _age3dMat0005
-                                  8c0862e4        78   data ,g         * 
+                                  8c0862f8        78   data ,g         * 
   _age3dVidx0005
-                                  8c08635c      1d36   data ,g         * 
+                                  8c086370      1d36   data ,g         * 
   _age3dShape0005
-                                  8c088094        dc   data ,g         * 
+                                  8c0880a8        dc   data ,g         * 
   _age3dMat0006
-                                  8c088170        18   data ,g         * 
+                                  8c088184        18   data ,g         * 
   _age3dShape0006
-                                  8c088188        2c   data ,g         * 
+                                  8c08819c        2c   data ,g         * 
   _age3dMat0007
-                                  8c0881b4        18   data ,g         * 
+                                  8c0881c8        18   data ,g         * 
   _age3dShape0007
-                                  8c0881cc        2c   data ,g         * 
+                                  8c0881e0        2c   data ,g         * 
   _age3dMat0008
-                                  8c0881f8        18   data ,g         * 
+                                  8c08820c        18   data ,g         * 
   _age3dShape0008
-                                  8c088210        2c   data ,g         * 
+                                  8c088224        2c   data ,g         * 
   _age3dMat0009
-                                  8c08823c        18   data ,g         * 
+                                  8c088250        18   data ,g         * 
   _age3dShape0009
-                                  8c088254        2c   data ,g         * 
+                                  8c088268        2c   data ,g         * 
   _age3dModel
-                                  8c088280       398   data ,g         * 
+                                  8c088294       398   data ,g         * 
   _age3dDCmdDraw0000
-                                  8c088618        50   data ,l         * 
+                                  8c08862c        50   data ,l         * 
   _age3dDCmdShape0000
-                                  8c088668        3c   data ,l         * 
+                                  8c08867c        3c   data ,l         * 
   _age3dDCmdDraw0001
-                                  8c0886a4        10   data ,l         * 
+                                  8c0886b8        10   data ,l         * 
   _age3dDCmdShape0001
-                                  8c0886b4         c   data ,l         * 
+                                  8c0886c8         c   data ,l         * 
   _age3dDCmdDraw0002
-                                  8c0886c0        50   data ,l         * 
+                                  8c0886d4        50   data ,l         * 
   _age3dDCmdShape0002
-                                  8c088710        3c   data ,l         * 
+                                  8c088724        3c   data ,l         * 
   _age3dDCmdDraw0003
-                                  8c08874c        50   data ,l         * 
+                                  8c088760        50   data ,l         * 
   _age3dDCmdShape0003
-                                  8c08879c        3c   data ,l         * 
+                                  8c0887b0        3c   data ,l         * 
   _age3dDCmdDraw0004
-                                  8c0887d8        50   data ,l         * 
+                                  8c0887ec        50   data ,l         * 
   _age3dDCmdShape0004
-                                  8c088828        3c   data ,l         * 
+                                  8c08883c        3c   data ,l         * 
   _age3dDCmdDraw0005
-                                  8c088864        50   data ,l         * 
+                                  8c088878        50   data ,l         * 
   _age3dDCmdShape0005
-                                  8c0888b4        3c   data ,l         * 
+                                  8c0888c8        3c   data ,l         * 
   _age3dDCmdDraw0006
-                                  8c0888f0        10   data ,l         * 
+                                  8c088904        10   data ,l         * 
   _age3dDCmdShape0006
-                                  8c088900         c   data ,l         * 
+                                  8c088914         c   data ,l         * 
   _age3dDCmdDraw0007
-                                  8c08890c        10   data ,l         * 
+                                  8c088920        10   data ,l         * 
   _age3dDCmdShape0007
-                                  8c08891c         c   data ,l         * 
+                                  8c088930         c   data ,l         * 
   _age3dDCmdDraw0008
-                                  8c088928        10   data ,l         * 
+                                  8c08893c        10   data ,l         * 
   _age3dDCmdShape0008
-                                  8c088938         c   data ,l         * 
+                                  8c08894c         c   data ,l         * 
   _age3dDCmdDraw0009
-                                  8c088944        10   data ,l         * 
+                                  8c088958        10   data ,l         * 
   _age3dDCmdShape0009
-                                  8c088954         c   data ,l         * 
+                                  8c088968         c   data ,l         * 
   _age3dDCmd
-                                  8c088960       140   data ,g         * 
+                                  8c088974       140   data ,g         * 
   _age3dTreeNode0000
-                                  8c088aa0        28   data ,g         * 
+                                  8c088ab4        28   data ,g         * 
   _age3dTreeNode0001
-                                  8c088ac8        28   data ,g         * 
+                                  8c088adc        28   data ,g         * 
   _age3dTreeNode0002
-                                  8c088af0        28   data ,g         * 
+                                  8c088b04        28   data ,g         * 
   _age3dTreeNode0003
-                                  8c088b18        28   data ,g         * 
+                                  8c088b2c        28   data ,g         * 
   _age3dTreeNode0004
-                                  8c088b40        28   data ,g         * 
+                                  8c088b54        28   data ,g         * 
   _age3dTreeNode0005
-                                  8c088b68        28   data ,g         * 
+                                  8c088b7c        28   data ,g         * 
   _age3dTreeNode0006
-                                  8c088b90        28   data ,g         * 
+                                  8c088ba4        28   data ,g         * 
   _age3dTreeTrans0007
-                                  8c088bb8         c   data ,g         * 
+                                  8c088bcc         c   data ,g         * 
   _age3dTreeNode0007
-                                  8c088bc4        28   data ,g         * 
+                                  8c088bd8        28   data ,g         * 
   _age3dTreeNode0008
-                                  8c088bec        28   data ,g         * 
+                                  8c088c00        28   data ,g         * 
   _age3dTreeNode0009
-                                  8c088c14        28   data ,g         * 
+                                  8c088c28        28   data ,g         * 
   _age3dTree
-                                  8c088c3c       1b8   data ,g         * 
+                                  8c088c50       1b8   data ,g         * 
   _age3dMotionNode0000
-                                  8c088df4        90   data ,g         * 
+                                  8c088e08        90   data ,g         * 
   _age3dMotionNode0001
-                                  8c088e84        90   data ,g         * 
+                                  8c088e98        90   data ,g         * 
   _age3dMotionNode0002
-                                  8c088f14        90   data ,g         * 
+                                  8c088f28        90   data ,g         * 
   _age3dMotionNode0003
-                                  8c088fa4        90   data ,g         * 
+                                  8c088fb8        90   data ,g         * 
   _age3dMotionNode0004
-                                  8c089034        90   data ,g         * 
+                                  8c089048        90   data ,g         * 
   _age3dMotionNode0005
-                                  8c0890c4        90   data ,g         * 
+                                  8c0890d8        90   data ,g         * 
   _age3dMotionNode0006
-                                  8c089154        90   data ,g         * 
+                                  8c089168        90   data ,g         * 
   _age3dMotionTrans0_0007
-                                  8c0891e4         4   data ,g         * 
+                                  8c0891f8         4   data ,g         * 
   _age3dMotionTrans1_0007
-                                  8c0891e8         4   data ,g         * 
+                                  8c0891fc         4   data ,g         * 
   _age3dMotionTrans2_0007
-                                  8c0891ec         4   data ,g         * 
+                                  8c089200         4   data ,g         * 
   _age3dMotionNode0007
-                                  8c0891f0        90   data ,g         * 
+                                  8c089204        90   data ,g         * 
   _age3dMotionNode0008
-                                  8c089280        90   data ,g         * 
+                                  8c089294        90   data ,g         * 
   _age3dMotionNode0009
-                                  8c089310        90   data ,g         * 
+                                  8c089324        90   data ,g         * 
   _age3dMotion
-                                  8c0893a0       370   data ,g         * 
+                                  8c0893b4       370   data ,g         * 
   _ageSRM
-                                  8c089710        50   data ,g         * 
+                                  8c089724        50   data ,g         * 
 FILE=ReleaseL/draw_utils.o
-                                  8c089760  8c089778        19
+                                  8c089774  8c08978c        19
 FILE=ReleaseL/cubes.o
-                                  8c08977c  8c0897c3        48
+                                  8c089790  8c0897d7        48
 FILE=agetool
-                                  8c0897c4  8c08980b        48
+                                  8c0897d8  8c08981f        48
   _CMMap
-                                  8c0897c4        24   data ,l         * 
+                                  8c0897d8        24   data ,l         * 
   _CompressMap
-                                  8c0897e8        24   data ,l         * 
+                                  8c0897fc        24   data ,l         * 
 FILE=agGamePad
-                                  8c08980c  8c089857        4c
+                                  8c089820  8c08986b        4c
 FILE=aggl401
-                                  8c089858  8c0899d7       180
+                                  8c08986c  8c0899eb       180
   __aggl_setvtxfunc
-                                  8c089858        a0   data ,g         * 
+                                  8c08986c        a0   data ,g         * 
   __aggl_addvtxfunc
-                                  8c0898f8        a0   data ,g         * 
+                                  8c08990c        a0   data ,g         * 
   __aggl_drawztrifunc
-                                  8c089998        20   data ,g         * 
+                                  8c0899ac        20   data ,g         * 
   __aggl_geteyevtxfunc
-                                  8c0899b8        20   data ,g         * 
+                                  8c0899cc        20   data ,g         * 
 FILE=dprintf
-                                  8c0899d8  8c089a4e        77
+                                  8c0899ec  8c089a62        77
   _la_str$14
-                                  8c0899d8        13   data ,l         * 
+                                  8c0899ec        13   data ,l         * 
   _ua_str$15
-                                  8c0899eb        13   data ,l         * 
+                                  8c0899ff        13   data ,l         * 
   _lk_str$16
-                                  8c0899fe        25   data ,l         * 
+                                  8c089a12        25   data ,l         * 
   _uk_str$17
-                                  8c089a23        25   data ,l         * 
+                                  8c089a37        25   data ,l         * 
 FILE=tanf
-                                  8c089a50  8c089a83        34
+                                  8c089a64  8c089a97        34
   _tanf_coeff
-                                  8c089a50        28   data ,l         * 
+                                  8c089a64        28   data ,l         * 
   _const_tbl
-                                  8c089a78         c   data ,l         * 
+                                  8c089a8c         c   data ,l         * 
 FILE=SH7730_Int
-                                  8c089a84  8c089a9a        17
+                                  8c089a98  8c089aae        17
 FILE=consts
-                                  8c089a9c  8c089aff        64
+                                  8c089ab0  8c089b13        64
   __IFNANS
-                                  8c089a9c         4   data ,g         * 
-  __IFZEROS
-                                  8c089aa0         4   data ,g         * 
-  __IFINFS
-                                  8c089aa4         4   data ,g         * 
-  __IFONES
-                                  8c089aa8         4   data ,g         * 
-  __HALFS
-                                  8c089aac         4   data ,g         * 
-  __QUOTS
                                   8c089ab0         4   data ,g         * 
-  __TWOS
+  __IFZEROS
                                   8c089ab4         4   data ,g         * 
-  __FOURS
+  __IFINFS
                                   8c089ab8         4   data ,g         * 
-  __PAIS
+  __IFONES
                                   8c089abc         4   data ,g         * 
-  __2PAIS
+  __HALFS
                                   8c089ac0         4   data ,g         * 
-  __HLFPAIS
+  __QUOTS
                                   8c089ac4         4   data ,g         * 
-  __QUOPAIS
+  __TWOS
                                   8c089ac8         4   data ,g         * 
-  __LOGE2S
+  __FOURS
                                   8c089acc         4   data ,g         * 
-  __NIFZEROS
+  __PAIS
                                   8c089ad0         4   data ,g         * 
-  __NIFINFS
+  __2PAIS
                                   8c089ad4         4   data ,g         * 
-  __NIFONES
+  __HLFPAIS
                                   8c089ad8         4   data ,g         * 
-  __NHALFS
+  __QUOPAIS
                                   8c089adc         4   data ,g         * 
-  __NQUOTS
+  __LOGE2S
                                   8c089ae0         4   data ,g         * 
-  __NTWOS
+  __NIFZEROS
                                   8c089ae4         4   data ,g         * 
-  __NFOURS
+  __NIFINFS
                                   8c089ae8         4   data ,g         * 
-  __NPAIS
+  __NIFONES
                                   8c089aec         4   data ,g         * 
-  __N2PAIS
+  __NHALFS
                                   8c089af0         4   data ,g         * 
-  __NHLFPAIS
+  __NQUOTS
                                   8c089af4         4   data ,g         * 
-  __NQUOPAIS
+  __NTWOS
                                   8c089af8         4   data ,g         * 
-  __NLOGE2S
+  __NFOURS
                                   8c089afc         4   data ,g         * 
+  __NPAIS
+                                  8c089b00         4   data ,g         * 
+  __N2PAIS
+                                  8c089b04         4   data ,g         * 
+  __NHLFPAIS
+                                  8c089b08         4   data ,g         * 
+  __NQUOPAIS
+                                  8c089b0c         4   data ,g         * 
+  __NLOGE2S
+                                  8c089b10         4   data ,g         * 
 FILE=_i_atans
-                                  8c089b00  8c089b17        18
+                                  8c089b14  8c089b2b        18
   _ATQ1$23
-                                  8c089b00         4   data ,l         * 
-  _ATQ2$24
-                                  8c089b04         4   data ,l         * 
-  _ATQ3$25
-                                  8c089b08         4   data ,l         * 
-  _THQUO$26
-                                  8c089b0c         4   data ,l         * 
-  _NTHQUO$27
-                                  8c089b10         4   data ,l         * 
-  _EIGHT$28
                                   8c089b14         4   data ,l         * 
+  _ATQ2$24
+                                  8c089b18         4   data ,l         * 
+  _ATQ3$25
+                                  8c089b1c         4   data ,l         * 
+  _THQUO$26
+                                  8c089b20         4   data ,l         * 
+  _NTHQUO$27
+                                  8c089b24         4   data ,l         * 
+  _EIGHT$28
+                                  8c089b28         4   data ,l         * 
 FILE=SH7730_Scif0
-                                  8c089b18  8c089b2b        14
-FILE=SH7730_Scif4
                                   8c089b2c  8c089b3f        14
+FILE=SH7730_Scif4
+                                  8c089b40  8c089b53        14
 FILE=_a_atans
-                                  8c089b40  8c089b57        18
+                                  8c089b54  8c089b6b        18
   _atan_coef$19
-                                  8c089b40        18   data ,l         * 
+                                  8c089b54        18   data ,l         * 
 FILE=floatval
-                                  8c089b58  8c089b7f        28
+                                  8c089b6c  8c089b93        28
   __FLT_MAX_VAL
-                                  8c089b58         0   none ,g         * 
+                                  8c089b6c         0   none ,g         * 
   __FLT_MIN_VAL
-                                  8c089b5c         0   none ,g         * 
-  __DBL_MAX_VAL
-                                  8c089b60         0   none ,g         * 
-  __DBL_MIN_VAL
-                                  8c089b68         0   none ,g         * 
-  __LDBL_MAX_VAL
                                   8c089b70         0   none ,g         * 
+  __DBL_MAX_VAL
+                                  8c089b74         0   none ,g         * 
+  __DBL_MIN_VAL
+                                  8c089b7c         0   none ,g         * 
+  __LDBL_MAX_VAL
+                                  8c089b84         0   none ,g         * 
   __LDBL_MIN_VAL
-                                  8c089b78         0   none ,g         * 
+                                  8c089b8c         0   none ,g         * 
 
 SECTION=B
 FILE=ReleaseL/main.o
-                                  8c089b80  8d0a1587   1017a08
+                                  8c089b94  8d0a159b   1017a08
   _node
-                                  8c089b80     10000   data ,g         * 
+                                  8c089b94     10000   data ,g         * 
   _vtxbuf
-                                  8c099b80      5000   data ,g         * 
+                                  8c099b94      5000   data ,g         * 
   _displayingPage
-                                  8c09eb80         4   data ,g         * 
+                                  8c09eb94         4   data ,g         * 
   _playerNum
-                                  8c09eb84         4   data ,g         * 
+                                  8c09eb98         4   data ,g         * 
   _Objects
-                                  8c09eb88      2940   data ,g         * 
+                                  8c09eb9c      2940   data ,g         * 
   _DBuf
-                                  8c0a14c8         8   data ,g         * 
+                                  8c0a14dc         8   data ,g         * 
   _frameCount
-                                  8c0a14d0         4   data ,g         * 
+                                  8c0a14e4         4   data ,g         * 
   _DrawBuffer
-                                  8c0a14d4   1000000   data ,g         * 
+                                  8c0a14e8   1000000   data ,g         * 
   _SndMgr
-                                  8d0a14d4        a4   data ,g         * 
+                                  8d0a14e8        a4   data ,g         * 
   _playerJoined
-                                  8d0a1578         c   data ,g         * 
+                                  8d0a158c         c   data ,g         * 
   _destPage
-                                  8d0a1584         4   data ,g         * 
+                                  8d0a1598         4   data ,g         * 
 FILE=ReleaseL/pad.o
-                                  8d0a1588  8d0a1592         b
+                                  8d0a159c  8d0a15a6         b
   _pad_data
-                                  8d0a1588         1   data ,l         * 
+                                  8d0a159c         1   data ,l         * 
   _pad_trg
-                                  8d0a1589         1   data ,l         * 
+                                  8d0a159d         1   data ,l         * 
   _pad_rep
-                                  8d0a158a         1   data ,l         * 
+                                  8d0a159e         1   data ,l         * 
   _pad_rep_count
-                                  8d0a158b         8   data ,l         * 
+                                  8d0a159f         8   data ,l         * 
 FILE=ReleaseL/bgm_manager.o
-                                  8d0a1594  8d0a1595         2
+                                  8d0a15a8  8d0a15a9         2
   _handle
-                                  8d0a1594         2   data ,l         * 
+                                  8d0a15a8         2   data ,l         * 
 FILE=amlib
-                                  8d0a1598  8d0a17bf       228
+                                  8d0a15ac  8d0a17d3       228
   _int_flags
-                                  8d0a1598        1c   data ,l         * 
+                                  8d0a15ac        1c   data ,l         * 
   _VCntA
-                                  8d0a15b4         4   data ,l         * 
+                                  8d0a15c8         4   data ,l         * 
   _VCntB
-                                  8d0a15b8         4   data ,l         * 
+                                  8d0a15cc         4   data ,l         * 
   _g_DispFrameA
-                                  8d0a15bc         1   data ,l         * 
+                                  8d0a15d0         1   data ,l         * 
   _g_DispFrameB
-                                  8d0a15bd         1   data ,l         * 
+                                  8d0a15d1         1   data ,l         * 
   _g_MainDisplay
-                                  8d0a15be         1   data ,l         * 
+                                  8d0a15d2         1   data ,l         * 
   _g_CallbackChain
-                                  8d0a15c0       200   data ,l         * 
+                                  8d0a15d4       200   data ,l         * 
 FILE=agGamePad
-                                  8d0a17c0  8d0a17e3        24
+                                  8d0a17d4  8d0a17f7        24
   _SyncTemp
-                                  8d0a17c0         c   data ,l         * 
+                                  8d0a17d4         c   data ,l         * 
   _SyncData
-                                  8d0a17cc         c   data ,l         * 
+                                  8d0a17e0         c   data ,l         * 
   _SyncBuff
-                                  8d0a17d8         c   data ,l         * 
+                                  8d0a17ec         c   data ,l         * 
 FILE=ag3danimate
-                                  8d0a17e4  8d0a1813        30
-  
-                                  8d0a17e4         4   data ,l         * 
-  
-                                  8d0a17e8         4   data ,l         * 
-  
-                                  8d0a17ec         4   data ,l         * 
-  
-                                  8d0a17f0         4   data ,l         * 
-  
-                                  8d0a17f4         4   data ,l         * 
+                                  8d0a17f8  8d0a1827        30
   
                                   8d0a17f8         4   data ,l         * 
   
@@ -2367,48 +2357,48 @@ FILE=ag3danimate
                                   8d0a180c         4   data ,l         * 
   
                                   8d0a1810         4   data ,l         * 
+  
+                                  8d0a1814         4   data ,l         * 
+  
+                                  8d0a1818         4   data ,l         * 
+  
+                                  8d0a181c         4   data ,l         * 
+  
+                                  8d0a1820         4   data ,l         * 
+  
+                                  8d0a1824         4   data ,l         * 
 FILE=aggl401
-                                  8d0a1814  8d0b32d7     11ac4
+                                  8d0a1828  8d0b32eb     11ac4
   
-                                  8d0a1814      de44   data ,l         * 
-  
-                                  8d0af658         4   data ,l         * 
-  
-                                  8d0af65c         4   data ,l         * 
-  
-                                  8d0af660         4   data ,l         * 
-  
-                                  8d0af664         4   data ,l         * 
-  
-                                  8d0af668         4   data ,l         * 
+                                  8d0a1828      de44   data ,l         * 
   
                                   8d0af66c         4   data ,l         * 
   
-                                  8d0af670         1   data ,l         * 
+                                  8d0af670         4   data ,l         * 
   
                                   8d0af674         4   data ,l         * 
   
-                                  8d0af678      2000   data ,l         * 
+                                  8d0af678         4   data ,l         * 
   
-                                  8d0b1678       c00   data ,l         * 
+                                  8d0af67c         4   data ,l         * 
   
-                                  8d0b2278       c00   data ,l         * 
+                                  8d0af680         4   data ,l         * 
   
-                                  8d0b2e78         4   data ,l         * 
+                                  8d0af684         1   data ,l         * 
   
-                                  8d0b2e7c         4   data ,l         * 
+                                  8d0af688         4   data ,l         * 
   
-                                  8d0b2e80       400   data ,l         * 
+                                  8d0af68c      2000   data ,l         * 
   
-                                  8d0b3280         4   data ,l         * 
+                                  8d0b168c       c00   data ,l         * 
   
-                                  8d0b3284         4   data ,l         * 
+                                  8d0b228c       c00   data ,l         * 
   
-                                  8d0b3288         4   data ,l         * 
+                                  8d0b2e8c         4   data ,l         * 
   
-                                  8d0b328c         4   data ,l         * 
+                                  8d0b2e90         4   data ,l         * 
   
-                                  8d0b3290         4   data ,l         * 
+                                  8d0b2e94       400   data ,l         * 
   
                                   8d0b3294         4   data ,l         * 
   
@@ -2443,16 +2433,26 @@ FILE=aggl401
                                   8d0b32d0         4   data ,l         * 
   
                                   8d0b32d4         4   data ,l         * 
+  
+                                  8d0b32d8         4   data ,l         * 
+  
+                                  8d0b32dc         4   data ,l         * 
+  
+                                  8d0b32e0         4   data ,l         * 
+  
+                                  8d0b32e4         4   data ,l         * 
+  
+                                  8d0b32e8         4   data ,l         * 
 FILE=_errno
-                                  8d0b32d8  8d0b32db         4
+                                  8d0b32ec  8d0b32ef         4
   __errno
-                                  8d0b32d8         4   data ,g         * 
+                                  8d0b32ec         4   data ,g         * 
 FILE=SH7730_Int
-                                  8d0b32dc  8d0b36db       400
+                                  8d0b32f0  8d0b36ef       400
   _intevt_table
-                                  8d0b32dc       200   data ,l         * 
+                                  8d0b32f0       200   data ,l         * 
   _intevt_error
-                                  8d0b34dc       200   data ,l         * 
+                                  8d0b34f0       200   data ,l         * 
 
 SECTION=STACK
 FILE=SH7730_vect

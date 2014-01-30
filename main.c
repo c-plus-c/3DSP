@@ -153,7 +153,7 @@ void initGame(){
 
 	for(i=0;i<PLAYER_MAX;i++){
 		playerJoined[i] = 0;
-		Objects[i].stat = INVISIBLE;
+		Objects[i].stat = DEAD;
 	}
 }
 
@@ -172,7 +172,7 @@ void setPage(Page page){
 	destPage = page;
 	frameCount = 0;
 
-	
+
 	StopCurrentBGM();
 	if(page == INGAME)
 		playBgm(AS_SND_INGAME);
