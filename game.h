@@ -33,34 +33,34 @@
 #define OBJECTPRI_NUMS      4
 
 typedef struct _object_ {
-    /* 共通部分 */
-    struct _struct_objecthead_ {
-        int   pri;
-        float posx;
-        float posy;
-        float posz;
-        float rsiz; /* 当たり判定範囲 posx,posy,posz からの 半径 */
-        int   type; /* OBJECTTYPE_* */
-        /* ブロックリンク構築用 */
-        struct _object_ *next;
-        struct _object_ *back;
-        int   blkx; /* オブジェクトが存在するブロック位置X */
-        int   blky; /* オブジェクトが存在するブロック位置Y */
-        int   blkz;	/* オブジェクトが存在するブロック位置Z */
-        int   list; /* オブジェクトが存在するブロックのリンクリスト */        //たぶん未使用
-        /* 描画用データ */
-        u32   rgb;  /* 色           */
-        int   bmp;  /* ビットマップ */
-        /* 処理関数 */
-        void  (*mov)( struct _object_ *dp );                      /* 移動関数   */
-        void  (*hit)( struct _object_ *dp, struct _object_ *sp ); /* 当たり処理(sp:当って来たもの) */
-        void  (*drw)( struct _object_ *dp );                      /* 描画関数   */
-        int   (*hc2)( struct _object_ *dp, struct _object_ *sp, float dx, float dy ,float dz); /* 2次当たり判定(sp:当って来たもの) */
-    } h;
-    /* 共通部分 */
-    struct _struct_objctdata_ {
-        u32    data[OBJECT_LOCAL_U32];
-    } d;
+	/* 共通部分 */
+	struct _struct_objecthead_ {
+		int   pri;
+		float posx;
+		float posy;
+		float posz;
+		float rsiz; /* 当たり判定範囲 posx,posy,posz からの 半径 */
+		int   type; /* OBJECTTYPE_* */
+		/* ブロックリンク構築用 */
+		struct _object_ *next;
+		struct _object_ *back;
+		int   blkx; /* オブジェクトが存在するブロック位置X */
+		int   blky; /* オブジェクトが存在するブロック位置Y */
+		int   blkz;	/* オブジェクトが存在するブロック位置Z */
+		int   list; /* オブジェクトが存在するブロックのリンクリスト */        //たぶん未使用
+		/* 描画用データ */
+		u32   rgb;  /* 色           */
+		int   bmp;  /* ビットマップ */
+		/* 処理関数 */
+		void(*mov)(struct _object_ *dp);                      /* 移動関数   */
+		void(*hit)(struct _object_ *dp, struct _object_ *sp); /* 当たり処理(sp:当って来たもの) */
+		void(*drw)(struct _object_ *dp);                      /* 描画関数   */
+		int(*hc2)(struct _object_ *dp, struct _object_ *sp, float dx, float dy, float dz); /* 2次当たり判定(sp:当って来たもの) */
+	} h;
+	/* 共通部分 */
+	struct _struct_objctdata_ {
+		u32    data[OBJECT_LOCAL_U32];
+	} d;
 } Object;
 
 extern Object  object_data[OBJECT_NUMS];         /* オブジェクトの実体 */

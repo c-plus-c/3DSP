@@ -7,6 +7,8 @@ COJT-SW 3D Shooting Development Project by 104 &amp; 108
 
 #担当箇所
 
+共同 : extern.h
+
 SW104 : draw_utils.c main.c bgm_manager.c pad.h pad.c
 game.h game.c object.c
 

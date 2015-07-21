@@ -9,12 +9,12 @@
 
 void player_init();
 
-void player_initWithParam(Vec3f pos,Vec3f angle);
+void player_initWithParam(Vec3f pos, Vec3f angle);
 
 /*
-半径で判定以上に当たり判定をしたければ書く 
+半径で判定以上に当たり判定をしたければ書く
 */
-int player_hc2(Object *dp,Object *sp,float cx, float cy, float cz);
+int player_hc2(Object *dp, Object *sp, float cx, float cy, float cz);
 /* TODO:今西
 パッド処理
 */

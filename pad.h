@@ -12,10 +12,10 @@
 
 #define PAD_REPEAT_TIME		(5)
 
-void PadInit( void );
-void PadRun( void );
-u8 PadTrg( void );
-u8 PadLvl( void );
-u8 PadRpt( void );
+void PadInit(void);
+void PadRun(void);
+u8 PadTrg(void);
+u8 PadLvl(void);
+u8 PadRpt(void);
 
 #endif // __PAD_H__

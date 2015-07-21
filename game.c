@@ -13,5 +13,5 @@
 #include "game.h"
 
 void	init_map(){
-	
+
 }

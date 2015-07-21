@@ -37,11 +37,11 @@ extern AG3Danimenode node[512];
 
 /* Ｚソート時の三角形バッファ */
 /* 必要サイズは agglGet**(AGGL_ZSORT_TRIANGLE_SIZE)で得られる値 * ag3dGetModelTris(man_model) */
-extern char	zsortbuf[1024*10*50];
+extern char	zsortbuf[1024 * 10 * 50];
 
 /* 頂点バッファ（agglDrawElements用） */
 /* 推奨サイズは agglGet**(AGGL_TEMPORARY_VERTEX_SIZE)で得られる値 * ag3dGetModelVtxs(man_model) */
-extern char	vtxbuf[10240*2];
+extern char	vtxbuf[10240 * 2];
 
 extern Page displayingPage;
 
@@ -53,9 +53,9 @@ extern Object Objects[OBJECT_MAX];
 
 extern AGDrawBuffer DBuf;
 
-extern int drawNum(int x,int y, long long int num);
+extern int drawNum(int x, int y, long long int num);
 
-extern int drawStr(int x,int y, char* str);
+extern int drawStr(int x, int y, char* str);
 
 extern void drawHud(Object *dp, u32 frameCount);
 
@@ -64,14 +64,14 @@ extern int frameCount;
 extern Object* getFreeFireball(int pid);
 extern Object* getFreeHormingBullet(int pid);
 
-extern void hormingBulletInit(Object *dp,int pid);
-extern void fireballInit(Object *dp,int pid);
+extern void hormingBulletInit(Object *dp, int pid);
+extern void fireballInit(Object *dp, int pid);
 
 extern Object* getPlayer(int pid);
 
 extern float frand(void);
 
-extern void SetCurrentBGMHandle(int rom_index,int loop);
+extern void SetCurrentBGMHandle(int rom_index, int loop);
 
 extern void PlayCurrentBGM();
 
